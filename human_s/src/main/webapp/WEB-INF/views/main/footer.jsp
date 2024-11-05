@@ -15,6 +15,7 @@
             <button>개인정보처리방침</button>
             <button>전자금융거래약관</button>
         </div>
+        <div class="footerContent">
         <div class="footerLeft">
             <div>상호: GreenCart</div>
             <div>대표자: 박지훈</div>
@@ -29,16 +30,19 @@
                 <i class="fa-solid fa-phone"></i>
                 <span>041-561-1122</span>
             </div>
+            <div>판매처 고객센터</div>
             <div>
                 <i class="fa-solid fa-phone"></i>
                 <span>041-561-1123</span>
             </div>
-            <div>09:30 ~ 17:30 / 주말, 공휴일 휴무</div>
+            <div class="footerContactHours">09:30 ~ 17:30 / 주말, 공휴일 휴무</div>
         </div>
         <div class="footerRight">
-            <div class="logo">logo</div>
-            <div class="api">api</div>
+            <img src="${pageContext.request.contextPath}/resources/img/Logo.webp" alt="GreenCart" class="logo">
+            <div class="api">aT 도매시장 통합홈페이지</div>
+            <div class="api">KAMIS</div>
         </div>
+    </div>
     </footer>
 </body>
 </html>

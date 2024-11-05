@@ -21,6 +21,12 @@ header{
 header>.headerTop{ /* 헤더 상단 */
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-end;
+}
+header>.headerTop>img{
+	background: no-repeat center center;
+	background-size: cover;
+	width: 20%;
 }
 header>.headerTop>.search{
 	border-bottom: solid 2px #AFD485;
@@ -36,7 +42,7 @@ header>.headerTop i{
 	font-size: 20px;
 }
 header>.headerTop>.userIcon{
-	width: 10%;
+	width: 20%;
 	text-align: right;
 }
 header>.headerTop>.userIcon>.fa-user{
@@ -72,4 +78,58 @@ section{
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 10px 4% 10px;
+}
+
+
+/* footer.jsp */
+footer{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px 4% 10px;
+	display: flex;
+    flex-direction: column;
+}
+footer>.footerTop{
+	display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+footer>.footerTop>button:hover{
+    color: #AFD485;
+}
+footer>.footerContent{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+footer>.footerContent>.footerLeft,
+footer>.footerContent>.footerMid,
+footer>.footerContent>.footerRight{
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+    width: 30%;
+}
+footer>.footerContent>.footerLeft>div,
+footer>.footerContent>.footerMid>div{
+    margin-bottom: 5px;
+}
+footer>.footerContent>.footerMid>div>i{
+    margin-right: 8px;
+    color: #2d7a2d;
+}
+footer>.footerContent>.footerMid>div>span{
+	font-size: 20px;
+}
+footer>.footerContent>.footerMid>.footerContactHours {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #777;
+}
+footer>.footerContent>.footerRight{
+    display: flex;
+    flex-direction: column;
+}
+footer>.footerContent>.footerRight>.logo {
+	width:50%;
 }
