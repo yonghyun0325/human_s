@@ -1,0 +1,152 @@
+/* 전체 레이아웃 */
+.userupdate-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+h1{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+/* 좌측 사이드바 스타일 */
+.sidebar {
+    width: 25%;
+    background-color: #fafafa;
+    padding: 15px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* 메인 콘텐츠 */
+.userupdate_content {
+    width: 75%;
+    padding-left: 20px;
+}
+
+.content-header h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.content-header{
+    display: flex;
+}
+
+.notice {
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+th {
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    width: 150px;
+}
+
+td input[type="text"],
+td input[type="password"],
+td select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 옵션 설명 스타일 */
+.pw-option {
+    font-size: 12px;
+    color: #888;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* 버튼 스타일 */
+.btn {
+    background-color: #ddd;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.save-btn {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* 반응형 처리 */
+@media (max-width: 1200px) {
+    .userupdate-container {
+        flex-direction: column;
+    }
+    .sidebar, .userupdate_content {
+        width: 100%;
+        padding: 0;
+    }
+}

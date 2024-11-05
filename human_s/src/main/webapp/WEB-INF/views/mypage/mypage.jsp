@@ -15,7 +15,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <%@ include file="../main/header.jsp"%>
+    <%@ include file="/WEB-INF/views/main/header.jsp"%>
     
     <h1>마이페이지</h1>
     <!-- 마이페이지 컨테이너 -->
@@ -45,7 +45,7 @@
             </ul>
             <h3>개인정보</h3>
             <ul>
-                <li>회원정보수정</li>
+                <li><a href="/hms/mypage/update.do" class="no-underline">회원정보수정</a></li>
                 <li>회원탈퇴</li>
             </ul>
         </div>
@@ -126,6 +126,6 @@
         </div>
     </div>
 
-    <%@ include file="../main/footer.jsp"%>
+    <%@ include file ="/WEB-INF/views/main/footer.jsp" %>
 </body>
 </html>
