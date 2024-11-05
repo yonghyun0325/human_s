@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="headerTop">
-            <h2>GreenCart</h2>
+            <img src="${pageContext.request.contextPath}/resources/img/Logo.webp" alt="GreenCart">
             <div class="search">
                 <input type="text" class="searchProduct">
                 <i class="fa-solid fa-magnifying-glass"></i>
