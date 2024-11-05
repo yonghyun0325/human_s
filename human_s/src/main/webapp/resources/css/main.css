@@ -1,0 +1,75 @@
+@charset "UTF-8";
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: #000;
+}
+button{
+	cursor: pointer;
+	border: none;
+	background-color: #fff0;
+}
+
+/* header.jsp */
+header{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px 4% 10px;
+}
+
+header>.headerTop{ /* 헤더 상단 */
+	display: flex;
+	justify-content: space-between;
+}
+header>.headerTop>.search{
+	border-bottom: solid 2px #AFD485;
+	padding: 5px;
+	width: 30%;
+}
+header>.headerTop>.search>input{
+	border: none;
+	width: 90%;
+	font-size: 20px;
+}
+header>.headerTop i{
+	font-size: 20px;
+}
+header>.headerTop>.userIcon{
+	width: 10%;
+	text-align: right;
+}
+header>.headerTop>.userIcon>.fa-user{
+	margin: 0px 7%;
+}
+
+header>.navigation{ /* 네비게이션 */
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+header>.navigation>button>i{
+	font-size: 20px;
+}
+header>.navigation>.otherPage{
+	width: 95%;
+	display: flex;
+	justify-content: space-between;
+}
+header>.navigation>.otherPage>button{
+	border-bottom: solid 1px transparent;
+    transition: border-bottom 0.3s ease;
+    padding: 0.5%;
+}
+header>.navigation>.otherPage>button:hover{
+	border-bottom: solid 1px #AFD485;
+}
+
+
+/* middle.jsp */
+section{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px 4% 10px;
+}
