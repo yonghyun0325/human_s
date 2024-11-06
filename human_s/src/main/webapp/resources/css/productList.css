@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+/* popNewList.jsp */
+.selectType{
+	display: flex;
+	justify-content: flex-end;
+}
+.selectType>a{
+	font-size: 14px;
+	margin: 10px;
+}
+.selectType i{
+	margin: 2px;
+}
+section>img{
+	width: 100%;
+	margin: 10px 0px;
+}
+
+/* popNewList.jsp, checkBoxList.jsp */
+.productList{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 열로 정렬 */
+    gap: 20px; /* 아이템 간의 간격 설정 */
+    margin: 10px 0px 20px;
+}
+.productList>.productItem{
+    background-color: #AFD48555;
+    border-radius: 8px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+}
+.productList>.productItem>div:first-child{
+	position: absolute;
+	background-color: #ccc;
+	padding: 5% 7%;
+	color: #fff;
+}
+.productList .popNum{
+	padding: 10px 10px 0px 10px;
+}
+.productList .popNum>img{
+	width: 100%;
+	height: 180px;
+}
+.productList .productContent{
+	padding: 0px 10px 10px 10px;
+	display: flex;
+    flex-direction: column;
+}
+.productList .title{
+	font-size: 16px;
+}
+.productList .price{
+	align-self: flex-end;
+	font-weight: bold;
+}
+.productList .company{
+	font-size: 12px;
+	color: #777;
+}
+
+/* checkBoxList.jsp */
+.checkContainer{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 20px 0px;
+    display: flex;
+    align-items: stretch;
+}
+.checkContainer .category, .checkContainer .areaSelect{
+    display: none;
+}
+.checkContainer>.category, .checkContainer>.areaSelect{
+    width: 18%;
+    align-self: center;
+    text-align: center;
+    background-color: #ddd;
+}
+.checkContainer>.category{
+	padding: 5.5% 5%;
+}
+.checkContainer>.areaSelect{
+	padding: 7.7% 5%;
+}
+.checkContainer .category>hr, .checkContainer .areaSelect>hr{
+	margin: 10px 0px;
+}
+.checkContainer .checkBox{
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	width: 82%;
+}
+.checkContainer .title{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.checkContainer .checkList{
+    display: flex;
+    gap: 10px 20px;
+    width: 100%;
+    flex-wrap: wrap; /* 줄바꿈 추가 */
+}
+.checkContainer label{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    width: 120px;
+}
+.checkContainer label:hover{
+    background-color: #e6f3e6;
+    border-color: #AFD485;
+}
+.checkContainer .checkList input[type="checkbox"] {
+    display: none; /* 기본 체크박스를 숨깁니다 */
+}
+
+.checkContainer .checkList .custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox {/* 체크박스가 체크되었을 때 스타일 */
+    background-color: #AFD485;
+    border-color: #AFD485;
+}
+.checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox::after {/* 체크 표시 스타일 */
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

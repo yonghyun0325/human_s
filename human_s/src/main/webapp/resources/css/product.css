@@ -1,133 +1,142 @@
 @charset "UTF-8";
 
 /* popNewList.jsp */
-.selectType>a{
-	font-size: 14px;
-	margin: 10px;
-}
-section>img{
-	width: 100%;
-	margin-top: 10px;
-}
 
-/* popNewList.jsp, checkBoxList.jsp */
-.productList{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 열로 정렬 */
-    gap: 20px; /* 아이템 간의 간격 설정 */
-    margin: 20px 0px;
-}
-.productList>.productItem{
-    background-color: #AFD48555;
-    border-radius: 8px;
-    font-size: 16px;
+.productAll{
     display: flex;
-    flex-direction: column;
-    position: relative;
-}
-.productList>.productItem>div:first-child{
-	position: absolute;
-	background-color: #ccc;
-	padding: 5% 7%;
-	color: #fff;
-}
-.productList .popNum{
-	padding: 10px 10px 0px 10px;
-}
-.productList .popNum>img{
-	width: 100%;
-	height: 180px;
-}
-.productList .productContent{
-	padding: 0px 10px 10px 10px;
-	display: flex;
-    flex-direction: column;
-}
-.productList .title{
-	font-size: 16px;
-}
-.productList .price{
-	align-self: flex-end;
-	font-weight: bold;
-}
-.productList .company{
-	font-size: 12px;
-	color: #777;
-}
-
-/* checkBoxList.jsp */
-.checkContainer{
     width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin: 20px 0px;
-    display: flex;
+    overflow: hidden;
 }
-.checkContainer .category, .checkContainer .areaSelect{
-    display: none;
+.productImage{
+    flex: 1;
+    margin: 20px;
+    background-color: #333;
 }
-.checkContainer>.category, .checkContainer>.areaSelect{
-    align-self: center;
-    padding: 5%;
-    background-color: #ddd;
+.productImage img{
+    width: 100%;
 }
-.checkContainer .category>hr, .checkContainer .areaSelect>hr{
+.productInfo{
+    flex: 1;
+    padding: 20px;
+}
+.productInfo h2{
+    font-size: 20px;
+    color: #333;
+}
+.productInfo h2+hr{
+	border: solid 1.5px #333;
 	margin: 10px 0px;
 }
-.checkContainer .checkBox{
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-    width: 100%;
-}
-.checkContainer .title{
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.checkContainer .checkList{
-    display: flex;
-    gap: 20px;
-}
-.checkContainer label{
+.productPrice{
+    font-size: 16px;
+    color: #555;
+    margin: 10px;
     display: flex;
     align-items: center;
-    background-color: #fff;
-    padding: 8px;
+}
+.productPrice>div{
+	width: 25%;
+}
+.productDetail{
+	padding: 10px;
+}
+.productDetail>div{
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.productDetail p{
+    font-size: 14px;
+    color: #555;
+}
+.productDetail p:first-child{
+	width: 25%;
+}
+.productDetail p:nth-child(2){
+	width: 75%;
+}
+.productDetail select{
+    padding: 5px;
+    font-size: 13px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-    width: 120px;
+    width: 75%;
 }
-.checkContainer label:hover{
+.totalPrice{
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0px 10px 10px;
+    font-weight: bold;
+}
+
+.totalPrice span{
+    color: #2d7a2d;
+    font-size: 20px;
+    margin: 0px 10px;
+}
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+.buttons .btn{
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.buttons>.wishlist, .buttons>.cart{
+    flex: 1;
+}
+.buttons>.buy{
+    background-color: #AFD485;
+    flex: 2;
+}
+.btn:hover{
     background-color: #e6f3e6;
     border-color: #AFD485;
 }
-.checkContainer .checkList input[type="checkbox"] {
-    display: none; /* 기본 체크박스를 숨깁니다 */
+.buttons>.buy:hover{
+	background-color: #2d7a2d;
+    color: #fff;
 }
 
-.checkContainer .checkList .custom-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-    position: relative;
-    transition: background-color 0.3s, border-color 0.3s;
+.detailAll{
+	padding: 20px;
 }
-.checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox {/* 체크박스가 체크되었을 때 스타일 */
-    background-color: #AFD485;
-    border-color: #AFD485;
+.detailList{
+	width: 80%;
+	margin: 0 auto;
 }
-.checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox::after {/* 체크 표시 스타일 */
-    content: '✔';
-    color: white;
-    font-size: 14px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.detailList .detailNav{
+	display: flex;
+	border-radius: 10px 10px 0 0;
+	border: solid 1px #ccc;
+	overflow: hidden;
+	margin: 20px 0px;
+}
+.detailList button{
+	flex: 1;
+	padding: 10px;
+}
+.detailNav>button:nth-child(2n){
+	border-left: solid 1px #ccc;
+	border-right: solid 1px #ccc;
+}
+.detailNav>.selected{
+	background-color: #AFD485;
+}
+.shopInfo .shiExcRef{
+	display: flex;
+	flex-direction: column;
+}
+.shopInfo .shiExcRef>h2{
+	align-self: center;
+}
+.shopInfo>div>div>div{
+	margin-top: 10px;
+	font-weight: bold;
+}
+.shopInfo p{
+	font-size: 14px;
+	margin: 2px;
 }

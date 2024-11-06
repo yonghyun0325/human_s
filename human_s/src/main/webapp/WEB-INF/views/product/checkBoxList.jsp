@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>GreenCart</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/product.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/productList.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/product.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/productList.js"></script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
@@ -17,12 +17,15 @@
 			<div class="areaSelect">지역선택</div>
 			<div class="checkBox">
 				<div class="category">
-					<label>
-						<input type="checkbox">
-						<span class="custom-checkbox"></span>
-						전체
-					</label>
-					<div class="checkList">
+					<div class="checkList checkAll">
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							전체
+						</label>
+					</div>
+					<hr>
+					<div class="checkList checkItem">
 						<label>
 							<input type="checkbox">
 							<span class="custom-checkbox"></span>
@@ -51,14 +54,15 @@
 					</div>
 				</div>
 				<div class="areaSelect">
-					<div>
+					<div class="checkList checkAll">
 						<label>
 							<input type="checkbox">
 							<span class="custom-checkbox"></span>
 							전체
 						</label>
 					</div>
-					<div class="checkList">
+					<hr>
+					<div class="checkList checkItem">
 						<label>
 							<input type="checkbox">
 							<span class="custom-checkbox"></span>
@@ -83,6 +87,31 @@
 							<input type="checkbox">
 							<span class="custom-checkbox"></span>
 							울산
+						</label>
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							경기도
+						</label>
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							강원도
+						</label>
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							충청도
+						</label>
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							전라도
+						</label>
+						<label>
+							<input type="checkbox">
+							<span class="custom-checkbox"></span>
+							경상도
 						</label>
 					</div>
 				</div>
