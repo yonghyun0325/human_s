@@ -36,60 +36,64 @@
             </ul>
             <h3>개인정보</h3>
             <ul>
-                <li><a href="userUpdate.jsp" class="no-underline">회원정보수정</a></li>
+                <li><a href="update.do" class="no-underline">회원정보수정</a></li>
                 <li>회원탈퇴</li>
             </ul>
         </div>
+        
         <div class="userupdate_content">
             <div class="content-header">
                 <h3>회원정보 입력</h3>
                 <p class="notice">* 표시는 필수입력항목입니다.</p>
             </div>
-            <br>
             <hr>
     
             <form action="#" method="post">
                 <table>
                     <tr>
-                        <th><label for="name">* 이름</label></th>
+                        <th><label for="name"><span class="red-star">*</span> 이름</label></th>
                         <td><input type="text" id="name" name="name" value="이용현"></td>
                     </tr>
                     <tr>
-                        <th><label for="username">* 아이디</label></th>
+                        <th><label for="username"><span class="red-star">*</span> 아이디</label></th>
                         <td><input type="text" id="username" name="username" value="ka@89a3e3c6b" readonly></td>
                     </tr>
                     <tr>
-                        <th><label for="password">* 비밀번호</label></th>
+                        <th><label for="password"><span class="red-star">*</span> 비밀번호</label></th>
                         <td><input type="password" id="password" name="password"><span class="pw-option">* 영문 대소문자/숫자/특수문자를 혼용하여 2종류 10~16자 또는 3종류 8~16자</span></td>
                     </tr>
                     <tr>
-                        <th><label for="confirm_password">* 비밀번호 확인</label></th>
+                        <th><label for="confirm_password"><span class="red-star">*</span> 비밀번호 확인</label></th>
                         <td><input type="password" id="confirm_password" name="confirm_password"></td>
                     </tr>
                     <tr>
-                        <th><label for="birth">* 생년/성별</label></th>
+                        <th><label for="birth"><span class="red-star">*</span> 생년/성별</label></th>
                         <td><input type="text" id="birth" name="birth"></td>
                     </tr>
                     <tr>
-                        <th><label for="address">* 주소</label></th>
+                        <th><label for="address"><span class="red-star">*</span> 주소</label></th>
                         <td>
                             <input type="text" id="address" name="address">
-                            <button type="button" class="btn">우편번호검색</button>
+                            <button type="button" class="btn">우편번호검색</button><br>
+                            <input type="text" id="address1" name="address1" class="address_particular">
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="phone">* 휴대폰</label></th>
+                        
+                    </tr>
+                    <tr>
+                        <th><label for="phone"><span class="red-star">*</span> 휴대폰</label></th>
                         <td>
-                            <select name="phone1">
+                            <select name="phone1" class="phone1">
                                 <option value="010">010</option>
                                 <option value="011">011</option>
                             </select>
-                            - <input type="text" name="phone2" size="4" maxlength="4">
-                            - <input type="text" name="phone3" size="4" maxlength="4">
+                            - <input type="text" name="phone2" class="phone2" size="4" maxlength="4">
+                            - <input type="text" name="phone3" class="phone3" size="4" maxlength="4">
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="email">* 이메일</label></th>
+                        <th><label for="email"><span class="red-star">*</span> 이메일</label></th>
                         <td>
                             <input type="text" name="email1">
                             @ <select name="email2">
@@ -107,6 +111,7 @@
                                 <option>은행 선택</option>
                                 <option value="국민">국민</option>
                                 <option value="신한">신한</option>
+                                <option value="카카오뱅크">카카오뱅크</option>
                             </select>
                             <input type="text" name="account_number">
                         </td>

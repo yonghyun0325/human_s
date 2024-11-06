@@ -1,9 +1,9 @@
 /* 전체 레이아웃 */
 .userupdate-container {
     display: flex;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 4%;
     font-family: Arial, sans-serif;
 }
 h1{
@@ -12,7 +12,10 @@ h1{
     font-weight: bold;
     color: #333;
     margin-top: 30px;
-    margin-bottom: 50px;
+    
+}
+a {
+    color: #555;
 }
 
 /* 좌측 사이드바 스타일 */
@@ -75,10 +78,14 @@ h1{
 }
 
 /* 테이블 스타일 */
+.red-star {
+    color: red;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 th, td {
@@ -92,17 +99,26 @@ th {
     font-weight: bold;
     color: #333;
     width: 150px;
+    background-color: #f8f8f8;
 }
 
 td input[type="text"],
 td input[type="password"],
 td select {
-    width: calc(100% - 20px);
+    width: 200px;
     padding: 8px;
     margin: 5px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.address_particular {
+    width: 450px !important ;
+}
+
+.phone1,.phone2,.phone3 {
+    width: 100px !important;
 }
 
 /* 옵션 설명 스타일 */
@@ -115,17 +131,18 @@ td select {
 
 /* 버튼 스타일 */
 .btn {
-    background-color: #ddd;
+    background-color: #898989;
     border: none;
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
     margin-left: 10px;
+    color: white;
 }
 
 .save-btn {
-    background-color: #d9534f;
+    background-color: #AFD485;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
