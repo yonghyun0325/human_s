@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-<script src="../resources/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<footer>
         <div class="footerTop">
-            <button>회사소개</button>
-            <button>이용약관</button>
-            <button>개인정보처리방침</button>
-            <button>전자금융거래약관</button>
+            <a href="">회사소개</a>
+            <a href="">이용약관</a>
+            <a href="">개인정보처리방침</a>
+            <a href="">전자금융거래약관</a>
         </div>
         <div class="footerContent">
         <div class="footerLeft">
