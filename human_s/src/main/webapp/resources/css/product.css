@@ -125,11 +125,11 @@
 .detailNav>.selected{
 	background-color: #AFD485;
 }
-.shopInfo .shiExcRef{
+.detailList .shopComment{
 	display: flex;
 	flex-direction: column;
 }
-.shopInfo .shiExcRef>h2{
+.shopComment>h2{
 	align-self: center;
 }
 .shopInfo>div>div>div{

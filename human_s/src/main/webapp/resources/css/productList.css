@@ -138,8 +138,8 @@ section>img{
     transition: background-color 0.3s, border-color 0.3s;
 }
 .checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox {/* 체크박스가 체크되었을 때 스타일 */
-    background-color: #AFD485;
-    border-color: #AFD485;
+    background-color: #4CAF50;
+    border-color: #4CAF50;
 }
 .checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox::after {/* 체크 표시 스타일 */
     content: '✔';

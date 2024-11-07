@@ -20,14 +20,12 @@ $(function(){
 //popNewList.jsp
 	//인기순/최신순 선택창 hover 효과
 	$(".selectType>a").on("mouseover", function(){
-        $(this).css("color", "#AFD485");
-        $(this).find("i").css("color", "#AFD485");
+        $(this).find("i").css("color", "#4CAF50");
     });
     $(".selectType>a").on("mouseleave", function(){
-        $(this).css("color", "#000");
         $(this).find("i").css("color", "#000");
     });
-
+    
 	//인기순,최신순 배너 / 인기순일때만 순위 표시
 	let select = getParameterByName("select").trim();
 	$("section > img").hide();

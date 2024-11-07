@@ -87,8 +87,8 @@
 						<button>상품문의</button>
 						<button>상품후기</button>
 					</div>
-					<div class="otherList">
-					
+					<div class="shopComment">
+						<h2>관련상품</h2>
 					</div>
 				</div>
 				<div class="shopInfo">
@@ -99,12 +99,12 @@
 						<button>상품문의</button>
 						<button>상품후기</button>
 					</div>
-					<div class="shiExcRef">
+					<div class="shopComment">
 						<h2>배송/교환/환불</h2>
 						<jsp:include page="shiExcRef.jsp" />
 					</div>
 				</div>
-				<div class="otherProduct">
+				<div class="otherProduct"><!-- 클래스명 고쳐야함! -->
 					<div class="detailNav">
 						<button>상품상세정보</button>
 						<button>관련상품</button>
@@ -112,11 +112,13 @@
 						<button class="selected">상품문의</button>
 						<button>상품후기</button>
 					</div>
-					<div class="imgList">
-					
+					<div class="shopComment">
+						<h2>상품문의</h2>
+						<hr>
+						
 					</div>
 				</div>
-				<div class="otherProduct">
+				<div class="otherProduct"><!-- 클래스명 고쳐야함! -->
 					<div class="detailNav">
 						<button>상품상세정보</button>
 						<button>관련상품</button>
@@ -124,8 +126,8 @@
 						<button>상품문의</button>
 						<button class="selected">상품후기</button>
 					</div>
-					<div class="imgList">
-					
+					<div class="shopComment">
+						<h2>상품후기</h2>
 					</div>
 				</div>
 			</div>
