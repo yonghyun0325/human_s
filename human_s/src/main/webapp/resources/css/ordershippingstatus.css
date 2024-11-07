@@ -1,0 +1,183 @@
+/* 전체 레이아웃 */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.order-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0px auto; /* 위아래 여백 추가 */
+    padding: 30px 4%;
+}
+
+/* 좌측 사이드바 스타일 */
+.sidebar {
+    width: 25%;
+    background-color: #fafafa;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+    margin-right: 20px;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    color: #444;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.sidebar ul li:not(:last-child) {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.no-underline {
+    text-decoration: none;
+    color: #555;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    width: 75%;
+    padding-left: 20px;
+}
+
+/* 제목 스타일 */
+h1 {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* 정보 표시 박스 */
+.info-box {
+    background-color: #f4f9ef;
+    border: 1px solid #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    color: #5cb85c;
+    font-weight: bold;
+}
+
+/* 필터 영역 */
+.order-search-box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.order-search-box .btnset a {
+    padding: 8px 12px;
+    background-color: white;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+    margin: 5px 3px;
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.order-search-box .btnset a:hover {
+    background-color: #e0e0e0;
+}
+
+.order-search-box input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    width: 120px;
+    font-size: 14px;
+    background-color: #ffffff;
+    margin: 5px;
+}
+
+.order-search-box .srch {
+    padding: 8px 12px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.srch {
+    background-color: #494645 !important;
+    color: white !important;
+    font-weight: 400 !important;
+}
+
+/* 주문 내역 테이블 */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.order-table th,
+.order-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.order-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.no-data {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 하단 공지사항 */
+.notice {
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.notice p {
+    margin: 0;
+    color: #8a6d3b;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .order-container {
+        flex-direction: column;
+    }
+    .sidebar,
+    .main-content {
+        width: 100%;
+        padding: 0;
+    }
+}

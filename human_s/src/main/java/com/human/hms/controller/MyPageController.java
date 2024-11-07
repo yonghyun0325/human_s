@@ -13,9 +13,14 @@ public class MyPageController {
     public String showMyPage(){
         return "mypage/mypage";
     }
-    // UserUpdate.jsp로 이동
+    // userUpdate.jsp로 이동
     @GetMapping("/update.do")
     public String showUserUpdate(){
         return "mypage/userUpdate";
+    }
+    // orderShippingStatus.jsp로 이동
+    @GetMapping("/order.do")
+    public String showOrderShippingStatus(){
+        return "mypage/orderShippingStatus";
     }
 }
