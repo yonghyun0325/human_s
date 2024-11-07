@@ -10,17 +10,14 @@
         /* 페이지 전체 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
         }
 
-        /* 레이아웃 컨테이너 스타일 */
+     /* 레이아웃 컨테이너 스타일 */
         .layout {
             max-width: 1200px;
             width: 100%;
+            padding: 20px;
+            margin: 0 auto; /* 중앙 정렬 고정 */
             display: flex;
             flex-direction: column; /* 세로 배치 */
             align-items: center;
@@ -203,9 +200,9 @@
     </style>
 </head>
 <body>
-
+ <%@ include file="../main/header.jsp"%>
     <div class="layout">
-    <%@ include file="../main/header.jsp"%>
+   
          
         <div class="story-write">
         <button type="button" id="write_btn">스토리 올리기</button>
@@ -254,7 +251,8 @@
             </c:forEach>
         </div>
 
-        <%@ include file="../main/footer.jsp"%> <!-- 푸터를 세로 방향으로 하단에 배치 -->
+       
     </div>
+    <%@ include file="../main/footer.jsp"%> 
 </body>
 </html>
