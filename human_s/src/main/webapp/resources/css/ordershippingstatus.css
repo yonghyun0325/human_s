@@ -6,7 +6,7 @@ body {
 .order-container {
     display: flex;
     max-width: 1200px;
-    margin: 0px auto; /* 위아래 여백 추가 */
+    margin: 0 auto;
     padding: 30px 4%;
 }
 
@@ -80,54 +80,66 @@ h1 {
     font-weight: bold;
 }
 
-/* 필터 영역 */
+/* 필터 영역 스타일 */
 .order-search-box {
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px;
     border: 1px solid #ddd;
     background-color: #f1f1f1;
-    text-align: center;
     margin-bottom: 30px;
 }
 
-.order-search-box .btnset a {
+/* 버튼 스타일 */
+.btnset a {
     padding: 8px 12px;
     background-color: white;
     border: 1px solid #ccc;
     text-decoration: none;
     color: black;
-    margin: 5px 3px;
     font-size: 14px;
-    display: inline-block;
     cursor: pointer;
+    margin-right: 5px;
 }
 
-.order-search-box .btnset a:hover {
+.btnset a:hover {
     background-color: #e0e0e0;
 }
 
-.order-search-box input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
+/* 입력 필드와 아이콘 컨테이너 */
+.input-with-icon {
+    position: relative;
+    display: inline-block; /* 아이콘과 입력 필드를 inline-block으로 묶어 정렬 */
+}
+
+.date-input {
     width: 120px;
-    font-size: 14px;
-    background-color: #ffffff;
-    margin: 5px;
+    padding: 8px 30px 8px 10px; /* 오른쪽 패딩으로 아이콘 공간 확보 */
+    border: 1px solid #ccc;
+    text-align: left;
 }
 
-.order-search-box .srch {
+/* 아이콘 위치 */
+.input-with-icon i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 15px;
+}
+
+/* 조회하기 버튼 스타일 */
+.search-button {
     padding: 8px 12px;
-    background-color: #555;
+    background-color: #333;
     color: white;
-    text-decoration: none;
+    border: 1px solid #333;
     font-size: 14px;
-    display: inline-block;
+    font-weight: bold;
     cursor: pointer;
-}
-
-.srch {
-    background-color: #494645 !important;
-    color: white !important;
-    font-weight: 400 !important;
 }
 
 /* 주문 내역 테이블 */
