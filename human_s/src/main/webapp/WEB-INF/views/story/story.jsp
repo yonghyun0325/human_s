@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>포스팅 카드</title>
     <style>
-        /* 페이지 전체 스타일 */
+        /* 페이지 전체 스타일 */ 
         body {
             font-family: Arial, sans-serif;
         }
