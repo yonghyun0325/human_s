@@ -7,6 +7,9 @@
 <title>주문배송현황</title>
 <!-- 주문배송현황 스타일 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ordershippingstatus.css">
+
+<!-- JavaScript 라이브러리 -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -58,9 +61,19 @@
                         <a href="#">3개월</a>
                         <a href="#">1년</a>
 
-                        <input type="text" id="search_date_start" name="search_date_start" size="11" value="" class="MS_input_txt MS_calendar" readonly="" onclick="Calendar(this, event);">
-                        <input type="date" id="search_date_end" size="11" name="search_date_end" value="" readonly="">
-                        <a href="#" class="srch">조회하기</a>
+                        <!-- 시작 날짜 필드와 아이콘을 감싸는 컨테이너 -->
+                        <div class="input-with-icon">
+                            <input type="text" id="search_date_start" name="search_date_start" class="date-input" readonly placeholder="시작 날짜">
+                            <i class="fal fa-calendar-alt"></i>
+                        </div>
+
+                        <!-- 종료 날짜 필드와 아이콘을 감싸는 컨테이너 -->
+                        <div class="input-with-icon">
+                            <input type="text" id="search_date_end" name="search_date_end" class="date-input" readonly placeholder="종료 날짜">
+                            <i class="fal fa-calendar-alt"></i>
+                        </div>
+
+                        <button type="button" class="search-button">조회하기</button>
                     </dd>
                 </dl>
             </div>
