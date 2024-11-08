@@ -5,19 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>GreenCart</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/product.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/productList.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/product.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/productList.js"></script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<section>
-		<div class="selectType">
-			<a href="/hms/product/popNewList.no?select=pop"><i class="fa-regular fa-crown"></i>인기순</a>
-			<a href="/hms/product/popNewList.no?select=new"><i class="fa-regular fa-sparkles"></i>최신순</a>
-		</div>
 		<img src="${pageContext.request.contextPath}/resources/img/인기순.png" alt="인기순배너">
 		<img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="최신순배너">
+		<div class="selectType">
+			<a href="/hms/product/popNewList.no?select=pop"><i class="fa-solid fa-h"></i><i class="fa-solid fa-o"></i><i class="fa-solid fa-t"></i></a>
+			<a href="/hms/product/popNewList.no?select=new"><i class="fa-solid fa-n"></i><i class="fa-solid fa-e"></i><i class="fa-solid fa-w"></i></a>
+		</div>
 		<div class="productList">
 	<c:forEach var="i" begin="0" end="15">
 			<div class="productItem">
@@ -27,7 +27,7 @@
 				</div>
 				<div class="productContent">
 					<div class="title">title</div>
-					<div class="price">price</div>
+					<div class="price">(100g당 가격)<span>price</span></div>
 					<div class="company">(주)food</div>
 				</div>
 			</div>

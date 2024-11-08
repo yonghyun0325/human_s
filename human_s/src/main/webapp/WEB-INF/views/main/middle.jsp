@@ -11,9 +11,12 @@
        		<div class="priceGraphTop">
 	            <h4>농산물 가격동향</h4>
 	            <div class="selectItem">
-	            	<button>양파</button>
-			        <button>토마토</button>
-			        <button class="active">사과</button>
+	            	<select>
+	            		<option>종류</option>
+	            	</select>
+	            	<select>
+	            		<option>소분류</option>
+	            	</select>
 	            </div>
        		</div>
         	<div class="content">

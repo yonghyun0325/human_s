@@ -18,4 +18,9 @@ public class ProductController {
 		return "product/checkBoxList";
 	}
 	
+	@GetMapping("/viewDetail.no")
+	public String viewDetail() {
+		return "product/viewDetail";
+	}
+	
 }

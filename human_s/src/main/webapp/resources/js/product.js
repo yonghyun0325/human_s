@@ -1,55 +1,25 @@
 $(function(){
 
-	//주소창에서 name이 들어간 뒤 부분을 추출해냄
-	function getParameterByName(name) {
-        let url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
+	//detailNav 눌렀을 때 해당 상세보기로 이동하기
+	$(".detailNav > button").click(function(){
+		const targetId = $(this).val();
+		const target = $('.' + targetId);
+		
+		$("html, body").animate({
+			scrollTop: target.offset().top
+		}, 800);
+	
+	});
+	
+	//사이드바 보이게 하기
+	$(window).on("scroll", function() {
+        var currentScrollTop = $(window).scrollTop();  // 현재 스크롤 위치
 
-
-//popNewList.jsp
-	//인기순/최신순 선택창 hover 효과
-	$(".selectType>a").on("mouseover", function(){
-        $(this).css("color", "#AFD485");
-        $(this).find("i").css("color", "#AFD485");
+        if (currentScrollTop > 600) {  // detailNav 높이만큼 내려갔을 때
+            $(".sideBar").fadeIn();  // 사이드바 보이게
+        } else {
+            $(".sideBar").fadeOut();  // 사이드바 숨기기
+        }
     });
-    $(".selectType>a").on("mouseleave", function(){
-        $(this).css("color", "#000");
-        $(this).find("i").css("color", "#000");
-    });
-
-	//인기순,최신순 배너 / 인기순일때만 순위 표시
-	let select = getParameterByName("select").trim();
-	$("section > img").hide();
-	console.log("select 값:", select, "타입:", typeof select);
-	if(select === "pop"){
-		$("section > img:nth-child(2)").show();
-		$(".productItem > .productRow").show();
-	}else{
-		$("section > img:nth-child(3)").show();
-		$(".productItem > .productRow").hide();
-	}
-	
-	//인기순 1-3위만 순위 박스 빨갛게
-	let rowNum = document.querySelectorAll(".productRow");
-	for(let i=0; i<3; i++){
-		rowNum[i].style.backgroundColor = "#C76B6B";
-	}
-	
-	
-//checkBoxList.jsp
-	//주소값에 따라 달라지는 체크박스 창
-	if(select === "category"){
-		$(".checkContainer .category").show();
-		$(".checkContainer .areaSelect").hide();
-	}else{
-		$(".checkContainer .category").hide();
-		$(".checkContainer .areaSelect").show();
-	}
 
 });
