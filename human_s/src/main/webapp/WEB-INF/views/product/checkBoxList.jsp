@@ -126,7 +126,7 @@
 				</div>
 				<div class="productContent">
 					<div class="title">title</div>
-					<div class="price">price</div>
+					<div class="price">(100g당 가격)<span>price원</span></div>
 					<div class="company">(주)food</div>
 				</div>
 			</div>

@@ -11,10 +11,9 @@ $(function(){
 	});
 
 //middle.jsp
-	$(".selectItem > button").click(function(){
-		$(".selectItem > button").css("background-color", "#ccc");
-		$(this).css("background-color", "#AFD485");
-	});
+	
+
+//footer.jsp
 	
 
 });

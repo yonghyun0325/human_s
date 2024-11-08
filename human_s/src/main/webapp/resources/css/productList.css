@@ -56,7 +56,13 @@ section>img{
 }
 .productList .price{
 	align-self: flex-end;
+	color: #aaa;
+	font-size: 12px;
+}
+.productList .price>span{
 	font-weight: bold;
+	font-size: 16px;
+	margin-left: 5px;
 }
 .productList .company{
 	font-size: 12px;
