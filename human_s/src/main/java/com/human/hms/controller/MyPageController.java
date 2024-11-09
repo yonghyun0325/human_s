@@ -28,4 +28,9 @@ public class MyPageController {
     public String showAddressManagement(){
         return "mypage/addressmanagement";
     }
+    // discountcoupon.jsp로 이동
+    @GetMapping("/coupon.do")
+    public String showDiscountCoupon(){
+        return "mypage/discountcoupon";
+    }
 }
