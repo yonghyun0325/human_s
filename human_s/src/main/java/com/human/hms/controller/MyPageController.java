@@ -33,4 +33,39 @@ public class MyPageController {
     public String showDiscountCoupon(){
         return "mypage/discountcoupon";
     }
+    // pointsdetails.jsp로 이동
+    @GetMapping("/points.do")
+    public String showPointsDetails(){
+        return "mypage/pointsdetails";
+    }
+    // pointsdetails.jsp로 이동
+    @GetMapping("/favorite.do")
+    public String showFavoriteProducts(){
+        return "mypage/favoriteproducts";
+    }
+    // todaygoods.jsp로 이동
+    @GetMapping("/todaygoods.do")
+    public String showTodayGoods(){
+        return "mypage/todaygoods";
+    }
+    // basket.jsp로 이동
+    @GetMapping("/basket.do")
+    public String showBasket(){
+        return "mypage/basket";
+    }
+    // inquiry.jsp로 이동
+    @GetMapping("/inquiry.do")
+    public String showInquiry(){
+        return "mypage/inquiry";
+    }
+    // inquirywrite.jsp로 이동
+    @GetMapping("/write.do")
+    public String showInquiryWrite(){
+        return "mypage/inquirywrite";
+    }
+    // myarticle.jsp로 이동
+    @GetMapping("/myarticle.do")
+    public String showMyArticle(){
+        return "mypage/myarticle";
+    }
 }

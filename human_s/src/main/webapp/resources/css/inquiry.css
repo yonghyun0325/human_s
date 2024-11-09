@@ -1,0 +1,121 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 4%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.highlight {
+    color: #AFD485;
+    font-weight: bold; /* 필요에 따라 굵게 표시 */
+}
+
+.info-message {
+    width: 800px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* 좌측 사이드바 스타일 */
+.sidebar {
+    width: 250px; /* 고정된 너비로 설정 */
+    background-color: #fafafa;
+    padding: 15px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* 문의 내역 테이블 스타일 */
+.inquiry-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.inquiry-table th, .inquiry-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.inquiry-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.inquiry-table td {
+    background-color: #fff;
+}
+
+/* 페이지네이션 및 버튼 스타일 */
+.pagination-container {
+    display: flex;
+    justify-content: space-between; /* 페이지네이션과 버튼을 양쪽 끝으로 배치 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-top: 15px; /* 여백 조절 */
+}
+
+.pagination {
+    display: flex;
+    gap: 5px; /* 페이지네이션 항목 간 간격 */
+}
+
+.pagination span {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+
+.register-inquiry-btn {
+    background-color: #AFD485;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}

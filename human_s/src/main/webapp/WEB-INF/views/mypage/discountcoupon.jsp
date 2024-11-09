@@ -16,33 +16,7 @@
     <div class="container">
         
         <!-- 좌측 사이드바 -->
-        <aside class="sidebar">
-            <h3>쇼핑정보</h3>
-            <ul>
-                <li>주문배송현황</li>
-                <li>나의 배송지 관리</li>
-                <li>선물함</li>
-                <li>정기구독 관리</li>
-            </ul>
-            <h3>혜택정보</h3>
-            <ul>
-                <li>할인쿠폰내역</li>
-                <li>적립금내역</li>
-            </ul>
-            <h3>활동정보</h3>
-            <ul>
-                <li>찜한상품</li>
-                <li>최근 본 상품</li>
-                <li>장바구니</li>
-                <li>1:1 문의내역</li>
-                <li>내 게시글 보기</li>
-            </ul>
-            <h3>개인정보</h3>
-            <ul>
-                <li>회원정보수정</li>
-                <li>회원탈퇴</li>
-            </ul>
-        </aside>
+        <%@ include file="/WEB-INF/views/mypage/sidebar.jsp"%>
 
         <!-- 메인 콘텐츠 -->
         <main class="main-content">

@@ -1,0 +1,134 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 4%;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+/* 탭 메뉴 스타일 */
+.tab-menu {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.tab.active {
+    font-weight: bold;
+    border-bottom: 2px solid #e53935;
+    color: #e53935;
+}
+
+/* 장바구니 테이블 스타일 */
+.basket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.basket-table th, .basket-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.basket-table th {
+    background-color: #f3f3f3;
+    font-weight: bold;
+}
+
+/* 가격 정보 컨테이너 */
+.price-info-container {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.price-info-notice{
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;    
+}
+
+.info-use{
+    font-size: 14px;
+    color: #595857;
+}
+
+/* 장바구니 가격 스타일 */
+.price-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.price-label {
+    font-size: 16px;
+    color: #333;
+}
+
+.total-price {
+    font-size: 16px;
+    color: black; /* 강조된 색상 */
+}
+
+/* 안내 메시지 스타일 */
+.info-message {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    text-align: right;
+}
+
+/* 기능 버튼 스타일 */
+.basket-buttons {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.basket-buttons .btn {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.order-selected{
+    background-color: #AFD485 !important;
+    color: white !important;
+    border: none !important;
+}
