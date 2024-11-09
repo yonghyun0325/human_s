@@ -23,4 +23,9 @@ public class MyPageController {
     public String showOrderShippingStatus(){
         return "mypage/orderShippingStatus";
     }
+    // addressmanagement.jsp로 이동
+    @GetMapping("/address.do")
+    public String showAddressManagement(){
+        return "mypage/addressmanagement";
+    }
 }
