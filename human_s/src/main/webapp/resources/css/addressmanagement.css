@@ -5,12 +5,14 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* 전체 폭을 좀 더 넓게 사용 */
+    max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 4%;
     display: flex;
 }
 
+/* 헤더 스타일 */
 h1 {
     font-size: 24px;
     color: #333;
@@ -19,6 +21,11 @@ h1 {
     text-align: center;
 }
 
+.main-content{
+    width: 1200px;
+}
+
+/* 안내 박스 스타일 */
 .info-box {
     background-color: #f1f1f1;
     padding: 10px 20px;
@@ -29,7 +36,7 @@ h1 {
 
 /* 좌측 사이드바 스타일 */
 .sidebar {
-    width: 25%;
+    width: 250px; /* 고정된 너비로 설정 */
     background-color: #fafafa;
     padding: 15px;
     margin-right: 20px;
@@ -67,14 +74,17 @@ h1 {
 /* 메인 콘텐츠 스타일 */
 .address-section, .recent-address {
     margin-bottom: 20px;
+    width: 100%; /* 전체 너비 사용 */
 }
 
+/* 섹션 제목 스타일 */
 .address-section h2, .recent-address h2 {
     font-size: 18px;
     color: #333;
     margin-bottom: 10px;
 }
 
+/* 테이블 스타일 */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -95,16 +105,32 @@ th {
     color: #333;
 }
 
+/* 추가 버튼 스타일 */
 .add-btn {
-    background-color: #e53935;
+    background-color: #AFD485;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 14px;
     border-radius: 3px;
+    margin-top: 10px;
 }
 
-.add-btn:hover {
-    background-color: #d32f2f;
+.button-container{
+    display: flex;
+    justify-content: end;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%; /* 모바일에서 전체 너비 차지 */
+        margin-right: 0; /* 사이 간격 제거 */
+        border-right: none;
+        border-bottom: 1px solid #ddd; /* 하단에 구분선 추가 */
+    }
 }
