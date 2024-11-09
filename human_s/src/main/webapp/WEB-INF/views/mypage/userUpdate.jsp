@@ -12,34 +12,8 @@
 
     <h1>회원정보 수정</h1>
     <div class="userupdate-container">
-        <!-- 좌측 메뉴 -->
-        <div class="sidebar">
-            <h3>쇼핑정보</h3>
-            <ul>
-                <li>주문배송현황</li>
-                <li>나의 배송지 관리</li>
-                <li>선물함</li>
-                <li>정기구독 관리</li>
-            </ul>
-            <h3>혜택정보</h3>
-            <ul>
-                <li>할인쿠폰내역</li>
-                <li>적립금내역</li>
-            </ul>
-            <h3>활동정보</h3>
-            <ul>
-                <li>찜한상품</li>
-                <li>최근 본 상품</li>
-                <li>장바구니</li>
-                <li>1:1 문의내역</li>
-                <li>내 게시글 보기</li>
-            </ul>
-            <h3>개인정보</h3>
-            <ul>
-                <li><a href="update.do" class="no-underline">회원정보수정</a></li>
-                <li>회원탈퇴</li>
-            </ul>
-        </div>
+        <!-- 좌측 사이드바 -->
+        <%@ include file="/WEB-INF/views/mypage/sidebar.jsp" %>
         
         <div class="userupdate_content">
             <div class="content-header">

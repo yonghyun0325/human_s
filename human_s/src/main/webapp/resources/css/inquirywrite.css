@@ -1,0 +1,174 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 4%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.info-message {
+    width: 800px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* 헤더 스타일 */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.form-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 좌측 사이드바 스타일 */
+.sidebar {
+    width: 250px; /* 고정된 너비로 설정 */
+    background-color: #fafafa;
+    padding: 15px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.highlight{
+    color: #AFD485;
+}
+
+
+/* 테이블 스타일 */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table th,
+.form-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-table th {
+    width: 100px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    vertical-align: top;
+}
+
+.form-table td {
+    width: calc(100% - 100px);
+}
+
+.form-table input[type="text"],
+.form-table input[type="email"],
+.form-table input[type="tel"],
+.form-table textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-table textarea {
+    resize: vertical;
+    height: 200px;
+}
+
+/* 파일 업로드 버튼 스타일 */
+.file-upload-container {
+    display: flex;
+    align-items: center;
+}
+
+.file-upload-container input[type="text"] {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.file-upload-btn {
+    padding: 8px 12px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+/* 버튼 그룹 */
+.button-group {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.submit-btn {
+    background-color: #AFD485;
+    color: #fff;
+}
+
+.cancel-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}

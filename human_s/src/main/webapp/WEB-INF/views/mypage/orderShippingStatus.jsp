@@ -17,65 +17,30 @@
     <h1>주문내역</h1>
     <div class="order-container">
         <!-- 좌측 사이드바 -->
-        <div class="sidebar">
-            <h3>쇼핑정보</h3>
-            <ul>
-                <li><a href="#" class="no-underline active">주문배송현황</a></li>
-                <li><a href="#" class="no-underline">나의 배송지 관리</a></li>
-                <li><a href="#" class="no-underline">선물함</a></li>
-                <li><a href="#" class="no-underline">정기구독 관리</a></li>
-            </ul>
-            <h3>혜택정보</h3>
-            <ul>
-                <li><a href="#" class="no-underline">할인쿠폰내역</a></li>
-                <li><a href="#" class="no-underline">적립금내역</a></li>
-            </ul>
-            <h3>활동정보</h3>
-            <ul>
-                <li><a href="#" class="no-underline">찜한상품</a></li>
-                <li><a href="#" class="no-underline">최근 본 상품</a></li>
-                <li><a href="#" class="no-underline">장바구니</a></li>
-                <li><a href="#" class="no-underline">1:1 문의내역</a></li>
-                <li><a href="#" class="no-underline">내 게시글 보기</a></li>
-            </ul>
-            <h3>개인정보</h3>
-            <ul>
-                <li><a href="#" class="no-underline">회원정보수정</a></li>
-                <li><a href="#" class="no-underline">회원탈퇴</a></li>
-            </ul>
-        </div>
+        <%@ include file="/WEB-INF/views/mypage/sidebar.jsp" %>
         
         <!-- 메인 콘텐츠 영역 -->
         <div class="main-content">
             <div class="info-box">
-                <p><strong>이용현</strong>님이 쇼핑몰에서 주문한 내역입니다.</p>
+                <p><span class="highlight">이용현</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
             </div>
             
-            <div class="order-search-box">
-                <dl>
-                    <dd class="btnset">
-                        <a href="#">오늘</a>
-                        <a href="#">어제</a>
-                        <a href="#">일주일</a>
-                        <a href="#">1개월</a>
-                        <a href="#">3개월</a>
-                        <a href="#">1년</a>
-
-                        <!-- 시작 날짜 필드와 아이콘을 감싸는 컨테이너 -->
-                        <div class="input-with-icon">
-                            <input type="text" id="search_date_start" name="search_date_start" class="date-input" readonly placeholder="시작 날짜">
-                            <i class="fal fa-calendar-alt"></i>
-                        </div>
-
-                        <!-- 종료 날짜 필드와 아이콘을 감싸는 컨테이너 -->
-                        <div class="input-with-icon">
-                            <input type="text" id="search_date_end" name="search_date_end" class="date-input" readonly placeholder="종료 날짜">
-                            <i class="fal fa-calendar-alt"></i>
-                        </div>
-
-                        <button type="button" class="search-button">조회하기</button>
-                    </dd>
-                </dl>
+            <div class="filter-container">
+                <button class="filter-btn">오늘</button>
+                <button class="filter-btn">어제</button>
+                <button class="filter-btn">일주일</button>
+                <button class="filter-btn">1개월</button>
+                <button class="filter-btn">3개월</button>
+                <button class="filter-btn">1년</button>
+                
+                <!-- 날짜 입력 필드 -->
+            <div class="input-with-icon">
+                <input type="date" class="date-input" placeholder="">
+            </div>
+            <div class="input-with-icon">
+                <input type="date" class="date-input" placeholder="">
+            </div>
+                <button class="filter-btn search-btn selects">조회하기</button>
             </div>
             
             <table class="order-table">

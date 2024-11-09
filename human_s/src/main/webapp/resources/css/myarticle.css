@@ -1,0 +1,118 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 4%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.info-message {
+    width: 800px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.highlight {
+    color: #AFD485;
+}
+
+/* 좌측 사이드바 스타일 */
+.sidebar {
+    width: 250px; /* 고정된 너비로 설정 */
+    background-color: #fafafa;
+    padding: 15px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* 게시글 내역 테이블 스타일 */
+.article-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.article-table th, .article-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.article-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.article-table td {
+    background-color: #fff;
+}
+
+/* 페이지네이션 스타일 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.pagination {
+    display: flex;
+    gap: 5px;
+}
+
+.pagination span {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+}
+
+.pagination span:hover {
+    background-color: #ddd;
+}
