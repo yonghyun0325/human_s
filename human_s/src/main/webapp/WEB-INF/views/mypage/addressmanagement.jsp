@@ -43,50 +43,56 @@
             </ul>
         </div>
 
-        <div class="info-box">
-            <p>자주 쓰는 이용자님의 배송지를 등록 및 관리 하실 수 있습니다.</p>
-        </div>
-    
-        <!-- 이용자님의 배송지 섹션 -->
-        <div class="address-section">
-            <h2>이용자님의 배송지</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>[배송지명] 받는 사람 / 주소</th>
-                        <th>연락처</th>
-                        <th>주문 메시지</th>
-                        <th>관리</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class="add-btn">배송지 추가</button>
-        </div>
-    
-        <!-- 최근 배송지 섹션 -->
-        <div class="recent-address">
-            <h2>최근 배송지</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>받는 사람</th>
-                        <th>주소</th>
-                        <th>연락처</th>
-                        <th>관리</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="4">최근 배송지 내역이 없습니다.</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+
+            <div class="info-box">
+                <p>자주 쓰는 이용자님의 배송지를 등록 및 관리 하실 수 있습니다.</p>
+            </div>
+
+            <!-- 이용자님의 배송지 섹션 -->
+            <div class="address-section">
+                <h2>이용자님의 배송지</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>[배송지명] 받는 사람 / 주소</th>
+                            <th>연락처</th>
+                            <th>주문 메시지</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-container">
+                    <button class="add-btn">배송지 추가</button>
+                </div>
+            </div>
+
+            <!-- 최근 배송지 섹션 -->
+            <div class="recent-address">
+                <h2>최근 배송지</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>받는 사람</th>
+                            <th>주소</th>
+                            <th>연락처</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">최근 배송지 내역이 없습니다.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     
