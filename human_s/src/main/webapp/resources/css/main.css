@@ -134,7 +134,7 @@ section{
 	padding: 20px 1%;
 	margin: 0 auto;
 }
-.product h4{
+.product h4, .box h4{
     font-size: 20px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -261,50 +261,47 @@ section{
 	display: flex;
 	align-items: center;
 }
-.product>div>button{
-	height: 50px;
-	padding: 5% 1%;
-}
-.product>div>.container{
+.product .container{
 	display: flex;
 	overflow: hidden;
-	margin: 0px 2%;
 }
-.product>div>.container>.list{
+.product .container>.list{
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
-.product>div>.container>.list>.item{
-    min-width: 200px; /* 슬라이드 너비 설정 */
-    min-height: 200px;
+.product .container>.list>.item{
+    width: 200px; /* 슬라이드 너비 설정 */
+    height: 200px;
     background-color: #AFD48555;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
 }
-.farmStoryProduct>div{ /* 농부들 이야기 */
+.farmAndNotice{
 	display: flex;
-	position: relative;
 }
-.farmStoryProduct>div>.fStoryContainer{
+.farmAndNotice>.box{
+	flex: 1;
+	margin: 10px;
+	border: solid 3px #AFD485;
+	border-radius: 10px;
+}
+.farmAndNotice h4{
+	margin-left: 2%;
+	margin-top: 2%;
+}
+.farmAndNotice>.box>div>div{
 	display: flex;
-	overflow: hidden;
-	margin: 0px 2%;
+	justify-content: space-between;
 }
-.farmStoryProduct>div>.fStoryContainer>.fStoryList{
-    display: flex;
-    gap: 20px;
+.farmAndNotice>.box>div{
+	margin: 2%;
 }
-.farmStoryProduct>div>.fStoryContainer>.fStoryList>.fStoryItem{
-	width: 800px;
-	height: 200px;
-	background-color: #AFD48555;
+.farmAndNotice hr{
+	margin: 5px 0px;
 }
-.farmStoryProduct>div>.fStroyNum{
-	position: absolute;
-	top: 180px;
-	left: 88%;
-	width: 10%;
+.farmAndNotice hr:first-child{
+	border: solid 1px #777;
 }
 
 

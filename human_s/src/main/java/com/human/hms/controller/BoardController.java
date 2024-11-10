@@ -14,18 +14,18 @@ public class BoardController {
     	
 		return "board/notice";
     }
-	@GetMapping("/review")
+	@GetMapping("/review.no")
 	public String review() {
 		
 		return "board/review";
 	}
 	
-	@GetMapping("/product")
+	@GetMapping("/product.no")
 	public String product() {
 		
 		return "board/productquestion";
 	}
-	@GetMapping("/faq")
+	@GetMapping("/faq.no")
 	public String faq() {
 		
 		return "board/faq";

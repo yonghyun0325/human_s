@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/story")
 public class StoryController {
 
-	@GetMapping("/farmstory.do")
+	@GetMapping("/farmstory.no")
 	public String story() {
 		return "story/story";
 	}
