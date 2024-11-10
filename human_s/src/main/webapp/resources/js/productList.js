@@ -29,7 +29,6 @@ $(function(){
 	//인기순,최신순 배너 / 인기순일때만 순위 표시
 	let select = getParameterByName("select").trim();
 	$("section > img").hide();
-	console.log("select 값:", select, "타입:", typeof select);
 	if(select === "pop"){
 		$("section > img:nth-child(1)").show();
 		$(".productItem > .productRow").show();

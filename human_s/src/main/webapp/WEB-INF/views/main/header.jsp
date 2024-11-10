@@ -45,7 +45,7 @@
 	            <a href="/hms/product/popNewList.no?select=new">신상품</a>
 	            <a href="/hms/product/checkBoxList.no?select=areaSelect">지역 특산물</a>
 	            <a href="/hms/product/checkBoxList.no?select=category">전체상품</a>
-	            <a href="/hms/story/farmstory.do">팜스토리</a>
+	            <a href="/hms/story/farmstory.no">팜스토리</a>
 	            <a href="/hms/board/notice.no">고객센터</a>
             </div>
         </div>

@@ -12,6 +12,7 @@ $(function(){
 
 //middle.jsp
 	
+		
 
 //footer.jsp
 	

@@ -107,7 +107,6 @@
 
 /* 하단 */
 .detailAll{ 
-	padding: 20px;
 	display: flex;
 }
 .detailList{
@@ -215,7 +214,7 @@ table+div{
 
 /* 사이드바 */
 .sideBar{
-	width: 22%;
+	width: 30%;
 	position: sticky;
 	top: 10%; /* 상단에 고정되도록 */
     height: 80vh; /* 전체 화면 높이에 맞게 */
@@ -272,7 +271,7 @@ table+div{
 }
 .sideBar .btn{
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 11px;
     border-radius: 4px;
     border: 1px solid #ddd;
     margin: 5px 0px;
