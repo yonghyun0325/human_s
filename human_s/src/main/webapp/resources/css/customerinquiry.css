@@ -7,69 +7,36 @@ body {
     display: flex;
     max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
-    flex-direction: column;
-    padding: 4%;
-}
-.bbs-sch .header{
-	margin-top: 0;
-    margin-bottom: 30px;
-    text-align: right;
-    border: 1px solid #e1e1e3;
-    padding: 10px;
-    overflow: hidden;
-    font-size: 14px;
-    font-weight: 400;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.total-posts {
-    margin: 0;
 }
 
+
+/* 사이드바 */
 .sidebar {
-    display: flex;
-    justify-content: center;
-    background-color: #f9f9f9; /* 연한 배경색 */
-    border-bottom: 2px solid #ddd; /* 아래쪽 경계선 */
-    padding: 10px 0;
+    width: 150px; /* 사이드바의 너비 */
+    padding: 10px;
+    background-color: #f0f0f0;
 }
-
-.sidebar ul {
-    display: flex;
-    list-style: none; /* 목록 점 제거 */
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li {
-    margin: 0 15px; /* 각 메뉴 항목 간격 */
-}
-
-.sidebar li a {
-    text-decoration: none;
-    color: #333; /* 텍스트 색상 */
-    font-weight: bold;
-    padding: 10px 15px; /* 여백 추가 */
-    border-radius: 4px; /* 둥근 모서리 */
-}
-
-.sidebar li a:hover {
-    background-color: #ddd; /* 호버 시 배경색 변경 */
-    color: #333;
-}
-
-.sidebar li a.active {
-    color: #007bff; /* 활성화된 메뉴 항목의 텍스트 색상 */
-    border-bottom: 2px solid #007bff; /* 하단 강조선 */
-}
-
 /* 게시판 컨테이너 */
 .board-container {
     flex: 1; /* 남은 공간을 모두 차지 */
     padding: 20px;
 }
 
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: #4CAF50;
+}
 
 
 /* 검색 영역 */
@@ -77,13 +44,12 @@ body {
     display: flex;
     justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: center;
-    gap: 15px; /* 간격 조정 */
-    margin-bottom: 5px;
+    gap: 10px; /* 간격 조정 */
+    margin-bottom: 15px;
 }
 .check-box {
     display: flex;
     gap: 15px; /* 라벨 간격 조정 */
-    margin-right: 10px;
 }
 
 .search-box {

@@ -16,24 +16,27 @@
             <li><a href="faq.no">자주 묻는 질문</a></li>
             <li><a href="product.no">상품 문의</a></li>
             <li><a href="review.no">사용 후기</a></li>
-            <li><a href="#">고객 문의</a><li>
+            <li><a href="customerinquiry.no">고객 문의</a></li>
         </ul>
     </div>
 
-    <div class="board-container">
-    
-        <p>* 총 260개의 게시물이 있습니다.</p>
-        <div class="search-bar">
-            <div class="check-box">
-                <label><input type="radio" name="searchType" value="name"> 이름</label>
-                <label><input type="radio" name="searchType" value="title" checked> 제목</label>
-                <label><input type="radio" name="searchType" value="content"> 내용</label>
-            </div>
+  <div class="board-container">
+    <div class="bbs-sch">
+    	<div class="header">
+        	<p class="total-posts">* 총 260개의 게시물이 있습니다.</p>
+        	<div class="search-bar">
+            	<div class="check-box">
+	                <label><input type="radio" name="searchType" value="name"> 이름</label>
+	                <label><input type="radio" name="searchType" value="title" checked> 제목</label>
+	                <label><input type="radio" name="searchType" value="content"> 내용</label>
+            	</div>
             <div class="search-box">
                 <input type="text" name="search" placeholder="검색어를 입력하세요">
                 <button type="search-button">검색</button>
             </div>
         </div>
+      </div>
+    </div>
 
         <table class="board-table">
             <tr>
