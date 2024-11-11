@@ -1,0 +1,131 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+
+h2{
+	margin:40px 0px 0px 0px;
+	font-size:30px;
+}
+
+
+hr{
+	width:800px;
+	border:none;
+	border-bottom:1px solid rgba(0,0,0,0.3);
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+input[type="checkbox"]{
+	
+	width:20px;
+	height:20px;
+	border:1px solid rgba(0,0,0,0.3);
+	border-radius:10px;
+	margin-top:3px;
+}
+
+input[type="checkbox"]:checked{
+	 accent-color:#AFD485;
+	 border:1px solid rgba(0,0,0,0.4);
+}
+
+.agreement_container {
+  width: 900px;
+  border-left: solid 1px rgba(0, 0, 0, 0.1);
+  border-right: solid 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 수평 오프셋, 수직 오프셋, 흐림 정도, 색상 */
+}
+
+
+.agreement_container>*{
+	margin-left:50px;
+}
+
+.agreement_top{
+	display:flex;
+	margin-bottom:20px;
+}
+
+.agreement_top>p{
+	font-size:12px;
+	padding-left:3px;
+	padding-top:5px;
+	color:rgba(0,0,0,0.6);
+	margin-bottom:20px;
+}
+
+.allagree_p{
+	font-size:13px;
+	color:rgba(0,0,0,0.4);	
+	margin-bottom:20px;
+}
+
+.service_agree{
+	width:800px;
+	height:200px;
+	overflow-y:scroll;
+	border:solid 1px rgba(0,0,0,0.3);
+	margin-top:10px;
+}
+
+.service_agree>p{
+	padding:10px;
+	color:rgba(0,0,0,0.7);
+	font-size:12px;
+}
+
+.agreebox{
+	display:flex;
+	margin-top:6px;
+	margin-bottom:20px;
+}
+
+.agreebox:nth-child(3)>h4{
+	padding-left:8px;
+}
+
+.agreebox>p{
+	padding-left:8px;
+}
+
+.allagreebox{
+	display:flex;
+}
+
+.agreement_button{
+	margin:0 auto;	
+}
+
+.agreement_button>button:nth-child(1){
+	width:100px;
+	height:30px;
+	margin:40px 0px;
+	border:1px solid rgba(0,0,0,0.1);
+	background-color:rgba(0,0,0,0.1);
+	border-radius:5px;
+}
+
+.agreement_button>button:nth-child(2){
+	width:100px;
+	height:30px;
+	border:1px solid rgba(0,0,0,0.2);
+	background-color:#AFD485;
+	margin:40px 0px;
+	border-radius:5px;
+}
+
+.agreement_button>button:nth-child(1):hover{
+	background-color:rgba(0,0,0,0.4);
+	font-weight:bold;
+}
+
+.agreement_button>button:nth-child(2):hover{
+	background-color:#8dc252;
+	font-weight:bold;
+}
