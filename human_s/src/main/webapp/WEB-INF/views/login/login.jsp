@@ -18,12 +18,13 @@
 		</div>
 	<div class="login_container"> 
 		
-		
-		<div class="id_and_pw">
-			<input type="text" placeholder="아이디를 입력하세요">
-			<input type="password" placeholder="비밀번호를 입력하세요">
-		</div>		
-		<button class="login_btn">로그인</button>
+		<form action="loginProcess.no" method="post">
+			<div class="id_and_pw">
+				<input type="text" name="userEmail" placeholder="아이디를 입력하세요">
+				<input type="password" name="userPw" placeholder="비밀번호를 입력하세요">
+			</div>		
+			<button class="login_btn">로그인</button>
+		</form>
 		<div class="find_and_join">
 			<a href="#">아이디찾기</a>
 			<a href="#">비밀번호찾기</a>
@@ -40,8 +41,6 @@
 		
 	</div>
 <%@ include file="../main/footer.jsp"%>
-
-
 
 </body>
 </html>
