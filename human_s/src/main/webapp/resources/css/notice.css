@@ -27,42 +27,6 @@ body {
     margin: 0;
 }
 
-.sidebar {
-    display: flex;
-    justify-content: center;
-    background-color: #f9f9f9; /* 연한 배경색 */
-    border-bottom: 2px solid #ddd; /* 아래쪽 경계선 */
-    padding: 10px 0;
-}
-
-.sidebar ul {
-    display: flex;
-    list-style: none; /* 목록 점 제거 */
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li {
-    margin: 0 15px; /* 각 메뉴 항목 간격 */
-}
-
-.sidebar li a {
-    text-decoration: none;
-    color: #333; /* 텍스트 색상 */
-    font-weight: bold;
-    padding: 10px 15px; /* 여백 추가 */
-    border-radius: 4px; /* 둥근 모서리 */
-}
-
-.sidebar li a:hover {
-    background-color: #ddd; /* 호버 시 배경색 변경 */
-    color: #333;
-}
-
-.sidebar li a.active {
-    color: #007bff; /* 활성화된 메뉴 항목의 텍스트 색상 */
-    border-bottom: 2px solid #007bff; /* 하단 강조선 */
-}
 
 /* 게시판 컨테이너 */
 .board-container {

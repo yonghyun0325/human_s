@@ -10,32 +10,27 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
-    <div class="sidebar">    
-        <ul>
-            <li><a href="notice.no">공지사항</a></li>
-            <li><a href="faq.no">자주 묻는 질문</a></li>
-            <li><a href="product.no">상품 문의</a></li>
-            <li><a href="review.no">사용 후기</a></li>
-            <li><a href="customerinquiry.no">고객 문의</a></li>
-        </ul>
-    </div>
+<%@ include file="../board/topmenu.jsp" %>
 <div class="board-container">
     <div class="board-header">상품문의 게시판</div>
 
     <!-- 검색 및 필터 섹션 -->
-    <div class="search-bar">
-        <div class="check-box">
-            <label><input type="radio" name="searchType" value="name"> 이름</label>
-            <label><input type="radio" name="searchType" value="title" checked> 제목</label>
-            <label><input type="radio" name="searchType" value="content"> 내용</label>
-            <label><input type="radio" name="searchType" value="product"> 상품</label>
+ <div class="bbs-sch">
+    	<div class="header">
+        	<p class="total-posts">* 총 260개의 게시물이 있습니다.</p>
+        	<div class="search-bar">
+            	<div class="check-box">
+	                <label><input type="radio" name="searchType" value="name"> 이름</label>
+	                <label><input type="radio" name="searchType" value="title" checked> 제목</label>
+	                <label><input type="radio" name="searchType" value="content"> 내용</label>
+            	</div>
+            <div class="search-box">
+                <input type="text" name="search" placeholder="검색어를 입력하세요">
+                <button type="search-button">검색</button>
+            </div>
         </div>
-        <div class="search-box">
-            <input type="text" class="search" placeholder="검색어를 입력하세요">
-            <button class="search-button">검색</button>
-        </div>
+      </div>
     </div>
-
     <!-- 문의 목록 테이블 -->
     <table class="board-table">
         <thead>

@@ -6,25 +6,25 @@ body {
     display: flex;
     max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
+    flex-direction: column;
+    padding: 4%;
 }
 
-
-/* 사이드바 */
-.sidebar {
-    width: 150px; /* 사이드바의 너비 */
+.bbs-sch .header{
+	margin-top: 0;
+    margin-bottom: 30px;
+    text-align: right;
+    border: 1px solid #e1e1e3;
     padding: 10px;
-    background-color: #f0f0f0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar a {
-    display: block;
-    padding: 10px 0;
-    color: #333;
-    text-decoration: none;
+.total-posts {
+    margin: 0;
 }
 
 
@@ -33,6 +33,7 @@ body {
      flex: 1; /* 남은 공간을 모두 차지 */
     padding: 20px;
 }
+
 
 
 /* 테이블 스타일 */
@@ -64,8 +65,8 @@ body {
     display: flex;
     justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: center;
-    gap: 10px; /* 간격 조정 */
-    margin-bottom: 15px;
+    gap: 15px; /* 간격 조정 */
+    margin-bottom: 5px;
 }
 .check-box {
     display: flex;
