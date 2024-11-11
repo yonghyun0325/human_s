@@ -1,6 +1,6 @@
 /* 전체 컨테이너 스타일 */
 .faq-container {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     font-family: Arial, sans-serif;
 }
@@ -8,15 +8,11 @@
     display: flex;
     max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
+    flex-direction: column;
+    padding: 4%;
 }
 
 
-/* 사이드바 */
-.sidebar {
-    width: 150px; /* 사이드바의 너비 */
-    padding: 10px;
-    background-color: #f0f0f0;
-}
 /* 게시판 컨테이너 */
 .faq-container {
     flex: 1; /* 남은 공간을 모두 차지 */
@@ -24,23 +20,6 @@
 }
 
 
-/* 사이드바 */
-.sidebar {
-    width: 150px; /* 사이드바의 너비 */
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar a {
-    display: block;
-    padding: 10px 0;
-    color: #333;
-    text-decoration: none;
-}
 
 
 /* 제목 스타일 */

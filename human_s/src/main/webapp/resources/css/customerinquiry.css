@@ -7,36 +7,12 @@ body {
     display: flex;
     max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto; /* 중앙 정렬 */
+    flex-direction: column;
+    padding: 4%;
 }
 
 
-/* 사이드바 */
-.sidebar {
-    width: 150px; /* 사이드바의 너비 */
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-/* 게시판 컨테이너 */
-.board-container {
-    flex: 1; /* 남은 공간을 모두 차지 */
-    padding: 20px;
-}
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar a {
-    display: block;
-    padding: 10px 0;
-    color: #333;
-    text-decoration: none;
-}
-
-.sidebar a:hover {
-    color: #4CAF50;
-}
 
 
 /* 검색 영역 */
