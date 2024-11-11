@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>상품후기 게시판</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/review.css">
+    <title>고객 문의</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/customerinquiry.css">
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
@@ -39,7 +39,6 @@
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
-                    <th>평점</th>
                     <th>작성자</th>
                     <th>작성일</th>
                     <th>조회</th>
@@ -48,9 +47,8 @@
             <tbody>
                 <tr>
                     <td>16171</td>
-                    <td>알이 너무 작고 검증이 잘돼요...</td>
-                    <td>⭐⭐</td>
-                    <td>nh*******</td>
+                    <td>언제 배송 </td>             
+                    <td>작성자</td>
                     <td>2024/11/06</td>
                     <td>8</td>
                 </tr>

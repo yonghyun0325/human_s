@@ -16,7 +16,7 @@
             <li><a href="faq.no">자주 묻는 질문</a></li>
             <li><a href="product.no">상품 문의</a></li>
             <li><a href="review.no">사용 후기</a></li>
-            <li><a href="#">고객 문의</a><li>
+            <li><a href="customerinquiry.no">고객 문의</a></li>
         </ul>
     </div>
 <div class="board-container">
