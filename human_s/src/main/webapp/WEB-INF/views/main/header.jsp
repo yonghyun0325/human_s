@@ -21,9 +21,30 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="userIcon">
-                <a href="/hms/mypage/favorite.do"><i class="fa-regular fa-heart"></i></a>
-                <a href="/hms/mypage/mypage.do"><i class="fa-regular fa-user"></i></a>
-                <a href="/hms/mypage/basket.do"><i class="far fa-shopping-cart"></i></a>
+                <a href="/hms/mypage/favorite.do">
+                	<i class="fa-regular fa-heart"></i><br>
+                	<span>찜목록</span>
+                </a>
+	<c:if test="${ empty user }">
+                <a href="/hms/login/login.no">
+                	<i class="fa-regular fa-user"></i><br>
+                	<span>로그인</span>
+                </a>
+	</c:if>
+                <a href="/hms/mypage/basket.do">
+                	<i class="far fa-shopping-cart"></i><br>
+                	<span>장바구니</span>
+                </a>
+	<c:if test="${ not empty user }">
+                <a href="/hms/mypage/mypage.do">
+                	<i class="fa-regular fa-user"></i><br>
+                	<span>마이페이지</span>
+                </a>
+                <a href="/hms/login/logout.do">
+                	<i class="fa-solid fa-right-from-bracket"></i><br>
+                	<span>로그아웃</span>
+                </a>
+	</c:if>
             </div>
         </div>
         <div class="navigation">

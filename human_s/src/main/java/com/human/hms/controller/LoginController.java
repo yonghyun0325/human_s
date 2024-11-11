@@ -31,14 +31,25 @@ public class LoginController {
 		String viewName = "login/login";
 		
 		UserVO vo = userServiceImpl.login(userEmail, userPw);
+		System.out.println(vo);
 		
 		if(vo != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member", vo);
+			session.setAttribute("user", vo);
+			viewName = "redirect:/index.no";
 		}else {
 			model.addAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
 		}
 		
 		return viewName;
 	}
+	
+	@GetMapping("/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "redirect:/index.no";
+	}
+	
 }

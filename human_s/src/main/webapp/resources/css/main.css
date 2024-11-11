@@ -57,11 +57,15 @@ header>.headerTop{ /* 헤더 상단 */
 .headerTop i{
 	font-size: 20px;
 }
-.headerTop>.userIcon{
-	width: 20%;
-	text-align: right;
+.headerTop .userIcon{
+	width: 22%;
+	display: flex;
+	justify-content: flex-end;
 }
-.headerTop>.userIcon>a>i:hover{
+.headerTop .userIcon a{
+	text-align: center;
+}
+.headerTop .userIcon a>i:hover{
 	animation: tilt 1.5s ease-in-out infinite;
 }
 @keyframes tilt {
@@ -71,8 +75,14 @@ header>.headerTop{ /* 헤더 상단 */
     75% { transform: rotate(-10deg); }
     100% { transform: rotate(0deg); }
 }
+.headerTop .userIcon a>span{
+	font-size: 11px;
+}
 .headerTop>.userIcon>a:nth-child(2){
 	margin: 0px 7%;
+}
+.headerTop>.userIcon>a:nth-child(4){
+	margin-left:7%;
 }
 
 .navigation{ /* 네비게이션 */
