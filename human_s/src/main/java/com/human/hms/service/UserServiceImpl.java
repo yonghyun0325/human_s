@@ -1,0 +1,21 @@
+package com.human.hms.service;
+
+import org.springframework.stereotype.Service;
+
+import com.human.hms.repository.UserRepository;
+import com.human.hms.vo.UserVO;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class UserServiceImpl implements UserService {
+	
+	private UserRepository repository;
+
+	@Override
+	public UserVO login(String userEmail, String userPw) {
+		return repository.login(userEmail, userPw);
+	}
+
+}
