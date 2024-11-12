@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>공지사항</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice.css">
+</head>
+<body>
+<%@ include file="../main/header.jsp"%>
+
+<div class="layout">
+<%@ include file="../board/topmenu.jsp" %>
+  <div class="board-container">
+
+    <div class="bbs-sch">
+        <div class="header">
+            <p class="total-posts">총 게시물 수: ${paging.totalCount}</p>
+            <div class="search-bar">
+                <div class="check-box">
+                    <label><input type="radio" name="searchType" value="name"> 이름</label>
+                    <label><input type="radio" name="searchType" value="title" checked> 제목</label>
+                    <label><input type="radio" name="searchType" value="content"> 내용</label>
+                </div>
+                <div class="search-box">
+                    <form action="${pageContext.request.contextPath}/board/search.do" method="get">
+                        <input type="text" name="search" placeholder="검색어를 입력하세요">
+                        <button type="submit">검색</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="board-table">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        
+        <c:choose>
+        <c:when test="${empty noticeList}">
+            <tr>
+                <td colspan="5">등록된 게시물이 없습니다</td>
+            </tr>
+        </c:when>
+        <c:otherwise>
+            <c:forEach var="notice" items="${noticeList}" varStatus="vs">
+                <tr>
+                    <td>${notice.id}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/board/notice_view.do?noticeIdx=${notice.noticeIdx}">
+                            ${notice.noticeTitle}
+                        </a>
+                    </td>
+                    <td>${notice.author}</td>
+                    <td>
+                        <fmt:formatDate value="${notice.createdDate}" type="date" pattern="yyyy-MM-dd"/>
+                    </td>
+                    <td>${notice.views}</td>
+                </tr>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+    </table>
+<div class="pagination">
+    <c:if test="${paging.currentPage > 1}">
+        <a href="?page=${paging.currentPage - 1}&searchType=${param.searchType}&search=${param.search}">&laquo; Previous</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="pageNum">
+        <a href="?page=${pageNum}&searchType=${param.searchType}&search=${param.search}" class="${pageNum == paging.currentPage ? 'active' : ''}">
+            ${pageNum}
+        </a>
+    </c:forEach>
+    <c:if test="${paging.currentPage < paging.totalPages}">
+        <a href="?page=${paging.currentPage + 1}&searchType=${param.searchType}&search=${param.search}">Next &raquo;</a>
+    </c:if>
+</div>
+</div>
+</div>
+
+
+<%@ include file="../main/footer.jsp"%>
+
+</body>
+</html>
