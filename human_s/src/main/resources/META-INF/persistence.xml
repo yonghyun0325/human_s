@@ -7,6 +7,10 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	    <!-- <class>: JPA의 Entity 클래스들을 패키지와 함께 선언함
 	                  Entity클래스를 선언하지 않으면 404 에러 발생 -->
 		<class>com.human.hms.entity.UserEntity</class>
+		<class>com.human.hms.entity.NoticeEntity</class>
+
+		
+		
 		
 		<properties>			
 			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/> -->
