@@ -1,0 +1,101 @@
+
+.managerContainer {
+    display: flex;
+    padding: 30px 4%;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* 헤더 스타일 */
+h1 {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-top: 30px;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+/* 좌측 사이드바 스타일 */
+.managerContainer .sidebar {
+    width: 20%;
+    background-color: #fafafa;
+    padding: 15px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #444;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+    display:flex;
+    width: 100%;
+}
+.sidebar ul li a{
+	width: 100%;
+}
+
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    width: 80%;
+    padding: 15px;
+    min-height: 400px;
+}
+.main-content>.seller, .main-content>.coupon, .main-content>.api, .main-content>.story{
+	display: none;
+}
+.main-content>.api button{
+	font-size: 14px;
+}
+.main-content>.api h5:before{
+	content: "!";
+	margin: 0px 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0px;;
+}
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+th {
+    background-color: #f8f8f8;
+    color: #444;
+}
+td {
+    color: #666;
+}
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
