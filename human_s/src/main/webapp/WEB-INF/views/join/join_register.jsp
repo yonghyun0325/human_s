@@ -93,6 +93,7 @@
 				</div>
 			</div>
 			<div class="nor_addr-bottom">
+				<input type="hidden" value="0" name="">
 				<input type="text" placeholder="주소를 입력하세요" name="">
 				<input type="text" placeholder="상세주소를 입력하세요" name="">
 			</div>

@@ -1,10 +1,15 @@
 package com.human.hms.service;
 
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.UserEntity;
+import com.human.hms.repository.AddressRepository;
 import com.human.hms.repository.UserRepository;
-import com.human.hms.vo.UserVO;
 
 import lombok.AllArgsConstructor;
 
@@ -13,14 +18,70 @@ import lombok.AllArgsConstructor;
 public class UserServiceImpl implements UserService {
 	
 	private UserRepository repository;
+	private AddressRepository a_repostiroy;
+	// 메일 인증 관련 메일 전송 객체 의존 자동 주입 받기
+	private JavaMailSenderImpl mailSender;
 
 	@Override
-	public UserVO login(String userEmail, String userPw) {
+	public UserEntity login(String userEmail, String userPw) {
 		UserEntity entity = repository.login(userEmail, userPw);
 		
-		UserVO vo = UserVO.fromEntity(entity);
+		return entity;
+	}
+	
+	
+	@Override
+	public UserEntity save(UserEntity vo) {
+		return repository.save(vo);
+	}
+
+
+	@Override
+	public AddressEntity a_save(AddressEntity a_vo, UserEntity vo) {
+		a_vo.updateUserEntity(vo);
+		return a_repostiroy.save(a_vo);
+	}
+
+
+	@Override
+	public int sameIdcheck(String userEmail) {
+		return repository.sameIdcheck(userEmail);
+	}
+
+	
+	//이메일 인증코드 메시지
+	@Override
+	public String authEmail(String email) {
+		//메일 인증 코드 6자리 생성하기: Math.random() (111111 <= r <100000)
+		int authNumber = (int)(Math.random()*888889)+111111;
+		String setFrom = "limdoh2022981038@gmail.com";//송신자의 메일주소
+		String toMail = email;//수신자으 ㅣ메일주소
+		String title = "회원가입 인증 이메일입니다";
+		String content = "홈페이지를 방문해주셔서 감사합니다. <br><br>"
+				+"인증번호: "+authNumber+"<br>"
+				+"해당 인증번호를 인증번호 확인란에 입력해 주세요";
+		mailSend(setFrom, toMail, title, content);
+		System.out.println(email);
+		return Integer.toString(authNumber);
+	}
+
+
+	private void mailSend(String setFrom, String toMail, String title, String content) {
+		MimeMessage message = mailSender.createMimeMessage();
 		
-		return vo;
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			//ture: multipart 형식의 메시지 전달
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSender.send(message);
+			
+		} catch (Exception e) {
+			System.out.println("매일전송 중 예외발생");
+		}
+		
 	}
 
 }

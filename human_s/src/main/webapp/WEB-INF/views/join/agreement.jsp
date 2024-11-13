@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/agreement.css">
 	<script src="../resources/js/jquery-3.7.1.min.js"></script>
 	<script src="https://kit.fontawesome.com/d7e414b2e7.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/agreement.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 <title>동의하기</title>
 </head>
@@ -44,8 +45,8 @@
 					혜택 등은 회사의 내부 방침에 따라 축소, 확대, 종료 등의 변경을 할 수 있으며, 
 					이에 관하여 관련 법령이 있는 경우에는 해당 법령에 의거하여 회원에게 안내 또는 조치합니다.</p>
 			</div>
-			<div class="agreebox">
-				<input type="checkbox"> <p>동의합니다</p>
+			<div class="agreebox ">
+				<input type="checkbox" class="individual-checkbox"> <p>동의합니다</p>
 			</div>
 			<h4>[필수]개인정보 수집 및 이용 동의</h4>
 			<div class="service_agree">
@@ -68,21 +69,21 @@
 					혜택 등은 회사의 내부 방침에 따라 축소, 확대, 종료 등의 변경을 할 수 있으며, 
 					이에 관하여 관련 법령이 있는 경우에는 해당 법령에 의거하여 회원에게 안내 또는 조치합니다.</p>
 			</div>
-			<div class="agreebox">
-				<input type="checkbox"> <p>동의합니다</p>
+			<div class="agreebox " >
+				<input type="checkbox" class="individual-checkbox"> <p>동의합니다</p>
 			</div>
 			
 						
-			<div class="agreebox">
-				<input type="checkbox"> <h4 style="margin-left:8px;">[필수]만 14세 이상입니다</h4>
+			<div class="agreebox ">
+				<input type="checkbox" class="individual-checkbox"> <h4 style="margin-left:8px;">[필수]만 14세 이상입니다</h4>
 			</div>
 			
-			<div class="agreebox">
-				<input type="checkbox"> <p>모두 동의합니다</p>
+			<div class="agreebox" >
+				<input type="checkbox" id="allAgree"> <p>모두 동의합니다</p>
 			</div>
 			<div class="agreement_button">
-				<button>이전화면</button>
-				<button onclick="location.href='/hms/join/jointype.no'">다음단계</button>
+				<button id="beforeButton">이전화면</button>
+				<button id="nextButton">다음단계</button>
 			</div>
 			
 		</div>

@@ -1,9 +1,21 @@
 package com.human.hms.service;
 
-import com.human.hms.vo.UserVO;
+import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.UserEntity;
 
 public interface UserService {
 
-	UserVO login(String userEmail, String userPw);
+	UserEntity login(String userEmail, String userPw);
+
+	//회원가입 처리
+	UserEntity save(UserEntity vo);
+
+	AddressEntity a_save(AddressEntity a_vo, UserEntity vo);
+
+	int sameIdcheck(String userEmail);
+
+	String authEmail(String email);//메일인증
+
+	
 
 }
