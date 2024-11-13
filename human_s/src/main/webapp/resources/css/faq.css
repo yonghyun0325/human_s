@@ -69,16 +69,20 @@
 .category-buttons button {
     padding: 8px 15px;
     font-size: 14px;
-    border: 1px solid #d71a1a;
+    border: 1px solid #4caf50;
     background-color: #fff;
-    color: #d71a1a;
+    color: #4caf50;
     border-radius: 20px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 추가 */
 }
 
+/* active 클래스가 적용된 버튼 스타일 */
 .category-buttons button.active {
-    background-color: #d71a1a;
-    color: #fff;
+    background-color: #4caf50; /* 활성화된 버튼의 배경색 */
+    color: white;               /* 활성화된 버튼의 글자 색상 */
+    border-color: #4caf50;      /* 활성화된 버튼의 테두리 색상 */
+    font-weight: bold;
 }
 
 /* FAQ 리스트 스타일 */
@@ -109,26 +113,4 @@
     padding-top: 10px;
     font-size: 16px;
     color: #555;
-}
-
-/* 페이지네이션 스타일 */
-.pagination {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.pagination a, .pagination span {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 0 2px;
-    border: 1px solid #ddd;
-    color: #333;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.pagination a.active, .pagination span.active {
-    background-color: #d71a1a;
-    color: #fff;
-    font-weight: bold;
 }
