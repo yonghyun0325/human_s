@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 	<section>
@@ -11,38 +12,68 @@
        		<div class="priceGraphTop">
 	            <h4>농산물 가격동향</h4>
 	            <div class="selectItem">
-	            	<select>
-	            		<option>종류</option>
+	            	<select class="itemCodeSelect">
+	<c:set var="itemCode" value="" />
+	<c:forEach var="item" items="${ dailyPriceList }">
+	    <c:if test="${ itemCode != item.item_code }">
+	        			<option class="itemCode" value="${ item.item_code }">${ item.item_name }</option>
+	        <c:set var="itemCode" value="${ item.item_code }" />
+	    </c:if>
+	</c:forEach>
 	            	</select>
-	            	<select>
-	            		<option>소분류</option>
+	            	<select class="kindCodeSelect">
+	<c:set var="kindCode" value="" />
+	<c:forEach var="item" items="${ dailyPriceList }">
+	    <c:set var="currentCode">
+		    <c:out value="${ item.item_code }" />,<c:out value="${ item.kind_code }" />
+		</c:set>
+	    <c:if test="${ kindCode != currentCode }">
+	        <option class="kindCode" value="${ item.kind_code }" data-itemcode="${ item.item_code }">
+	            ${ item.kind_name }
+	        </option>
+	        <c:set var="kindCode" value="${ currentCode }" />
+	    </c:if>
+	</c:forEach>
+	            	</select>
+	            	<select class="rankCodeSelect">
+	<c:set var="rankCode" value="" />
+	<c:forEach var="item" items="${ dailyPriceList }">
+		<c:set var="currentCode">
+		    <c:out value="${ item.item_code }" />,<c:out value="${ item.kind_code }" />,<c:out value="${ item.rank_code }" />
+		</c:set>
+	    <c:if test="${ rankCode != currentCode }">
+	        			<option class="rankCode" value="${ item.rank_code }" data-itemcode="${ item.item_code }"
+	        				data-kindcode="${ item.kind_code }"> ${ item.rank }</option>
+	        <c:set var="rankCode" value="${ currentCode }" />
+	    </c:if>
+	</c:forEach>
 	            	</select>
 	            </div>
        		</div>
         	<div class="content">
 		        <div class="infoSection">
 		            <div class="priceImage"></div>
-		            <div class="title">사과 (상)</div>
-		            <div class="date">2024-10-31</div>
-		            <div class="price">65,687원</div>
-		            <div class="unit">10kg 상자</div>
+		            <div class="title"></div>
+		            <div class="date"></div>
+		            <div class="price"></div>
+		            <div class="unit"></div>
 		        </div>
 		        <div class="comparisonSection">
 		            <div class="comparisonItem">
 		                <div class="label">전일 평균 가격</div>
-		                <div class="date">2024-10-30</div>
-		                <div class="price">53,600원</div>
-		                <div class="unit">10kg 상자</div>
+		                <div class="date"></div>
+		                <div class="price"></div>
+		                <div class="unit"></div>
 		            </div>
 		            <div class="comparisonItem">
 		                <div class="label">전년 동일대비</div>
-		                <div class="date">2023-10-31</div>
-		                <div class="price">49,649원</div>
-		                <div class="unit">10kg 상자</div>
+		                <div class="date"></div>
+		                <div class="price"></div>
+		                <div class="unit"></div>
 		            </div>
 		        </div>
 		        <div class="graphSection">
-		            그래프
+			        <canvas id="myChart" style="height: 35vh; width: 45vw;"></canvas>
 		        </div>
 	        </div>
         </div>
@@ -113,6 +144,7 @@
     
     <script>
     	//따끈따끈한 신상, 지역특산물 무한스크롤
+    	//(header가 모든 페이지에 붙어있기 때문에 main.js에 있으면 다른 페이지에는 없는 클래스 때문에 콘솔에 오류가 계속해서 찍힘)
     	$(function(){
     		
     		// 스크롤 속도 (밀리초 단위)

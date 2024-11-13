@@ -172,16 +172,18 @@ section{
     border: solid 3px #AFD485;
     border-radius: 20px;
     padding: 1%;
+    width: 100%;
 }
 .priceGraph>.content>.infoSection{
 	flex: 1;
-	height: 300px;
-    background-color: #e0e0e0;
+	height: 350px;
+    background-color: #eee;
     border-radius: 12px;
-    padding: 20px;
+    padding: 20px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 .priceGraph>.content>.infoSection>.priceImage{
 	width: 100px;
@@ -211,11 +213,12 @@ section{
 }
 .priceGraph>.content>.comparisonSection{
 	flex: 1;
-	height: 300px;
+	height: 350px;
 	display: flex;
     flex-direction: column;
-    background-color: #e0e0e0;
+    background-color: #eee;
     border-radius: 12px;
+    justify-content: center;
 }
 .priceGraph>.content>.comparisonSection>.comparisonItem{
     padding: 20px;
@@ -247,9 +250,9 @@ section{
 }
 .priceGraph>.content>.graphSection{
 	flex: 2;
-	height: 300px;
+	height: 350px;
     border-radius: 12px;
-	background-color: #e0e0e0;
+	background-color: #eee;
 }
 .bestProduct>.bestList{ /* Best 상품 */
     display: grid;
