@@ -11,11 +11,11 @@
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
-<h2>공지사항</h2>
-<%@ include file="../board/topmenu.jsp" %>
 <div class="layout">
+<h3>공지사항</h3>
+<%@ include file="../board/topmenu.jsp" %>
     <div id="board-container">
-        <form action="${pageContext.request.contextPath}/board/updateProcess.do" method="post">
+        <form action="${pageContext.request.contextPath}/board/notice/updateProcess.do" method="post">
             <input type="hidden" name="noticeIdx" value="${notice.id}"/>
             <div>
                 <label for="noticeTitle">제목:</label>
@@ -30,9 +30,7 @@
                 <button type="button" class="btn btn-back" onclick="location.href='${pageContext.request.contextPath}/board/notice.no'">목록으로</button>
             </div>
         </form>
-
     </div>
-
 </div>
 
 <%@ include file="../main/footer.jsp"%>

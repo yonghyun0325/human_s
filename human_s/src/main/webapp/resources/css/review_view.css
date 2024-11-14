@@ -24,7 +24,7 @@ body {
     flex-direction: column;
 } */
 
-h3 {
+h2 {
     text-align: center;    /* 텍스트 가운데 정렬 */
     font-size: 24px;       /* 글자 크기 24px */
     font-weight: bold;     /* 글자 굵게 */
@@ -131,4 +131,11 @@ h3 {
 
 .btn-back:hover {
     background-color: #5a6268;
+}
+
+.star {
+    color: #ff0000; /* 노란색 */
+    font-size: 1.0em; /* 별 크기 */
+    margin: 0px; /* 별 간격 */
+    display: inline-block;
 }
