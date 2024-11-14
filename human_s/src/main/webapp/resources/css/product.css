@@ -288,3 +288,88 @@ table+div{
 	background-color: #2d7a2d;
     color: #fff;
 }
+
+
+/* writeDetail.jsp */
+h3 {
+    font-size: 24px;
+    color: #333;
+    margin: 0px 1% 20px ;
+    border-bottom: 2px solid #AFD485;
+    padding-bottom: 10px;
+}
+.productContainer {
+    padding: 20px;
+}
+.productContainer div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.productContainer .code, .productContainer .area, .productContainer .price{
+	display:flex;
+	flex-direction: row;
+	gap: 2%;
+}
+.productContainer .price{
+	justify-content: space-between;
+	align-items: end;
+}
+.productContainer .price #pdtPrice{
+	width: 90%;
+}
+.productContainer .code>div, .productContainer .area>div, .productContainer .price>div{
+	flex: 1;
+	margin: 0px;
+}
+.productContainer label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+.productContainer input[type="text"],
+.productContainer input[type="file"],
+.productContainer select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.productContainer input[type="text"]:disabled {
+    background-color: #f0f0f0;
+}
+.productContainer select {
+    padding: 8px;
+}
+form .btnDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 0 auto;
+}
+.btnDiv input[type="submit"],
+.btnDiv input[type="reset"],
+.btnDiv input[type="button"] {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btnDiv input[type="submit"] {
+    background-color: #AFD485;
+    color: white;
+}
+.btnDiv input[type="reset"] {
+    background-color: #ddd;
+    color: #333;
+}
+.btnDiv input[type="button"] {
+    background-color: #f7f7f7;
+    color: #333;
+    border: 1px solid #ddd;
+}
+.btnDiv input:hover {
+    opacity: 0.9;
+}
