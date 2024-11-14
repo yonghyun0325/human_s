@@ -9,17 +9,6 @@
     <meta charset="UTF-8">
     <title>글 등록</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/review_write.css">
-    <style>
-        /* 기본적으로 select와 option에 빨간색 텍스트를 적용 */
-        #reviewRating {
-            color: red; /* 기본 색을 빨간색으로 설정 */
-        }
-
-        /* 옵션 선택 전 기본 옵션 색상 변경 */
-        #reviewRating option[value=""] {
-            color: gray; /* 별점 선택 메시지의 색상을 회색으로 */
-        }
-    </style>
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
