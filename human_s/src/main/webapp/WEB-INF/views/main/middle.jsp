@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="${pageContext.request.contextPath}/resources/js/middle.js"></script>
 </head>
 <body>
 	<section>
@@ -141,47 +143,6 @@
 	        </div>
         </div>
     </section>
-    
-    <script>
-    	//따끈따끈한 신상, 지역특산물 무한스크롤
-    	//(header가 모든 페이지에 붙어있기 때문에 main.js에 있으면 다른 페이지에는 없는 클래스 때문에 콘솔에 오류가 계속해서 찍힘)
-    	$(function(){
-    		
-    		// 스크롤 속도 (밀리초 단위)
-    		const scrollSpeed = 2; // 2px마다 스크롤
-    		const scrollThreshold = 230;
-    		
-    		// 무한 스크롤을 위한 변수
-    		const areaContainer = $(".areaContainer").get(0);
-    		const areaList = $(".areaList").get(0);
-    		const newContainer = $(".newContainer").get(0);
-    		const newList = $(".newList").get(0);
-    		
-    		// 한 번 스크롤한 거리
-    		let scrollDistance = 0;
-    		
-    		// 무한 스크롤 실행 함수
-    		function infiniteScroll(container, list) {
-    	    	container.scrollLeft += scrollSpeed;
-    	    
-    		    // 스크롤이 지정된 거리(scrollThreshold) 이상 이동하면 첫 번째 아이템을 맨 뒤로 보냄
-    		    if (container.scrollLeft >= scrollThreshold) {
-    		        // 첫 번째 아이템을 맨 뒤로 보내기
-    		        const firstItem = list.firstElementChild;
-    		        list.appendChild(firstItem); // 첫 번째 아이템을 맨 뒤로 이동시킴
-    		        
-    		        // 스크롤을 230px만큼 이동시킨 후, 다시 스크롤 위치를 맞춤
-    		        container.scrollLeft -= scrollThreshold; // 230px 만큼 돌려서 스크롤 계속 진행
-    		    }
-    		}
-    		
-    		// 무한 스크롤 시작
-    		setInterval(function() {
-    		    infiniteScroll(newContainer, newList);
-    		    infiniteScroll(areaContainer, areaList);
-    		}, 50);
-    		
-    	});
-    </script>
+
 </body>
 </html>

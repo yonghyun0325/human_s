@@ -14,9 +14,16 @@
 	<section>
 		<img src="${pageContext.request.contextPath}/resources/img/인기순.png" alt="인기순배너">
 		<img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="최신순배너">
-		<div class="selectType">
-			<a href="/hms/product/popNewList.no?select=pop"><i class="fa-solid fa-h"></i><i class="fa-solid fa-o"></i><i class="fa-solid fa-t"></i></a>
-			<a href="/hms/product/popNewList.no?select=new"><i class="fa-solid fa-n"></i><i class="fa-solid fa-e"></i><i class="fa-solid fa-w"></i></a>
+		<div>
+			<div class="newContent">
+	<c:if test="${ not empty user }">
+				<a href="/hms/product/writeDetail.do">+ 글 등록</a>
+	</c:if>
+			</div>
+			<div class="selectType">
+				<a href="/hms/product/popNewList.no?select=pop"><i class="fa-solid fa-h"></i><i class="fa-solid fa-o"></i><i class="fa-solid fa-t"></i></a>
+				<a href="/hms/product/popNewList.no?select=new"><i class="fa-solid fa-n"></i><i class="fa-solid fa-e"></i><i class="fa-solid fa-w"></i></a>
+			</div>
 		</div>
 		<div class="productList">
 	<c:forEach var="i" begin="0" end="15">

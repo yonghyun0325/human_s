@@ -16,6 +16,20 @@ section>img{
 	width: 100%;
 	margin: 10px 0px;
 }
+section>img+div{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.newContent a{
+	padding: 5%;
+	border: solid 1px #777;
+	white-space: nowrap;
+	border-radius: 5px;
+}
+.newContent a:hover{
+	background-color: #AFD485;
+}
 
 /* popNewList.jsp, checkBoxList.jsp */
 .productList{
