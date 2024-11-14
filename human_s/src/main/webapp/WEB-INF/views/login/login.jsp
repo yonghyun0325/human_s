@@ -28,12 +28,12 @@
 		<div class="find_and_join">
 			<a href="#">아이디찾기</a>
 			<a href="#">비밀번호찾기</a>
-			<a href="/hms/join/agreement.no">회원가입</a>
+			<a href="/hms/user/agreement.no">회원가입</a>
 		</div>
 		<div class="easy_login">
 			<button><img src="${pageContext.request.contextPath}/resources/img/카카오.PNG" alt="카카오"></button>
 			<button><img src="${pageContext.request.contextPath}/resources/img/네이버.PNG" alt="네이버"></button>
-			<button><img src="${pageContext.request.contextPath}/resources/img/구글.PNG" alt="구글"></button>
+			<button type="button"><img src="${pageContext.request.contextPath}/resources/img/구글.PNG" alt="구글"></button>
 		</div>
 		<div class="login-bottom">
 			<p>간편로그인/회원가입</p>

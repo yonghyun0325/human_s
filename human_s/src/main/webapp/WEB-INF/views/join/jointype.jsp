@@ -15,13 +15,13 @@
     <div class="jointype_container">
 	        <div>
 	            <p>구매자 가입하기</p>
-	             <a href="/hms/join/join_normal.no">
+	             <a href="/hms/user/join_normal.no">
 	             <i class="fal fa-arrow-circle-right"></i>
 	             </a>
 	        </div>
 	        <div>
 	            <p>판매자 가입하기</p>
-	             <a href="/hms/join/join_register.no">
+	             <a href="/hms/user/join_register.no">
 	             <i class="fal fa-arrow-circle-right"></i>
 	             </a>
 	        </div>

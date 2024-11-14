@@ -7,11 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @Entity
-@Table(name = "user")  // 실제 데이터베이스의 테이블 이름
+@Table(name = "member")  // 실제 데이터베이스의 테이블 이름
 public class UserEntity {
 
     @Id
@@ -49,10 +52,33 @@ public class UserEntity {
     @Column(name = "grade", columnDefinition = "TINYINT DEFAULT 1")
     private int grade; //등급(1:소비자, 2:판매자, 3:관리자)
     
-    public UserEntity() {
+    @Builder
+    public UserEntity(String userEmail, String userPw, String userNick, 
+    		String userName, String userPhone, String birth)  {
+    	
+    	this.userEmail = userEmail;
+    	this.userPw = userPw;
+    	this.userNick = userNick;
+    	this.userName = userName;
+    	this.userPhone = userPhone;
+    	this.birth = birth;
+    	
     	this.point = 0;
     	this.status = 0;
     	this.sellapply = 0;
     	this.grade = 1;
+    }
+    
+    //userIdx필드에 값을 세팅해줄 수 있도록 명시적으로 변경 메소드 정의
+    public void updateUserIdx(int userIdx) {
+    	this.userIdx = userIdx;
+    }
+    
+    public void setUserName(String userName) {
+    	this.userName = userName;
+    }
+    
+    public void setUserEmail(String userEmail) {
+    	this.userEmail = userEmail;
     }
 }

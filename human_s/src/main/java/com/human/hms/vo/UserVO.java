@@ -1,12 +1,10 @@
 package com.human.hms.vo;
 
-import com.human.hms.entity.UserEntity;
 
-import lombok.Builder;
+
 import lombok.Data;
 
 @Data
-@Builder
 public class UserVO {
  	private int userIdx; //회원번호
     private String userEmail; //아이디(이메일)
@@ -19,22 +17,9 @@ public class UserVO {
     private int status; //탈퇴여부(0:신청안함, 1:신청함)
     private int sellapply; //판매자등록여부(0:등록안함, 1:등록신청함))
     private int grade; //등급(1:소비자, 2:판매자, 3:관리자)
-    
-    // UserEntity를 UserVO로 변환하는 정적 메서드
-    public static UserVO fromEntity(UserEntity userEntity) {
-        return UserVO.builder()
-                .userIdx(userEntity.getUserIdx())
-                .userEmail(userEntity.getUserEmail())
-                .userPw(userEntity.getUserPw())
-                .userNick(userEntity.getUserNick())
-                .userName(userEntity.getUserName())
-                .userPhone(userEntity.getUserPhone())
-                .birth(userEntity.getBirth())
-                .point(userEntity.getPoint())
-                .status(userEntity.getStatus())
-                .sellapply(userEntity.getSellapply())
-                .grade(userEntity.getGrade())
-                .build();
-    }
-	  
+	public String addPost; //우편번호
+	public String add1;//상세주소
+	public String add2;
+	public String addDate;
+	public String addStatus;//히든으로 넣기 기본값 0
 }
