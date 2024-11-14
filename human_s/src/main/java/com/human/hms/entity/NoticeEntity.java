@@ -64,6 +64,17 @@ public class NoticeEntity {
 		
 	}
 	
+	public void updateNoticeContent(String noticeContent) {
+	    this.noticeContent = noticeContent;
+	}
+
+	public void updateNoticeTitle(String noticeTitle) {
+	    this.noticeTitle = noticeTitle;
+	}
+
+	
+	
+	
 	
 }  	
 

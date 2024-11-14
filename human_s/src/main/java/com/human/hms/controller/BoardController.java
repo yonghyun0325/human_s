@@ -76,7 +76,7 @@ public class BoardController {
 		
 		NoticeEntity savedEntity = noticeServiceImpl.insertNotice(entity, request);
 		if(savedEntity != null) {//글등록 성공
-			viewName = "redirect:/notice.no";//메인 페이지 재요청
+			viewName = "redirect:/board/notice.no";//메인 페이지 재요청
 		}else {//글등록 실패
 			mav.addObject("msg", "게시글이 정상적으로 등록되지 않았습니다.");
 		}
@@ -103,61 +103,74 @@ public class BoardController {
 
     // 수정 페이지 요청
     @GetMapping("/update.do")
-    public ModelAndView update(long noticeIdx, ModelAndView mav) {
+    public ModelAndView update(@RequestParam("noticeIdx") long noticeIdx, ModelAndView mav) {
         // 수정할 게시글 정보 조회
         Optional<NoticeEntity> optional = noticeServiceImpl.getNoticeById(noticeIdx);
-        optional.ifPresent(entity -> mav.addObject("noticeVO", entity));
-        mav.setViewName("notice/update");
-
+        
+        if (optional.isPresent()) {
+            NoticeEntity entity = optional.get();
+            mav.addObject("notice", entity); // 뷰에서 "noticeVO"로 접근 가능
+            mav.setViewName("board/notice_update");
+        } else {
+            mav.setViewName("error/404"); // 게시글이 존재하지 않는 경우 404 페이지로 이동
+            mav.addObject("msg", "존재하지 않는 게시글입니다.");
+        }
+        
         return mav;
     }
+
 
     // 글 수정 처리
     @PostMapping("/updateProcess.do")
     public ModelAndView updateProcess(NoticeVO vo, ModelAndView mav) {
-        String viewName = "notice/update"; // 기본적으로 실패 시 뷰
+        System.out.println("Received ID: " + vo.getNoticeIdx());
+        System.out.println("Received Title: " + vo.getNoticeTitle());
+        System.out.println("Received Content: " + vo.getNoticeContent());
+
+        String viewName = "notice/update"; // 실패 시 기본 뷰
+
+        if (vo.getNoticeIdx() == null) {
+            mav.addObject("msg", "잘못된 요청입니다. ID가 없습니다.");
+            mav.setViewName("error/invalid_request");
+            return mav;
+        }
 
         int result = noticeServiceImpl.updateNotice(vo);
-        if (result == 1) { // 수정 성공 시
-            // 수정된 글 상세 페이지로 이동
-            Optional<NoticeEntity> optional = noticeServiceImpl.getNoticeById(vo.getNoticeIdx());
-            optional.ifPresent(newEntity -> mav.addObject("noticeVO", newEntity));
-            viewName = "notice/view";
+        if (result == 1) {
+            viewName = "redirect:/board/notice.no"; // 수정 성공 후 목록 페이지로 이동
+        } else {
+            mav.addObject("msg", "게시글을 찾을 수 없습니다.");
+            viewName = "error/invalid_request";
         }
         mav.setViewName(viewName);
 
         return mav;
     }
 
-    // 글 삭제 요청
+
+
+
+ // 글 삭제 요청
     @GetMapping("/deleteProcess.do")
-    public ModelAndView deleteProcess(long noticeIdx, ModelAndView mav) {
+    public ModelAndView deleteProcess(@RequestParam(value = "noticeIdx", required = false) Long noticeIdx, ModelAndView mav) {
         String viewName = "notice/view"; // 기본적으로 실패 시 뷰
-        int result = noticeServiceImpl.deleteNotice(noticeIdx);
-        if (result == 1) { // 삭제 성공 시 메인 페이지로 리다이렉트
-            viewName = "redirect:/index.do";
-        }
-        mav.setViewName(viewName);
 
+        if (noticeIdx != null) {
+            int result = noticeServiceImpl.deleteNotice(noticeIdx);
+            if (result == 1) { // 삭제 성공 시 메인 페이지로 리다이렉트
+                viewName = "redirect:/board/notice.no";
+            } else {
+                mav.addObject("msg", "게시글 삭제에 실패했습니다.");
+            }
+            System.out.println();
+        } else {
+            mav.addObject("msg", "잘못된 요청입니다. 게시글 ID가 없습니다.");
+        }
+        
+        mav.setViewName(viewName);
         return mav;
     }
-    
-    
-    @GetMapping("/faq.no")
-	public String faq() {
-		return "board/faq";
-	}
-    
-    @GetMapping("/productquestion.no")
-    public String productquestion() {
-    	return "board/productquestion";
-    }
-    
-    @GetMapping("/review.no")
-    public String review() {
-    	return "board/review";
-    }
-    
+
     @GetMapping("/search.do")
     public String search(@RequestParam(value = "searchType", defaultValue = "name") String searchType,
                          @RequestParam(value = "search", defaultValue = "") String searchKeyword,
@@ -175,6 +188,23 @@ public class BoardController {
         
         return "board/notice_list";  // 검색 결과를 표시할 JSP 파일 경로
     }
+    
+    @GetMapping("/faq.no")
+	public String faq() {
+		return "board/faq";
+	}
+    
+    @GetMapping("/productquestion.no")
+    public String productquestion() {
+    	return "board/productquestion";
+    }
+    
+    @GetMapping("/review.no")
+    public String review() {
+    	return "board/review";
+    }
+    
+
 
     
     

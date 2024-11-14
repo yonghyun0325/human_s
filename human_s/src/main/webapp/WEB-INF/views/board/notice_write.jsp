@@ -7,52 +7,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>글등록</title>
+    <title>글 등록</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice_write.css">
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
+
 <div class="layout">
-    <h3>글 작성</h3>
+    <h3>공지사항</h3>
 <%@ include file="../board/topmenu.jsp" %>
     <div class="board-container">
-        <form name="frmBoardWrite" action="write.do" method="post">
-            <!-- 작성자 -->
+        <form name="frmBoardWrite" action="writeProcess.do" method="post">
+
+            <!-- 작성자 (사용자가 직접 입력) -->
             <div class="form-group">
-                <label for="gbWriter">이름</label>
-                <input type="text" id="gbWriter" name="gbWriter" required>
+                <label for="author">이름</label>
+                <input type="text" id="author" name="author" placeholder="이름을 입력하세요" required>
             </div>
 
-            <!-- 제목 및 선택 -->
+            <!-- 제목 -->
             <div class="form-group">
-                <label for="gbTitle">제목</label>
-                <input type="text" id="gbTitle" name="gbTitle" required>
-                
-                <label for="category">카테고리</label>
-                <select id="category" name="category">
-                    <option value="general">일반</option>
-                    <option value="notice">공지</option>
-                    <option value="event">이벤트</option>
-                </select>
+                <label for="notice_title">제목</label>
+                <input type="text" id="noticeTitle" name="noticeTitle" placeholder="제목을 입력하세요" required>
             </div>
 
             <!-- 내용 -->
             <div class="form-group">
-                <label for="gbContent">내용</label>
-                <textarea id="gbContent" name="gbContent" rows="10" required></textarea>
-            </div>
-
-            <!-- HTML 태그 허용 -->
-            <div class="form-group">
-                <label for="allowHtml">HTML 태그 허용</label>
-                <input type="checkbox" id="allowHtml" name="allowHtml">
+                <label for="notice_content">내용</label>
+                <textarea id="noticeContent" name="noticeContent" rows="10" placeholder="내용을 입력하세요" required></textarea>
             </div>
 
             <!-- 제출 버튼 -->
             <div class="form-group button-group">
-                <input type="submit" value="등록하기">
-                <input type="reset" value="다시입력">
-                <input type="button" value="목록보기" onclick="location.href='../notice.no'">
+                <input type="submit" value="등록하기" class="btn">
+                <input type="reset" value="다시입력" class="btn">
+                <input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath}/board/notice.no'" class="btn">
             </div>
         </form>
     </div>

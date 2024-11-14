@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.NoticeEntity;
 import com.human.hms.entity.UserEntity;
@@ -39,14 +40,19 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeRepository.findById(noticeIdx);
     }
 
-    @Override
-    public int updateNotice(NoticeVO noticeVO) {
-        Optional<NoticeEntity> optional = noticeRepository.findById(noticeVO.getNoticeIdx());
+    @Transactional
+    public int updateNotice(NoticeVO vo) {
+        Optional<NoticeEntity> optional = noticeRepository.findById(vo.getNoticeIdx());
         
-        optional.ifPresent(entity ->{
-        	noticeRepository.save(entity);
-        });
-        return 1;
+        if (optional.isPresent()) {
+            NoticeEntity entity = optional.get();
+            entity.updateNoticeTitle(vo.getNoticeTitle());
+            entity.updateNoticeContent(vo.getNoticeContent());
+            noticeRepository.save(entity); // 수정된 엔티티를 저장하여 업데이트 쿼리를 발생시킴
+            return 1; // 성공 시 1 반환
+        }
+        
+        return 0; // 수정할 데이터가 없을 경우 0 반환
     }
 
     @Override
@@ -57,6 +63,8 @@ public class NoticeServiceImpl implements NoticeService {
         }
         return 0;
     }
+    
+
 
     @Override
     public void updateReadCount(long noticeIdx) {

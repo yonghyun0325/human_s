@@ -5,27 +5,34 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* 레이아웃 스타일 */
 .layout {
-    max-width: 1000px;
+	    display: flex;
+	    max-width: 1200px; /* 최대 너비 설정 */
+	    margin: 0 auto; /* 중앙 정렬 */
+	    flex-direction: column;
+	    padding: 4%;
+		}
+/* 레이아웃 스타일 */
+/* .layout {
+    max-width: 1200px;
     margin: 20px auto;
     padding: 4%;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+    flex-direction: column;
+} */
 
 h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
+    text-align: center;    /* 텍스트 가운데 정렬 */
+    font-size: 24px;       /* 글자 크기 24px */
+    font-weight: bold;     /* 글자 굵게 */
     margin-bottom: 20px;
-    text-align: center;
 }
 
 /* 공지사항 상세 정보 스타일 */
-#board-container {
+.board-container {
     padding: 20px;
 }
 
@@ -35,11 +42,21 @@ h2 {
     margin-bottom: 15px;
 }
 
+/* 기본 스타일 유지 */
 .detail-title {
-    font-size: 22px;
+    font-size: 28px; /* 제목 크기를 더 크게 */
     font-weight: bold;
     color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    position: relative; /* 꾸미기 요소 추가를 위해 상대 위치 */
+    padding: 15px 0;
+    background-color: #f9f9f9; /* 배경 색상 추가 */
+    border-radius: 8px; /* 둥근 테두리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
+
+
 
 .detail-meta {
     font-size: 14px;
