@@ -12,9 +12,8 @@
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
-
 <div class="layout">
-    <h3>공지사항</h3>
+<h3>공지사항</h3>
 <%@ include file="../board/topmenu.jsp" %>
     <div class="board-container">
         <form name="frmBoardWrite" action="writeProcess.do" method="post">
