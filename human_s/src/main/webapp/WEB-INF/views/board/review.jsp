@@ -9,6 +9,7 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
+<h3>상품후기</h3>
 <%@ include file="../board/topmenu.jsp" %>
     <div class="board-container">
     

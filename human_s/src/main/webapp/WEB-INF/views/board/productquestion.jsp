@@ -10,6 +10,7 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
+<h3>상품문의</h3>
 <%@ include file="../board/topmenu.jsp" %>
 <div class="board-container">
     <div class="board-header">상품문의 게시판</div>

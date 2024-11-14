@@ -1,31 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>글수정</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice_update.css">
 </head>
 <body>
-<div id="wrap">
-    <h2>글수정</h2>
-    <div id="container">
-        <form name="frmBoardUpdate" action="updateProcess.do" method="post">
-            <input type="hidden" name="memIdx" value="${member.memIdx}">
-            <input type="hidden" name="gbIdx" value="${boardVO.gbIdx}">
-            작성자: <input type="text" name="gbWriter" value="${boardVO.gbWriter}" readonly><br>
-            제목: <input type="text" name="gbTitle" value="${boardVO.gbTitle}"><br>
-            내용<br>
-            <textarea name="gbContent" cols="30" rows="10">${boardVO.gbContent}</textarea><br>
+<%@ include file="../main/header.jsp"%>
+<h2>공지사항</h2>
+<%@ include file="../board/topmenu.jsp" %>
+<div class="layout">
+    <div id="board-container">
+        <form action="${pageContext.request.contextPath}/board/updateProcess.do" method="post">
+            <input type="hidden" name="noticeIdx" value="${notice.id}"/>
             <div>
-                <input type="submit" value="수정하기">
-                <input type="reset" value="다시입력">
-                <input type="button" value="목록보기" onclick="location.href='../index.do'">
+                <label for="noticeTitle">제목:</label>
+                <input type="text" id="noticeTitle" name="noticeTitle" value="${notice.noticeTitle}" required>
+            </div>
+            <div>
+                <label for="noticeContent">내용:</label>
+                <textarea id="noticeContent" name="noticeContent" required>${notice.noticeContent}</textarea>
+            </div>
+            <div id="detail-btn-group">
+                <button type="submit" class="btn btn-edit">수정하기</button>
+                <button type="button" class="btn btn-back" onclick="location.href='${pageContext.request.contextPath}/board/notice.no'">목록으로</button>
             </div>
         </form>
 
     </div>
 
 </div>
+
+<%@ include file="../main/footer.jsp"%>
 </body>
 </html>

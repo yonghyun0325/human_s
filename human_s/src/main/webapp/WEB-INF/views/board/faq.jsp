@@ -10,9 +10,10 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
+<div class="faq-header">FAQ</div>
     <%@ include file="../board/topmenu.jsp" %>
     <div class="faq-container">
-        <div class="faq-header">FAQ</div>
+        
 
         <!-- 검색 바 섹션 -->
         <div class="search-bar">

@@ -86,9 +86,34 @@ h3 {
     background-color: #e31b10;
 }
 
-/* 입력 필드에 readonly 적용 */
-/* #gbWriter {
+입력 필드에 readonly 적용 */
+#author {
     background-color: #f2f2f2;
     cursor: not-allowed;
-} */
+}
+
+
+/* 버튼 스타일 */
+.form-group.button-group {
+    display: flex;
+    gap: 10px; /* 버튼 간의 간격 */
+    justify-content: center; /* 버튼을 가운데 정렬 */
+}
+
+.form-group .btn {
+    width: 100px; /* 게시판 스타일의 표준 너비 */
+    padding: 10px 15px; /* 패딩을 추가하여 버튼을 크게 보이게 */
+    font-size: 16px; /* 약간 큰 글씨 크기 */
+    border: none;
+    background-color: #007bff; /* 일반적인 파란색 배경 */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px; /* 모서리를 둥글게 */
+    transition: background-color 0.3s ease;
+}
+
+.form-group .btn:hover {
+    background-color: #0056b3; /* 마우스 오버 시 진한 파란색 */
+}
+
 

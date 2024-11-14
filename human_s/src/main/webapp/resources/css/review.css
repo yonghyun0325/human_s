@@ -11,6 +11,13 @@ body {
     padding: 4%;
 }
 
+h3 {
+    text-align: center;    /* 텍스트 가운데 정렬 */
+    font-size: 24px;       /* 글자 크기 24px */
+    font-weight: bold;     /* 글자 굵게 */
+    margin-bottom: 20px;
+}
+
 /* 게시판 컨테이너 */
 .board-container {
     flex: 1; /* 남은 공간을 모두 차지 */
