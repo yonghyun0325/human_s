@@ -10,8 +10,6 @@ import lombok.Data;
 public class ProductVO {
 	
 	private int pdtIdx;			 //상품번호
-	private String pdtOrigin;	 //상품이미지 원본이름
-	private String pdtSave;		 //상품이미지 저장이름
 	private String pdtTitle;	 //상품 등록 제목
 	private String pdtPrice;	 //가격
 	private String pdtLargeCode; //상품대분류코드
@@ -22,7 +20,7 @@ public class ProductVO {
 	private String pdtWriter;	 //상품등록 닉네임
 	private int userIdx;		 //회원번호
 
-	
+	private MultipartFile pdtFile;
 	private MultipartFile[] uploadFiles;
 	private List<ProductImgVO> attachedList;
 }
