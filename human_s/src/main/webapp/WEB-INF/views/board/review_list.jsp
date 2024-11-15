@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>상품후기 게시판</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/review.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/review_list.css">
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
