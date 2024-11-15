@@ -16,6 +16,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 
 	@Query("select count(*) from UserEntity u where u.userEmail = ?1")
 	int sameIdcheck(String userEmail);
+
+	//세션에 저장
+	@Query("select u from UserEntity u where u.userEmail = :userEmail")
+	UserEntity equalsUser(@Param("userEmail")String email);
+
 	
 	
 

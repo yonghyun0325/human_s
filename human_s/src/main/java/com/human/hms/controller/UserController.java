@@ -1,5 +1,7 @@
 package com.human.hms.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,24 +10,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.human.hms.api.MllBsComNmInfoApiExplorer;
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.UserService;
+import com.human.hms.vo.MllBsComNmInfoVO;
+import com.human.hms.vo.MllBsComNmInfoVO.MllBsComNmInfo;
 import com.human.hms.vo.UserVO;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 	
-	
-	private UserService userServiceImpl;
+	//상호명을 통한 통신판매업등록현황 조회(사업자 등록번호 조회 가능 이 안에서 처리함)
+	private final UserService userServiceImpl;
+	private String ServiceKey = "cHMBzY2Ljo7k/uc9cuO7pzwJoPCyA3zZM5rAV0c6bXxkV6dB66ov2nfRGgk/9P/A55kmN25hvQEB5rK116XY5w==";
+	private String srcUrl = "https://apis.data.go.kr/1130000/MllBs_2Service/getMllBsCoNmInfo_2";
+	private String numOfRows = "100";
+	private String resultType = "json";
 	
 	//회원가입 약관동의 페이지
 	@GetMapping("/agreement.no")
@@ -36,7 +44,7 @@ public class UserController {
 	
 	//회원가입 유형선택 페이지
 	@GetMapping("/jointype.no")
-	public String jointype() {
+	public String jointype(HttpServletRequest request) {
 		
 		return "join/jointype";
 	}
@@ -44,7 +52,6 @@ public class UserController {
 	//판매자 등록가입
 	@GetMapping("/join_register.no")
 	public String join_register() {
-		
 		return "join/join_register";
 	}
 	
@@ -69,8 +76,51 @@ public class UserController {
 		return viewName;
 	}
 	
+	
+	@GetMapping("/sellerInfoCheck.no")
+	@ResponseBody
+	public String sellerInfoCheck(String bzmnNm, String seIdNum) {
+		int pageNo = 1;
+		String result = "fail";
+		
+		try {
+			Class<MllBsComNmInfoVO> mllVO = MllBsComNmInfoVO.class;
+			
+			while(true) {
+				MllBsComNmInfoVO dataVO = (MllBsComNmInfoVO)MllBsComNmInfoApiExplorer
+						.getApiJsonData(ServiceKey,bzmnNm,srcUrl, resultType,String.valueOf(pageNo), numOfRows, mllVO);
+				System.out.println("data:"+dataVO);
+				if(dataVO.getItems().size()==0) break;
+				
+				List<MllBsComNmInfo> vo = dataVO.getItems();
+				
+				for(MllBsComNmInfo vos :vo) {
+					System.out.println(vos.getBrno());
+					System.out.println(seIdNum);
+					if(seIdNum.equals(vos.getBrno())) {
+						int result2= userServiceImpl.sellerInfoCheck(seIdNum);
+						System.out.println(result2);
+						if(result2 == 0) {
+							result = "ok";
+						}
+					}
+					
+				}
+				pageNo++;
+			}
+		
+		} catch (Exception e) {
+			System.out.println("사업자 조회 확인 중 오류 발생");
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+	
+	
 	@PostMapping("/joinProcess.no")
-	public ModelAndView joinProcess(ModelAndView mav, UserVO vo) {
+	public ModelAndView joinProcess(ModelAndView mav, UserVO vo, HttpServletRequest request) {
 	//VO객체에 저장된 값을 Entity에 저장되도록 Builder를 이용해서 Entity객체를 생성함
 	UserEntity entity = UserEntity.builder()
 						  .userEmail(vo.getUserEmail())
@@ -92,6 +142,12 @@ public class UserController {
 	//MemberServiceImpl클래스를 통해서 요청 처리: JPA에서 지원하는 save()메소드 이용
 	UserEntity savedVo = userServiceImpl.save(entity);
 	AddressEntity a_savedVo = userServiceImpl.a_save(a_entity, entity);
+	
+
+	
+	if(request.getSession().getAttribute("naver") != null) {
+		request.getSession().removeAttribute("naver");
+	}
 	
 	if(savedVo != null && a_savedVo != null) {//회원가입 성공
 		viewName = "redirect:/index.no"; //index.do 재요청

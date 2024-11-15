@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>로그인페이지</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
-	<script src="../resources/js/jquery-3.7.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </head>
 <body>
 	<%@ include file="../main/header.jsp"%>
@@ -32,7 +33,7 @@
 		</div>
 		<div class="easy_login">
 			<button><img src="${pageContext.request.contextPath}/resources/img/카카오.PNG" alt="카카오"></button>
-			<button><img src="${pageContext.request.contextPath}/resources/img/네이버.PNG" alt="네이버"></button>
+			<button type="button" id="naverApiBtn"><img src="${pageContext.request.contextPath}/resources/img/네이버.PNG" alt="네이버"></button>
 			<button type="button"><img src="${pageContext.request.contextPath}/resources/img/구글.PNG" alt="구글"></button>
 		</div>
 		<div class="login-bottom">
