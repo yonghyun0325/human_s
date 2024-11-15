@@ -19,11 +19,8 @@
     <div class="board-container">
         <form name="frmBoardWrite" action="writeProcess.do" method="post" onsubmit="return validateForm()">
 
-            <!-- 작성자 (사용자가 직접 입력) -->
-            <div class="form-group">
-                <label for="author">이름</label>
-                <input type="text" id="author" name="author" placeholder="이름을 입력하세요" required>
-            </div>
+            <!-- 작성자 (로그인된 사용자 정보에서 가져옴) -->
+            <input type="hidden" id="author" name="author" value="${user.userName}">
 
             <!-- 제목 -->
             <div class="form-group">

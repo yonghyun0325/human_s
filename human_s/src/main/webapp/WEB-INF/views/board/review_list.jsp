@@ -92,10 +92,13 @@
             </div>
 
             <div class="write-box">
-                <!-- 글 등록 경로 수정 -->
-                <a href="${pageContext.request.contextPath}/board/review/write.do">
+             <!-- 로그인된 경우에만 글등록 버튼 표시 -->
+                <c:if test="${not empty user}">       
+		        <a href="${pageContext.request.contextPath}/board/review/write.do">
                     <button class="review_write_btn" type="button" id="write_btn">글등록</button> 
                 </a>
+		    	</c:if>
+                
             </div>
         </div>
     </div>

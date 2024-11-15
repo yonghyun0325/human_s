@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.CinquiryEntity;
+import com.human.hms.entity.NoticeEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.CinquiryRepository;
 import com.human.hms.vo.CinquiryVO;
@@ -109,19 +110,25 @@ public class CinquiryServiceImpl implements CinquiryService {
         }
     }
 
-	//글등록
-	@Override
-	public CinquiryEntity insertCinquiry(CinquiryEntity vo, HttpServletRequest request) {
-		//BoardEntity의 필드인 MemberEntity가 null값을 가지고 입력되므로
-		//MemberEntity에 실제 객체를 세팅해주어야함
-		//request객체를 이용해서 session에 저장된 MemberEntity객체를 가져와서
-		//세팅해줌
-		HttpSession session = request.getSession();
-		UserEntity userEntity = (UserEntity) session.getAttribute("user");
-		vo.updateUserEntity(userEntity);
+  //글등록
+    @Override
+    public CinquiryEntity insertCinquiry(CinquiryEntity vo, HttpServletRequest request) {
+        // 세션에서 UserEntity를 가져옴
+        HttpSession session = request.getSession();
+        UserEntity userEntity = (UserEntity) session.getAttribute("user");
 
-		return cinquiryRepository.save(vo);//JPA에서 제공되는 메소드 이용
-	}
+        // 세션에 UserEntity가 없는 경우 처리
+        if (userEntity == null) {
+            throw new IllegalStateException("로그인된 사용자 정보가 없습니다."); // 예외 처리
+        }
+
+        // ReviewEntity에 UserEntity 설정
+        vo.updateUserEntity(userEntity);
+        
+
+        // ReviewEntity를 저장
+        return cinquiryRepository.save(vo); // JPA의 save 메서드를 사용하여 저장
+    }
     
 
 		

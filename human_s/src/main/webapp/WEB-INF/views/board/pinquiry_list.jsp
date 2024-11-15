@@ -87,9 +87,11 @@
         </div>
 
         <div class="write-box">
+        <c:if test="${not empty user}"> 
             <a href="${pageContext.request.contextPath}/board/pinquiry/write.do">
                 <button class="pinquiry_write_btn" type="button" id="write_btn">글등록</button> 
             </a>
+            </c:if>
         </div>
     </div>
 </div>

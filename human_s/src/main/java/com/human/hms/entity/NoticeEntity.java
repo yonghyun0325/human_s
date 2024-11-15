@@ -48,7 +48,7 @@ public class NoticeEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
     
-	@Builder
+    @Builder
 	public NoticeEntity(String author, String noticeContent, String noticeTitle) {
 		this.author = author;
 		this.noticeContent = noticeContent;

@@ -87,9 +87,12 @@
         </div>
 
         <div class="write-box">
-            <a href="${pageContext.request.contextPath}/board/notice/write.do">
-                <button class="notice_write_btn" type="button" id="write_btn">글등록</button> 
-            </a>
+            <c:if test="${not empty user}">
+		        <!-- 로그인된 경우 글등록 버튼 표시 -->
+		        <a href="${pageContext.request.contextPath}/board/notice/write.do">
+		            <button class="notice_write_btn" type="button" id="write_btn">글등록</button>
+		        </a>
+		    </c:if>
         </div>
     </div>
 </div>
