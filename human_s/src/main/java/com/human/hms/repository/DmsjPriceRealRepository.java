@@ -21,7 +21,7 @@ public interface DmsjPriceRealRepository extends JpaRepository<PriceRealEntity, 
 	@Query("select distinct pr.large, pr.mid, pr.small, pr.smallName from PriceRealEntity pr")
 	List<Object[]> getSmallList();
 
-	//금액 조회
+	//최대,최소,평균 금액과 단위 조회
 	@Query("select max(pr.cost), min(pr.cost), avg(pr.cost), pr.std " +
 		       " from PriceRealEntity pr " +
 		       " where pr.large = ?1 and pr.mid = ?2 and pr.small = ?3 " +

@@ -174,6 +174,20 @@
 			<version>5.3.9</version>
 		</dependency>
 		
+		<!-- 파일업로드 관련 의존모듈 추가 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
+		<!-- 섬네일 관련 의존모듈 추가 -->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.20</version>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -194,6 +208,13 @@
 		    <artifactId>spring-tx</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- gson - naverApi관련 필요 -->
+		<dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version> <!-- 최신 버전 확인 후 업데이트 -->
+        </dependency>
 		
 		<!-- >>> 스프링 DB관련 의존모듈 추가 <<< --> 
 		

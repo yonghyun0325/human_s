@@ -14,8 +14,6 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.human.hms.vo.ProductImgVO;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +30,7 @@ public class ProductEntity {
 	private int pdtIdx;			 //상품번호
 	
 	@Column(name="pdt_img")
-	private String img;			 //상품이미지링크
+	private String img;			 //상품이미지링크 -> API에서 대량의 상품 목록 저장을 위함
 	
 	@Column(name="pdt_origin")
 	private String pdtOrigin;	 //상품이미지 원본이름
@@ -68,19 +66,20 @@ public class ProductEntity {
 	@JoinColumn(name="user_idx", updatable = false) //회원번호(외래키)
 	private UserEntity userEntity; 
 	
+	@Transient
+	private MultipartFile pdtFile;
+	
 	@Transient //테이블의 컬럼과 매핑되지 않는 영속 제외 필드
 	private MultipartFile[] uploadFiles;
 	
 	@Transient
-	private List<ProductImgVO> attachedList;
+	private List<ProductImgEntity> attachedList;
 	
 	@Builder
-	public ProductEntity(String img, String pdtOrigin, String pdtSave, String pdtTitle, String pdtPrice, 
-			String pdtLargeCode, String pdtMidCode, String pdtSmallCode, String pdtArea, String pdtArea2,
-			UserEntity userEntity, MultipartFile[] uploadFiles) {
+	public ProductEntity(String img, String pdtTitle, String pdtPrice, String pdtLargeCode, String pdtMidCode,
+			 String pdtSmallCode, String pdtArea, String pdtArea2, String pdtWriter,
+			 MultipartFile pdtFile, MultipartFile[] uploadFiles) {
 		this.img = img;
-		this.pdtOrigin = pdtOrigin;
-		this.pdtSave = pdtSave;
 		this.pdtTitle = pdtTitle;
 		this.pdtPrice = pdtPrice;
 		this.pdtLargeCode = pdtLargeCode;
@@ -88,8 +87,28 @@ public class ProductEntity {
 		this.pdtSmallCode = pdtSmallCode;
 		this.pdtArea = pdtArea;
 		this.pdtArea2 = pdtArea2;
-		this.userEntity = userEntity;
+		this.pdtWriter = pdtWriter;
+		this.pdtFile = pdtFile;
 		this.uploadFiles = uploadFiles;
+	}
+	
+	//attachedList 값의 변경을 위한 메소드
+	public void updateAttachedList(List<ProductImgEntity> attachedList) {
+		this.attachedList = attachedList;
+	}
+	
+	//별도로 필드값을 변경할 메소드
+	public void updatePdtOrigin(String pdtOrigin) {
+		this.pdtOrigin = pdtOrigin;
+	}
+	
+	public void updatePdtSave(String pdtSave) {
+		this.pdtSave = pdtSave;
+	}
+	
+	//memberEntity필드에 대한 값의 변경 메소드
+	public void updateUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
 	}
 
 }
