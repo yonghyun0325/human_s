@@ -5,9 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.human.hms.entity.ProductEntity;
+import com.human.hms.entity.ProductImgEntity;
+import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.DmsjPriceRealRepository;
+import com.human.hms.repository.ProductImgRepository;
+import com.human.hms.repository.ProductRepository;
+import com.human.hms.util.ProductFileManager;
 
 import lombok.AllArgsConstructor;
 
@@ -16,6 +26,9 @@ import lombok.AllArgsConstructor;
 public class ProductServiceImpl implements ProductService {
 	
 	private DmsjPriceRealRepository priceRealRepository;
+	private ProductFileManager fileManager;
+	private ProductRepository productRepository;
+	private ProductImgRepository productImgRepository;
 
 	//대분류코드 조회
 	@Override
@@ -35,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 		return priceRealRepository.getSmallList();
 	}
 
-	//경매가 최대,최소,평균값 조회
+	//경매가 최대,최소,평균값과 단위 조회
 	@Override
 	public List<Map<String, String>> getGraphData(String largeCode, String midCode, String smallCode) {
 		
@@ -52,6 +65,39 @@ public class ProductServiceImpl implements ProductService {
 	    }
 
 	    return responseList;
+	}
+
+	//상품등록하기
+	@Transactional
+	@Override
+	public int insertProduct(ProductEntity entity, HttpServletRequest request) {
+		int result = 0;
+		
+		HttpSession session = request.getSession();
+		UserEntity userEntity = (UserEntity) session.getAttribute("user");
+		entity.updateUserEntity(userEntity);
+		
+		entity = fileManager.pdtFile(entity, request);
+		
+		if(entity.getUploadFiles() !=  null && entity.getUploadFiles().length != 0) {
+			productRepository.save(entity);
+			
+			entity = fileManager.handleFile(entity, request);
+			
+			List<ProductImgEntity> imgList = entity.getAttachedList();
+			for(ProductImgEntity imgEntity : imgList) {
+				imgEntity.updateProductEntity(entity);
+				
+				productImgRepository.save(imgEntity);
+			}
+			result = 1;
+		}else {
+			productRepository.save(entity);
+			
+			result = 1;
+		}
+		
+		return result;
 	}
 	
 }

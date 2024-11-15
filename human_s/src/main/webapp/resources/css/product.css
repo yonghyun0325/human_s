@@ -335,11 +335,16 @@ h3 {
     border-radius: 4px;
     font-size: 14px;
 }
-.productContainer input[type="text"]:disabled {
+.productContainer input[type="text"]:readonly {
     background-color: #f0f0f0;
 }
 .productContainer select {
     padding: 8px;
+}
+.productContainer .content #fileNames{
+	display: flex;
+	flex-direction: row;
+	gap: 2%;
 }
 form .btnDiv {
     display: flex;

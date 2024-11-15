@@ -9,21 +9,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/product.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/productWrite.js"></script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<section>
 	    <h3>판매 상품 등록</h3>
 	    <div class="productContainer">
-	        <form name="frmProductWrite" action="writeProduct.do" method="post">
+	        <form name="frmProductWrite" action="writeProduct.do" method="post" enctype="multipart/form-data">
 	            <div class="title">
 	                <label for="pdtTitle">제목</label>
 	                <input type="text" id="pdtTitle" name="pdtTitle" required>
 	            </div>
 	            <div class="writer">
 	                <label for="pdtWriter">작성자</label>
-	                <input type="text" id="pdtWriter" name="pdtWriter" value="${ user.userNick }" disabled>
+	                <input type="text" id="pdtWriter" name="pdtWriter" value="${ user.userNick }" readonly>
 	                <input type="hidden" name="userIdx" value="${ user.userIdx }">
 	            </div>
 	            <div class="area">
@@ -84,11 +84,12 @@
 	            </div>
 	            <div class="img">
 	                <label>썸네일이미지</label>
-	                <input type="file" name="pdtOrigin" required>
+	                <input type="file" name="pdtFile" class="pdtFile" accept="image/*" required>
 	            </div>
 	            <div class="content">
-	                <label>내용은 이미지 파일로 등록해주세요.<br></label>
-	                <input type="file" name="uploadFiles" multiple>
+	                <label>내용은 이미지 파일로 등록해주세요. (최대 4개, 5MB 이하)<br></label>
+	                <input type="file" name="uploadFiles" class="uploadFiles" accept="image/*" multiple>
+	                <div id="fileNames"></div>
 	            </div>
 	            <div class="btnDiv">
 	                <input type="submit" value="등록하기">
