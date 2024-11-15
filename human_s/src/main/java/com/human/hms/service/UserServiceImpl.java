@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.AddressRepository;
+import com.human.hms.repository.SellerRepository;
 import com.human.hms.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 	
 	private UserRepository repository;
 	private AddressRepository a_repostiroy;
+	private SellerRepository s_repository;
 	// 메일 인증 관련 메일 전송 객체 의존 자동 주입 받기
 	private JavaMailSenderImpl mailSender;
 
@@ -82,6 +84,18 @@ public class UserServiceImpl implements UserService {
 			System.out.println("매일전송 중 예외발생");
 		}
 		
+	}
+
+
+	@Override
+	public int sellerInfoCheck(String seIdNum) {
+		return s_repository.sellerInfoCheck(seIdNum);
+	}
+
+
+	@Override
+	public UserEntity equalsUser(String email) {
+		return repository.equalsUser(email);
 	}
 
 }

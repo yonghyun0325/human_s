@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 
@@ -24,12 +25,22 @@
 			<div class="nor_email">
 				<p>이메일<i>*</i></p>
 				<div>
-					<input type="text" placeholder="이메일을 입력하세요" name="userEmail" class="email">
-					<button type="button" id="sameIdBtn">중복확인</button>
+					<input type="text" placeholder="이메일을 입력하세요" name="userEmail" class="email" value="${naver.email}">
+					<c:if test="${not empty naver}">
+						<button type="button" disabled>중복확인</button>
+					</c:if>
+					<c:if test="${empty naver}">
+						<button type="button" id="sameIdBtn">중복확인</button>
+					</c:if>
 				</div>
 				<div>
-					<input type="text" placeholder="인증번호를 입력하세요" id="emailNumInput">
-					<button type="button" id="emailNumberBtn">인증번호확인</button>
+					<input type="text" placeholder="인증번호를 입력하세요" id="emailNumInput" VALUE="${naver.email}">
+					<c:if test="${not empty naver}">
+						<button type="button" disabled>인증번호확인</button>
+					</c:if>
+					<c:if test="${empty naver}">
+						<button type="button" id="emailNumberBtn">인증번호확인</button>
+					</c:if>
 				</div>
 			</div>
 			<!-- 비밀번호 -->
@@ -47,26 +58,21 @@
 			<!-- 이름 -->
 			<div class="nor_name">
 				<p>이름<i>*</i></p>
-				<input type="text" placeholder="이름을 입력하세요" name="userName">
+				<input type="text" placeholder="이름을 입력하세요" name="userName" value="${naver.name}">
 			</div>
 			<hr>
 			<!-- 전화번호 -->
 			<div class="nor_tel-top">
 				<p>전화번호<i>*</i></p>
 				<div>
-				<input type="text" placeholder="전화번호를 입력하세요" name="userPhone" maxlength="13">
-				<button type="button">인증번호 받기</button>
+				<input type="text" placeholder="전화번호를 입력하세요" name="userPhone" maxlength="13" value="${naver.mobile}">
 				</div>
-			</div>
-			<div class="nor_tel-bottom">
-				<input type="text" placeholder="인증번호를 입력하세요" maxlength="6">
-				<button type="button">인증번호 확인</button>
 			</div>
 			<hr>
 			<!-- 생년월일 -->
 			<div class="nor_birth">
 				<p>생년월일<i>*</i></p>
-				<input type="text" placeholder="생년월일을 입력하세요" name="birth" maxlength="8">
+				<input type="text" placeholder="생년월일을 입력하세요" name="birth" maxlength="12" value="${naver.birthyear}${naver.birthday}">
 			</div>
 			<hr>
 			<!-- 주소 -->
