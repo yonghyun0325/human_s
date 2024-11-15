@@ -17,12 +17,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "notice")
+@Table(name = "pinquiry")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeEntity {
+public class PinquiryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +35,11 @@ public class NoticeEntity {
     @Column(name = "created_date", columnDefinition = "DATETIME DEFAULT NOW()")
     private Date createdDate;
 
-    @Column(name = "notice_content")
-    private String noticeContent;
+    @Column(name = "pinquiry_content")
+    private String pinquiryContent;
 
-    @Column(name = "notice_title")
-    private String noticeTitle;
+    @Column(name = "pinquiry_title")
+    private String pinquiryTitle;
 
     @Column(name = "views", columnDefinition = "INT DEFAULT 0")
     private int views;
@@ -48,11 +48,11 @@ public class NoticeEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
     
-    @Builder
-	public NoticeEntity(String author, String noticeContent, String noticeTitle) {
+	@Builder
+	public PinquiryEntity(String author, String pinquiryContent, String pinquiryTitle) {
 		this.author = author;
-		this.noticeContent = noticeContent;
-		this.noticeTitle = noticeTitle;
+		this.pinquiryContent = pinquiryContent;
+		this.pinquiryTitle = pinquiryTitle;
 		
 		//컬럼의 기본값으로 정의된 것은 생성자를 이용해서 필드를 수동으로 초기화함
 		this.createdDate = new Date();
@@ -64,12 +64,12 @@ public class NoticeEntity {
 		
 	}
 	
-	public void updateNoticeContent(String noticeContent) {
-	    this.noticeContent = noticeContent;
+	public void updatePinquiryContent(String pinquiryContent) {
+	    this.pinquiryContent = pinquiryContent;
 	}
 
-	public void updateNoticeTitle(String noticeTitle) {
-	    this.noticeTitle = noticeTitle;
+	public void updatePinquiryTitle(String pinquiryTitle) {
+	    this.pinquiryTitle = pinquiryTitle;
 	}
 
 	

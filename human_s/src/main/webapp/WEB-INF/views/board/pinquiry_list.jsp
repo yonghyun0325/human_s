@@ -6,14 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>공지사항</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice_list.css">
+    <title>상품문의</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pinquiry_list.css">
 </head>
 <body>
 
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
-<h3>공지사항</h3>
+<h3>상품문의</h3>
 <%@ include file="../board/topmenu.jsp" %>
   <div class="board-container">
 
@@ -21,7 +21,7 @@
     <div class="header">
         <p class="total-posts">총 게시물 수: ${paging.totalCount}</p>
         <div class="search-bar">
-            <form action="${pageContext.request.contextPath}/board/notice.no" method="get">
+            <form action="${pageContext.request.contextPath}/board/pinquiry.no" method="get">
                 <div class="check-box">
                     <label><input type="radio" name="searchType" value="name" ${param.searchType == null || param.searchType == 'name' ? 'checked' : ''}> 이름</label>
                     <label><input type="radio" name="searchType" value="title" ${param.searchType == 'title' ? 'checked' : ''}> 제목</label>
@@ -46,25 +46,25 @@
         </tr>
         
         <c:choose>
-        <c:when test="${empty noticeList}">
+        <c:when test="${empty pinquiryList}">
             <tr>
                 <td colspan="5">등록된 게시물이 없습니다</td>
             </tr>
         </c:when>
         <c:otherwise>
-            <c:forEach var="notice" items="${noticeList}" varStatus="vs">
+            <c:forEach var="pinquiry" items="${pinquiryList}" varStatus="vs">
                 <tr>
-                    <td>${notice.id}</td>
+                    <td>${pinquiry.id}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/board/notice/view.do?noticeId=${notice.id}">
-                            ${notice.noticeTitle}
+                        <a href="${pageContext.request.contextPath}/board/pinquiry/view.do?pinquiryId=${pinquiry.id}">
+                            ${pinquiry.pinquiryTitle}
                         </a>
                     </td>
-                    <td>${notice.author}</td>
+                    <td>${pinquiry.author}</td>
                     <td>
-                        <fmt:formatDate value="${notice.createdDate}" type="date" pattern="yyyy-MM-dd"/>
+                        <fmt:formatDate value="${pinquiry.createdDate}" type="date" pattern="yyyy-MM-dd"/>
                     </td>
-                    <td>${notice.views}</td>
+                    <td>${pinquiry.views}</td>
                 </tr>
             </c:forEach>
         </c:otherwise>
@@ -87,12 +87,11 @@
         </div>
 
         <div class="write-box">
-            <c:if test="${not empty user}">
-		        <!-- 로그인된 경우 글등록 버튼 표시 -->
-		        <a href="${pageContext.request.contextPath}/board/notice/write.do">
-		            <button class="notice_write_btn" type="button" id="write_btn">글등록</button>
-		        </a>
-		    </c:if>
+        <c:if test="${not empty user}"> 
+            <a href="${pageContext.request.contextPath}/board/pinquiry/write.do">
+                <button class="pinquiry_write_btn" type="button" id="write_btn">글등록</button> 
+            </a>
+            </c:if>
         </div>
     </div>
 </div>
