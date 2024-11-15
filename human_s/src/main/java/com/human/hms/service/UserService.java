@@ -16,6 +16,10 @@ public interface UserService {
 
 	String authEmail(String email);//메일인증
 
+	int sellerInfoCheck(String seIdNum);//사업자조회
+
+	UserEntity equalsUser(String email);//음
+
 	
 
 }

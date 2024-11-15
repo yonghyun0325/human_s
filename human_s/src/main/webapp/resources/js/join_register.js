@@ -3,10 +3,13 @@ $(function() {
     $('#sameIdBtn').on('click', function() {
         let userEmail = $(".email").val();
         let emailInput = $(".email").val();
-	       if (!emailInput) { // 값이 비어 있는지 확인
-			    alert("이메일을 입력해주세요."); // 이메일이 비어 있으면 알림창 표시
-			    return; // 함수 종료 (아래 코드가 실행되지 않음)
-			}
+       if (!emailInput) { // 값이 비어 있는지 확인
+		    alert("이메일을 입력해주세요."); // 이메일이 비어 있으면 알림창 표시
+		    return; // 함수 종료 (아래 코드가 실행되지 않음)
+		}
+        
+        
+        
         console.log("코딱지");
         
         const $button = $('#sameIdBtn')
@@ -77,10 +80,33 @@ $(function() {
 		}
 	});
     
-    
-    
-    
-    
+  // 사업자조회 확인 버튼 클릭 시 AJAX 요청
+		$('#sellerCheckBtn').on('click', function() {
+		    let bzmnNm = $('.seName').val();
+		    let seIdNum = $('.seIdNum').val();
+			console.log(bzmnNm);
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "sellerInfoCheck.no",
+		        data: { bzmnNm: bzmnNm, seIdNum: seIdNum },
+		        success: function(data) {
+		            if (data.trim() == "ok") {
+		               alert("사업자 정보 중복 체크 및 조회 성공");
+		                // 추가적인 성공 처리 코드를 여기에 작성하세요.
+							$('.nor_seller_info > input').prop('disabled', true);
+							$('.nor_seller_info > button').prop('disabled', true);
+		            } else {
+		                // 데이터를 받지 못한 경우 처리
+		                console.log("사업자 정보 조회 실패");
+		            }
+		        },
+		      		error: function() {
+		            // AJAX 요청이 실패한 경우 처리
+		            alert("사업자 정보를 조회하는 중 오류가 발생했습니다.");
+		        }
+		    }); // end of ajax
+		}); 
     
     
     

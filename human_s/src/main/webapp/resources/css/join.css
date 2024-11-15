@@ -71,7 +71,7 @@ p{
 }
 
 
-.nor_email,.nor_pw, .nor_nickname, .nor_name, .nor_birth, .nor_tel-top,.nor_tel-bottom, 
+.nor_email,.nor_pw, .nor_nickname, .nor_name, .nor_birth, .nor_tel-top, 
 .nor_addr-top, .nor_addr-bottom, .nor_seller_info, .nor_oay_info p{
 	font-size:15px;
 	font-weight:bold;
@@ -139,23 +139,8 @@ p{
 }
 
 .nor_tel-top input  {
-	width:260px;
-	height:40px;
-}
-
-.nor_tel-bottom input{
 	width:400px;
 	height:40px;
-}
-
-.nor_tel-bottom>button{
-	width:400px;
-	height:40px;
-	background-color:#AFD485;
-	color:white;
-	font-weight:bold;
-	font-size:17px;
-	margin-top:10px;
 }
 
 .nor_seller_info{

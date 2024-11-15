@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class AddressEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 기본 키 자동 증가 설정
 	@Column(name = "a_idx",  nullable = false)
 	public int addIdx;
 	@Column(name = "a_post",  nullable = false)
