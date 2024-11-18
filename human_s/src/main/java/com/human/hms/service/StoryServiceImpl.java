@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,10 +17,12 @@ import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.StoryRepository;
 import com.human.hms.vo.StoryVO;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class StoryServiceImpl implements StoryService {
 
-    @Autowired
     private StoryRepository storyRepository;
 
     @Override
@@ -127,4 +128,12 @@ public class StoryServiceImpl implements StoryService {
 	public List<StoryEntity> getStories(Pageable pageable) {
 		 return storyRepository.findAll(pageable).getContent();
 	}
+
+	@Override
+	public void save(StoryEntity story) {
+		storyRepository.save(story);
+		
+	}
+	
+	
 }

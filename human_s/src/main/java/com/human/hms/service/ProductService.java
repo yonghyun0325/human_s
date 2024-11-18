@@ -19,4 +19,8 @@ public interface ProductService {
 
 	int insertProduct(ProductEntity entity, HttpServletRequest request);
 
+	List<ProductEntity> getProductsByUserId(int userIdx);
+
+	ProductEntity getProductById(Integer pdtIdx);
+
 }

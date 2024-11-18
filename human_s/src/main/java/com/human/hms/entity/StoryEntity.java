@@ -1,6 +1,7 @@
 package com.human.hms.entity;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,12 +62,20 @@ public class StoryEntity {
     @ManyToOne
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "pdt_title", updatable = false)
+    private ProductEntity productEntity;
+ 
     // 생성 시 createdDate 설정
     @PrePersist
     protected void onCreate() {
         if (createdDate == null) {
             createdDate = new Date();
+        }
+        // ProductEntity의 pdt_title을 tagged_item_title에 설정
+        if (this.productEntity != null && this.productEntity.getPdtTitle() != null) {
+            this.taggedItemTitle = this.productEntity.getPdtTitle();
         }
     }
 
@@ -82,4 +91,8 @@ public class StoryEntity {
     public void updateStoryTitle(String storyTitle) {
         this.storyTitle = storyTitle;
     }
+
+	public void setUserIdx(int userIdx) {
+		
+	}
 }

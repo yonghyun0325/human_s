@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Pageable;
 
+import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.StoryEntity;
 import com.human.hms.vo.StoryVO;
 
@@ -31,4 +32,7 @@ public interface StoryService {
     StoryEntity insertStory(StoryEntity entity, HttpServletRequest request); // 사용자 정보를 포함해 스토리 생성
     
     List<StoryEntity> getStories(Pageable pageable);
+
+	void save(StoryEntity story);
+
 }

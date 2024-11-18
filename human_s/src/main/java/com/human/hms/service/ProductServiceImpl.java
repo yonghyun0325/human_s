@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.DmsjPriceRealRepository;
 import com.human.hms.repository.ProductImgRepository;
 import com.human.hms.repository.ProductRepository;
+import com.human.hms.repository.UserRepository;
 import com.human.hms.util.ProductFileManager;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductFileManager fileManager;
 	private ProductRepository productRepository;
 	private ProductImgRepository productImgRepository;
+
 
 	//대분류코드 조회
 	@Override
@@ -99,5 +102,19 @@ public class ProductServiceImpl implements ProductService {
 		
 		return result;
 	}
+
+	public List<ProductEntity> getProductsByUserId(int userIdx) {
+	    List<ProductEntity> products = productRepository.findByUserEntity_UserIdx(userIdx);
+	    if (products.isEmpty()) {
+	        throw new IllegalStateException("해당 사용자의 상품이 없습니다.");
+	    }
+	    return products;
+	}
+
+    // 상품 ID로 상품 조회
+    public ProductEntity getProductById(Integer pdtIdx) {
+        return productRepository.findById(pdtIdx)
+                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다."));
+    }
 	
 }
