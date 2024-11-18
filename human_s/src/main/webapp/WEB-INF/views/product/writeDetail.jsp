@@ -30,13 +30,17 @@
 	            	<div>
 		            	<label for="pdtArea">지역</label>
 		                <select id="pdtArea" name="pdtArea">
-		                    <option value="general">일반</option>
+		<c:forEach var="item" items="${ areaList }">
+		                    <option class="areaName" value="${ item[0] }">${ item[0] }</option>
+		</c:forEach>
 		                </select>
 	            	</div>
 	            	<div>
 		                <label for="pdtArea2">상세지역</label>
 		                <select id="pdtArea2" name="pdtArea2">
-		                    <option value="general">일반</option>
+		<c:forEach var="item" items="${ area2List }">
+		                    <option class="area2Name" value="${ item[1] }" data-area="${ item[0] }">${ item[1] }</option>
+		</c:forEach>
 		                </select>
 	            	</div>
 	            </div>

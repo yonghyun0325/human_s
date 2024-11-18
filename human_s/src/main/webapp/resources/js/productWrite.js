@@ -1,6 +1,34 @@
 $(function(){
     
 //writeDetail.jsp 
+
+	//지역코드 select option 필터링
+	$(".area2Name").each(function(){
+		if($(this).data("area") != '충청남도'){
+			$(this).hide();
+		}
+	});
+	
+	//지역 선택에 따른 상세지역 option 필터링
+	$("#pdtArea").change(function(){
+		let selectArea = $(this).val();
+		let count = 0;
+    	$(".area2Name").hide();
+    	
+    	$(".area2Name").each(function(){
+    		if($(this).data("area") == selectArea){
+    			if(count == 0){
+    				$(this).prop("selected", true);
+    			}
+    			$(this).show();
+    			if(count != 0 && $(this).val() == ''){
+    				$(this).hide();
+    			}
+    			count++;
+    		}
+    	});
+	});
+
     //분류코드 select option 필터링
     //처음에 과실류에 해당하는 값으로 중.소분류코드 세팅
     $(".midCode").each(function(){

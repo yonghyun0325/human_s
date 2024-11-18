@@ -23,4 +23,12 @@ public interface ProductService {
 
 	ProductEntity getProductById(Integer pdtIdx);
 
+	List<ProductEntity> getPopList();
+
+	List<ProductEntity> getNewList();
+
+	List<Object[]> getAreaList();
+
+	List<Object[]> getArea2List();
+
 }
