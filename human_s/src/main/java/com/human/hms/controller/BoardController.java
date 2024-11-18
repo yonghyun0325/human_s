@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,34 +13,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.human.hms.entity.CinquiryEntity;
 import com.human.hms.entity.NoticeEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ReviewEntity;
-import com.human.hms.entity.CinquiryEntity;
+import com.human.hms.service.CinquiryService;
 import com.human.hms.service.NoticeService;
 import com.human.hms.service.PinquiryService;
 import com.human.hms.service.ReviewService;
-import com.human.hms.service.CinquiryService;
+import com.human.hms.vo.CinquiryVO;
 import com.human.hms.vo.NoticeVO;
 import com.human.hms.vo.PagingVO;
 import com.human.hms.vo.PinquiryVO;
 import com.human.hms.vo.ReviewVO;
-import com.human.hms.vo.CinquiryVO;
+
+import lombok.AllArgsConstructor;
 
 @Controller
 @RequestMapping("/board")
+@AllArgsConstructor
 public class BoardController {
-
-    @Autowired
+	
     private NoticeService noticeServiceImpl;
-
-    @Autowired
     private ReviewService reviewServiceImpl;
-
-    @Autowired
     private PinquiryService pinquiryServiceImpl;
-    
-    @Autowired
     private CinquiryService cinquiryServiceImpl;
 
     // 공지사항 목록

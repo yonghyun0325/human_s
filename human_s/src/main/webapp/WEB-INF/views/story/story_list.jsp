@@ -7,15 +7,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포스팅 카드</title>
+    <title>스토리</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/story_list.css">
 </head>
 <body>
     <%@ include file="../main/header.jsp" %>
     <div class="layout">
-        <div class="story-write">
-            <button type="button" id="write_btn">스토리 올리기</button>
-        </div>
+      <div class="story-write">
+    <!-- grade가 2 또는 3인 경우에만 "스토리 올리기" 버튼 표시 -->
+		    <%-- <c:if test="${not empty grade and (grade == 2 or grade == 3)}">  --%>
+		    <c:if test="${user.grade == 2 or user.grade == 3}">
+		        <a href="${pageContext.request.contextPath}/story/story/write.do">
+		            <button class="review_write_btn" type="button" id="write_btn">스토리 올리기</button> 
+		        </a>
+		    </c:if>
+		</div>
+
+
         <div id="story-cards-container" class="story-cards-container">
             <!-- 초기 6개의 스토리만 로드 -->
             <c:forEach var="story" items="${stories}">

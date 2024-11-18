@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,15 +13,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.NoticeEntity;
-import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.NoticeRepository;
 import com.human.hms.vo.NoticeVO;
 
-@Service
-public class NoticeServiceImpl implements NoticeService {
+import lombok.AllArgsConstructor;
 
-    @Autowired
+@Service
+@AllArgsConstructor
+public class NoticeServiceImpl implements NoticeService {
+	
     private NoticeRepository noticeRepository;
 
     @Override
