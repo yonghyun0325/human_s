@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer>{
@@ -20,12 +19,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	//세션에 저장
 	@Query("select u from UserEntity u where u.userEmail = :userEmail")
 	UserEntity equalsUser(@Param("userEmail")String email);
-
 	
-	
-
-
-
-	
-
 }

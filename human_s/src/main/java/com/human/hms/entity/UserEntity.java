@@ -81,4 +81,7 @@ public class UserEntity {
     public void setUserEmail(String userEmail) {
     	this.userEmail = userEmail;
     }
+    public void setStatus(int status) {
+    	this.status = status;
+    }
 }

@@ -5,13 +5,19 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.human.hms.api.MllBsComNmInfoApiExplorer;
 import com.human.hms.entity.AddressEntity;
@@ -168,10 +174,6 @@ public class UserController {
 		System.out.println("이메일 인증 이메일: "+email);
 		return userServiceImpl.authEmail(email);
 	}
-	
-	
-	
-	
 	
 	@GetMapping("/login.no")
 	public String login() {

@@ -31,8 +31,17 @@
             <h3>개인정보</h3>
             <ul>
                 <li><a href="update.do" class="no-underline">회원정보수정</a></li>
-                <li>회원탈퇴</li>
+                <li><a href="javascript:void(0);" onclick="confirmWithdrawal()">회원탈퇴</a></li>
             </ul>
         </div>
+        
+        <script>
+            function confirmWithdrawal() {
+                if (confirm("정말로 탈퇴하시겠습니까? 모든 정보가 삭제됩니다.")) {
+                    // 탈퇴 요청 경로로 이동
+                    window.location.href = "${pageContext.request.contextPath}/user/withdrawal.do";
+                }
+            }
+        </script>
 </body>
 </html>

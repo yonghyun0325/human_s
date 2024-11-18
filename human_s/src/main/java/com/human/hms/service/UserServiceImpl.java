@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.UserEntity;
@@ -30,7 +31,6 @@ public class UserServiceImpl implements UserService {
 		
 		return entity;
 	}
-	
 	
 	@Override
 	public UserEntity save(UserEntity vo) {
