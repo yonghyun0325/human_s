@@ -26,31 +26,13 @@
 					</div>
 					<hr>
 					<div class="checkList checkItem">
+	<c:forEach var="item" items="${ largeList }">
 						<label>
-							<input type="checkbox">
+							<input type="checkbox" value="${ item[0] }">
 							<span class="custom-checkbox"></span>
-							곡식
+							${ item[1] }
 						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							과일
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							채소
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							견과류
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							버섯
-						</label>
+	</c:forEach>
 					</div>
 				</div>
 				<div class="areaSelect">
@@ -63,56 +45,13 @@
 					</div>
 					<hr>
 					<div class="checkList checkItem">
+	<c:forEach var="item" items="${ areaList }">
 						<label>
-							<input type="checkbox">
+							<input type="checkbox" value="${ item[0] }">
 							<span class="custom-checkbox"></span>
-							서울
+							${ item[0] }
 						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							인천
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							대전
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							대구
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							울산
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							경기도
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							강원도
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							충청도
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							전라도
-						</label>
-						<label>
-							<input type="checkbox">
-							<span class="custom-checkbox"></span>
-							경상도
-						</label>
+	</c:forEach>
 					</div>
 				</div>
 			</div>

@@ -81,10 +81,15 @@
             			<td><a href="/hms/manager/priceReal.do">저장하기</a></td>
             		</tr>
             		<tr>
-            			<th rowspan="2">KAMIS</th>
+            			<th>KAMIS</th>
             			<td>일별 부류별 도.소매가격정보</td>
             			<td><input type="date" class="regDate"></td>
             			<td><button class="dailyPriceBtn">저장하기</button></td>
+            		</tr>
+            		<tr>
+            			<th>농사로</th>
+            			<td colspan="2">지역특산물</td>
+            			<td><a href="/hms/manager/areaProduct.do">저장하기</a></td>
             		</tr>
             	</table>
             </div>

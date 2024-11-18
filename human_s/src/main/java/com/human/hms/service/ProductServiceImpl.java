@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +17,6 @@ import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.DmsjPriceRealRepository;
 import com.human.hms.repository.ProductImgRepository;
 import com.human.hms.repository.ProductRepository;
-import com.human.hms.repository.UserRepository;
 import com.human.hms.util.ProductFileManager;
 
 import lombok.AllArgsConstructor;
@@ -116,5 +114,29 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(pdtIdx)
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다."));
     }
+
+    //인기순 리스트 조회
+	@Override
+	public List<ProductEntity> getPopList() {
+		return productRepository.getPopList();
+	}
+
+	//신상품 리스트 조회
+	@Override
+	public List<ProductEntity> getNewList() {
+		return productRepository.getNewList();
+	}
+
+	//지역코드 조회
+	@Override
+	public List<Object[]> getAreaList() {
+		return productRepository.getAreaList();
+	}
+	
+	//지역코드 조회
+	@Override
+	public List<Object[]> getArea2List() {
+		return productRepository.getArea2List();
+	}
 	
 }

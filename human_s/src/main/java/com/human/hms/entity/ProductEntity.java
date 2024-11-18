@@ -1,5 +1,6 @@
 package com.human.hms.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -62,6 +63,9 @@ public class ProductEntity {
 	@Column(name="pdt_writer", nullable=false)
 	private String pdtWriter;	 //상품등록 닉네임
 	
+	@Column(name="pdt_date", columnDefinition = "DATETIME DEFAULT NOW()")
+	private Date pdtDate;
+	
 	@ManyToOne //조인 관계
 	@JoinColumn(name="user_idx", updatable = false) //회원번호(외래키)
 	private UserEntity userEntity; 
@@ -77,7 +81,7 @@ public class ProductEntity {
 	
 	@Builder
 	public ProductEntity(String img, String pdtTitle, String pdtPrice, String pdtLargeCode, String pdtMidCode,
-			 String pdtSmallCode, String pdtArea, String pdtArea2, String pdtWriter,
+			 String pdtSmallCode, String pdtArea, String pdtArea2,String pdtWriter,
 			 MultipartFile pdtFile, MultipartFile[] uploadFiles) {
 		this.img = img;
 		this.pdtTitle = pdtTitle;
@@ -88,6 +92,7 @@ public class ProductEntity {
 		this.pdtArea = pdtArea;
 		this.pdtArea2 = pdtArea2;
 		this.pdtWriter = pdtWriter;
+		this.pdtDate = new Date();
 		this.pdtFile = pdtFile;
 		this.uploadFiles = uploadFiles;
 	}

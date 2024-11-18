@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,15 +29,36 @@ public class ProductController {
 	
 	//인기순/최신순 페이지
 	@GetMapping("/popNewList.no")
-	public ModelAndView popNewList(ModelAndView mav) {
+	public ModelAndView popNewList(ModelAndView mav, @RequestParam String select) {
 		mav.setViewName("product/popNewList");
+		
+		if(select.equals("pop")) {
+			List<ProductEntity> popList = productServiceImpl.getPopList();
+			mav.addObject("popList", popList);
+		}else {
+			List<ProductEntity> newList = productServiceImpl.getNewList();
+			mav.addObject("newList", newList);
+		}
 		return mav;
 	}
 	
 	//지역특산물/전체상품 페이지
 	@GetMapping("/checkBoxList.no")
-	public ModelAndView checkBoxList(ModelAndView mav) {
+	public ModelAndView checkBoxList(ModelAndView mav, @RequestParam String select) {
 		mav.setViewName("product/checkBoxList");
+		
+		if(select.equals("areaSelect")) {
+			//지역코드 조회
+			List<Object[]> areaList = productServiceImpl.getAreaList();
+			mav.addObject("areaList", areaList);
+		}else {
+			//대.중.소 븐류코드 조회
+			List<Object[]> largeList = productServiceImpl.getLargeList();
+			List<Object[]> midList = productServiceImpl.getMidList();
+			mav.addObject("largeList", largeList);
+			mav.addObject("midList", midList);		
+		}
+		
 		return mav;
 	}
 	
@@ -51,6 +73,12 @@ public class ProductController {
 	@GetMapping("/writeDetail.do")
 	public ModelAndView wirteDetail(ModelAndView mav) {
 		mav.setViewName("product/writeDetail");
+		
+		//지역코드 조회
+		List<Object[]> areaList = productServiceImpl.getAreaList();
+		List<Object[]> area2List = productServiceImpl.getArea2List();
+		mav.addObject("areaList", areaList);
+		mav.addObject("area2List", area2List);
 		
 		//대.중.소 븐류코드 조회
 		List<Object[]> largeList = productServiceImpl.getLargeList();
@@ -80,7 +108,6 @@ public class ProductController {
 		String viewName = "product/writeDetail";
 		
 		ProductEntity entity = ProductEntity.builder()
-								.img("")
 								.pdtTitle(vo.getPdtTitle())
 								.pdtPrice(vo.getPdtPrice())
 								.pdtLargeCode(vo.getPdtLargeCode())

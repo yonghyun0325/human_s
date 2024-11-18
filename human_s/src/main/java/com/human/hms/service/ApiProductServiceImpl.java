@@ -2,20 +2,29 @@ package com.human.hms.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.CodeWhsalEntity;
 import com.human.hms.entity.DailyPriceByCategoryEntity;
 import com.human.hms.entity.PriceRealEntity;
+import com.human.hms.entity.ProductEntity;
+import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.DmsjCodeWhsalRepository;
 import com.human.hms.repository.DmsjPriceRealRepository;
 import com.human.hms.repository.KamisDailyPriceRepository;
+import com.human.hms.repository.ProductRepository;
 import com.human.hms.vo.CodeWhsalVO;
 import com.human.hms.vo.CodeWhsalVO.CodeWhsal;
 import com.human.hms.vo.DailyPriceByCategoryVO;
 import com.human.hms.vo.DailyPriceByCategoryVO.DailyPriceByCategory;
 import com.human.hms.vo.PriceRealVO;
 import com.human.hms.vo.PriceRealVO.PriceReal;
+import com.human.hms.vo.ProductLocalVO;
+import com.human.hms.vo.ProductLocalVO.ProductLocal;
 
 import lombok.AllArgsConstructor;
 
@@ -26,6 +35,7 @@ public class ApiProductServiceImpl implements ApiProductService {
 	private DmsjCodeWhsalRepository codeWhsalRepository;
 	private DmsjPriceRealRepository priceRealRepository;
 	private KamisDailyPriceRepository dailyPriceRepository;
+	private ProductRepository productRepository;
 
 	//도매시장 코드 저장
 	@Override
@@ -153,6 +163,60 @@ public class ApiProductServiceImpl implements ApiProductService {
 	public DailyPriceByCategoryEntity getGraphData(String selectedItemCode, String selectedKindCode,
 													String selectedRankCode) {
 		return dailyPriceRepository.selectData(selectedItemCode, selectedKindCode, selectedRankCode);
+	}
+
+	//농사로 지역특산물을 저장하기 위해 이전에 등록했던 농사로 지역특산물을 삭제
+	@Transactional
+	@Override
+	public void deleteLocalSpcprdAll() {
+		productRepository.deleteLocalSpcprdAll();
+	}
+
+	//농사로 지역특산물 저장(상품 여러개 넣어놓기 위함)
+	@Override
+	public int insertAreaProduct(ProductLocalVO data, HttpServletRequest request) {
+		int result = 0;
+		
+		HttpSession session = request.getSession();
+		UserEntity userEntity = (UserEntity) session.getAttribute("user");
+		
+		List<ProductLocal> items = data.getBody().getItems().getItem();
+		for(ProductLocal product : items) {
+			//가격 가져오기
+			PriceRealEntity pEntity = priceRealRepository.getPriceByMidName(product.getCntntsSj());
+			
+			//area 이름 각각 저장하기
+			String[] areas = product.getAreaNm().split(" > ");
+	        String area = areas[0];
+	        String area2 = "";
+	        if(areas.length > 1) {
+	        	area2 = areas[1];
+	        }
+	        
+	        if (pEntity == null || pEntity.getLarge() == null) {
+	            continue;  // 코드 정보가 없으면 저장하지 않음
+	        }
+			
+			ProductEntity entity = ProductEntity.builder()
+									.img(product.getImgUrl())
+									.pdtTitle(product.getCntntsSj())
+									.pdtPrice(pEntity != null ? String.valueOf(pEntity.getCost()) : "")
+									.pdtLargeCode(pEntity != null ? pEntity.getLarge() : "")
+									.pdtMidCode(pEntity != null ? pEntity.getMid() : "")
+									.pdtSmallCode(pEntity != null ? pEntity.getSmall() : "")
+									.pdtArea(area)
+									.pdtArea2(area2)
+									.pdtWriter(userEntity.getUserNick())
+									.build();
+			
+			entity.updateUserEntity(userEntity);
+			
+			if(productRepository.save(entity) != null) {
+				result++;
+			}
+		}
+		
+		return result;
 	}
 	
 }

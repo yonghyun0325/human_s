@@ -14,12 +14,14 @@ import java.net.URLEncoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 //도매시장 통합홈페이지 도매시장 코드 조회
-public class DmsjCodeWhsalExplorer {
-    public static <T extends Object> T getApiJsonData( String serviceKey, String srcUrl, 
+public class DmsjPriceRealApiExplorer {
+    public static <T extends Object> T getApiJsonData( String serviceKey, String srcUrl, String pageNo, String whsalCd,
     												   Class<T> vo) throws IOException, URISyntaxException {
         StringBuilder urlBuilder = new StringBuilder(srcUrl); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("apiType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*XML/JSON 여부*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /* Service Key */
+        urlBuilder.append("&" + URLEncoder.encode("apiType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /* XML/JSON 여부*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /* 페이지 번호 */
+        urlBuilder.append("&" + URLEncoder.encode("whsalCd","UTF-8") + "=" + URLEncoder.encode(whsalCd, "UTF-8")); /* 도매시장 코드 */
         
         //공공데이터 요청
         URL url = new URI(urlBuilder.toString()).toURL();

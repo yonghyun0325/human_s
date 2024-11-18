@@ -28,4 +28,9 @@ public interface DmsjPriceRealRepository extends JpaRepository<PriceRealEntity, 
 		       " group by pr.std")
 	List<Object[]> getGraphData(String largeCode, String midCode, String smallCode);
 
+	//농사로 지역특산물 저장을 위한 가격 가져오기
+	@Query(value = "SELECT * FROM price_real pr "
+			+ "WHERE pr.mid_name = ?1 ORDER BY RAND() LIMIT 1", nativeQuery = true)
+	PriceRealEntity getPriceByMidName(String cntntsSj);
+
 }
