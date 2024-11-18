@@ -28,12 +28,12 @@
             <!-- 사용자 정보 카드 -->
             <div class="user-card">
                 <div class="user-info-left">
-                    <p>ka@89a3e3c6b</p>
-                    <p class="user">이용현님 환영합니다.</p>
-                    <p>마지막 로그인: 2024-11-05 11:36:21</p>
-                    <a href="#"><p class="modify">---------------------------------------------- 수정</p></a>
-                    <p>전화: 010-1234-5678</p>
-                    <p>이메일: example@kakao.com</p>
+                    <p>${userEmail}</p>
+                    <p class="user">${userName}님 환영합니다.</p>
+                    <p>닉네임: ${userNick}</p>
+                    <a href="update.do"><p class="modify">---------------------------------------------- 수정</p></a>
+                    <p>전화: ${userPhone}</p>
+                    <p>이메일: ${userEmail}</p>
                 </div>
 
                 <!-- 포인트 정보 -->

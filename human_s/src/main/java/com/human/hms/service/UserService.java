@@ -20,6 +20,4 @@ public interface UserService {
 
 	UserEntity equalsUser(String email);//음
 
-	
-
 }
