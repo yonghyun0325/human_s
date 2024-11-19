@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
-<!-- 공통 스타일 -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
-    
 <!-- 마이페이지 전용 스타일 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css">
 
@@ -28,12 +26,12 @@
             <!-- 사용자 정보 카드 -->
             <div class="user-card">
                 <div class="user-info-left">
-                    <p>${userEmail}</p>
-                    <p class="user">${userName}님 환영합니다.</p>
-                    <p>닉네임: ${userNick}</p>
+                    <p>${user.userEmail}</p>
+                    <p class="user">${user.userName}님 환영합니다.</p>
+                    <p>닉네임: ${user.userNick}</p>
                     <a href="update.do"><p class="modify">---------------------------------------------- 수정</p></a>
-                    <p>전화: ${userPhone}</p>
-                    <p>이메일: ${userEmail}</p>
+                    <p>전화: ${user.userPhone}</p>
+                    <p>이메일: ${user.userEmail}</p>
                 </div>
 
                 <!-- 포인트 정보 -->
@@ -71,7 +69,6 @@
             </div>
             <hr>
 
-            <!-- 최근 문의 내역 -->
             <div class="section">
                 <h2>최근 문의 내역</h2>
                 <table>
@@ -80,21 +77,49 @@
                         <th>글제목</th>
                         <th>등록일</th>
                     </tr>
-                    <tr>
-                        <td>상품후기</td>
-                        <td>좋아요</td>
-                        <td>2024-11-04</td>
-                    </tr>
+                    <c:if test="${not empty review_list}">
+                        <c:forEach var="item" items="${review_list}">
+                            <tr>
+                                <td>상품후기</td>
+                                <td>${item.reviewTitle}</td>
+                                <td>
+                                    <fmt:formatDate value="${item.createdDate}" pattern="yyyy-MM-dd" />
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty review_list}">
+                        <tr>
+                            <td colspan="3">최근 문의 내역이 없습니다.</td>
+                        </tr>
+                    </c:if>
                 </table>
             </div>
             <hr>
 
-            <!-- 찜한 상품 -->
-            <div class="section">
-                <h2>찜한 상품</h2>
-                <div class="nothing">
-                    <p>찜한 상품이 없습니다.</p>
-                </div>
+            <!-- 찜한 상품 테이블 -->
+            <div class="favoritething">
+            	<h2>찜한 상품</h2>
+            	<table class="wishlist-table">
+	                <thead>
+	                    <tr>
+	                        <th>이미지</th>
+	                        <th>상품명</th>
+	                        <th>옵션</th>
+	                        <th>가격</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                	<c:forEach var="item" items="${favorite_list}">
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                    </tr>
+	                    </c:forEach>
+	                </tbody>
+	            </table>
             </div>
         </div>
     </div>

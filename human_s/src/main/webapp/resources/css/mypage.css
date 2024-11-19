@@ -26,6 +26,7 @@ h1 {
 
 h2 {
     margin-top: 10px;
+    font-size: 18px;
 }
 
 /* 좌측 사이드바 스타일 */
@@ -165,6 +166,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 10px;
+    margin-top: 15px;
+    
 }
 
 table, th, td {

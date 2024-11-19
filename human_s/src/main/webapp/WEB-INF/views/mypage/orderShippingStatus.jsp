@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,41 +23,58 @@
         <!-- 메인 콘텐츠 영역 -->
         <div class="main-content">
             <div class="info-box">
-                <p><span class="highlight">이용현</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
+                <p><span class="highlight">${user.userName}</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
             </div>
             
             <div class="filter-container">
-                <button class="filter-btn">오늘</button>
-                <button class="filter-btn">어제</button>
-                <button class="filter-btn">일주일</button>
-                <button class="filter-btn">1개월</button>
-                <button class="filter-btn">3개월</button>
-                <button class="filter-btn">1년</button>
-                
-                <!-- 날짜 입력 필드 -->
-            <div class="input-with-icon">
-                <input type="date" class="date-input" placeholder="">
-            </div>
-            <div class="input-with-icon">
-                <input type="date" class="date-input" placeholder="">
-            </div>
-                <button class="filter-btn search-btn selects">조회하기</button>
-            </div>
+			    <!-- 필터 버튼 -->
+			    <button class="filter-btn" data-period="today">오늘</button>
+			    <button class="filter-btn" data-period="yesterday">어제</button>
+			    <button class="filter-btn" data-period="week">일주일</button>
+			    <button class="filter-btn" data-period="month">1개월</button>
+			    <button class="filter-btn" data-period="threeMonths">3개월</button>
+			    <button class="filter-btn" data-period="year">1년</button>
+			    
+			    <!-- 날짜 입력 필드 -->
+			    <div class="input-with-icon">
+			        <input type="date" id="baseDate" class="date-input" placeholder="기준 날짜 선택">
+			    </div>
+			    <div class="input-with-icon">
+			        <input type="date" id="endDate" class="date-input" placeholder="종료 날짜 선택">
+			    </div>
+			    
+			    <!-- 조회 버튼 -->
+			    <button class="filter-btn search-btn selects">조회하기</button>
+			</div>
             
             <table class="order-table">
                 <thead>
                     <tr>
                         <th>주문일자</th>
                         <th>상품명</th>
+                        <th>수량</th>
                         <th>결제금액</th>
                         <th>상태</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="4" class="no-data">주문내역이 없습니다.</td>
-                    </tr>
-                </tbody>
+			        <c:if test="${not empty orderList}">
+			            <c:forEach var="order" items="${orderList}">
+			                <tr>
+			                    <td><fmt:formatDate value="${order.orPayDate}" pattern="yyyy-MM-dd" /></td>
+			                    <td>${order.orName}</td>
+			                    <td>${order.orCount}</td>
+			                    <td>${order.orPayAmount}원</td>
+			                    <td>${order.orStatus}</td>
+			                </tr>
+			            </c:forEach>
+			        </c:if>
+			        <c:if test="${empty orderList}">
+			            <tr>
+			                <td colspan="5" class="no-data">주문내역이 없습니다.</td>
+			            </tr>
+			        </c:if>
+			    </tbody>
             </table>
             
             <div class="notice">
@@ -67,5 +85,7 @@
     </div>
 
     <%@ include file ="/WEB-INF/views/main/footer.jsp" %>
+    
+    <script src="${pageContext.request.contextPath}/resources/js/orderFilter.js"></script>
 </body>
 </html>

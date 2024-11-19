@@ -29,4 +29,8 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     @Query("SELECT n FROM ReviewEntity n WHERE n.reviewContent LIKE %:keyword%")
     List<ReviewEntity> findByContent(@Param("keyword") String keyword, Pageable pageable);
 
+    // 마이페이지 - 최근 문의 내역 가져오기
+    @Query(value="SELECT * FROM review n WHERE n.user_idx = ?1 ", nativeQuery = true)
+	List<ReviewEntity> select(int idx);
+
 }

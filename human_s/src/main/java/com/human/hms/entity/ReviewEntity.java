@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,6 +46,7 @@ public class ReviewEntity {
     @Column(name = "review_content")
     private String reviewContent;
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "created_date", columnDefinition = "DATETIME DEFAULT NOW()")
     private Date createdDate;
 
