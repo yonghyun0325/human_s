@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.human.hms.api.MllBsComNmInfoApiExplorer;
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.SellerEntity;
+import com.human.hms.entity.UnUserEntity;
 import com.human.hms.entity.UserEntity;
+import com.human.hms.service.UnUserService;
 import com.human.hms.service.UserService;
 import com.human.hms.vo.MllBsComNmInfoVO;
 import com.human.hms.vo.MllBsComNmInfoVO.MllBsComNmInfo;
@@ -31,6 +33,7 @@ public class UserController {
 	
 	//상호명을 통한 통신판매업등록현황 조회(사업자 등록번호 조회 가능 이 안에서 처리함)
 	private final UserService userServiceImpl;
+	private final UnUserService unuserServiceImpl;
 	private String ServiceKey = "cHMBzY2Ljo7k/uc9cuO7pzwJoPCyA3zZM5rAV0c6bXxkV6dB66ov2nfRGgk/9P/A55kmN25hvQEB5rK116XY5w==";
 	private String srcUrl = "https://apis.data.go.kr/1130000/MllBs_2Service/getMllBsCoNmInfo_2";
 	private String numOfRows = "100";
@@ -291,4 +294,24 @@ public class UserController {
 		return "redirect:/index.no";
 	}
 	
+	@PostMapping("/checkOlderListProcess.no")
+	public String checkOlderListProcess(String orderNum, String unPhone, HttpServletRequest request, Model model) {
+		String viewName = "login/login";
+		
+		UnUserEntity vo = unuserServiceImpl.checkOrderNum(orderNum, unPhone);
+		System.out.println(vo);
+		
+		if(vo != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("unuser", vo);
+			viewName = "redirect:/order.do";
+		}else {
+			model.addAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
+		}
+		
+		return viewName;
+	}
+	
 }
+
+	//비회원 로그인
