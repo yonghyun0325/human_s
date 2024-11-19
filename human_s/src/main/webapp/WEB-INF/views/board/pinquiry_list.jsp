@@ -7,7 +7,7 @@
 <html>
 <head>
     <title>상품문의</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pinquiry_list.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pinquiry_list.css">  
 </head>
 <body>
 
@@ -91,7 +91,12 @@
             <a href="${pageContext.request.contextPath}/board/pinquiry/write.do">
                 <button class="pinquiry_write_btn" type="button" id="write_btn">글등록</button> 
             </a>
-            </c:if>
+        </c:if>
+
+        <!-- 로그인되지 않은 경우 로그인 페이지로 이동 -->
+        <c:if test="${empty user}">
+            <button class="pinquiry_write_btn" type="button" id="write_btn" onclick="redirectToLogin()">로그인 후 글등록</button> 
+        </c:if>
         </div>
     </div>
 </div>
@@ -100,4 +105,12 @@
 <%@ include file="../main/footer.jsp"%>
 
 </body>
+<script type="text/javascript">
+        function redirectToLogin() {
+            alert("로그인 페이지로 이동합니다.");
+            setTimeout(function() {
+                window.location.href = "${pageContext.request.contextPath}/user/login.no";  // 로그인 페이지로 리다이렉트
+            }, 2000);  // 2초 후에 리다이렉트
+        }
+    </script>
 </html>

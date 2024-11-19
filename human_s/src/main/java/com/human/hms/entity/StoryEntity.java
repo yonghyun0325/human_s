@@ -1,6 +1,7 @@
 package com.human.hms.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +35,7 @@ public class StoryEntity {
     private Long id;
 
     @Column(name = "image")
-    private String image; // 썸네일 이미지 경로
+    private String image; // 단일 파일 경로
 
     @Column(name = "tagged_item_title")
     private String taggedItemTitle;
@@ -62,37 +65,24 @@ public class StoryEntity {
     @ManyToOne
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
+
+    @Transient
+    private List<StoryImgEntity> attachedList;
+
+    @Transient
+    private MultipartFile[] uploadFiles; // JPA와 관련 없는 다중 파일
     
-    @ManyToOne
-    @JoinColumn(name = "pdt_title", updatable = false)
-    private ProductEntity productEntity;
- 
-    // 생성 시 createdDate 설정
-    @PrePersist
-    protected void onCreate() {
-        if (createdDate == null) {
-            createdDate = new Date();
-        }
-        // ProductEntity의 pdt_title을 tagged_item_title에 설정
-        if (this.productEntity != null && this.productEntity.getPdtTitle() != null) {
-            this.taggedItemTitle = this.productEntity.getPdtTitle();
-        }
-    }
-
-    // Update methods
-    public void updateUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
-
-    public void updateStoryContent(String storyContent) {
-        this.storyContent = storyContent;
-    }
-
-    public void updateStoryTitle(String storyTitle) {
-        this.storyTitle = storyTitle;
-    }
-
-	public void setUserIdx(int userIdx) {
+    @Builder
+	public StoryEntity(String author, String storyContent, String storyTitle, String image,
+						String taggedItemTitle) {
+		this.author = author;
+		this.storyContent = storyContent;
+		this.storyTitle = storyTitle;
+		this.image = image;
+		this.taggedItemTitle = taggedItemTitle;
 		
+		//컬럼의 기본값으로 정의된 것은 생성자를 이용해서 필드를 수동으로 초기화함
+		this.createdDate = new Date();
+		this.views = 0;
 	}
 }
