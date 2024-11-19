@@ -14,6 +14,18 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 수평 오프셋, 수직 오프셋, 흐림 정도, 색상 */
 }
 
+.checkoridx_container{
+	 width: 500px;
+  height:250px;
+  margin: 0px 0px 60px 30%;
+  align-items:center;
+  display: flex;
+  flex-direction:column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	justify-content:center;
+}
+
+
 .logo{
 	width:300px;
 	height:120px;
