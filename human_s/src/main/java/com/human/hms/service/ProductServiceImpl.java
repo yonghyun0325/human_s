@@ -103,9 +103,6 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<ProductEntity> getProductsByUserId(int userIdx) {
 	    List<ProductEntity> products = productRepository.findByUserEntity_UserIdx(userIdx);
-	    if (products.isEmpty()) {
-	        throw new IllegalStateException("해당 사용자의 상품이 없습니다.");
-	    }
 	    return products;
 	}
 

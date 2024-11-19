@@ -52,7 +52,7 @@
 
     <!-- 게시물 메인 이미지 (스토리 상세 페이지로 이동) -->
     <a href="${pageContext.request.contextPath}/story/view?storyId=${story.id}">
-        <img src="${pageContext.request.contextPath}/resources/img/tree.jpg" alt="게시 이미지" class="story-image">
+        <img src="${pageContext.request.contextPath}${story.image}" alt="게시 이미지" class="story-image">
     </a>
 
     <!-- 게시물 설명 (스토리 상세 페이지로 이동) -->

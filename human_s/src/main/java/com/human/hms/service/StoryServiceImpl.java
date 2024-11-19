@@ -6,15 +6,13 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.StoryEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.StoryRepository;
+import com.human.hms.util.StoryFileManager;
 import com.human.hms.vo.StoryVO;
 
 import lombok.AllArgsConstructor;
@@ -23,117 +21,108 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class StoryServiceImpl implements StoryService {
 
-    private StoryRepository storyRepository;
+    private final StoryRepository storyRepository;
+    private final StoryFileManager fileManager;
 
+    // 전체 스토리 조회 (최신순 정렬)
     @Override
     public List<StoryEntity> getAllStories() {
-        return storyRepository.findAll();
+        return storyRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
+    // 새 스토리 생성 및 저장
     @Override
     public StoryEntity createStory(StoryVO storyVO) {
-        StoryEntity entity = convertToEntity(storyVO);
+        String imagePath = null;
+        if (storyVO.getImage() != null && !storyVO.getImage().isEmpty()) {
+            imagePath = fileManager.saveFile(storyVO.getImage(), null); // 파일 저장
+        }
+        StoryEntity entity = convertToEntity(storyVO, imagePath);
         return storyRepository.save(entity);
     }
 
+    // 스토리 저장 (Entity 형태로 전달받음)
     @Override
-    public Optional<StoryEntity> getStoryById(long storyIdx) {
-        return storyRepository.findById(storyIdx);
-    }
+    public StoryEntity insertStory(StoryEntity entity, HttpServletRequest request) {
+        try {
+            // 세션에서 UserEntity 가져오기
+            HttpSession session = request.getSession();
+            UserEntity userEntity = (UserEntity) session.getAttribute("user");
 
-    @Transactional
-    public int updateStory(StoryVO vo) {
-        Optional<StoryEntity> optional = storyRepository.findById(vo.getStoryIdx());
-        
-        if (optional.isPresent()) {
-            StoryEntity entity = optional.get();
-            entity.updateStoryTitle(vo.getStoryTitle());
-            entity.updateStoryContent(vo.getStoryContent());
-            storyRepository.save(entity); // 수정된 엔티티를 저장하여 업데이트 쿼리를 발생시킴
-            return 1; // 성공 시 1 반환
+            if (userEntity != null) {
+                entity.setUserEntity(userEntity); // 작성자 정보 설정
+            }
+
+            // 파일 처리
+            StoryEntity updatedEntity = fileManager.handleFile(entity, request);
+
+            // 저장
+            return storyRepository.save(updatedEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("스토리 저장 중 오류 발생");
         }
-        
-        return 0; // 수정할 데이터가 없을 경우 0 반환
     }
 
+
+    // ID로 특정 스토리 조회
+    @Override
+    public Optional<StoryEntity> getStoryById(long storyId) {
+        return storyRepository.findById(storyId);
+    }
+
+    // 스토리 수정
+    @Override
+    public int updateStory(StoryVO storyVO) {
+        Optional<StoryEntity> optionalStory = storyRepository.findById(storyVO.getId());
+        if (optionalStory.isPresent()) {
+            StoryEntity entity = optionalStory.get();
+            entity.setStoryTitle(storyVO.getStoryTitle());
+            entity.setStoryContent(storyVO.getStoryContent());
+            entity.setTaggedItemTitle(storyVO.getTaggedItemTitle());
+            entity.setTaggedItemPrice(storyVO.getTaggedItemPrice());
+            storyRepository.save(entity);
+            return 1; // 성공
+        }
+        return 0; // 실패
+    }
+
+    // 스토리 삭제
     @Override
     public int deleteStory(long storyId) {
         if (storyRepository.existsById(storyId)) {
             storyRepository.deleteById(storyId);
-            return 1;
+            return 1; // 성공
         }
-        return 0;
+        return 0; // 실패
     }
-    
+
+    // 조회수 업데이트
     @Override
-    public void updateReadCount(long storyIdx) {
-        storyRepository.findById(storyIdx).ifPresent(entity -> {        
+    public void updateReadCount(long storyId) {
+        storyRepository.findById(storyId).ifPresent(entity -> {
             entity.setViews(entity.getViews() + 1); // 조회수 증가
-            storyRepository.save(entity); // 변경된 조회수 저장
+            storyRepository.save(entity);
         });
     }
 
-    private StoryEntity convertToEntity(StoryVO vo) {
-        return StoryEntity.builder()
-                .id(vo.getId())
-                .author(vo.getAuthor())
-                .createdDate(vo.getCreatedDate())
-                .views(vo.getViews())
-                .storyContent(vo.getStoryContent())
-                .storyTitle(vo.getStoryTitle())
-                .image(vo.getImage())
-                .taggedItemTitle(vo.getTaggedItemTitle())
-                .taggedItemPrice(vo.getTaggedItemPrice())
-                .profileImage(vo.getProfileImage())
-                .build();
-    }
-
+    // 총 스토리 개수 반환
     @Override
     public int getTotalStoryCount() {
         return (int) storyRepository.count();
     }
 
-    @Override
-    public List<StoryEntity> searchStories(String searchType, String searchKeyword, int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.DESC, "id"));
-        
-        // searchType에 맞는 메서드를 호출
-        switch (searchType) {
-            case "name":
-                return storyRepository.findByAuthor(searchKeyword, pageable); // 작성자 검색
-            case "title":
-                return storyRepository.findByTitle(searchKeyword, pageable); // 제목 검색
-            case "content":
-                return storyRepository.findByContent(searchKeyword, pageable); // 내용 검색
-            default:
-                return storyRepository.findAll(pageable).getContent();
-        }
+    // VO를 Entity로 변환
+    private StoryEntity convertToEntity(StoryVO vo, String imagePath) {
+        return StoryEntity.builder()
+                .id(vo.getId())
+                .author(vo.getAuthor())
+                .storyTitle(vo.getStoryTitle())
+                .storyContent(vo.getStoryContent())
+                .taggedItemTitle(vo.getTaggedItemTitle())
+                .taggedItemPrice(vo.getTaggedItemPrice())
+                .profileImage(vo.getProfileImage())
+                .image(imagePath)
+                .build();
     }
-
-    // 글 등록
-    @Override
-    public StoryEntity insertStory(StoryEntity storyEntity, HttpServletRequest request) {
-        // HttpSession에서 UserEntity를 가져와 storyEntity에 설정
-        HttpSession session = request.getSession();
-        UserEntity userEntity = (UserEntity) session.getAttribute("user");
-
-        if (userEntity != null) {
-            storyEntity.updateUserEntity(userEntity);
-        }
-
-        return storyRepository.save(storyEntity); // JPA에서 제공되는 save 메서드로 저장
-    }
-
-	@Override
-	public List<StoryEntity> getStories(Pageable pageable) {
-		 return storyRepository.findAll(pageable).getContent();
-	}
-
-	@Override
-	public void save(StoryEntity story) {
-		storyRepository.save(story);
-		
-	}
-	
-	
 }

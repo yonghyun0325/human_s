@@ -14,16 +14,24 @@
     <div class="layout">
         <h1>글 등록</h1>
         <form action="${pageContext.request.contextPath}/story/create" method="post" enctype="multipart/form-data" id="postForm">
-            <!-- 제목 입력 -->
+        
+        <!-- 로그인된 사용자 정보 표시 -->
+            <div class="form-group">
+                <label>작성자</label>
+                <!-- user.userName을 value로 설정 -->
+                <input type="hidden" name="id" value="${member.userIdx}">
+                <input type="text" id="author" name="author" class="form-control" value="${user.userName}" readonly>
+            </div>
+         <!-- 제목 입력 -->
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요" required>
+                <input type="text" id="title" name="storyTitle" class="form-control" placeholder="제목을 입력하세요" required>
             </div>
 
             <!-- 내용 입력 -->
             <div class="form-group">
                 <label for="content">내용</label>
-                <textarea id="content" name="content" class="form-control" rows="5" placeholder="내용을 입력하세요" required></textarea>
+                <textarea id="content" name="storyContent" class="form-control" rows="5" placeholder="내용을 입력하세요" required></textarea>
             </div>
 
             <!-- 태그할 상품 선택 -->
@@ -40,7 +48,7 @@
             <!-- 파일 업로드 -->
             <div class="form-group">
                 <label for="image">이미지 업로드</label>
-                <input type="file" id="image" name="image" class="form-control" accept="image/*">
+                <input type="file" id="image" name="uploadFiles" class="form-control" accept="image/*">
             </div>
 
             <!-- 등록 버튼 -->

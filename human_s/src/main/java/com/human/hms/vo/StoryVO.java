@@ -1,7 +1,8 @@
 package com.human.hms.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
-import java.util.Date;
 
 @Data
 public class StoryVO {
@@ -9,16 +10,10 @@ public class StoryVO {
     private String author;
     private String storyTitle;
     private String storyContent;
-    private Date createdDate;
-    private int views;
-    private Long storyIdx;
-    private Long userIdx; // UserEntity ID를 위한 필드
-    private String taggedItemTitle;  // 태그된 상품 제목
-    private String taggedItemPrice;  // 태그된 상품 가격
-    private String profileImage; // 프로필 사진
-    private String image;        // 게시물 이미지 
-	
-	}
-
-	
+    private String taggedItemTitle;
+    private String taggedItemPrice;
+    private String profileImage;
+    private MultipartFile image; // 단일 파일 업로드를 위한 필드
+    private MultipartFile[] uploadFiles; // 여러 파일 업로드 처리
+}
 
