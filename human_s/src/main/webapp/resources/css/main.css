@@ -207,9 +207,12 @@ section{
     font-weight: bold;
     margin-bottom: 10px;
 }
-.priceGraph>.content>.infoSection>.unit{
+.priceGraph>.content>.infoSection>.unit, .priceGraph>.content>.infoSection>.priceUnit{
 	font-size: 14px;
     color: #333;
+}
+.priceGraph>.content>.infoSection>.unit{
+	margin-bottom: 10px;
 }
 .priceGraph>.content>.comparisonSection{
 	flex: 1;
@@ -244,9 +247,13 @@ section{
     font-weight: bold;
     margin-bottom: 5px;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem>.unit{
+.priceGraph>.content>.comparisonSection>.comparisonItem>.unit,
+.priceGraph>.content>.comparisonSection>.comparisonItem>.priceUnit{
 	font-size: 12px;
     color: #333;
+}
+.priceGraph>.content>.comparisonSection>.comparisonItem>.unit{
+	margin-bottom: 5px;
 }
 .priceGraph>.content>.graphSection{
 	flex: 2;

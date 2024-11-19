@@ -59,6 +59,7 @@
 		            <div class="date"></div>
 		            <div class="price"></div>
 		            <div class="unit"></div>
+		            <div class="priceUnit"></div>
 		        </div>
 		        <div class="comparisonSection">
 		            <div class="comparisonItem">
@@ -66,12 +67,14 @@
 		                <div class="date"></div>
 		                <div class="price"></div>
 		                <div class="unit"></div>
+		                <div class="priceUnit"></div>
 		            </div>
 		            <div class="comparisonItem">
 		                <div class="label">전년 동일대비</div>
 		                <div class="date"></div>
 		                <div class="price"></div>
 		                <div class="unit"></div>
+		                <div class="priceUnit"></div>
 		            </div>
 		        </div>
 		        <div class="graphSection">

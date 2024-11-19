@@ -75,7 +75,7 @@
 	            	<div>
 	            		<div>
 		            		동일 상품 금일 도매 금액 
-		            		<select class="graphStd"></select>
+		            		<select class="graphStd" name="pdtKg"></select>
 	            		</div>
 	            		<div>
 		                	<canvas id="myChart" style="height: 35vh; width: 40vw;"></canvas>

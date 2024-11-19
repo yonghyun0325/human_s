@@ -13,7 +13,9 @@ $(function(){
 //공통
 	//상품 클릭 시 상품 상세정보 창으로 이동
 	$(".productList > .productItem").click(function(){
-		location.href = "/hms/product/viewDetail.no";
+		let idx = $(this).data("idx");
+		
+		location.href = "/hms/product/viewDetail.no?idx="+idx;
 	});
 
 

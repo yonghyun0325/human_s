@@ -34,10 +34,10 @@ public class ProductController {
 		
 		if(select.equals("pop")) {
 			List<ProductEntity> popList = productServiceImpl.getPopList();
-			mav.addObject("popList", popList);
+			mav.addObject("popNewList", popList);
 		}else {
 			List<ProductEntity> newList = productServiceImpl.getNewList();
-			mav.addObject("newList", newList);
+			mav.addObject("popNewList", newList);
 		}
 		return mav;
 	}
@@ -64,8 +64,12 @@ public class ProductController {
 	
 	//상품 상세보기 페이지
 	@GetMapping("/viewDetail.no")
-	public ModelAndView viewDetail(ModelAndView mav) {
+	public ModelAndView viewDetail(ModelAndView mav, @RequestParam int idx) {
 		mav.setViewName("product/viewDetail");
+		
+		ProductEntity product = productServiceImpl.findbyId(idx);
+		mav.addObject("product", product);
+		
 		return mav;
 	}
 	
@@ -107,6 +111,13 @@ public class ProductController {
 	public ModelAndView insertProduct(ProductVO vo, ModelAndView mav, HttpServletRequest request) {
 		String viewName = "product/writeDetail";
 		
+		// 제품 가격과 무게를 Double로 처리
+		Double pdtPrice = Double.valueOf(vo.getPdtPrice());  // 가격
+		Double pdtKg = Double.valueOf(vo.getPdtKg());       // 무게
+		// 100g당 가격 계산 (소수 첫 번째 자리에서 반올림)
+		Double pricePer100g = pdtPrice / pdtKg / 10;   // 가격 계산 (100g당 가격)
+		Double roundedPrice = Math.round(pricePer100g * 10.0) / 10.0;  // 반올림
+		
 		ProductEntity entity = ProductEntity.builder()
 								.pdtTitle(vo.getPdtTitle())
 								.pdtPrice(vo.getPdtPrice())
@@ -116,6 +127,8 @@ public class ProductController {
 								.pdtArea(vo.getPdtArea())
 								.pdtArea2(vo.getPdtArea2())
 								.pdtWriter(vo.getPdtWriter())
+								.pdtKg(vo.getPdtKg())
+								.pdtGPrice(String.valueOf(roundedPrice))
 								.pdtFile(vo.getPdtFile())
 								.uploadFiles(vo.getUploadFiles())
 								.build();

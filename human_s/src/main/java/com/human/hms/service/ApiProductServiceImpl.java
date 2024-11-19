@@ -196,6 +196,20 @@ public class ApiProductServiceImpl implements ApiProductService {
 	        if (pEntity == null || pEntity.getLarge() == null) {
 	            continue;  // 코드 정보가 없으면 저장하지 않음
 	        }
+	        
+	        //std를 kg기준 앞에만 남김
+	        String std = pEntity.getStd();
+	        String kgValue = std.replace("kg", "");  // "10 " (공백 포함)
+	        String kgValue2 = kgValue.replaceAll("\\s.*$", "");
+	        
+	        // 제품 가격과 무게를 Double로 처리
+			Double pdtPrice = Double.valueOf(pEntity.getCost());  // 가격
+			Double pdtKg = Double.valueOf(kgValue2);       // 무게
+			// 100g당 가격 계산 (소수 첫 번째 자리에서 반올림)
+			Double pricePer100g = pdtPrice / pdtKg / 10;   // 가격 계산 (100g당 가격)
+			Double roundedPrice = Math.round(pricePer100g * 10.0) / 10.0;  // 반올림
+			String roundedPriceStr = String.valueOf(roundedPrice);
+	        
 			
 			ProductEntity entity = ProductEntity.builder()
 									.img(product.getImgUrl())
@@ -207,6 +221,8 @@ public class ApiProductServiceImpl implements ApiProductService {
 									.pdtArea(area)
 									.pdtArea2(area2)
 									.pdtWriter(userEntity.getUserNick())
+									.pdtKg(kgValue2)
+									.pdtGPrice(roundedPriceStr)
 									.build();
 			
 			entity.updateUserEntity(userEntity);

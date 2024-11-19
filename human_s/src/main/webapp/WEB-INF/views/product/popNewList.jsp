@@ -26,16 +26,22 @@
 			</div>
 		</div>
 		<div class="productList">
-	<c:forEach var="i" begin="0" end="15">
-			<div class="productItem">
-				<div class="productRow">${ i+1 }위</div>
+	<c:forEach var="item" items="${ popNewList }" varStatus="i">
+			<div class="productItem" data-idx="${ item.pdtIdx }">
+				<div class="productRow">${ i.index+1 }위</div>
 				<div class="popNum">
-					<img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="상품타이틀">
+					<%-- <img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="상품타이틀"> --%>
+		<c:if test="${ not empty item.img }">
+					<img src="${ item.img }" alt="${ item.pdtTitle }">
+		</c:if>
+		<c:if test="${ empty item.img }">
+					<img src="${pageContext.request.contextPath}/resources/uploads/${item.pdtSave}" alt="${ item.pdtOrigin }">
+		</c:if>
 				</div>
 				<div class="productContent">
-					<div class="title">title</div>
-					<div class="price">(100g당 가격)<span>price</span></div>
-					<div class="company">(주)food</div>
+					<div class="title">${ item.pdtTitle }</div>
+					<div class="price">(100g당 ${ item.pdtGPrice }원)<span>${ item.pdtPrice }</span></div>
+					<div class="company">${ item.pdtWriter }</div>
 				</div>
 			</div>
 	</c:forEach>

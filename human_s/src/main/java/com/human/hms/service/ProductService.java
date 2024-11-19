@@ -31,4 +31,6 @@ public interface ProductService {
 
 	List<Object[]> getArea2List();
 
+	ProductEntity findbyId(int idx);
+
 }

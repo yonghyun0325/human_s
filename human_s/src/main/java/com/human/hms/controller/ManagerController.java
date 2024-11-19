@@ -100,6 +100,11 @@ public class ManagerController {
 				while(morePages) {
 					PriceRealVO data = (PriceRealVO)DmsjPriceRealApiExplorer.getApiJsonData(dmsjServiceKey, priceRealUrl, 
 							String.valueOf(pageNo), entity.getCodeId(), vo);
+					
+					if (data == null || data.getData() == null) {
+				        break;  // 데이터를 더 이상 처리할 수 없으면 종료
+				    }
+					
 					morePages = data.getData().size() > 0;
 					if(!morePages) break;
 					
