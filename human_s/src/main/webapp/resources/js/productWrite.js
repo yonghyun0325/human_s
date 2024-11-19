@@ -4,7 +4,8 @@ $(function(){
 
 	//지역코드 select option 필터링
 	$(".area2Name").each(function(){
-		if($(this).data("area") != '충청남도'){
+		let selectArea = $("#pdtArea").val();
+		if($(this).data("area") != selectArea){
 			$(this).hide();
 		}
 	});
@@ -32,15 +33,18 @@ $(function(){
     //분류코드 select option 필터링
     //처음에 과실류에 해당하는 값으로 중.소분류코드 세팅
     $(".midCode").each(function(){
-    	if($(this).data("large") != '06'){
+    	let selectLarge = $("#pdtLargeCode").val();
+    	if($(this).data("large") != selectLarge){
     		$(this).hide();
     	}
     });
     $(".smallCode").each(function(){
-    	let code = $(this).data("large")+','+$(this).data("mid");
-    	if(code != '06,01'){
-    		$(this).hide();
-    	}
+		let selectLarge = $("#pdtLargeCode").val();
+		let selectMid = $("#pdtMidCode").val();
+		
+    	if ($(this).data("large") != selectLarge || $(this).data("mid") != selectMid) {
+		    $(this).hide();
+		}
     });
     
     minMaxAvgData();
@@ -115,11 +119,14 @@ $(function(){
     		data:{ largeCode: largeCode, midCode: midCode, smallCode: smallCode },
     		headers: {"Accept": "application/json"},
     		success:function(data){
-				
+    		
 				let htmlContent = ``;
 				data.forEach((item, index) => {
 					let avgValue = Math.round(item.avg);
-			        htmlContent += `<option value="${index}" data-min="${item.min}" data-max="${item.max}" 
+	    			let kgValue = item.std.replace('kg', '');
+	    			let kgValue2 = kgValue.replace(/\s.*$/, '');
+	    			
+			        htmlContent += `<option value="${kgValue2}" data-min="${item.min}" data-max="${item.max}" 
 			        	data-avg="${avgValue}">${item.std}</option>`;
 			    });
 			    

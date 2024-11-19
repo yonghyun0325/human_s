@@ -63,6 +63,12 @@ public class ProductEntity {
 	@Column(name="pdt_writer", nullable=false)
 	private String pdtWriter;	 //상품등록 닉네임
 	
+	@Column(name="pdt_kg", nullable=false)
+	private String pdtKg;	 //상품 무게
+	
+	@Column(name="pdt_g_price", nullable=false)
+	private String pdtGPrice;	 //상품 100g당 가격
+	
 	@Column(name="pdt_date", columnDefinition = "DATETIME DEFAULT NOW()")
 	private Date pdtDate;
 	
@@ -81,7 +87,7 @@ public class ProductEntity {
 	
 	@Builder
 	public ProductEntity(String img, String pdtTitle, String pdtPrice, String pdtLargeCode, String pdtMidCode,
-			 String pdtSmallCode, String pdtArea, String pdtArea2,String pdtWriter,
+			 String pdtSmallCode, String pdtArea, String pdtArea2, String pdtWriter, String pdtKg, String pdtGPrice,
 			 MultipartFile pdtFile, MultipartFile[] uploadFiles) {
 		this.img = img;
 		this.pdtTitle = pdtTitle;
@@ -92,6 +98,8 @@ public class ProductEntity {
 		this.pdtArea = pdtArea;
 		this.pdtArea2 = pdtArea2;
 		this.pdtWriter = pdtWriter;
+		this.pdtKg = pdtKg;
+		this.pdtGPrice = pdtGPrice;
 		this.pdtDate = new Date();
 		this.pdtFile = pdtFile;
 		this.uploadFiles = uploadFiles;

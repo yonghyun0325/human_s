@@ -18,6 +18,7 @@ public class ProductVO {
 	private String pdtArea;		 //지역
 	private String pdtArea2;	 //상세지역
 	private String pdtWriter;	 //상품등록 닉네임
+	private String pdtKg;		 //상품 무게
 	private int userIdx;		 //회원번호
 
 	private MultipartFile pdtFile;

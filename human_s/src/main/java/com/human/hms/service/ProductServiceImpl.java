@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -136,4 +137,17 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.getArea2List();
 	}
 	
+	//상품 상세보기
+	@Override
+	public ProductEntity findbyId(int idx) {
+		ProductEntity entity = null;
+		Optional<ProductEntity> optional = productRepository.findById(idx);
+		if(optional.isPresent()) {
+			entity = optional.get();
+		}
+		List<ProductImgEntity> imgList = productImgRepository.getImgList(idx);
+		entity.updateAttachedList(imgList);
+		return entity;
+	}
+
 }

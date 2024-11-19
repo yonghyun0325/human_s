@@ -40,13 +40,15 @@ $(function(){
 	//그래프 select option 필터링
 	//처음에 2번째에 쌀에 해당하는 선택지만 나오게
 	$(".kindCode").each(function() {
-        if ($(this).data("itemcode") != '111') {
+		let selectedItemCode = $(".itemCodeSelect").val();
+        if ($(this).data("itemcode") != selectedItemCode) {
             $(this).hide();
         }
     });
     $(".rankCode").each(function() {
-    	let code = $(this).data("itemcode")+","+$(this).data("kindcode")
-    	if(code != '111,01') {
+    	let selectedItemCode = $(".itemCodeSelect").val();
+    	let selectedKindCode = $(".kindCodeSelect").val();
+    	if($(this).data("itemcode") != selectedItemCode || $(this).data("kindcode") != selectedKindCode) {
     		$(this).hide();
     	}
     });
@@ -138,8 +140,31 @@ $(function(){
 				let graphDay1 = `${year}.${month}.${day}`;
                 $(".infoSection>.date").text(graphDay1);
                 
+                let unit = graphData.unit;
+                let unitMatch = unit.match(/^(\d+)(kg|개)(?=\([^)]*\)|$)/);
+                let reDpr1 = parseFloat(graphData.dpr1.replace(/,/g, ''));
+                let reDpr2 = parseFloat(graphData.dpr2.replace(/,/g, ''));
+                let reDpr6 = parseFloat(graphData.dpr6.replace(/,/g, ''));
+                let number = 0;
+                let unitType = "";
+                if (unitMatch) {
+				    number = unitMatch[1];  // 숫자 부분
+				    unitType = unitMatch[2]; // 단위 부분 (kg 또는 개)
+				    
+				    if(unitType == '개'){
+	                	$(".infoSection>.priceUnit").text('개당 '+reDpr1/number+'원');  
+	                	$(".comparisonItem:first-child>.priceUnit").text('개당 '+reDpr2/number+'원');
+	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('개당 '+reDpr6/number+'원');
+				    }else{
+				    	$(".infoSection>.priceUnit").text('100g당 '+reDpr1/number/10+'원');  
+				    	$(".comparisonItem:first-child>.priceUnit").text('100g당 '+reDpr2/number/10+'원');
+	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('100g당 '+reDpr6/number/10+'원');
+				    }
+				    
+				}
+                
                 $(".infoSection>.price").text(graphData.dpr1+"원");
-                $(".infoSection>.unit").text(graphData.unit);
+                $(".infoSection>.unit").text(unit);
                 
                 let match2 = graphData.day2.match(/\((\d{1,2})\/(\d{1,2})\)/);
                 let month2 = match2 ? match2[1].padStart(2, '0') : '00';
@@ -148,7 +173,7 @@ $(function(){
                 $(".comparisonItem:first-child>.date").text(graphDay2);
                 
                 $(".comparisonItem:first-child>.price").text(graphData.dpr2+"원");
-                $(".comparisonItem>.unit").text(graphData.unit);
+                $(".comparisonItem>.unit").text(unit);
                 
 				let graphDay3 = `${year-1}.${month}.${day}`;
                 $(".comparisonItem:nth-child(2)>.date").text(graphDay3);
