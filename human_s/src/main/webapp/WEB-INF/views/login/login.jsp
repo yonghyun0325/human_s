@@ -27,8 +27,8 @@
 			<button class="login_btn">로그인</button>
 		</form>
 		<div class="find_and_join">
-			<a href="#">아이디찾기</a>
-			<a href="#">비밀번호찾기</a>
+			<a href="/hms/user/findid.no">아이디찾기</a>
+			<a href="/hms/user/findpw.no">비밀번호찾기</a>
 			<a href="/hms/user/agreement.no">회원가입</a>
 		</div>
 		<div class="easy_login">

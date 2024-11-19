@@ -5,22 +5,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.human.hms.api.MllBsComNmInfoApiExplorer;
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.SellerEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.UserService;
 import com.human.hms.vo.MllBsComNmInfoVO;
@@ -124,7 +119,7 @@ public class UserController {
 		return result;
 	}
 	
-	
+	//일반 회원가입
 	@PostMapping("/joinProcess.no")
 	public ModelAndView joinProcess(ModelAndView mav, UserVO vo, HttpServletRequest request) {
 	//VO객체에 저장된 값을 Entity에 저장되도록 Builder를 이용해서 Entity객체를 생성함
@@ -167,12 +162,102 @@ public class UserController {
 	return mav;
 	}
 	
+	//판매자 회원가입
+	@PostMapping("/joinProcess2.no")
+	public ModelAndView joinProcess2(ModelAndView mav, UserVO vo, HttpServletRequest request) {
+	//VO객체에 저장된 값을 Entity에 저장되도록 Builder를 이용해서 Entity객체를 생성함
+	UserEntity entity = UserEntity.builder()
+						  .userEmail(vo.getUserEmail())
+						  .userPw(vo.getUserPw())
+						  .userNick(vo.getUserNick())
+						  .userName(vo.getUserName())
+						  .userPhone(vo.getUserPhone())
+						  .birth(vo.getBirth())
+						  .build();
+	entity.setGrade(2);
+	
+	AddressEntity a_entity = AddressEntity.builder()
+								.addPost(vo.getAddPost())
+								.add1(vo.getAdd1())
+								.add2(vo.getAdd2())
+								.build();
+	
+	SellerEntity s_entity = SellerEntity.builder()
+								.seIdNum(vo.getSeIdNum())
+								.seName(vo.getSeName())
+								.seBank(vo.getSeBank())
+								.seBankNum(vo.getSeBankNum())
+								.seBankName(vo.getSeBankName())
+								.build();
+	
+	String viewName = "user/join"; //회원가입 실패 시 뷰이름
+	
+	//MemberServiceImpl클래스를 통해서 요청 처리: JPA에서 지원하는 save()메소드 이용
+	UserEntity savedVo = userServiceImpl.save(entity);
+	AddressEntity a_savedVo = userServiceImpl.a_save(a_entity, entity);
+	SellerEntity s_savedVo = userServiceImpl.s_save(s_entity, entity);
+
+	
+	if(request.getSession().getAttribute("naver") != null) {
+		request.getSession().removeAttribute("naver");
+	}
+	
+	if(savedVo != null && a_savedVo != null && s_savedVo != null) {//회원가입 성공
+		viewName = "redirect:/index.no"; //index.do 재요청
+		
+	}else {//회원가입 실패
+		//안내메시지를 Model객체에 저장함
+		mav.addObject("msg", "회원가입이 정상적으로 이루어지지 않았습니다");
+	}
+	mav.setViewName(viewName);
+	
+	return mav;
+	}
+	
 	//이메일 인증
 	@PostMapping("/checkEmail.no")
 	@ResponseBody
 	public String checkEmail(String email) {
 		System.out.println("이메일 인증 이메일: "+email);
 		return userServiceImpl.authEmail(email);
+	}
+	
+	//아이디 찾기 화면 이동
+	@GetMapping("findid.no")
+	public String findId() {
+		return "login/findid";
+	}
+	
+	//아이디찾기
+	@PostMapping("findIdProcess.no")
+	public String findIdProcess(UserVO vo, Model model) {
+		String viewName = "login/findid";
+		
+		UserEntity user = userServiceImpl.findUserId(vo.getUserName(), vo.getUserPhone());
+		if(user != null) {
+			model.addAttribute("user", user);
+			viewName = "login/findsuccessid";
+		}
+		
+		return viewName;
+	}
+	//비밀번호 찾기 화면 이동
+	@GetMapping("findpw.no")
+	public String findPw() {
+		return "login/findpw";
+	}
+	//비밀번호변경
+	@PostMapping("findPwProcess.no")
+	public String findPwProcess(UserVO vo, Model model) {
+		String viewName = "login/findpw";
+		
+		UserEntity user = userServiceImpl.findUserPw(vo.getUserEmail(), vo.getUserName());
+		if(user != null) {
+			model.addAttribute("user", user);
+			viewName = "login/findsuccesspw";
+		}
+		
+		return viewName;
 	}
 	
 	@GetMapping("/login.no")

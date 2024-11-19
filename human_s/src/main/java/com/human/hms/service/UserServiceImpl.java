@@ -5,9 +5,9 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.SellerEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.AddressRepository;
 import com.human.hms.repository.SellerRepository;
@@ -97,5 +97,25 @@ public class UserServiceImpl implements UserService {
 	public UserEntity equalsUser(String email) {
 		return repository.equalsUser(email);
 	}
+	
+	@Override
+	public UserEntity findUserId(String name, String phone) {
+		return repository.findUserId(name, phone);
+	}
+
+
+	@Override
+	public UserEntity findUserPw(String email, String name) {
+		// TODO Auto-generated method stub
+		return repository.findUserPw(email , name);
+	}
+
+
+	@Override
+	public SellerEntity s_save(SellerEntity s_vo, UserEntity vo) {
+		s_vo.updateUserEntity(vo);
+		return s_repository.save(s_vo);
+	}
+
 
 }
