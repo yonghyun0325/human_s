@@ -18,7 +18,7 @@
 	<%@ include file="../main/header.jsp"%>
 	<h2>판매자 등록</h2>
 	<div class="join_container">
-		<form action="joinProcess.no" class="form" method="post">
+		<form action="joinProcess2.no" class="form" method="post">
 			<!-- 이메일 -->
 			<div class="nor_email">
 				<p>이메일<i>*</i></p>

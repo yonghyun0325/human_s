@@ -1,6 +1,7 @@
 package com.human.hms.service;
 
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.SellerEntity;
 import com.human.hms.entity.UserEntity;
 
 public interface UserService {
@@ -19,5 +20,11 @@ public interface UserService {
 	int sellerInfoCheck(String seIdNum);//사업자조회
 
 	UserEntity equalsUser(String email);//음
+	
+	UserEntity findUserId(String name, String phone);//아이디 찾기
+
+	UserEntity findUserPw(String email, String name);//비밀번호 찾기
+
+	SellerEntity s_save(SellerEntity s_entity, UserEntity entity);//판매자 회원가입
 
 }

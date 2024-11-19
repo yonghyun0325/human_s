@@ -84,4 +84,9 @@ public class UserEntity {
     public void setStatus(int status) {
     	this.status = status;
     }
+    
+    public void setGrade(int grade) {
+    	this.grade = grade;
+    }
+
 }
