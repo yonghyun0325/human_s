@@ -68,12 +68,12 @@ h1 {
 }
 
 .highlight {
-    color: #AFD485;
+    color: #4caf50;
 }
 
 /* 정보 표시 박스 */
 .info-box {
-    background-color: #f8f9fa;
+    background-color: #f1f1f1;
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -180,7 +180,7 @@ h1 {
 }
 
 .selects {
-    background-color: #494645 !important;
+    background-color: #AFD485 !important;
     color: white !important;
 }
 
@@ -222,6 +222,7 @@ h1 {
 .notice p {
     margin: 0;
     color: #8a6d3b;
+    margin-bottom: 5px;
 }
 
 /* 반응형 처리 */

@@ -32,10 +32,7 @@
                         <th>사진</th>
                         <th>상품명</th>
                         <th>옵션</th>
-                        <th>재고</th>
-                        <th>적립</th>
                         <th>가격</th>
-                        <th>장바구니</th>
                     </tr>
                 </thead>
                 <tbody>

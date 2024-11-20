@@ -1,5 +1,7 @@
 package com.human.hms.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.human.hms.entity.FavoriteEntity;
+import com.human.hms.entity.OrderListEntity;
+import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.MyPageService;
 
@@ -25,23 +31,16 @@ public class MyPageController {
 	private MyPageService myPageService;
     
     // 공통적으로 세션 데이터를 전달하는 메서드
-    private void addSessionDataToModel(HttpSession session, Model model) {
+    private UserEntity addSessionDataToModel(HttpSession session) {
         UserEntity user = (UserEntity) session.getAttribute("user"); // 세션에서 사용자 이름 가져오기
-        if (user != null) {
-        	model.addAttribute("userName", user.getUserName()); // 사용자 이름
-            model.addAttribute("userPhone", user.getUserPhone()); // 사용자 전화번호
-            model.addAttribute("userEmail", user.getUserEmail()); // 사용자 이메일
-            model.addAttribute("userNick", user.getUserNick()); // 사용자 닉네임
-        } else {
-        	model.addAttribute("userName", "Guest"); // 기본값
-            model.addAttribute("userPhone", "N/A");
-            model.addAttribute("userEmail", "N/A");
-        }
+        return user;
     }
     // mypage.jsp로 이동
     @GetMapping("/mypage.do")
     public String showMyPage(HttpSession session, Model model){
-        addSessionDataToModel(session, model);
+    	UserEntity user = addSessionDataToModel(session);
+    	List<ReviewEntity> listReview = myPageService.getReviewList(user.getUserIdx());
+    	model.addAttribute("review_list", listReview);
         return "mypage/mypage";
     }
     // userUpdate.jsp로 이동
@@ -51,7 +50,14 @@ public class MyPageController {
     }
     // orderShippingStatus.jsp로 이동
     @GetMapping("/order.do")
-    public String showOrderShippingStatus(){
+    public String showOrderShippingStatus(HttpSession session, Model model){
+    	UserEntity user = addSessionDataToModel(session);
+    	if (user != null) {
+			List<OrderListEntity> orderList = myPageService.getOrderList(user.getUserIdx());
+			model.addAttribute("orderList",orderList);
+		} else {
+			model.addAttribute("error","로그인이 필요합니다.");
+		}
         return "mypage/orderShippingStatus";
     }
     // addressmanagement.jsp로 이동
@@ -71,7 +77,10 @@ public class MyPageController {
     }
     // pointsdetails.jsp로 이동
     @GetMapping("/favorite.do")
-    public String showFavoriteProducts(){
+    public String showFavoriteProducts(HttpSession session, Model model){
+    	UserEntity user = addSessionDataToModel(session);
+    	List<FavoriteEntity> favoriteEntities = myPageService.getFavoriteByUser(user.getUserIdx());
+    	model.addAttribute("favorites", favoriteEntities);
         return "mypage/favoriteproducts";
     }
     // todaygoods.jsp로 이동

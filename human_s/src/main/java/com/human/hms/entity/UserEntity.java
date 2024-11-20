@@ -1,10 +1,15 @@
 package com.human.hms.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Builder;
@@ -51,6 +56,9 @@ public class UserEntity {
     
     @Column(name = "grade", columnDefinition = "TINYINT DEFAULT 1")
     private int grade; //등급(1:소비자, 2:판매자, 3:관리자)
+    // 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FavoriteEntity> favoriteEntities = new ArrayList<>();
     
     @Builder
     public UserEntity(String userEmail, String userPw, String userNick, 
