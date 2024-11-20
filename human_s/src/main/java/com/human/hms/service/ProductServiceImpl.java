@@ -12,12 +12,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.human.hms.entity.PriceRealEntity;
 import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ProductImgEntity;
+import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.DmsjPriceRealRepository;
 import com.human.hms.repository.ProductImgRepository;
 import com.human.hms.repository.ProductRepository;
+import com.human.hms.repository.ReviewRepository;
 import com.human.hms.util.ProductFileManager;
 
 import lombok.AllArgsConstructor;
@@ -30,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductFileManager fileManager;
 	private ProductRepository productRepository;
 	private ProductImgRepository productImgRepository;
+	private ReviewRepository reviewRepository;
 
 
 	//대분류코드 조회
@@ -78,6 +82,10 @@ public class ProductServiceImpl implements ProductService {
 		HttpSession session = request.getSession();
 		UserEntity userEntity = (UserEntity) session.getAttribute("user");
 		entity.updateUserEntity(userEntity);
+		
+		PriceRealEntity pEntity = priceRealRepository
+				.getPricebyCode(entity.getPdtLargeCode(), entity.getPdtMidCode(), entity.getPdtSmallCode());
+		entity.updateCodeName(pEntity.getLargeName(), pEntity.getMidName(), pEntity.getSmallName());
 		
 		entity = fileManager.pdtFile(entity, request);
 		
@@ -148,6 +156,29 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductImgEntity> imgList = productImgRepository.getImgList(idx);
 		entity.updateAttachedList(imgList);
 		return entity;
+	}
+
+	//상품 리뷰 목록 조회
+	@Override
+	public List<ReviewEntity> getReviewList(int idx) {
+		return reviewRepository.getReviewList(idx);
+	}
+
+	//상품목록 전체 조회
+	@Override
+	public List<ProductEntity> findAll() {
+		return productRepository.findAll();
+	}
+
+	//헤더 검색창에 따른 리스트 조회
+	@Override
+	public List<ProductEntity> getSelectList(String select) {
+		return productRepository.getSelectList(select);
+	}
+
+	@Override
+	public List<ProductEntity> getProductAreaList() {
+		return productRepository.getProductAreaList();
 	}
 
 }

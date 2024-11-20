@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,10 +87,22 @@
             <h4>Best 상품</h4>
             <div class="bestList">
 	<c:forEach var="i" begin="0" end="7">
-                <div class="bestItem">
+				<a href="/hms/product/viewDetail.no?idx=${ popList[i].pdtIdx }">
+		<c:choose>
+			<c:when test="${ not empty popList[i].img }">
+                <div class="bestItem" style="background-image: url('${ popList[i].img }');">
                     <div>top ${ i+1 }</div>
-                    <div>산지 직송 햇사과</div>
+                    <div>${ popList[i].pdtTitle }</div>
                 </div>
+			</c:when>
+			<c:otherwise>
+				<div class="bestItem" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${popList[i].pdtSave}');">
+                    <div>top ${ i+1 }</div>
+                    <div>${ popList[i].pdtTitle }</div>
+                </div>
+			</c:otherwise>
+		</c:choose>
+				</a>
 	</c:forEach>
             </div>
         </div>
@@ -98,9 +111,20 @@
             <div class="newContainer container">
             	<div class="newList list">
 	<c:forEach var="i" begin="0" end="5">
-	                <div class="newItem item">
-	                	<div>산지 직송 햇사과 ${ i }</div>
-					</div>
+					<a href="/hms/product/viewDetail.no?idx=${ newList[i].pdtIdx }">
+		<c:choose>
+			<c:when test="${ not empty newList[i].img }">
+	                <div class="newItem item" style="background-image: url('${ newList[i].img }');">
+	                    <div>${ newList[i].pdtTitle }</div>
+	                </div>
+			</c:when>
+			<c:otherwise>
+					<div class="newItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${newList[i].pdtSave}');">
+	                    <div>${ newList[i].pdtTitle }</div>
+	                </div>
+			</c:otherwise>
+		</c:choose>
+					</a>
 	</c:forEach>
             	</div>
             </div>
@@ -109,23 +133,38 @@
             <h4>지역 특산물</h4>
             <div class="areaContainer container">
             	<div class="areaList list">
-	<c:forEach var="i" begin="0" end="5">
-	                <div class="areaItem item">
-	                	<div>산지 직송 햇사과 ${ i }</div>
-					</div>
+    <c:forEach var="i" begin="0" end="${ areaList.size() }">
+					<a href="/hms/product/viewDetail.no?idx=${ areaList[i].pdtIdx }">
+		<c:choose>
+			<c:when test="${ not empty areaList[i].img }">
+	                <div class="areaItem item" style="background-image: url('${ areaList[i].img }');">
+	                	<div>${ areaList[i].pdtArea }</div>
+	                    <div>${ areaList[i].pdtTitle }</div>
+	                </div>
+			</c:when>
+			<c:otherwise>
+					<div class="areaItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${areaList[i].pdtSave}');">
+	                    <div>${ areaList[i].pdtArea }</div>
+	                    <div>${ areaList[i].pdtTitle }</div>
+	                </div>
+			</c:otherwise>
+		</c:choose>
+					</a>
 	</c:forEach>
             	</div>
             </div>
         </div>
         <div class="farmAndNotice">
 	        <div class="farmStoryBox box">
-	            <h4>농부들 이야기</h4>
+	            <h4>팜스토리</h4>
 	            <div>
 	            	<hr>
 	<c:forEach var="i" begin="0" end="5">
-					<div>
-						<div>title</div>
-						<div>writer</div>
+					<div class="storyItem" data-id="${ storyList[i].id }">
+						<div>${ storyList[i].storyTitle }</div>
+						<div>
+							<fmt:formatDate value="${storyList[i].createdDate}" type="date" pattern="yyyy-MM-dd"/>
+						</div>
 					</div>
 					<hr>
 	</c:forEach>
@@ -136,9 +175,11 @@
 	            <div>
 	            	<hr>
 	<c:forEach var="i" begin="0" end="5">
-					<div>
-						<div>title</div>
-						<div>date</div>
+					<div class="noticeItem" data-id="${ noticeList[i].id }">
+						<div>${ noticeList[i].noticeTitle }</div>
+						<div>
+							<fmt:formatDate value="${noticeList[i].createdDate}" type="date" pattern="yyyy-MM-dd"/>
+						</div>
 					</div>
 					<hr>
 	</c:forEach>

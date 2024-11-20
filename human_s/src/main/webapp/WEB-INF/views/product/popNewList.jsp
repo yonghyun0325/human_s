@@ -30,7 +30,6 @@
 			<div class="productItem" data-idx="${ item.pdtIdx }">
 				<div class="productRow">${ i.index+1 }위</div>
 				<div class="popNum">
-					<%-- <img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="상품타이틀"> --%>
 		<c:if test="${ not empty item.img }">
 					<img src="${ item.img }" alt="${ item.pdtTitle }">
 		</c:if>

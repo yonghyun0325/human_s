@@ -51,9 +51,11 @@ $(function(){
 	if(select === "category"){
 		$(".checkContainer .category").show();
 		$(".checkContainer .areaSelect").hide();
-	}else{
+	}else if(select === "areaSelect"){
 		$(".checkContainer .category").hide();
 		$(".checkContainer .areaSelect").show();
+	}else{
+		$(".checkContainer").hide();
 	}
 	
 	//체크박스 '전체'가 선택되면 나머지 해제, 나머지 중 하나가 선택되면 '전체'해제
@@ -69,5 +71,11 @@ $(function(){
 	        $(".checkAll input[type='checkbox']").prop("checked", false);
 	    }
 	});
+	
+	if(select === "category" || select === "areaSelect"){
+		
+		
+	
+	}
 
 });

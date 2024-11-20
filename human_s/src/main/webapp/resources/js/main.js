@@ -9,6 +9,13 @@ $(function(){
     $(".navigation > .fa-bars, .navigation > .hiddenBack").on("mouseleave", function() {
 	    $(".navigation > .hiddenBack").hide();
 	});
+	
+	//상단 검색 구현하기
+	$(".headerTop > .search > i").click(function(){
+		let select = $(".headerTop > .search > .searchProduct").val();
+		
+		location.href = "/hms/product/checkBoxList.no?select="+select;
+	});
 
 //footer.jsp
 	

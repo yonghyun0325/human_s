@@ -213,7 +213,7 @@ public class ApiProductServiceImpl implements ApiProductService {
 			
 			ProductEntity entity = ProductEntity.builder()
 									.img(product.getImgUrl())
-									.pdtTitle(product.getCntntsSj())
+									.pdtTitle("신선한 "+product.getCntntsSj())
 									.pdtPrice(pEntity != null ? String.valueOf(pEntity.getCost()) : "")
 									.pdtLargeCode(pEntity != null ? pEntity.getLarge() : "")
 									.pdtMidCode(pEntity != null ? pEntity.getMid() : "")
@@ -226,6 +226,7 @@ public class ApiProductServiceImpl implements ApiProductService {
 									.build();
 			
 			entity.updateUserEntity(userEntity);
+			entity.updateCodeName(pEntity.getLargeName(), pEntity.getMidName(), pEntity.getSmallName());
 			
 			if(productRepository.save(entity) != null) {
 				result++;

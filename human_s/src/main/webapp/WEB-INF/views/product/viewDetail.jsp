@@ -59,6 +59,10 @@
 							<option value="${ product.pdtKg }">${ product.pdtKg }kg</option>
 						</select>
 					</div>
+					<div>
+						<p>수량</p>
+						<input type="number" name="product_qty"> 개
+					</div>
 				</div>
 				<div class="totalPrice">
 					<p>총 상품 금액</p>
@@ -161,8 +165,8 @@
 						        <a href="#">&raquo;</a>
 						    </div>
 						    <div>
-						    	<a href="/hms/board/product">전체보기</a>
-						    	<a href="">문의하기</a>
+						    	<a href="/hms/board/pinquiry.no">전체보기</a>
+						    	<a href="/hms/board/pinquiry/write.do">문의하기</a>
 						    </div>
 						</div>
 					</div>
@@ -189,17 +193,23 @@
 					        	</tr>
 					        </thead>
 					        <tbody>
+	<c:if test="${ not empty reviewList }">
+		<c:forEach var="item" items="${ reviewList }" varStatus="i">
 					        	<tr>
-						            <td class="cNumber">1</td>
-						            <td class="cTitle">title</td>
-						            <td class="cWriter">writer</td>
-						            <td class="cDate">date</td>
+						            <td class="cNumber">${ i.index+1 }</td>
+						            <td class="cTitle">${ item.reviewTitle }</td>
+						            <td class="cWriter">${ item.author }</td>
+						            <td class="cDate">${ item.createdDate }</td>
 						            <td class="cStar">⭐⭐⭐⭐</td>
-						            <td class="cNumber">view</td>
+						            <td class="cNumber">${ item.views }</td>
 						        </tr>
+		</c:forEach>
+	</c:if>		  
+	<c:if test="${ empty reviewList }">
 						        <tr>
-						        	<td colspan="6">내용</td>
+						        	<td colspan="6">등록된 후기가 없습니다.</td>
 						        </tr>
+	</c:if>      
 					        </tbody>
 						</table>
 						<!-- 페이지네이션 -->
@@ -211,8 +221,8 @@
 						        <a href="#">&raquo;</a>
 						    </div>
 						    <div>
-						    	<a href="/hms/board/review">전체보기</a>
-						    	<a href="">후기쓰기</a>
+						    	<a href="/hms/board/review.no">전체보기</a>
+						    	<a href="/hms/board/review/write.do">후기쓰기</a>
 						    </div>
 						</div>
 					</div>
@@ -254,6 +264,10 @@
 							<select>
 								<option value="${ product.pdtKg }">${ product.pdtKg }kg</option>
 							</select>
+						</div>
+						<div>
+							<p>수량</p>
+							<input type="number" name="product_qty"> 개
 						</div>
 					</div>
 					<div class="totalPrice">

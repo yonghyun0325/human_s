@@ -46,12 +46,6 @@ public class ProductFileManager {
 		vo.updatePdtOrigin(pdtOrigin);
 		vo.updatePdtSave(pdtSave);
 		
-		if(ext.equals(".png") || ext.equals(".jpg") || ext.equals("gif") || ext.equals(".PNG") ||
-				ext.equals("jfif") || ext.equals("webp")){
-			String extFormat = ext.substring(1); //확장자명에서 점(.) 제거
-			saveThumnail(fullPath, extFormat);
-		}
-		
 		return vo;
 	}
 
@@ -88,30 +82,10 @@ public class ProductFileManager {
 				naVO.updatePiOrigin(originFileName);
 				naVO.updatePiSave(saveFileName);
 				attachedList.add(naVO);
-				
-				//이미지 파일인 경우 섬네일을 만들어 저장소에 함께 저장함(jpg, png, gif 등)
-				if(ext.equals(".png") || ext.equals(".jpg") || ext.equals("gif") || ext.equals(".PNG") ||
-						ext.equals("jfif") || ext.equals("webp")) {
-					String extFormat = ext.substring(1); //확장자명에서 점(.) 제거
-					saveThumnail(fullPath, extFormat);
-				}
 			}
 		}//end of for
 		vo.updateAttachedList(attachedList);
 		return vo;
-	}
-	
-	//섬네일로 이미지 파일 저장하기
-	private void saveThumnail(String fullPath, String extFormat) {
-		try {
-			Thumbnails.of(new File(fullPath))
-			.size(120, 90) //섬네일 크기
-			.outputFormat(extFormat) //포맷 형식
-			.toFiles(Rename.PREFIX_HYPHEN_THUMBNAIL); //새로운 이름: thumbnail-이 파일명 앞에 붙음
-		} catch (Exception e) {
-			System.out.println("섬네일 저장 중 예외발생");
-		}
-		
 	}
 
 	//첨부파일 다운로드
