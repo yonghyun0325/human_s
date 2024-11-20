@@ -4,11 +4,6 @@ $(document).ready(function () {
         const filterType = $(this).data('period'); // 버튼의 data-period 값 가져오기
         const baseDate = $('#baseDate').val(); // 기준 날짜 입력값
         const endDate = $('#endDate').val(); // 종료 날짜 입력값
-        
-        if (!baseDate && filterType !== undefined) {
-            alert("기준 날짜를 선택해주세요.");
-            return;
-        }
 
         let calculatedDate = null;
 
@@ -60,7 +55,7 @@ $(document).ready(function () {
     // Ajax 요청 함수
     function fetchFilteredOrders(dateRange) {
         $.ajax({
-            url: '/orders/filter',
+            url: '/hms/mypage/orders/filter',
             type: 'GET',
             data: {
                 startDate: dateRange.startDate,

@@ -1,5 +1,6 @@
 package com.human.hms.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +17,8 @@ public interface OrderListRepository extends JpaRepository<OrderListEntity, Long
 	@Query("SELECT o FROM OrderListEntity o " +
 		       "WHERE o.userEntity.userIdx = :userIdx " +
 		       "AND o.orPayDate BETWEEN :startDate AND :endDate")
-	List<OrderListEntity> getDateShow(int userIdx, String startDate, String endDate);
+	List<OrderListEntity> getDateShow(@Param("userIdx") Long userIdx, 
+            @Param("startDate") LocalDate startDate, 
+            @Param("endDate") LocalDate endDat);
 
 }

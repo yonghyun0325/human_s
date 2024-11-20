@@ -60,21 +60,6 @@ public class MyPageController {
 		}
         return "mypage/orderShippingStatus";
     }
-    @GetMapping("/orders/filter")
-    @ResponseBody
-    public List<OrderListEntity> filterOrders(
-            @RequestParam("startDate") String startDate,
-            @RequestParam("endDate") String endDate,
-            HttpSession session) {
-        
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다.");
-        }
-        
-        // Service를 통해 주문 데이터 필터링
-        return myPageService.getOrdersByDateRange(user.getUserIdx(), startDate, endDate);
-    }
     // addressmanagement.jsp로 이동
     @GetMapping("/address.do")
     public String showAddressManagement(){

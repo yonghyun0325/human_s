@@ -14,7 +14,5 @@ public interface MyPageService {
 
 	List<OrderListEntity> getOrderList(int userIdx);
 
-	List<OrderListEntity> getOrdersByDateRange(int userIdx, String startDate, String endDate);
-
 
 }

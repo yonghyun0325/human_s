@@ -86,6 +86,46 @@
 
     <%@ include file ="/WEB-INF/views/main/footer.jsp" %>
     
-    <script src="${pageContext.request.contextPath}/resources/js/orderFilter.js"></script>
+    <!-- 필터 스크립트 -->
+    <script>
+        $(document).ready(function() {
+            // 필터 버튼 클릭 시 이벤트 처리
+            $('.filter-btn').on('click', function() {
+                // 모든 버튼에서 활성화 클래스 제거
+                $('.filter-btn').removeClass('active');
+                
+                // 클릭한 버튼에 활성화 클래스 추가
+                $(this).addClass('active');
+                
+                // 버튼 데이터 속성으로 기간 설정
+                const period = $(this).data('period');
+                
+                // 기간에 따른 기본 날짜 설정
+                const today = new Date();
+                let baseDate = new Date(today);
+                
+                if (period === 'yesterday') {
+                    baseDate.setDate(today.getDate() - 1);
+                } else if (period === 'week') {
+                    baseDate.setDate(today.getDate() - 7);
+                } else if (period === 'month') {
+                    baseDate.setMonth(today.getMonth() - 1);
+                } else if (period === 'threeMonths') {
+                    baseDate.setMonth(today.getMonth() - 3);
+                } else if (period === 'year') {
+                    baseDate.setFullYear(today.getFullYear() - 1);
+                }
+                
+             	// '오늘' 버튼 클릭 시 오늘 날짜 유지
+                if (period === 'today') {
+                    baseDate = today; // 오늘 날짜 그대로
+                }
+                
+                // 날짜 입력 필드에 값 설정
+                $('#baseDate').val(baseDate.toISOString().split('T')[0]);
+                $('#endDate').val(today.toISOString().split('T')[0]);
+            });
+        });
+    </script>
 </body>
 </html>

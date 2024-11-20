@@ -47,10 +47,4 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return orderListRepository.select(userIdx);
 	}
-
-	@Override
-	public List<OrderListEntity> getOrdersByDateRange(int userIdx, String startDate, String endDate) {
-		// TODO Auto-generated method stub
-		return orderListRepository.getDateShow(userIdx, startDate, endDate);
-	}
 }
