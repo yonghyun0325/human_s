@@ -45,7 +45,6 @@ h2 {
 }
 
 .sidebar ul li {
-    padding: 10px 5px;
     font-size: 14px;
     color: #555;
     border-bottom: 1px solid #eaeaea;
@@ -54,6 +53,7 @@ h2 {
     width: 100%;
 }
 .sidebar ul li a{
+    padding: 10px 5px;
 	width: 100%;
 }
 

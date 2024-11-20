@@ -32,8 +32,19 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	@Query("select distinct p.pdtArea from ProductEntity p")
 	List<Object[]> getAreaList();
 
-	//지역 조회
+	//상세지역 조회
 	@Query("select distinct p.pdtArea, p.pdtArea2 from ProductEntity p")
 	List<Object[]> getArea2List();
+
+	//검색어 조회
+	@Query("select p from ProductEntity p "
+			+ "where pdtLargeName like %:select% or pdtMidName like %:select% or pdtSmallName like %:select% "
+			+ "or pdtTitle like %:select%")
+	List<ProductEntity> getSelectList(@Param("select")String select);
+
+	//지역상품 목록 조회
+	@Query("select p from ProductEntity p "
+			+ "group by pdtArea")
+	List<ProductEntity> getProductAreaList();
 	
 }

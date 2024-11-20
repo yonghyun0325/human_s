@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.human.hms.entity.ProductEntity;
+import com.human.hms.entity.ReviewEntity;
 
 public interface ProductService {
 
@@ -32,5 +33,13 @@ public interface ProductService {
 	List<Object[]> getArea2List();
 
 	ProductEntity findbyId(int idx);
+
+	List<ReviewEntity> getReviewList(int idx);
+
+	List<ProductEntity> findAll();
+
+	List<ProductEntity> getSelectList(String select);
+
+	List<ProductEntity> getProductAreaList();
 
 }

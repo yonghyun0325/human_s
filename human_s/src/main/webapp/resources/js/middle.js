@@ -146,19 +146,29 @@ $(function(){
                 let reDpr2 = parseFloat(graphData.dpr2.replace(/,/g, ''));
                 let reDpr6 = parseFloat(graphData.dpr6.replace(/,/g, ''));
                 let number = 0;
+                
+                
+                
+                
                 let unitType = "";
                 if (unitMatch) {
 				    number = unitMatch[1];  // 숫자 부분
 				    unitType = unitMatch[2]; // 단위 부분 (kg 또는 개)
 				    
 				    if(unitType == '개'){
-	                	$(".infoSection>.priceUnit").text('개당 '+reDpr1/number+'원');  
-	                	$(".comparisonItem:first-child>.priceUnit").text('개당 '+reDpr2/number+'원');
-	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('개당 '+reDpr6/number+'원');
+				    	let roundDpr1 = (reDpr1/number).toFixed(1);
+		                let roundDpr2 = (reDpr2/number).toFixed(1);
+		                let roundDpr6 = (reDpr6/number).toFixed(1);
+	                	$(".infoSection>.priceUnit").text('개당 '+roundDpr1+'원');  
+	                	$(".comparisonItem:first-child>.priceUnit").text('개당 '+roundDpr2+'원');
+	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('개당 '+roundDpr6+'원');
 				    }else{
-				    	$(".infoSection>.priceUnit").text('100g당 '+reDpr1/number/10+'원');  
-				    	$(".comparisonItem:first-child>.priceUnit").text('100g당 '+reDpr2/number/10+'원');
-	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('100g당 '+reDpr6/number/10+'원');
+				    	let roundDpr1 = (reDpr1/number/10).toFixed(1);
+		                let roundDpr2 = (reDpr2/number/10).toFixed(1);
+		                let roundDpr6 = (reDpr6/number/10).toFixed(1);
+				    	$(".infoSection>.priceUnit").text('100g당 '+roundDpr1+'원');  
+				    	$(".comparisonItem:first-child>.priceUnit").text('100g당 '+roundDpr2+'원');
+	                	$(".comparisonItem:nth-child(2)>.priceUnit").text('100g당 '+roundDpr6+'원');
 				    }
 				    
 				}
@@ -212,6 +222,7 @@ $(function(){
 		                        font: {
 		                            size: 12
 		                        },
+		                        formatter: function(value, context) { return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); },
 		                        anchor: 'end',
 		                        align: 'top',
 		                        offset: 5 // 점에서 5px 떨어지도록 설정
@@ -233,5 +244,17 @@ $(function(){
 		
 		return numberDpr;
 	};
+	
+	//팜스토리 클릭 시 해당 팜스토리 내용 보여주기
+	$(".storyItem").click(function(){
+		let id = $(this).data("id");
+		location.href = "/hms/story/view?storyId="+id;
+	});
+	
+	//공지사항 클릭 시 해당 공지사항 내용 보여주기
+	$(".noticeItem").click(function(){
+		let id = $(this).data("id");
+		location.href = "/hms/board/notice/view.do?noticeId="+id;
+	});
 
 });

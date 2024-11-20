@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ProductEntity;
+import com.human.hms.entity.ReviewEntity;
+import com.human.hms.service.PinquiryService;
 import com.human.hms.service.ProductService;
+import com.human.hms.service.ReviewService;
 import com.human.hms.vo.ProductVO;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +29,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ProductController {
 	
-	private ProductService productServiceImpl;
+	private ProductService productServiceImpl;	 //상품
 	
 	//인기순/최신순 페이지
 	@GetMapping("/popNewList.no")
@@ -46,18 +50,27 @@ public class ProductController {
 	@GetMapping("/checkBoxList.no")
 	public ModelAndView checkBoxList(ModelAndView mav, @RequestParam String select) {
 		mav.setViewName("product/checkBoxList");
+		List<ProductEntity> productList = null;
 		
 		if(select.equals("areaSelect")) {
 			//지역코드 조회
 			List<Object[]> areaList = productServiceImpl.getAreaList();
 			mav.addObject("areaList", areaList);
-		}else {
+			
+			productList = productServiceImpl.findAll();
+		}else if(select.equals("category")){
 			//대.중.소 븐류코드 조회
 			List<Object[]> largeList = productServiceImpl.getLargeList();
 			List<Object[]> midList = productServiceImpl.getMidList();
 			mav.addObject("largeList", largeList);
 			mav.addObject("midList", midList);		
+			
+			productList = productServiceImpl.findAll();
+		}else {
+			productList = productServiceImpl.getSelectList(select);
 		}
+		
+		mav.addObject("productList", productList);
 		
 		return mav;
 	}
@@ -67,8 +80,15 @@ public class ProductController {
 	public ModelAndView viewDetail(ModelAndView mav, @RequestParam int idx) {
 		mav.setViewName("product/viewDetail");
 		
+		//해당 상품 조회
 		ProductEntity product = productServiceImpl.findbyId(idx);
 		mav.addObject("product", product);
+		
+		//해당 상품 문의 조회
+		
+		//해당 상품 후기 조회
+		List<ReviewEntity> reviewList = productServiceImpl.getReviewList(idx);
+		mav.addObject("reviewList", reviewList);
 		
 		return mav;
 	}
@@ -117,6 +137,7 @@ public class ProductController {
 		// 100g당 가격 계산 (소수 첫 번째 자리에서 반올림)
 		Double pricePer100g = pdtPrice / pdtKg / 10;   // 가격 계산 (100g당 가격)
 		Double roundedPrice = Math.round(pricePer100g * 10.0) / 10.0;  // 반올림
+		System.out.println("large:"+vo.getPdtLargeCode());
 		
 		ProductEntity entity = ProductEntity.builder()
 								.pdtTitle(vo.getPdtTitle())

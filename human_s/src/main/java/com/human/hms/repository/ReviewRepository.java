@@ -33,4 +33,8 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     @Query(value="SELECT * FROM review n WHERE n.user_idx = ?1 ", nativeQuery = true)
 	List<ReviewEntity> select(int idx);
 
+    // 상품상세보기 - 상품별 문의내역 가져오기
+    @Query(value="select * from review n where n.pdt_idx = ?1", nativeQuery = true)
+	List<ReviewEntity> getReviewList(int idx);
+
 }

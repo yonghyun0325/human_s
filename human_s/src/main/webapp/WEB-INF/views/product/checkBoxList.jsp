@@ -19,7 +19,7 @@
 				<div class="category">
 					<div class="checkList checkAll">
 						<label>
-							<input type="checkbox">
+							<input type="checkbox" checked>
 							<span class="custom-checkbox"></span>
 							전체
 						</label>
@@ -38,7 +38,7 @@
 				<div class="areaSelect">
 					<div class="checkList checkAll">
 						<label>
-							<input type="checkbox">
+							<input type="checkbox" checked>
 							<span class="custom-checkbox"></span>
 							전체
 						</label>
@@ -56,17 +56,30 @@
 				</div>
 			</div>
 		</div>
+		<div>
+			<div class="newContent">
+	<c:if test="${ not empty user }">
+				<a href="/hms/product/writeDetail.do">+ 글 등록</a>
+	</c:if>
+			</div>
+			<div class="selectType"></div>
+		</div>
 		<div class="productList">
-	<c:forEach var="i" begin="0" end="15">
-			<div class="productItem">
-				<div class="productRow">${ i+1 }위</div>
+	<c:forEach var="item" items="${ productList }" varStatus="i">
+			<div class="productItem" data-idx="${ item.pdtIdx }">
+				<div class="productRow">${ i.index+1 }위</div>
 				<div class="popNum">
-					<img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="상품타이틀">
+		<c:if test="${ not empty item.img }">
+					<img src="${ item.img }" alt="${ item.pdtTitle }">
+		</c:if>
+		<c:if test="${ empty item.img }">
+					<img src="${pageContext.request.contextPath}/resources/uploads/${item.pdtSave}" alt="${ item.pdtOrigin }">
+		</c:if>
 				</div>
 				<div class="productContent">
-					<div class="title">title</div>
-					<div class="price">(100g당 가격)<span>price원</span></div>
-					<div class="company">(주)food</div>
+					<div class="title">${ item.pdtTitle }</div>
+					<div class="price">(100g당 ${ item.pdtGPrice }원)<span>${ item.pdtPrice }</span></div>
+					<div class="company">${ item.pdtWriter }</div>
 				</div>
 			</div>
 	</c:forEach>

@@ -54,6 +54,15 @@ public class ProductEntity {
 	@Column(name="pdt_smallcode", nullable=false)
 	private String pdtSmallCode; //상품소분류코드
 	
+	@Column(name="pdt_largename", nullable=false)
+	private String pdtLargeName; //상품대분류이름
+	
+	@Column(name="pdt_midname", nullable=false)
+	private String pdtMidName;	 //상품중분류이름
+	
+	@Column(name="pdt_smallname", nullable=false)
+	private String pdtSmallName; //상품소분류이름
+	
 	@Column(name="pdt_area", nullable=false)
 	private String pdtArea;		 //지역
 	
@@ -122,6 +131,12 @@ public class ProductEntity {
 	//memberEntity필드에 대한 값의 변경 메소드
 	public void updateUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
+	}
+	
+	public void updateCodeName(String pdtLargeName, String pdtMidName, String pdtSmallName) {
+		this.pdtLargeName = pdtLargeName;
+		this.pdtMidName = pdtMidName;
+		this.pdtSmallName = pdtSmallName;
 	}
 
 }

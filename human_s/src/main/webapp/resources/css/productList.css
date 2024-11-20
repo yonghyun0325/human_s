@@ -16,7 +16,7 @@ section>img{
 	width: 100%;
 	margin: 10px 0px;
 }
-section>img+div{
+section>img+div, section>.checkContainer+div{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

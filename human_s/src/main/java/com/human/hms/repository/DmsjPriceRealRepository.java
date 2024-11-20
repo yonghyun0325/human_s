@@ -33,4 +33,10 @@ public interface DmsjPriceRealRepository extends JpaRepository<PriceRealEntity, 
 			+ "WHERE pr.mid_name = ?1 ORDER BY RAND() LIMIT 1", nativeQuery = true)
 	PriceRealEntity getPriceByMidName(String cntntsSj);
 
+	//상품 등록을 위한 코드이름 가져오기
+	@Query(value = "SELECT * FROM price_real pr "
+			+ " WHERE pr.large = ?1 and pr.mid = ?2 and pr.small = ?3 "
+			+ " ORDER BY RAND() LIMIT 1", nativeQuery = true)
+	PriceRealEntity getPricebyCode(String pdtLargeCode, String pdtMidCode, String pdtSmallCode);
+
 }

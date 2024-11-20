@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -57,6 +55,10 @@ public class ReviewEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
     
+    @ManyToOne
+    @JoinColumn(name = "pdt_idx", updatable = false)
+    private ProductEntity productEntity;
+    
 	@Builder
 	public ReviewEntity(String author, String reviewContent, String reviewTitle, int rating) {
 		this.author = author;
@@ -71,6 +73,11 @@ public class ReviewEntity {
 
 	public void updateUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
+		
+	}
+	
+	public void updateProductntity(ProductEntity productEntity) {
+		this.productEntity = productEntity;
 		
 	}
 	
