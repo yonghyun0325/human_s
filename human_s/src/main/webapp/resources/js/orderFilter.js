@@ -2,6 +2,8 @@ $(document).ready(function () {
     // 필터 버튼 클릭 이벤트
     $('.filter-btn').on('click', function () {
         const filterType = $(this).data('period'); // 버튼의 data-period 값 가져오기
+        
+        
         const baseDate = $('#baseDate').val(); // 기준 날짜 입력값
         const endDate = $('#endDate').val(); // 종료 날짜 입력값
 
