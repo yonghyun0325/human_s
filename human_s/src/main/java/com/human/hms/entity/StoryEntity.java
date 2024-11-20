@@ -66,8 +66,7 @@ public class StoryEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
 
-    @Transient
-    private List<StoryImgEntity> attachedList;
+    
 
     @Transient
     private MultipartFile[] uploadFiles; // JPA와 관련 없는 다중 파일
