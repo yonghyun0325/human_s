@@ -12,5 +12,5 @@ public class UnUserVO {
 	public String unPost;
 	public String unAdd1;
 	public String unAdd2;
-	public int orIdx;//주문번호
+	public String orIdx;//주문번호
 }

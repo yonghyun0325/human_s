@@ -27,4 +27,9 @@ public interface UserService {
 
 	SellerEntity s_save(SellerEntity s_entity, UserEntity entity);//판매자 회원가입
 
+	UserEntity changeCheckEmail(String userEmail);//비밀번호 변경 전 이메일이 세션객체에 저장됐는지 확인
+
+	int changePassword(String userEmail, String userPw);//비밀번호 변경
+
+
 }

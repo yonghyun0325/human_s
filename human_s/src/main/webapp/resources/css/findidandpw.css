@@ -82,3 +82,62 @@ input{
 	background-color:#7cb43f;
 	
 }
+
+/* findpw 개별 css */
+.email{
+	display:flex;
+	margin-top:40px;
+	margin-bottom:10px;
+}
+
+.email i{
+	color:red;
+	margin-right:30px;
+	padding-top:15px;
+}
+
+.email p{
+	
+	padding-top:15px;
+}
+
+.authnum i {
+	color:red;
+	margin-right:14px;
+	padding-top:15px;
+	
+}
+
+.authnum p {
+
+	padding-top:15px;
+}
+
+.authnum{
+	display:flex;
+	margin-bottom:40px;
+}
+
+.email input, .authnum input{
+	width:300px;
+	height:50px;
+}
+
+.email button, .authnum button{
+	width:150px;
+	height:50px;
+	background-color:#AFD485;
+	border-radius:10px;
+	margin-left: 10px;
+	color:white;
+	font-weight:white;
+	
+	
+}
+.email button:hover{
+		background-color:#7cb43f;
+}
+.authnum button:hover{
+		background-color:#7cb43f;
+}
+

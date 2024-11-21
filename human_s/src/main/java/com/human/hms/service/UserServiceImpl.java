@@ -116,6 +116,20 @@ public class UserServiceImpl implements UserService {
 		s_vo.updateUserEntity(vo);
 		return s_repository.save(s_vo);
 	}
+	
+	
+	//비밀번호 변경 전 세션 객체에 이메일이 있는지 확인 (있어야 비밀번호 변경 가능)
+	@Override
+	public UserEntity changeCheckEmail(String userEmail) {
+		return repository.changeCheckEmail(userEmail);
+	}
+
+	//비밀번호 변경
+	@Override
+	public int changePassword(String userEmail, String userPw) {
+		return repository.changePassword(userEmail, userPw);
+	}
+
 
 
 }
