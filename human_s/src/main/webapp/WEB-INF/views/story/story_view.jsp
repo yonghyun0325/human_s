@@ -15,8 +15,9 @@
     <h1>${story.storyTitle}</h1>
     </div>
     <div>
-        <img src="${pageContext.request.contextPath}/resources/img/han.jpg" alt="스토리 이미지">
+         <img src="${pageContext.request.contextPath}/${story.contentImage}" alt="스토리 이미지">
     </div>
+   	
     <p>${story.storyContent}</p>
     <div>
         <small>작성자: ${story.author}</small>
