@@ -16,7 +16,7 @@
 		<img src="${pageContext.request.contextPath}/resources/img/최신순.png" alt="최신순배너">
 		<div>
 			<div class="newContent">
-	<c:if test="${ not empty user }">
+	<c:if test="${ user.grade == 2 or user.grade == 3 }">
 				<a href="/hms/product/writeDetail.do">+ 글 등록</a>
 	</c:if>
 			</div>

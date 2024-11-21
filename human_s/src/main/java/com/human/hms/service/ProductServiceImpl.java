@@ -176,9 +176,22 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.getSelectList(select);
 	}
 
+	//메인화면 지역별 상품 1개씩 조회
 	@Override
 	public List<ProductEntity> getProductAreaList() {
 		return productRepository.getProductAreaList();
+	}
+
+	//지역별 체크 선택에 따른 상품 리스트 조회
+	@Override
+	public List<ProductEntity> checkAreaList(List<String> checkeds) {
+		return productRepository.checkAreaList(checkeds);
+	}
+
+	//분류별 체크 선택에 따른 상품 리스트 조회
+	@Override
+	public List<ProductEntity> checkCategoryList(List<String> checkeds) {
+		return productRepository.checkCategoryList(checkeds);
 	}
 
 }
