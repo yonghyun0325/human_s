@@ -46,8 +46,8 @@
 	<div class="checkoridx_container"> 
 		<form action="checkOlderListProcess.no" method="post">
 			<div class="id_and_pw">
-				<input type="text" name="userEmail" placeholder="주문번호를 입력하세요">
-				<input type="text" name="userPw" placeholder="전화번호를 입력하세요">
+				<input type="text" name="orderNum" placeholder="주문번호를 입력하세요">
+				<input type="text" name="unPhone" placeholder="전화번호를 입력하세요">
 			</div>		
 			<button class="login_btn">주문번호로 내역 조회하기</button>
 		</form>

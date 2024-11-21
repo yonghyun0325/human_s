@@ -231,6 +231,11 @@ public class UserController {
 		return "login/findid";
 	}
 	
+	@GetMapping("findsuccessid.no")
+	public String findsuccessid() {
+		return "login/findsuccessid";
+	}
+	
 	//아이디찾기
 	@PostMapping("findIdProcess.no")
 	public String findIdProcess(UserVO vo, Model model) {
@@ -244,24 +249,49 @@ public class UserController {
 		
 		return viewName;
 	}
+	
+	@GetMapping("findsuccesspw.no")
+	public String findsuccesspw() {
+		return "login/findsuccesspw";
+	}
 	//비밀번호 찾기 화면 이동
 	@GetMapping("findpw.no")
 	public String findPw() {
 		return "login/findpw";
 	}
-	//비밀번호변경
+	//비밀번호변경 전 이메일 확인
 	@PostMapping("findPwProcess.no")
-	public String findPwProcess(UserVO vo, Model model) {
-		String viewName = "login/findpw";
+	public String findPwProcess(UserVO vo, String userEmail, Model model) {
+		String viewName = "login/findpw";//실패시 뷰네임
 		
-		UserEntity user = userServiceImpl.findUserPw(vo.getUserEmail(), vo.getUserName());
+		UserEntity user = userServiceImpl.changeCheckEmail(userEmail);
 		if(user != null) {
-			model.addAttribute("user", user);
-			viewName = "login/findsuccesspw";
+			viewName= "login/findsuccesspw";
+			model.addAttribute("userEmail", user.getUserEmail());
+		}else {
+			System.out.println(userEmail);
+		}
+		
+		
+		return viewName;
+	}
+	
+	
+	//비밀번호 변경
+	@PostMapping("changePwProcess.no")
+	public String cheanPwProcess(String userEmail, String userPw) {
+		String viewName = "login/findsuccesspw";
+		
+		int result = userServiceImpl.changePassword(userEmail, userPw);
+		if(result == 1) {
+			viewName= "home";
+		}else {
+			System.out.println("비밀번호 변경 중 예외발생");
 		}
 		
 		return viewName;
 	}
+	
 	
 	@GetMapping("/login.no")
 	public String login() {
@@ -294,17 +324,19 @@ public class UserController {
 		return "redirect:/index.no";
 	}
 	
+	//주문번호 조회
 	@PostMapping("/checkOlderListProcess.no")
 	public String checkOlderListProcess(String orderNum, String unPhone, HttpServletRequest request, Model model) {
 		String viewName = "login/login";
 		
 		UnUserEntity vo = unuserServiceImpl.checkOrderNum(orderNum, unPhone);
+		System.out.println(orderNum + unPhone);
 		System.out.println(vo);
 		
 		if(vo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("unuser", vo);
-			viewName = "redirect:/order.do";
+			viewName = "redirect:/mypage/order.do";
 		}else {
 			model.addAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
 		}
@@ -313,5 +345,3 @@ public class UserController {
 	}
 	
 }
-
-	//비회원 로그인

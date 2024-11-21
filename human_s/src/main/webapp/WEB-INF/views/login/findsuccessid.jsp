@@ -18,7 +18,7 @@
 	           <P>${user.userEmail}</P>
 	        </div>
 	        <div class="button">
-	        	<button id="findPwBtn">비밀번호 찾기</button>
+	        	<button id="findPwBtn">비밀번호 변경</button>
 	        	<button id="loginBtn">로그인</button>
 	        </div>
 	</div>
@@ -26,7 +26,7 @@
 </body>
 <script>
 	$('#findPwBtn').on('click', function(){
-		window.location.href='findsuccesspw.no';
+		window.location.href='findpw.no';
 	})
 	$('#loginBtn').on('click', function(){
 		window.location.href='login.no';

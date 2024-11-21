@@ -8,7 +8,7 @@ import com.human.hms.entity.UnUserEntity;
 public interface UnUserRepository extends JpaRepository<UnUserEntity, Integer>{
 	
 	
-	@Query(value = "SELECT * FROM un_member un WHERE un.or_idx = ?1 AND un.un_phone = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM un_member un WHERE un.o_idx = ?1 AND un.un_phone = ?2", nativeQuery = true)
 	UnUserEntity checkOrderNum(String orderNum, String unPhone);
 
 }
