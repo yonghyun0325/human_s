@@ -1,7 +1,6 @@
 package com.human.hms.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +33,11 @@ public class StoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "image")
-    private String image; // 단일 파일 경로
+    @Column(name = "main_image")
+    private String mainImage; // 메인 이미지 경로
+
+    @Column(name = "content_image")
+    private String contentImage; // 다중 컨텐츠 이미지 경로 (콤마로 구분된 문자열)
 
     @Column(name = "tagged_item_title")
     private String taggedItemTitle;
@@ -66,22 +68,24 @@ public class StoryEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
 
-    
+    @Transient
+    private MultipartFile mainImageFile; // 메인 이미지 업로드 파일 (JPA 매핑 제외)
 
     @Transient
-    private MultipartFile[] uploadFiles; // JPA와 관련 없는 다중 파일
-    
+    private MultipartFile contentImageFiles; // 다중 컨텐츠 이미지 업로드 파일 (JPA 매핑 제외)
+
     @Builder
-	public StoryEntity(String author, String storyContent, String storyTitle, String image,
-						String taggedItemTitle) {
-		this.author = author;
-		this.storyContent = storyContent;
-		this.storyTitle = storyTitle;
-		this.image = image;
-		this.taggedItemTitle = taggedItemTitle;
-		
-		//컬럼의 기본값으로 정의된 것은 생성자를 이용해서 필드를 수동으로 초기화함
-		this.createdDate = new Date();
-		this.views = 0;
-	}
+    public StoryEntity(String author, String storyContent, String storyTitle, String mainImage,
+                       String taggedItemTitle, String contentImage) {
+        this.author = author;
+        this.storyContent = storyContent;
+        this.storyTitle = storyTitle;
+        this.mainImage = mainImage;
+        this.contentImage = contentImage;
+        this.taggedItemTitle = taggedItemTitle;
+
+        // 기본값 초기화
+        this.createdDate = new Date();
+        this.views = 0;
+    }
 }

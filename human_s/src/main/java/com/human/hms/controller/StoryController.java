@@ -51,7 +51,6 @@ public class StoryController {
     }
 
     // 글 작성 요청 처리
- // 글 작성 요청 처리
     @PostMapping("/create")
     public ModelAndView storyWriteProcess(StoryVO vo, HttpServletRequest request, ModelAndView mav) {
         HttpSession session = request.getSession();
@@ -63,48 +62,46 @@ public class StoryController {
         }
 
         try {
+            // 업로드 디렉토리 경로
             String uploadDir = request.getServletContext().getRealPath("/resources/uploads/");
-            StringBuilder uploadedFilePaths = new StringBuilder();
+            String mainImagePath = null;
+            String contentImagePath = null;
 
-            // 다중 파일 처리
-            MultipartFile[] files = vo.getUploadFiles();
-            if (files != null) {
-                for (MultipartFile file : files) {
-                    if (!file.isEmpty()) {
-                        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-                        File destination = new File(uploadDir, fileName);
-                        file.transferTo(destination);
-
-                        // 업로드된 파일 경로를 저장
-                        uploadedFilePaths.append("/resources/uploads/")
-                                .append(fileName)
-                                .append(",");
-                    }
-                }
+            // 메인 이미지 처리
+            MultipartFile mainImage = vo.getMainImage();
+            if (mainImage != null && !mainImage.isEmpty()) {
+                String fileName = System.currentTimeMillis() + "_" + mainImage.getOriginalFilename();
+                File destination = new File(uploadDir, fileName);
+                mainImage.transferTo(destination);
+                mainImagePath = "/resources/uploads/" + fileName; // 저장된 메인 이미지 경로
             }
 
-            // 경로 문자열에서 마지막 ',' 제거
-            String uploadedPaths = uploadedFilePaths.length() > 0 
-                    ? uploadedFilePaths.substring(0, uploadedFilePaths.length() - 1) 
-                    : null;
+            // 컨텐츠 이미지 처리 (단일 파일)
+            MultipartFile contentImage = vo.getContentImage(); // 단일 파일 처리
+            if (contentImage != null && !contentImage.isEmpty()) {
+                String fileName = System.currentTimeMillis() + "_" + contentImage.getOriginalFilename();
+                File destination = new File(uploadDir, fileName);
+                contentImage.transferTo(destination);
+                contentImagePath = "/resources/uploads/" + fileName; // 저장된 컨텐츠 이미지 경로
+            }
 
             // 엔티티 빌드 및 저장
             StoryEntity entity = StoryEntity.builder()
-                    .author(vo.getAuthor()) // vo에서 값 가져오기
+                    .author(vo.getAuthor())
                     .storyTitle(vo.getStoryTitle())
                     .storyContent(vo.getStoryContent())
                     .taggedItemTitle(vo.getTaggedItemTitle())
-                    .image(uploadedPaths) // 파일 경로 저장
+                    .taggedItemPrice(vo.getTaggedItemPrice())
+                    .mainImage(mainImagePath) // 메인 이미지 경로 저장
+                    .contentImage(contentImagePath) // 단일 컨텐츠 이미지 경로 저장
                     .userEntity(userEntity)
                     .build();
 
-            storyService.insertStory(entity, request); // Entity로 직접 저장
+            storyService.insertStory(entity, request);
 
             mav.setViewName("redirect:/story/farmstory.no");
         } catch (Exception e) {
             e.printStackTrace();
-            
-            mav.addObject("user", userEntity);
             mav.setViewName("story/story_write");
             mav.addObject("errorMessage", "파일 업로드 중 오류가 발생했습니다.");
         }
@@ -119,14 +116,15 @@ public class StoryController {
         model.addAttribute("stories", stories);
         return "story/story_list";
     }
-	@GetMapping("/view")
-	public String viewStory(@RequestParam("storyId") Long storyId, Model model) {
-		Optional<StoryEntity> story = storyService.getStoryById(storyId);
-		if (story.isPresent()) {
-			model.addAttribute("story", story.get());
-			return "story/story_view";
-		} else {
-			return "error/404"; // 스토리가 없으면 404 페이지로 이동
-		}
-	}
+
+    @GetMapping("/view")
+    public String viewStory(@RequestParam("storyId") Long storyId, Model model) {
+        Optional<StoryEntity> story = storyService.getStoryById(storyId);
+        if (story.isPresent()) {
+            model.addAttribute("story", story.get());
+            return "story/story_view";
+        } else {
+            return "error/404"; // 스토리가 없으면 404 페이지로 이동
+        }
+    }
 }

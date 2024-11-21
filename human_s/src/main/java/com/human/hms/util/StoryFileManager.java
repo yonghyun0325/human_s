@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.human.hms.entity.StoryEntity;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class StoryFileManager {
 
-    // 단일 파일 저장 메서드
+    // 단일 파일 저장 메서드 (메인 이미지 및 컨텐츠 이미지 공용)
     public String saveFile(MultipartFile file, HttpServletRequest request) {
         if (file == null || file.isEmpty()) {
             return null; // 파일이 없으면 null 반환
         }
 
         try {
-            // 업로드 디렉터리 경로 생성
+            // 업로드 디렉토리 경로 생성
             String uploadDir = request.getServletContext().getRealPath("/resources/uploads/");
             File directory = new File(uploadDir);
             if (!directory.exists()) {
@@ -47,30 +45,22 @@ public class StoryFileManager {
         }
     }
 
-    // 다중 파일 처리 및 StoryEntity 업데이트
-    public StoryEntity handleFile(StoryEntity entity, HttpServletRequest request) {
-        try {
-            if (entity.getUploadFiles() != null) {
-                StringBuilder filePaths = new StringBuilder();
-
-                for (MultipartFile file : entity.getUploadFiles()) {
-                    if (file != null && !file.isEmpty()) {
-                        String savedPath = saveFile(file, request);
-                        if (savedPath != null) {
-                            filePaths.append(savedPath).append(","); // 저장된 파일 경로 추가
-                        }
-                    }
-                }
-
-                // 파일 경로 문자열에서 마지막 ',' 제거
-                if (filePaths.length() > 0) {
-                    entity.setImage(filePaths.substring(0, filePaths.length() - 1)); // 파일 경로 업데이트
-                }
-            }
-        } catch (Exception e) {
-            log.error("다중 파일 처리 중 오류 발생: {}", e.getMessage(), e);
+    // 컨텐츠 이미지 단일 파일 저장
+    public String saveContentImage(MultipartFile contentImage, HttpServletRequest request) {
+        if (contentImage == null || contentImage.isEmpty()) {
+            log.warn("컨텐츠 이미지 파일이 비어있거나 null입니다.");
+            return null; // 파일이 없으면 null 반환
         }
 
-        return entity; // 업데이트된 엔티티 반환
+        // saveFile 메서드를 재사용하여 파일 저장
+        String savedPath = saveFile(contentImage, request);
+        if (savedPath != null) {
+            log.info("컨텐츠 이미지 저장 완료: {}", savedPath);
+        } else {
+            log.error("컨텐츠 이미지 저장 실패");
+        }
+        return savedPath;
     }
+
+	
 }

@@ -45,10 +45,17 @@
                 </select>
             </div>
 
-            <!-- 파일 업로드 -->
+            <!-- 메인 이미지 업로드 -->
             <div class="form-group">
-                <label for="image">이미지 업로드</label>
-                <input type="file" id="image" name="uploadFiles" class="form-control" accept="image/*">
+                <label for="image">메인 이미지 업로드</label>
+                <input type="file" id="mainImage" name="mainImage" class="form-control" accept="image/*">
+            </div>
+
+            <!-- 컨텐츠 이미지 업로드 -->
+            <div class="form-group">
+                <label for="contentImage">컨텐츠 이미지 업로드</label>
+                <input type="file" id="contentImage" name="contentImage" class="form-control" accept="image/*" multiple>
+                <small class="form-text text-muted">컨텐츠에 삽입할 이미지를 선택하세요 (다중 선택 가능)</small>
             </div>
 
             <!-- 등록 버튼 -->

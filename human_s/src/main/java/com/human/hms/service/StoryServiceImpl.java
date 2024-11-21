@@ -34,8 +34,8 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public StoryEntity createStory(StoryVO storyVO) {
         String imagePath = null;
-        if (storyVO.getImage() != null && !storyVO.getImage().isEmpty()) {
-            imagePath = fileManager.saveFile(storyVO.getImage(), null); // 파일 저장
+        if (storyVO.getMainImage() != null && !storyVO.getMainImage().isEmpty()) {
+            imagePath = fileManager.saveFile(storyVO.getMainImage(), null); // 파일 저장
         }
         StoryEntity entity = convertToEntity(storyVO, imagePath);
         return storyRepository.save(entity);
@@ -45,19 +45,26 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public StoryEntity insertStory(StoryEntity entity, HttpServletRequest request) {
         try {
-            // 세션에서 UserEntity 가져오기
             HttpSession session = request.getSession();
             UserEntity userEntity = (UserEntity) session.getAttribute("user");
 
             if (userEntity != null) {
-                entity.setUserEntity(userEntity); // 작성자 정보 설정
+                entity.setUserEntity(userEntity);
             }
 
-            // 파일 처리
-            StoryEntity updatedEntity = fileManager.handleFile(entity, request);
+            // 메인 이미지 처리
+            if (entity.getMainImageFile() != null && !entity.getMainImageFile().isEmpty()) {
+                String mainImagePath = fileManager.saveFile(entity.getMainImageFile(), request);
+                entity.setMainImage(mainImagePath);
+            }
 
-            // 저장
-            return storyRepository.save(updatedEntity);
+            // 컨텐츠 이미지 처리
+            if (entity.getContentImageFiles() != null) {
+                String contentImagesPath = fileManager.saveContentImage(entity.getContentImageFiles(), request);
+                entity.setContentImage(contentImagesPath);
+            }
+
+            return storyRepository.save(entity);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("스토리 저장 중 오류 발생");
@@ -122,7 +129,8 @@ public class StoryServiceImpl implements StoryService {
                 .taggedItemTitle(vo.getTaggedItemTitle())
                 .taggedItemPrice(vo.getTaggedItemPrice())
                 .profileImage(vo.getProfileImage())
-                .image(imagePath)
+                .contentImage(imagePath)
+                .mainImage(imagePath)
                 .build();
     }
 }

@@ -13,7 +13,7 @@ public class StoryVO {
     private String taggedItemTitle;
     private String taggedItemPrice;
     private String profileImage;
-    private MultipartFile image; // 단일 파일 업로드를 위한 필드
-    private MultipartFile[] uploadFiles; // 여러 파일 업로드 처리
+    private MultipartFile mainImage; // 메인 이미지
+    private MultipartFile contentImage; //컨텐츠 이미지
 }
 
