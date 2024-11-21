@@ -40,11 +40,21 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	@Query("select p from ProductEntity p "
 			+ "where pdtLargeName like %:select% or pdtMidName like %:select% or pdtSmallName like %:select% "
 			+ "or pdtTitle like %:select%")
-	List<ProductEntity> getSelectList(@Param("select")String select);
+	List<ProductEntity> getSelectList(@Param("select") String select);
 
 	//지역상품 목록 조회
 	@Query("select p from ProductEntity p "
 			+ "group by pdtArea")
 	List<ProductEntity> getProductAreaList();
+
+	//지역별 체크 선택에 따른 상품 리스트 조회
+	@Query("select p from ProductEntity p "
+			+ "where p.pdtArea in :checkeds ")
+	List<ProductEntity> checkAreaList(@Param("checkeds") List<String> checkeds);
+
+	//분류별 체크 선택에 따른 상품 리스트 조회
+	@Query("select p from ProductEntity p "
+			+ "where p.pdtLargeCode in :checkeds ")
+	List<ProductEntity> checkCategoryList(@Param("checkeds") List<String> checkeds);
 	
 }

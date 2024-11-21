@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -58,6 +60,7 @@ public class UserEntity {
     private int grade; //등급(1:소비자, 2:판매자, 3:관리자)
     // 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore // JSON 변환 시 이 필드를 무시
     private List<FavoriteEntity> favoriteEntities = new ArrayList<>();
     
     @Builder

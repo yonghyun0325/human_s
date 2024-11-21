@@ -19,7 +19,7 @@
 				<div class="category">
 					<div class="checkList checkAll">
 						<label>
-							<input type="checkbox" checked>
+							<input type="checkbox" value="all" checked>
 							<span class="custom-checkbox"></span>
 							전체
 						</label>
@@ -38,7 +38,7 @@
 				<div class="areaSelect">
 					<div class="checkList checkAll">
 						<label>
-							<input type="checkbox" checked>
+							<input type="checkbox" value="all" checked>
 							<span class="custom-checkbox"></span>
 							전체
 						</label>
@@ -58,23 +58,24 @@
 		</div>
 		<div>
 			<div class="newContent">
-	<c:if test="${ not empty user }">
+	<c:if test="${ user.grade == 2 or user.grade == 3 }">
 				<a href="/hms/product/writeDetail.do">+ 글 등록</a>
 	</c:if>
 			</div>
 			<div class="selectType"></div>
 		</div>
 		<div class="productList">
-	<c:forEach var="item" items="${ productList }" varStatus="i">
+	<c:if test="${ not empty productList }">
+		<c:forEach var="item" items="${ productList }" varStatus="i">
 			<div class="productItem" data-idx="${ item.pdtIdx }">
-				<div class="productRow">${ i.index+1 }위</div>
+				<div class="productRow"></div>
 				<div class="popNum">
-		<c:if test="${ not empty item.img }">
+			<c:if test="${ not empty item.img }">
 					<img src="${ item.img }" alt="${ item.pdtTitle }">
-		</c:if>
-		<c:if test="${ empty item.img }">
+			</c:if>
+			<c:if test="${ empty item.img }">
 					<img src="${pageContext.request.contextPath}/resources/uploads/${item.pdtSave}" alt="${ item.pdtOrigin }">
-		</c:if>
+			</c:if>
 				</div>
 				<div class="productContent">
 					<div class="title">${ item.pdtTitle }</div>
@@ -82,9 +83,17 @@
 					<div class="company">${ item.pdtWriter }</div>
 				</div>
 			</div>
-	</c:forEach>
+		</c:forEach>
+	</c:if>
+	<c:if test="${ empty productList }">
+			<div>검색 결과가 없습니다.</div>
+	</c:if>
 		</div>
 	</section>
 	<jsp:include page="../main/footer.jsp" />
+	
+	<script>
+		const contextPath = '${pageContext.request.contextPath}';
+	</script>
 </body>
 </html>

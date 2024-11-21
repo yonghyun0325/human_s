@@ -42,4 +42,8 @@ public interface ProductService {
 
 	List<ProductEntity> getProductAreaList();
 
+	List<ProductEntity> checkAreaList(List<String> checkeds);
+
+	List<ProductEntity> checkCategoryList(List<String> checkeds);
+
 }

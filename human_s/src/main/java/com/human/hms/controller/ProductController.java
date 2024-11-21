@@ -59,11 +59,9 @@ public class ProductController {
 			
 			productList = productServiceImpl.findAll();
 		}else if(select.equals("category")){
-			//대.중.소 븐류코드 조회
+			//대븐류코드 조회
 			List<Object[]> largeList = productServiceImpl.getLargeList();
-			List<Object[]> midList = productServiceImpl.getMidList();
-			mav.addObject("largeList", largeList);
-			mav.addObject("midList", midList);		
+			mav.addObject("largeList", largeList);	
 			
 			productList = productServiceImpl.findAll();
 		}else {
@@ -161,6 +159,21 @@ public class ProductController {
 		mav.setViewName(viewName);
 		
 		return mav;
+	}
+	
+	//체크박스 리스트 ajax를 이용해 다양한 조건으로 상품 리스트 받기
+	@ResponseBody
+	@GetMapping("getProductList.no")
+	public List<ProductEntity> getProductList(@RequestParam String select, @RequestParam("checkeds[]") List<String> checkeds) {
+		List<ProductEntity> productList = null;
+		
+		if(select.equals("areaSelect")) {
+			productList = productServiceImpl.checkAreaList(checkeds);
+		}else {
+			productList = productServiceImpl.checkCategoryList(checkeds);
+		}
+		
+		return productList;
 	}
 	
 }

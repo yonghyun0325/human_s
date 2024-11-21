@@ -61,7 +61,7 @@
 					</div>
 					<div>
 						<p>수량</p>
-						<input type="number" name="product_qty"> 개
+						<input type="number" name="product_qty" class="productQty" value="0"> 개
 					</div>
 				</div>
 				<div class="totalPrice">
@@ -69,9 +69,9 @@
 					<p><span>${ product.pdtPrice }</span>원</p>
 				</div>
 				<div class="buttons">
-					<button class="btn wishlist">찜하기</button>
-					<button class="btn cart">장바구니</button>
-					<button class="btn buy">바로구매</button>
+					<button class="btn wishlist" value="wishlist">찜하기</button>
+					<button class="btn cart" value="cart">장바구니</button>
+					<button class="btn buy" value="buy">바로구매</button>
 				</div>
 			</div>
 		</div>
@@ -267,7 +267,7 @@
 						</div>
 						<div>
 							<p>수량</p>
-							<input type="number" name="product_qty"> 개
+							<input type="number" name="product_qty" class="productQty" value="0"> 개
 						</div>
 					</div>
 					<div class="totalPrice">
@@ -275,10 +275,10 @@
 						<p><span>${ product.pdtPrice }</span>원</p>
 					</div>
 					<div class="buttons">
-						<button class="btn wishlist">찜하기</button>
-						<button class="btn cart">장바구니</button>
+						<button class="btn wishlist" value="wishlist">찜하기</button>
+						<button class="btn cart" value="cart">장바구니</button>
 					</div>
-					<button class="btn buy">바로구매</button>
+					<button class="btn buy" value="buy">바로구매</button>
 				</div>
 			</div>
 		</div>

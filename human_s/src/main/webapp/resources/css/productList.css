@@ -37,6 +37,7 @@ section>img+div, section>.checkContainer+div{
     grid-template-columns: repeat(4, 1fr); /* 4개의 열로 정렬 */
     gap: 20px; /* 아이템 간의 간격 설정 */
     margin: 10px 0px 20px;
+    min-height: 200px;
 }
 .productList>.productItem{
     background-color: #AFD48555;
