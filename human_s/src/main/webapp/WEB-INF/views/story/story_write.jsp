@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label for="contentImage">컨텐츠 이미지 업로드</label>
                 <input type="file" id="contentImage" name="contentImage" class="form-control" accept="image/*" multiple>
-                <small class="form-text text-muted">컨텐츠에 삽입할 이미지를 선택하세요 (다중 선택 가능)</small>
+                <small class="form-text text-muted">컨텐츠에 삽입할 이미지를 선택하세요</small>
             </div>
 
             <!-- 등록 버튼 -->

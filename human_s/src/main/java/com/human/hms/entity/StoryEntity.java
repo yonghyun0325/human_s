@@ -38,7 +38,10 @@ public class StoryEntity {
 
     @Column(name = "content_image")
     private String contentImage; // 다중 컨텐츠 이미지 경로 (콤마로 구분된 문자열)
-
+    
+    @Column(name = "tagged_item_Image")
+    private String taggedItemImage;
+    
     @Column(name = "tagged_item_title")
     private String taggedItemTitle;
 
@@ -67,6 +70,11 @@ public class StoryEntity {
     @ManyToOne
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
+    
+    // Product와 관계 설정 (연관된 상품)
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "pdt_idx")
+    private ProductEntity product;
 
     @Transient
     private MultipartFile mainImageFile; // 메인 이미지 업로드 파일 (JPA 매핑 제외)
@@ -76,16 +84,30 @@ public class StoryEntity {
 
     @Builder
     public StoryEntity(String author, String storyContent, String storyTitle, String mainImage,
-                       String taggedItemTitle, String contentImage) {
+                       String taggedItemTitle, String contentImage, String taggedItemImage,
+                       String taggedItemPrice) {
         this.author = author;
         this.storyContent = storyContent;
         this.storyTitle = storyTitle;
         this.mainImage = mainImage;
         this.contentImage = contentImage;
         this.taggedItemTitle = taggedItemTitle;
+        this.taggedItemImage = taggedItemImage;
+        this.taggedItemPrice = taggedItemPrice;
 
         // 기본값 초기화
         this.createdDate = new Date();
         this.views = 0;
     }
+    
+    //product 필드 변경 메소드
+    public void updateProduct(ProductEntity product) {
+    	this.product = product;
+    }
+    
+    //userEntity 필드 변경 메소드
+    public void updateUserEntity(UserEntity userEntity) {
+    	this.userEntity = userEntity;
+    }
+    
 }
