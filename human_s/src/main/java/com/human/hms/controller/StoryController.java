@@ -86,16 +86,23 @@ public class StoryController {
             }
 
             // 엔티티 빌드 및 저장
+            ProductEntity product = productService.getProductById(vo.getProductId());
+            
+            System.out.println("vo.getProductId():"+product.getPdtIdx());
+            
             StoryEntity entity = StoryEntity.builder()
                     .author(vo.getAuthor())
                     .storyTitle(vo.getStoryTitle())
                     .storyContent(vo.getStoryContent())
+                    .taggedItemImage(vo.getTaggeditemImage())
                     .taggedItemTitle(vo.getTaggedItemTitle())
                     .taggedItemPrice(vo.getTaggedItemPrice())
                     .mainImage(mainImagePath) // 메인 이미지 경로 저장
                     .contentImage(contentImagePath) // 단일 컨텐츠 이미지 경로 저장
-                    .userEntity(userEntity)
                     .build();
+            
+            entity.updateProduct(product);
+            entity.updateUserEntity(userEntity);
 
             storyService.insertStory(entity, request);
 
@@ -114,17 +121,27 @@ public class StoryController {
     public String getStories(Model model) {
         List<StoryEntity> stories = storyService.getAllStories();
         model.addAttribute("stories", stories);
+        
         return "story/story_list";
     }
 
     @GetMapping("/view")
     public String viewStory(@RequestParam("storyId") Long storyId, Model model) {
-        Optional<StoryEntity> story = storyService.getStoryById(storyId);
-        if (story.isPresent()) {
-            model.addAttribute("story", story.get());
+        Optional<StoryEntity> storyOptional = storyService.getStoryById(storyId);
+
+        if (storyOptional.isPresent()) {
+            StoryEntity story = storyOptional.get();
+
+            // Product 정보를 통해 taggedItemTitle, taggedItemPrice 설정
+            if (story.getProduct() != null) {
+                model.addAttribute("taggedItemTitle", story.getProduct().getPdtTitle());
+                model.addAttribute("taggedItemPrice", story.getProduct().getPdtPrice());
+            }
+
+            model.addAttribute("story", story);
             return "story/story_view";
         } else {
-            return "error/404"; // 스토리가 없으면 404 페이지로 이동
+            return "error/404";
         }
     }
 }

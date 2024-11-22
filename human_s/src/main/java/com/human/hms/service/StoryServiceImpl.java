@@ -43,7 +43,7 @@ public class StoryServiceImpl implements StoryService {
 
     // 스토리 저장 (Entity 형태로 전달받음)
     @Override
-    public StoryEntity insertStory(StoryEntity entity, HttpServletRequest request) {
+    public void insertStory(StoryEntity entity, HttpServletRequest request) {
         try {
             HttpSession session = request.getSession();
             UserEntity userEntity = (UserEntity) session.getAttribute("user");
@@ -63,8 +63,18 @@ public class StoryServiceImpl implements StoryService {
                 String contentImagesPath = fileManager.saveContentImage(entity.getContentImageFiles(), request);
                 entity.setContentImage(contentImagesPath);
             }
+            
+           System.out.println( " entity.getProduct().getPdtIdx(): "+   entity.getProduct().getPdtIdx());
 
-            return storyRepository.save(entity);
+           storyRepository.saveStory(entity.getMainImage(),
+            		entity.getContentImage(),
+            		entity.getProfileImage(),
+                    entity.getAuthor(),
+                    entity.getStoryTitle(),
+                    entity.getStoryContent(),
+                    entity.getUserEntity(),
+                    entity.getProduct().getPdtIdx());
+            
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("스토리 저장 중 오류 발생");
@@ -88,6 +98,7 @@ public class StoryServiceImpl implements StoryService {
             entity.setStoryContent(storyVO.getStoryContent());
             entity.setTaggedItemTitle(storyVO.getTaggedItemTitle());
             entity.setTaggedItemPrice(storyVO.getTaggedItemPrice());
+            entity.setTaggedItemImage(storyVO.getTaggeditemImage());
             storyRepository.save(entity);
             return 1; // 성공
         }
@@ -126,6 +137,7 @@ public class StoryServiceImpl implements StoryService {
                 .author(vo.getAuthor())
                 .storyTitle(vo.getStoryTitle())
                 .storyContent(vo.getStoryContent())
+                .taggedItemImage(vo.getTaggeditemImage())
                 .taggedItemTitle(vo.getTaggedItemTitle())
                 .taggedItemPrice(vo.getTaggedItemPrice())
                 .profileImage(vo.getProfileImage())
@@ -133,4 +145,5 @@ public class StoryServiceImpl implements StoryService {
                 .mainImage(imagePath)
                 .build();
     }
+   
 }

@@ -64,10 +64,18 @@
 
     <!-- 태그된 아이템 (링크 없음) -->
     <div class="tagged-items">
-        <img src="${pageContext.request.contextPath}/resources/img/kimchi.jpg" alt="태그된 상품 이미지">
+    <c:choose>
+    	<c:when test="${ not empty story.product.img }">
+	        <img src="${story.product.img}" alt="태그된 상품 이미지">
+    	</c:when>
+    	<c:otherwise>
+    		<img src="${pageContext.request.contextPath}/resources/uploads/${story.product.pdtSave}" alt="${ story.product.pdtOrigin }">
+    	</c:otherwise>
+    </c:choose>
+    
         <div class="tagged-item-info">
-            <div class="tagged-item-title">${story.taggedItemTitle}</div>
-            <div class="tagged-item-price">${story.taggedItemPrice}</div>
+            <div class="tagged-item-title">${story.product.pdtTitle}</div>
+            <div class="tagged-item-price">${story.product.pdtPrice}</div>
         </div>
     </div>
 </div>

@@ -10,10 +10,13 @@ public class StoryVO {
     private String author;
     private String storyTitle;
     private String storyContent;
+    private String taggeditemImage;
     private String taggedItemTitle;
     private String taggedItemPrice;
     private String profileImage;
     private MultipartFile mainImage; // 메인 이미지
     private MultipartFile contentImage; //컨텐츠 이미지
+    private Integer productId;
+	
 }
 

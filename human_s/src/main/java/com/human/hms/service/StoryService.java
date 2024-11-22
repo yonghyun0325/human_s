@@ -32,5 +32,5 @@ public interface StoryService {
     List<StoryEntity> getAllStories();
 
     // 스토리 저장 (Entity 기반)
-    StoryEntity insertStory(StoryEntity entity, HttpServletRequest request);
+    void insertStory(StoryEntity entity, HttpServletRequest request);
 }
