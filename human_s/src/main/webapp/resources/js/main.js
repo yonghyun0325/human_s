@@ -16,6 +16,47 @@ $(function(){
 		
 		location.href = "/hms/product/checkBoxList.no?select="+select;
 	});
+	
+	//주소창에서 /텍스트.no의 텍스트를 추출해냄
+	const extractContent = () => {
+	    let url = window.location.href;
+	    return (url.match(/\/([^\/]+)\./) || [])[1] || null;
+	};
+	let nav = extractContent();
+	
+	//주소창에서 name이 들어간 뒤 부분을 추출해냄
+	function getParameterByName(name) {
+        let url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+	
+	switch(nav){
+		case 'popNewList' : {
+			let select = getParameterByName("select").trim();
+			if(select === 'pop'){
+				$(".otherPage > a:first-child").css("color", "#7cb43f"); break;
+			}else{
+				$(".otherPage > a:nth-child(2)").css("color", "#7cb43f"); break;
+			}
+		}
+		case 'checkBoxList' : {
+			let select = getParameterByName("select").trim();
+			if(select === 'areaSelect'){
+				$(".otherPage > a:nth-child(3)").css("color", "#7cb43f"); break;
+			}else{
+				$(".otherPage > a:nth-child(4)").css("color", "#7cb43f"); break;
+			}
+		}
+		case 'farmstory' : $(".otherPage > a:nth-child(5)").css("color", "#7cb43f"); break;
+		case 'notice' : $(".otherPage > a:nth-child(6)").css("color", "#7cb43f"); break;
+		case 'manager' : $(".otherPage > a:nth-child(7)").css("color", "#7cb43f"); break;
+		default : $(".otherPage > a").css("color", "#000");
+	}
 
 //footer.jsp
 	

@@ -40,8 +40,6 @@ section>img+div, section>.checkContainer+div{
     min-height: 200px;
 }
 .productList>.productItem{
-    background-color: #AFD48555;
-    border-radius: 8px;
     font-size: 16px;
     display: flex;
     flex-direction: column;
@@ -62,25 +60,29 @@ section>img+div, section>.checkContainer+div{
 	height: 180px;
 }
 .productList .productContent{
-	padding: 0px 10px 10px 10px;
+	padding: 5px 10px 10px 10px;
 	display: flex;
     flex-direction: column;
 }
 .productList .title{
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: bold;
+	white-space: nowrap; /* 줄 바꿈 방지 */
+	overflow: hidden;
+	text-overflow: ellipsis; /* ...으로 표시하기 */
 }
 .productList .price{
 	align-self: flex-end;
 	color: #aaa;
-	font-size: 12px;
+	font-size: 10px;
 }
 .productList .price>span{
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	margin-left: 5px;
 }
 .productList .company{
-	font-size: 12px;
+	font-size: 13px;
 	color: #777;
 }
 
@@ -88,12 +90,11 @@ section>img+div, section>.checkContainer+div{
 .checkContainer{
     width: 100%;
     height: 100%;
-    border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9;
     margin: 20px 0px;
     display: flex;
     align-items: stretch;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 부드럽고 은은한 그림자 */
 }
 .checkContainer .category, .checkContainer .areaSelect{
     display: none;
@@ -102,16 +103,18 @@ section>img+div, section>.checkContainer+div{
     width: 18%;
     align-self: center;
     text-align: center;
-    background-color: #ddd;
+    background-color: #7cb43f77;
+    font-weight: bold;
 }
 .checkContainer>.category{
-	padding: 12.2% 5%;
+	padding: 10% 5%;
 }
 .checkContainer>.areaSelect{
 	padding: 10% 5%;
 }
 .checkContainer .category>hr, .checkContainer .areaSelect>hr{
-	margin: 10px 0px;
+	margin: 10px 0px 20px;
+	border: 1px solid #ddd;
 }
 .checkContainer .checkBox{
 	display: flex;
@@ -135,11 +138,11 @@ section>img+div, section>.checkContainer+div{
     align-items: center;
     background-color: #fff;
     padding: 8px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
     width: 150px;
+    font-size: 14px;
 }
 .checkContainer label:hover{
     background-color: #e6f3e6;
@@ -157,6 +160,7 @@ section>img+div, section>.checkContainer+div{
     display: inline-block;
     position: relative;
     transition: background-color 0.3s, border-color 0.3s;
+    margin-right: 3%;
 }
 .checkContainer .checkList input[type="checkbox"]:checked + .custom-checkbox {/* 체크박스가 체크되었을 때 스타일 */
     background-color: #4CAF50;
