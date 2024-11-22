@@ -122,7 +122,7 @@ $(function(){
 			productList.forEach(function(item){
 				htmlContent += `
 					<div class="productItem" data-idx="${ item.pdtIdx }">
-						<div class="productRow"></div>
+						<div class="productRow" style="background-color: #fff0"></div>
 						<div class="popNum">
 				`;
 				

@@ -167,10 +167,16 @@ public class ProductController {
 	public List<ProductEntity> getProductList(@RequestParam String select, @RequestParam("checkeds[]") List<String> checkeds) {
 		List<ProductEntity> productList = null;
 		
-		if(select.equals("areaSelect")) {
-			productList = productServiceImpl.checkAreaList(checkeds);
+		System.out.println(checkeds);
+		
+		if(checkeds.size() == 1 && checkeds.get(0).equals("all")) {
+			productList = productServiceImpl.findAll();
 		}else {
-			productList = productServiceImpl.checkCategoryList(checkeds);
+			if(select.equals("areaSelect")) {
+				productList = productServiceImpl.checkAreaList(checkeds);
+			}else {
+				productList = productServiceImpl.checkCategoryList(checkeds);
+			}			
 		}
 		
 		return productList;

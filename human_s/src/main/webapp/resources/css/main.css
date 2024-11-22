@@ -39,7 +39,7 @@ header>.headerTop{ /* 헤더 상단 */
 	width: 100%;
 }
 .headerTop>.search{
-	border-bottom: solid 2px #AFD485;
+	border-bottom: solid 2px #7cb43f;
 	padding: 5px;
 	width: 30%;
 }
@@ -105,7 +105,7 @@ header>.headerTop{ /* 헤더 상단 */
     z-index: 5;
 }
 .navigation>.hiddenBack>.hiddenNav{
-	border: solid 3px #AFD48555;
+	border: solid 3px #7cb43f55;
     padding: 10px;
 	width: 100%;
 	display: flex;
@@ -116,7 +116,7 @@ header>.headerTop{ /* 헤더 상단 */
 	padding: 8%;
 }
 .navigation>.hiddenBack>.hiddenNav>a:hover{
-	color: #AFD485;
+	color: #7cb43f;
 }
 .navigation>.otherPage{
 	width: 95%;
@@ -130,7 +130,8 @@ header>.headerTop{ /* 헤더 상단 */
     font-size: 16px;
 }
 .navigation>.otherPage>a:hover{
-	border-bottom: solid 1px #AFD485;
+	border-bottom: solid 1px #7cb43f;
+	color: #7cb43f;
 }
 
 
@@ -164,20 +165,24 @@ section{
     cursor: pointer;
     font-size: 14px;
     margin-bottom: 10px;
-    border: solid 3px #AFD485;
+    border: solid 2px #AFD485;
 }
 .priceGraph>.content{
     display: flex;
     gap: 20px;
-    border: solid 3px #AFD485;
-    border-radius: 20px;
-    padding: 1%;
+    border: solid 2px #7cb43f;
+    border-radius: 10px;
+    padding: 2%;
     width: 100%;
 }
-.priceGraph>.content>.infoSection{
+.priceGraph>.content>div{
+	flex: 2;
+	display: flex;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 부드럽고 은은한 그림자 */
+}
+.priceGraph>.content .infoSection{
 	flex: 1;
 	height: 350px;
-    background-color: #eee;
     border-radius: 12px;
     padding: 20px 0px;
     display: flex;
@@ -185,59 +190,59 @@ section{
     align-items: center;
     justify-content: center;
 }
-.priceGraph>.content>.infoSection>.priceImage{
+.priceGraph>.content .infoSection>.priceImage{
 	width: 100px;
     height: 100px;
     background-color: #fff;
     border-radius: 50%;
     margin-bottom: 20px;
+    background-image: url("../../resources/uploads/1732234723382_무화과1.jpg");
 }
-.priceGraph>.content>.infoSection>.title{
+.priceGraph>.content .infoSection>.title{
 	font-size: 18px;
     margin-bottom: 8px;
     font-weight: bold;
 }
-.priceGraph>.content>.infoSection>.date{
+.priceGraph>.content .infoSection>.date{
 	font-size: 12px;
     color: #333;
     margin-bottom: 20px;
 }
-.priceGraph>.content>.infoSection>.price{
+.priceGraph>.content .infoSection>.price{
 	font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
 }
-.priceGraph>.content>.infoSection>.unit, .priceGraph>.content>.infoSection>.priceUnit{
+.priceGraph>.content .infoSection>.unit, .priceGraph>.content>.infoSection>.priceUnit{
 	font-size: 14px;
     color: #333;
 }
-.priceGraph>.content>.infoSection>.unit{
+.priceGraph>.content .infoSection>.unit{
 	margin-bottom: 10px;
 }
-.priceGraph>.content>.comparisonSection{
+.priceGraph>.content .comparisonSection{
 	flex: 1;
 	height: 350px;
 	display: flex;
     flex-direction: column;
-    background-color: #eee;
     border-radius: 12px;
     justify-content: center;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem{
-    padding: 20px;
+.priceGraph>.content .comparisonSection>.comparisonItem{
+    padding: 20px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem>.label{
+.priceGraph>.content .comparisonSection>.comparisonItem>.label{
 	font-size: 14px;
     color: #fff;
-    background-color: #AFD485;
+    background-color: #7cb43f;
     padding: 5px 10px;
     border-radius: 20px;
     margin-bottom: 10px;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem>.date{
+.priceGraph>.content .comparisonSection>.comparisonItem>.date{
 	font-size: 12px;
     color: #333;
     margin-bottom: 8px;
@@ -247,19 +252,19 @@ section{
     font-weight: bold;
     margin-bottom: 5px;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem>.unit,
-.priceGraph>.content>.comparisonSection>.comparisonItem>.priceUnit{
+.priceGraph>.content .comparisonSection>.comparisonItem>.unit,
+.priceGraph>.content .comparisonSection>.comparisonItem>.priceUnit{
 	font-size: 12px;
     color: #333;
 }
-.priceGraph>.content>.comparisonSection>.comparisonItem>.unit{
+.priceGraph>.content .comparisonSection>.comparisonItem>.unit{
 	margin-bottom: 5px;
 }
-.priceGraph>.content>.graphSection{
+.priceGraph>.content .graphSection{
 	flex: 2;
 	height: 350px;
     border-radius: 12px;
-	background-color: #eee;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 부드럽고 은은한 그림자 */
 }
 .bestProduct>.bestList{ /* Best 상품 */
     display: grid;
@@ -272,23 +277,50 @@ section{
     color: #333;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
-    height: 200px;
-    background: no-repeat center center;
-    background-size: cover;
+    height: 280px;
+    position: relative;
+    cursor: pointer;
 }
-.bestProduct>.bestList .bestItem>div{
-	color: #fff;
+.bestProduct>.bestList .productRow{
 	font-weight: bold;
+	position: absolute;
 	background-color: #777;
-	padding: 2% 5%;
-	white-space: nowrap; /* 줄 바꿈 방지 */
-	overflow: hidden;
-	text-overflow: ellipsis; /* ...으로 표시하기 */
+	padding: 5% 7%;
+	color: #fff;
 }
 .bestProduct>.bestList .bestItem>div:first-child{
 	background-color: #333;
+}
+.bestProduct .popNum{
+	padding: 10px 10px 0px 10px;
+}
+.bestProduct .popNum>img{
+	width: 100%;
+	height: 180px;
+}
+.bestProduct .productContent{
+	padding: 5px 10px 10px 10px;
+	display: flex;
+    flex-direction: column;
+}
+.productContent .title{
+	font-size: 14px;
+	font-weight: bold;
+}
+.productContent .price{
+	align-self: flex-end;
+	color: #aaa;
+	font-size: 10px;
+}
+.productContent .price>span{
+	font-weight: bold;
+	font-size: 14px;
+	margin-left: 5px;
+}
+.productContent .company{
+	font-size: 13px;
+	color: #777;
 }
 .product>div{ /* 따끈따끈한 신상, 지역특산물 */
 	display: flex;
@@ -338,7 +370,7 @@ section{
 	flex: 1;
 	margin: 1%;
 	padding: 1%;
-	border: solid 3px #AFD485;
+	border: solid 3px #7cb43f;
 	border-radius: 10px;
 }
 .farmAndNotice h4{
@@ -359,10 +391,11 @@ section{
 	margin: 2%;
 }
 .farmAndNotice hr{
+	border: 1px solid #AFD485aa;
 	margin: 10px 0px;
 }
 .farmAndNotice hr:first-child{
-	border: solid 1px #777;
+	border: solid 1px #7cb43f;
 }
 
 
@@ -380,7 +413,7 @@ footer>.footerTop{
     margin-bottom: 20px;
 }
 .footerTop>a:hover{
-    color: #AFD485;
+    color: #7cb43f;
 }
 .footerContent{
     display: flex;

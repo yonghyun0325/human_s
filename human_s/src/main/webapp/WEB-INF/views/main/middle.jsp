@@ -54,30 +54,32 @@
 	            </div>
        		</div>
         	<div class="content">
-		        <div class="infoSection">
-		            <div class="priceImage"></div>
-		            <div class="title"></div>
-		            <div class="date"></div>
-		            <div class="price"></div>
-		            <div class="unit"></div>
-		            <div class="priceUnit"></div>
-		        </div>
-		        <div class="comparisonSection">
-		            <div class="comparisonItem">
-		                <div class="label">전일 평균 가격</div>
-		                <div class="date"></div>
-		                <div class="price"></div>
-		                <div class="unit"></div>
-		                <div class="priceUnit"></div>
-		            </div>
-		            <div class="comparisonItem">
-		                <div class="label">전년 동일대비</div>
-		                <div class="date"></div>
-		                <div class="price"></div>
-		                <div class="unit"></div>
-		                <div class="priceUnit"></div>
-		            </div>
-		        </div>
+        		<div>
+			        <div class="infoSection">
+			            <div class="priceImage"></div>
+			            <div class="title"></div>
+			            <div class="date"></div>
+			            <div class="price"></div>
+			            <div class="unit"></div>
+			            <div class="priceUnit"></div>
+			        </div>
+			        <div class="comparisonSection">
+			            <div class="comparisonItem">
+			                <div class="label">전일 평균 가격</div>
+			                <div class="date"></div>
+			                <div class="price"></div>
+			                <div class="unit"></div>
+			                <div class="priceUnit"></div>
+			            </div>
+			            <div class="comparisonItem">
+			                <div class="label">전년 동일대비</div>
+			                <div class="date"></div>
+			                <div class="price"></div>
+			                <div class="unit"></div>
+			                <div class="priceUnit"></div>
+			            </div>
+			        </div>
+        		</div>
 		        <div class="graphSection">
 			        <canvas id="myChart" style="height: 35vh; width: 45vw;"></canvas>
 		        </div>
@@ -87,22 +89,22 @@
             <h4>Best 상품</h4>
             <div class="bestList">
 	<c:forEach var="i" begin="0" end="7">
-				<a href="/hms/product/viewDetail.no?idx=${ popList[i].pdtIdx }">
-		<c:choose>
-			<c:when test="${ not empty popList[i].img }">
-                <div class="bestItem" style="background-image: url('${ popList[i].img }');">
-                    <div>top ${ i+1 }</div>
-                    <div>${ popList[i].pdtTitle }</div>
+                <div class="bestItem" data-idx="${ popList[i].pdtIdx }">
+                    <div class="productRow">${ i+1 }위</div>
+					<div class="popNum">
+		<c:if test="${ not empty popList[i].img }">
+						<img src="${ popList[i].img }" alt="${ popList[i].pdtTitle }">
+		</c:if>
+		<c:if test="${ empty popList[i].img }">
+						<img src="${pageContext.request.contextPath}/resources/uploads/${popList[i].pdtSave}" alt="${ popList[i].pdtOrigin }">
+		</c:if>
+					</div>
+					<div class="productContent">
+						<div class="title">${ popList[i].pdtTitle }</div>
+						<div class="price">(100g당 ${ popList[i].pdtGPrice }원)<span>${ popList[i].pdtPrice } 원</span></div>
+						<div class="company">${ popList[i].pdtWriter }</div>
+					</div>
                 </div>
-			</c:when>
-			<c:otherwise>
-				<div class="bestItem" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${popList[i].pdtSave}');">
-                    <div>top ${ i+1 }</div>
-                    <div>${ popList[i].pdtTitle }</div>
-                </div>
-			</c:otherwise>
-		</c:choose>
-				</a>
 	</c:forEach>
             </div>
         </div>

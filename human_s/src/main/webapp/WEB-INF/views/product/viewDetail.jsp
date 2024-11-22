@@ -80,7 +80,6 @@
 				<div>
 					<div class="detailNav">
 						<button value="detailImgs" class="selected">상품상세정보</button>
-						<button value="otherProduct">관련상품</button>
 						<button value="shopInfo">배송/교환/환불</button>
 						<button value="productQuestion">상품문의</button>
 						<button value="productComment">상품후기</button>
@@ -98,22 +97,9 @@
 	</c:choose>
 					</div>
 				</div>
-				<div class="otherProduct">
-					<div class="detailNav">
-						<button value="detailImgs">상품상세정보</button>
-						<button value="otherProduct" class="selected">관련상품</button>
-						<button value="shopInfo">배송/교환/환불</button>
-						<button value="productQuestion">상품문의</button>
-						<button value="productComment">상품후기</button>
-					</div>
-					<div class="shopComment">
-						<h2>관련상품</h2>
-					</div>
-				</div>
 				<div class="shopInfo">
 					<div class="detailNav">
 						<button value="detailImgs">상품상세정보</button>
-						<button value="otherProduct">관련상품</button>
 						<button value="shopInfo" class="selected">배송/교환/환불</button>
 						<button value="productQuestion">상품문의</button>
 						<button value="productComment">상품후기</button>
@@ -126,7 +112,6 @@
 				<div class="productQuestion">
 					<div class="detailNav">
 						<button value="detailImgs">상품상세정보</button>
-						<button value="otherProduct">관련상품</button>
 						<button value="shopInfo">배송/교환/환불</button>
 						<button value="productQuestion" class="selected">상품문의</button>
 						<button value="productComment">상품후기</button>
@@ -174,7 +159,6 @@
 				<div class="productComment">
 					<div class="detailNav">
 						<button value="detailImgs">상품상세정보</button>
-						<button value="otherProduct">관련상품</button>
 						<button value="shopInfo">배송/교환/환불</button>
 						<button value="productQuestion">상품문의</button>
 						<button value="productComment" class="selected">상품후기</button>

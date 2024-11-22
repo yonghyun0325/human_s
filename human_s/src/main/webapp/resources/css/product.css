@@ -70,6 +70,12 @@
     border-radius: 4px;
     width: 75%;
 }
+.productDetail .productQty{
+	padding: 5px;
+	width: 72%;
+	border: 1px solid #2d7a2d;
+    border-radius: 4px;
+}
 .totalPrice{
     font-size: 16px;
     color: #333;
@@ -274,12 +280,15 @@ table+div{
 .sideBar .productDetail p:nth-child(2){
 	width: 72%;
 }
-.sideBar .productDetail select{
+.sideBar .productDetail select, .sideBar .productDetail .productQty{
     padding: 3px;
     font-size: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 72%;
+}
+.sideBar .productDetail .productQty{
+	width: 68%;
 }
 .sideBar .btn{
     padding: 10px 20px;
