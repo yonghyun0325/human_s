@@ -138,5 +138,9 @@ public class ProductEntity {
 		this.pdtMidName = pdtMidName;
 		this.pdtSmallName = pdtSmallName;
 	}
+	
+	public void updatePdtIdx(int pdtIdx) {
+		this.pdtIdx = pdtIdx;
+	}
 
 }

@@ -12,6 +12,14 @@
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<section>
+	<c:if test="${ (product.userEntity.userIdx == user.userIdx) or user.grade == 3}">
+		<div class="updateDetail">
+		<c:if test="${ product.userEntity.userIdx == user.userIdx }">
+			<a href="/hms/product/updateDetail.do?idx=${ product.pdtIdx }">수정</a>
+		</c:if>
+			<button value="${ product.pdtIdx }">삭제</button>
+		</div>
+	</c:if>
 		<div class="productAll">
 			<div class="productImage">
 	<c:choose>

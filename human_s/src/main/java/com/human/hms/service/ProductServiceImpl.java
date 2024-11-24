@@ -193,5 +193,59 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductEntity> checkCategoryList(List<String> checkeds) {
 		return productRepository.checkCategoryList(checkeds);
 	}
+	
+	//상품수정하기
+	@Transactional
+	@Override
+	public int updateProduct(ProductEntity entity, HttpServletRequest request) {
+	
+		int result = 0;
+		
+		PriceRealEntity pEntity = priceRealRepository
+				.getPricebyCode(entity.getPdtLargeCode(), entity.getPdtMidCode(), entity.getPdtSmallCode());
+		entity.updateCodeName(pEntity.getLargeName(), pEntity.getMidName(), pEntity.getSmallName());
+		
+		//기존에 저장된 상세내용 이미지 파일이 있는지 조회
+		List<ProductImgEntity> haveImg = productImgRepository.getImgList(entity.getPdtIdx());
+		if(haveImg != null && !haveImg.isEmpty()) {
+			productImgRepository.deleteByPdtIdx(entity.getPdtIdx());			
+		}
+		
+		entity = fileManager.pdtFile(entity, request);
+		
+		if(entity.getUploadFiles() !=  null && entity.getUploadFiles().length != 0) {
+			result = productRepository.updateProduct(entity);
+			entity = fileManager.handleFile(entity, request);
+			
+			List<ProductImgEntity> imgList = entity.getAttachedList();
+			for(ProductImgEntity imgEntity : imgList) {
+				imgEntity.updateProductEntity(entity);
+				
+				productImgRepository.save(imgEntity);
+			}
+		}else {
+			result = productRepository.updateProduct(entity);
+		}
+		
+		return result;
+	}
+
+	//상품 삭제하기
+	@Transactional
+	@Override
+	public int deleteProduct(int idx) {
+		
+		int result = 0;
+		
+		//기존에 저장된 상세내용 이미지 파일이 있는지 조회
+		List<ProductImgEntity> haveImg = productImgRepository.getImgList(idx);
+		if(haveImg != null && !haveImg.isEmpty()) {
+			productImgRepository.deleteByPdtIdx(idx);			
+		}
+		
+		result = productRepository.deleteProduct(idx);
+		
+		return result;
+	}
 
 }

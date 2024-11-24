@@ -46,4 +46,8 @@ public interface ProductService {
 
 	List<ProductEntity> checkCategoryList(List<String> checkeds);
 
+	int updateProduct(ProductEntity entity, HttpServletRequest request);
+
+	int deleteProduct(int idx);
+
 }
