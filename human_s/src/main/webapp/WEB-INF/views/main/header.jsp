@@ -14,7 +14,7 @@
     <header>
         <div class="headerTop">
             <a href="/hms/index.no">
-            	<img src="${pageContext.request.contextPath}/resources/img/Logo.webp" alt="GreenCart">
+            	<img src="${pageContext.request.contextPath}/resources/img/Logo.png" alt="GreenCart">
             </a>
             <div class="search">
                 <input type="text" class="searchProduct">
