@@ -13,7 +13,7 @@
 <div class="orderdetails_container">
 	<div class="orderdetails_top">
 		<h2>주문완료</h2>
-		<p>#님의 주문이 정상적으로 처리되었습니다</p>
+		<p>주문자님의 주문이 정상적으로 처리되었습니다</p>
 	</div>
 	<!-- 바디부분 -->
 	<div class="orderdetails_mid">
