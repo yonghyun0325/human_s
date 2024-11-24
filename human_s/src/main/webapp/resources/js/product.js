@@ -61,5 +61,15 @@ $(function(){
 	    	}
 	    }
 	});
+	
+	//상품 삭제 버튼 클릭
+	$(".updateDetail > button").click(function(){
+		let isConfirmed = confirm("이 상품을 삭제하시겠습니까?");
+		let idx = $(this).val();
+		
+		if (isConfirmed) {
+        	location.href="/hms/product/deleteDetail.do?idx="+idx;
+    	}
+	});
 
 });

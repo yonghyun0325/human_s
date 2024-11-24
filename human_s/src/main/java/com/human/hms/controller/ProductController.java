@@ -182,4 +182,82 @@ public class ProductController {
 		return productList;
 	}
 	
+	//판매자의 상품 수정 페이지
+	@GetMapping("/updateDetail.do")
+	public ModelAndView updateDetail(ModelAndView mav, @RequestParam int idx) {
+		mav.setViewName("product/updateDetail");
+		
+		//지역코드 조회
+		List<Object[]> areaList = productServiceImpl.getAreaList();
+		List<Object[]> area2List = productServiceImpl.getArea2List();
+		mav.addObject("areaList", areaList);
+		mav.addObject("area2List", area2List);
+		
+		//대.중.소 븐류코드 조회
+		List<Object[]> largeList = productServiceImpl.getLargeList();
+		List<Object[]> midList = productServiceImpl.getMidList();
+		List<Object[]> smallList = productServiceImpl.getSmallList();
+		mav.addObject("largeList", largeList);
+		mav.addObject("midList", midList);
+		mav.addObject("smallList", smallList);
+		
+		ProductEntity product = productServiceImpl.findbyId(idx);
+		mav.addObject("product", product);
+		
+		return mav;
+	}
+	
+	//상품수정하기
+	@PostMapping("/updateProduct.do")
+	public ModelAndView updateProduct(ProductVO vo, ModelAndView mav, HttpServletRequest request) {
+		String viewName = "product/updateDetail";
+		
+		// 제품 가격과 무게를 Double로 처리
+		Double pdtPrice = Double.valueOf(vo.getPdtPrice());  // 가격
+		Double pdtKg = Double.valueOf(vo.getPdtKg());       // 무게
+		// 100g당 가격 계산 (소수 첫 번째 자리에서 반올림)
+		Double pricePer100g = pdtPrice / pdtKg / 10;   // 가격 계산 (100g당 가격)
+		Double roundedPrice = Math.round(pricePer100g * 10.0) / 10.0;  // 반올림
+		System.out.println("large:"+vo.getPdtLargeCode());
+		
+		ProductEntity entity = ProductEntity.builder()
+								.pdtTitle(vo.getPdtTitle())
+								.pdtPrice(vo.getPdtPrice())
+								.pdtLargeCode(vo.getPdtLargeCode())
+								.pdtMidCode(vo.getPdtMidCode())
+								.pdtSmallCode(vo.getPdtSmallCode())
+								.pdtArea(vo.getPdtArea())
+								.pdtArea2(vo.getPdtArea2())
+								.pdtWriter(vo.getPdtWriter())
+								.pdtKg(vo.getPdtKg())
+								.pdtGPrice(String.valueOf(roundedPrice))
+								.pdtFile(vo.getPdtFile())
+								.uploadFiles(vo.getUploadFiles())
+								.build();
+		entity.updatePdtIdx(vo.getPdtIdx());
+		
+		int result = productServiceImpl.updateProduct(entity, request);
+		if(result == 1) {
+			viewName = "redirect:/index.no";
+		}
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
+	//상품 삭제하기
+	@GetMapping("/deleteDetail.do")
+	public ModelAndView deleteProduct(@RequestParam int idx, ModelAndView mav) {
+		String viewName = "product/viewDetail";
+		
+		int result = productServiceImpl.deleteProduct(idx);
+		if(result == 1) {
+			viewName = "redirect:/index.no";
+		}
+		
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
 }

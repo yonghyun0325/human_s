@@ -56,5 +56,22 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	@Query("select p from ProductEntity p "
 			+ "where p.pdtLargeCode in :checkeds ")
 	List<ProductEntity> checkCategoryList(@Param("checkeds") List<String> checkeds);
+
+	//상품 수정하기
+	@Modifying
+	@Query("update ProductEntity p "
+			+ "set p.pdtOrigin = :#{#entity.pdtOrigin}, p.pdtSave = :#{#entity.pdtSave}, p.pdtTitle = :#{#entity.pdtTitle}, "
+			+ "p.pdtPrice = :#{#entity.pdtPrice}, p.pdtLargeCode = :#{#entity.pdtLargeCode}, p.pdtMidCode = :#{#entity.pdtMidCode}, "
+			+ "p.pdtSmallCode = :#{#entity.pdtSmallCode}, p.pdtLargeName = :#{#entity.pdtLargeName}, p.pdtMidName = :#{#entity.pdtMidName}, "
+			+ "p.pdtSmallName = :#{#entity.pdtSmallName}, p.pdtArea = :#{#entity.pdtArea}, p.pdtArea2 = :#{#entity.pdtArea2}, "
+			+ "p.pdtWriter = :#{#entity.pdtWriter}, p.pdtKg = :#{#entity.pdtKg}, p.pdtGPrice = :#{#entity.pdtGPrice} "
+			+ "where p.pdtIdx = :#{#entity.pdtIdx}")
+	int updateProduct(@Param("entity")ProductEntity entity);
+
+	//상품 삭제하기
+	@Modifying
+	@Query("delete from ProductEntity p "
+			+ "where p.pdtIdx = :idx")
+	int deleteProduct(@Param("idx") int idx);
 	
 }

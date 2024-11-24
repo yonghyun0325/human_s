@@ -3,6 +3,18 @@
 /* viewDetail.jsp */
 
 /* 상단 사진~구매 */
+.updateDetail{
+	display: flex;
+	justify-content: flex-end;
+	padding: 20px;
+}
+.updateDetail>a, .updateDetail>button{
+	margin: 0px 1%;
+	font-size: 14px;
+}
+.updateDetail>a:hover, .updateDetail>button:hover{
+	color: #7cb43f;
+}
 .productAll{ 
     display: flex;
     width: 100%;

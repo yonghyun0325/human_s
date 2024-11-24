@@ -256,5 +256,11 @@ $(function(){
 		let id = $(this).data("id");
 		location.href = "/hms/board/notice/view.do?noticeId="+id;
 	});
+	
+	//Best 상품 클릭 시 해당 상품 상세보기
+	$(".bestItem").click(function(){
+		let idx = $(this).data("idx");
+		location.href = "/hms/product/viewDetail.no?idx="+idx;
+	});
 
 });
