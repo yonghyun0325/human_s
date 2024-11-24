@@ -19,7 +19,7 @@
         <!-- 메인 콘텐츠 -->
         <main class="main-content">
             <main class="main-content">
-                <div class="info-message">[<span class="highlight">이용자님</span>]의 문의에 답변이 등록되면 알려드립니다.</div>
+                <div class="info-message">[<span class="highlight">${user.userName}</span>]의 문의에 답변이 등록되면 알려드립니다.</div>
                 <div class="form-section">
                     <table class="form-table">
                         <tr>

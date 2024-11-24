@@ -30,4 +30,5 @@ public String order(@RequestParam("p_idx")int idx, Model model) {
 		 
     	return "orderdetails/order";
     }
+    
 }

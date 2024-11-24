@@ -20,7 +20,7 @@
         <!-- 메인 콘텐츠 -->
         <main class="main-content">
             <div class="info-message">
-                <span class="highlight">[이용자님]</span>이 쇼핑몰에서 사용 가능한 1:1 고객상담 내역입니다.
+                <span class="highlight">${user.userName}</span>이 쇼핑몰에서 사용 가능한 1:1 고객상담 내역입니다.
             </div>
 
             <!-- 문의 내역 테이블 -->

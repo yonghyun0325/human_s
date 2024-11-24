@@ -20,12 +20,12 @@
         <div class="main-content">
 
             <div class="info-box">
-                <p>자주 쓰는 이용자님의 배송지를 등록 및 관리 하실 수 있습니다.</p>
+                <p>자주 쓰는 <span class="highlight">${user.userName}</span>님의 배송지를 등록 및 관리 하실 수 있습니다.</p>
             </div>
 
             <!-- 이용자님의 배송지 섹션 -->
             <div class="address-section">
-                <h2>이용자님의 배송지</h2>
+                <h2>${user.userName}님의 배송지</h2>
                 <table>
                     <thead>
                         <tr>
