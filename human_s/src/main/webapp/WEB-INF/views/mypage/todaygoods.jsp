@@ -20,7 +20,7 @@
         <main class="main-content">
             <!-- 최근 본 상품 안내 메시지 -->
             <div class="info-box">
-                <p><span class="user-name">[이용현]</span>님이 쇼핑몰에서 최근 본 상품 내역입니다.</p>
+                <p><span class="user-name">[${user.userName}]</span>님이 쇼핑몰에서 최근 본 상품 내역입니다.</p>
             </div>
 
             <!-- 최근 본 상품 테이블 -->

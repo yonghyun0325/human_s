@@ -22,7 +22,7 @@
         <main class="main-content">
             
             <div class="coupon-header">
-                <p><span class="user-name">[이용현]</span>님이 쇼핑몰에서 사용 가능한 쿠폰 내역입니다.</p>
+                <p><span class="user-name">[${user.userName}]</span>님이 쇼핑몰에서 사용 가능한 쿠폰 내역입니다.</p>
                 <button class="register-coupon-btn">쿠폰 번호 등록</button>
             </div>
 

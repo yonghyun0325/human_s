@@ -20,7 +20,7 @@
         <!-- 메인 콘텐츠 -->
         <main>
             <div class="info-message">
-                <span class="highlight">[이용자님]</span>이 쇼핑몰에 작성한 댓글 내역입니다.
+                <span class="highlight">[${user.userName}]</span>이 쇼핑몰에 작성한 댓글 내역입니다.
             </div>
 
             <!-- 게시글 내역 테이블 -->
