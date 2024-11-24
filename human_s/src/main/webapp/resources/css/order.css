@@ -115,6 +115,15 @@ h1 {
 	background-color: #e0e0e0;
 }
 
+.bankInfo{
+	display:flex;
+	flex-direction:column;
+}
+
+.cardInfo{
+	display:flex;
+	flex-direction:column;
+}
 .form-group {
 	margin-bottom: 10px;
 }

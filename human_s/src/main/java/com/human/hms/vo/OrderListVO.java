@@ -19,5 +19,17 @@ public class OrderListVO {
     private String orPostDate;     // 배송일자
     private String orName;         // 상품명
     private String orCount;        // 개수
-	
+	private String orHuman; //주문자 이름
+	private String orphone; //주문자 전화번호
+	private String orEmail; //주문자 이메일
+	private String orRecHuman;//받는분이름 
+	private String orRecPhone;//받는분전화번호
+	private String orMessage;//배송메시지
+	private String orCardNum;//카드번호 
+	private String orCvc;//cvc번호 
+	private String orBankName;//은행명
+	private String orBackNum;//계좌번호
+	private String orPost;//우편번호
+	private String orAdd1;//상세주소1
+	private String orAdd2;//상세주소2
 }
