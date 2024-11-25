@@ -1,7 +1,11 @@
 package com.human.hms.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,5 +90,17 @@ public class OrderListController {
     	}
     	return viewName;
     }
-    
+    @GetMapping("/search")
+    public String searchOrders(
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
+            Model model) {
+    	
+        // 서비스 호출로 데이터 조회
+        List<OrderListEntity> orderList = OrderListServiceImpl.getOrdersByDateRange(startDate, endDate);
+        
+        // 조회 결과를 모델에 추가
+        model.addAttribute("orderList", orderList);
+        return "mypage/orderShippingStatus"; // JSP 파일 이름
+    }
 }

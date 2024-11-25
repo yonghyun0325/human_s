@@ -1,6 +1,7 @@
 package com.human.hms.repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,7 +27,8 @@ public interface OrderListRepository extends JpaRepository<OrderListEntity, Long
 	@Query("select count(o) from OrderListEntity o "
 			+ "where FUNCTION('DATE_FORMAT', o.orPayDate, '%Y%m%d') = :formattedDate")
 	int countOrder(@Param("formattedDate")String formattedDate);
-	
-	
 
+	@Query("SELECT o FROM OrderListEntity o WHERE o.orPayDate BETWEEN :startDate AND :endDate")
+	List<OrderListEntity> findByOrPayDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	
 }

@@ -36,14 +36,14 @@
                             <th>관리</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="addressTableBody">
                         <tr>
                             <td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="button-container">
-                    <button class="add-btn">배송지 추가</button>
+                    <button class="add-btn" id="add-address-btn" onclick="openAddAddressPopup()">배송지 추가</button>
                 </div>
             </div>
 
@@ -70,5 +70,51 @@
     </div>
     
     <%@ include file ="/WEB-INF/views/main/footer.jsp" %>
+    
+    <script>
+        // 팝업 열기 함수
+        function openAddAddressPopup() {
+            window.open(
+                'addaddress.do',
+                '배송지 추가',
+                'width=600,height=700,scrollbars=yes'
+            );
+        }
+        
+     // 팝업에서 데이터를 추가하는 함수
+        function addAddressToTable(addressData) {
+            const tableBody = document.getElementById('addressTableBody');
+
+            // 기존 "자주 사용하는 배송지를 주소록에 추가해주세요." 행 제거
+            if (tableBody.children.length === 1 && tableBody.children[0].cells.length === 1) {
+                tableBody.innerHTML = '';
+            }
+
+            // 새 행 생성
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="checkbox"></td>
+                <td>[${addressData.addressName}] ${addressData.recipient} / ${addressData.address}</td>
+                <td>${addressData.phone}</td>
+                <td>${addressData.message || '없음'}</td>
+                <td><button type="button" onclick="removeRow(this)">삭제</button></td>
+            `;
+
+            // 테이블에 새 행 추가
+            tableBody.appendChild(newRow);
+        }
+
+        // 행 삭제 기능
+        function removeRow(button) {
+            const row = button.closest('tr');
+            row.remove();
+
+            // 테이블이 비었으면 안내 문구 추가
+            const tableBody = document.getElementById('addressTableBody');
+            if (tableBody.children.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td></tr>`;
+            }
+        }
+    </script>
 </body>
 </html>

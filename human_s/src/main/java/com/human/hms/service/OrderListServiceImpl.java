@@ -2,6 +2,7 @@ package com.human.hms.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.mail.internet.MimeMessage;
 
@@ -102,4 +103,9 @@ public class OrderListServiceImpl implements OrderListService {
 		
 	}
 
+	@Override
+	public List<OrderListEntity> getOrdersByDateRange(Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return repository.findByOrPayDateBetween(startDate, endDate);
+	}
 }
