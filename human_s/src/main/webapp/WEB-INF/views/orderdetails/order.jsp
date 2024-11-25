@@ -15,9 +15,10 @@
 <div class="layout">
 	<div class="container">
 	    <h1>주문/결제</h1>
-		<form>
+		<form action="orderProcess.no" method="post">
 		    <div class="content">
 		        <!-- 왼쪽 섹션 -->
+		        <input type="hidden" value="${product.pdtIdx}" name="pdtIdx">
 		        <div class="left-section">
 		            <!-- 주문상품 정보 -->
 		            <div class="order-product-info">
@@ -31,7 +32,9 @@
 					            <img src="${pageContext.request.contextPath}/resources/uploads/${product.pdtSave}">
 					            <div class="product-details">
 					                <p>${product.pdtTitle}</p>
+					                <input type="hidden" name="orName" value="${product.pdtTitle}">
 					                <p>수량: 1개 (${product.pdtPrice}원)</p>
+					                <input type="hidden" value="1" name="orCount">
 					            </div>
 					        </div>
 					        <div class="price-info">
@@ -77,7 +80,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <label>나머지 주소</label>
-		                    <input type="text" name="orAdd1" id="sample6_detailAddress">
+		                    <input type="text" name="orAdd2" id="sample6_detailAddress">
 		                    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 		                </div>
 		                <div class="form-group phone-group">
@@ -100,20 +103,20 @@
 		                <p>배송비: <span>3,000원</span></p>
 		                <p>할인금액: <span>0원</span></p>
 		                <hr>
-		                <p class="total">최종 결제금액: <input value="원" name="orPayAmount" disabled style="border:none"></p>
+		                <p class="total">최종 결제금액: <input value="${product.pdtPrice}" name="orPayAmount" disabled style="border:none">원</p>
 		            </div>
 		
 		            <!-- 결제 수단 -->
 		            <div class="payment-method">
 		                <h2>결제 수단</h2>
 		                <input	type="hidden" name="orPayType" id="orPayType">
-		                <button class="method-button" id="cardBtn">신용카드</button>
+		                <button type="button" class="method-button" id="cardBtn">신용카드</button>
 		                <div class="cardInfo">
 		                	<input placeholder="이름">
 		                	<input placeholder="-를 제외한 카드번호 입력" name="orCardNum">
 		                	<input placeholder="cvc번호" name="orCvc">
 		                </div>
-		                <button class="method-button" id="bankBtn">계좌이체</button>
+		                <button type="button" class="method-button" id="bankBtn">계좌이체</button>
 		            	<div class="bankInfo">
 		            		<input placeholder="이름">
 		            		<input placeholder="은행명">

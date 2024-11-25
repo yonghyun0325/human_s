@@ -26,9 +26,6 @@ public class OrderListEntity {
 	@Column(name = "o_idx", nullable = false)
 	public String orIdx;//주문번호
 	
-	@Column(name = "o_userpoint", nullable = false)
-	public String orUserPoint;//적립금 사용내역
-	
 	@Column(name = "o_pay_amount", nullable = false)
 	public String  orPayAmount;//결제금액
 	
@@ -77,8 +74,8 @@ public class OrderListEntity {
 	@Column(name = "o_bankname")
 	private String orBankName;//은행명
 	
-	@Column(name = "o_backnum")
-	private String orBackNum;//계좌번호
+	@Column(name = "o_banknum")
+	private String orBankNum;//계좌번호
 	
 	@ManyToOne
 	@JoinColumn(name="user_idx", updatable = false)
@@ -90,18 +87,16 @@ public class OrderListEntity {
 	private ProductEntity productEntity;
 	
 	@Builder
-	public OrderListEntity(String orIdx,String orUserPoint, String orPayAmount, 
-			String  orPayType, String  orStatus, String orPostDate, 
+	public OrderListEntity(String orPayAmount, 
+			String  orPayType, String orPostDate, 
 			String orName, String orCount, 
 			String orPost, String orAdd1, String orAdd2,
 			String orRecHuman, String orRecPhone, String orMessage,
-			String orCardNum, String orCvc, String orBackNum,
+			String orCardNum, String orCvc, String orBankNum,
 			String orBankName) {
-		this.orIdx = orIdx;
-		this.orUserPoint = orUserPoint;
 		this.orPayAmount = orPayAmount;
 		this.orPayType = orPayType;
-		this.orStatus = orStatus;
+		this.orStatus = "1";
 		this.orPostDate = new Date();
 		this.orName = orName;
 		this.orCount = orCount;
@@ -114,8 +109,13 @@ public class OrderListEntity {
 		this.orCardNum = orCardNum;
 		this.orCvc = orCvc;
 		this.orBankName = orBankName;
-		this.orBackNum = orBackNum;
+		this.orBankNum = orBankNum;
 		this.orPayDate = new Date();
+	}
+	
+	//주문번호 필드에 대한 값의 변경 메소드
+	public void updateOrIdx(String orIdx) {
+		this.orIdx = orIdx;
 	}
 		
 	//UserEntity필드에 대한 값의 변경 메소드
