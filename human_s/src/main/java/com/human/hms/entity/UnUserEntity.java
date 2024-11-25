@@ -30,41 +30,28 @@ public class UnUserEntity {
 	@Column(name = "un_phone", nullable = false)
 	private String unPhone;
 	
-	@Column(name = "un_birth", nullable = false)
-	private String unBirth;
-	
 	@Column(name = "un_email", nullable = false)
 	private String unEmail;
-	
-	@Column(name = "un_post", nullable = false)
-	private String unPost;
-	
-	@Column(name = "un_add1", nullable = false)
-	private String unAdd1;
-	
-	@Column(name = "un_add2", nullable = false)
-	private String unAdd2;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "o_idx", updatable = false)
 	private OrderListEntity orderListEntity;
 
 	@Builder
-	public UnUserEntity(String unName, String unPhone, String unBirth, 
-			String unEmail, String unPost, String unAdd1, String unAdd2) {
+	public UnUserEntity(String unName, String unPhone, String unEmail) {
 		
 		this.unName = unName;
 		this.unPhone = unPhone;
-		this.unBirth = unBirth;
 		this.unEmail = unEmail;
-		this.unPost = unPost;
-		this.unAdd1 = unAdd1;
-		this.unAdd2 = unAdd2;
-				
+
 	}
 	
 	public void updateUnidx(int unIdx) {
 		this.unIdx = unIdx;
+	}
+	
+	public void updateOrderList(OrderListEntity orderListEntity) {
+		this.orderListEntity = orderListEntity;
 	}
 	
 }

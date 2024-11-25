@@ -28,8 +28,9 @@ public class OrderListVO {
 	private String orCardNum;//카드번호 
 	private String orCvc;//cvc번호 
 	private String orBankName;//은행명
-	private String orBackNum;//계좌번호
+	private String orBankNum;//계좌번호
 	private String orPost;//우편번호
 	private String orAdd1;//상세주소1
 	private String orAdd2;//상세주소2
+	private int pdtIdx;//외래키
 }

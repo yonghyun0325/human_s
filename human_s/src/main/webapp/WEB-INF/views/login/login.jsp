@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file="../main/header.jsp"%>
-	<img class="logo"src="${pageContext.request.contextPath}/resources/img/Logo.webp"
+	<img class="logo"src="${pageContext.request.contextPath}/resources/img/Logo.png"
 	onclick="location.href='/hms/'">
 	<div class="login_type_btn">
 			<button id="userBtn">회원</button>
