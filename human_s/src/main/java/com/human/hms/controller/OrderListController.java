@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ProductEntity;
@@ -43,10 +44,10 @@ public class OrderListController {
     }
     
     @PostMapping("/orderProcess.no")
-    public String orderProcess(OrderListVO vo, Model model, HttpServletRequest request) {
+    public String orderProcess(OrderListVO vo, HttpServletRequest request, RedirectAttributes redirectModel) {
     	String viewName = "orderdetail/order.no?p_idx="+vo.getPdtIdx();//실패시 뷰네임
     	OrderListEntity entity = OrderListEntity.builder()
-    									.orPayAmount(vo.getOrPayAmount()+3000)
+    									.orPayAmount(String.valueOf(Integer.parseInt(vo.getOrPayAmount()) + 3000))
     									.orPayType(vo.getOrPayType())
     									.orName(vo.getOrName())
     									.orCount(vo.getOrCount())
@@ -70,17 +71,17 @@ public class OrderListController {
     									.unPhone(vo.getOrphone())
     									.unEmail(vo.getOrEmail())
     									.build();
-    		model.addAttribute("unuser", un_entity);
+    		redirectModel.addFlashAttribute("unuser", un_entity);
     		if(OrderListServiceImpl.orderUnuser(un_entity, entity) != null) {
-        		viewName = "orderdetails/orderdetails";
-        		model.addAttribute("order", entity);
+        		viewName = "redirect:orderdetails.no";
+        		redirectModel.addFlashAttribute("order", entity);
         	}
     	}else {
     		UserEntity u_entity =  (UserEntity)request.getSession().getAttribute("user");
     		entity.updateUserEntity(u_entity);//orderListEntity에 대한 user_idx 값 메소드
     		if(OrderListServiceImpl.orderuser(entity) != null) {
-        		viewName = "orderdetails/orderdetails";
-        		model.addAttribute("order", entity);
+    			viewName = "redirect:orderdetails.no";
+        		redirectModel.addFlashAttribute("order", entity);
         	}
     	}
     	return viewName;

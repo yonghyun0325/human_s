@@ -99,11 +99,11 @@
 		            <!-- 결제 금액 -->
 		            <div class="payment-info">
 		                <h2>결제 금액</h2>
-		                <p>상품금액: <input value="${product.pdtPrice}원" disabled style="border:none"></p>
+		                <p>상품금액: ${product.pdtPrice}</p>
 		                <p>배송비: <span>3,000원</span></p>
 		                <p>할인금액: <span>0원</span></p>
 		                <hr>
-		                <p class="total">최종 결제금액: <input value="${product.pdtPrice}" name="orPayAmount" disabled style="border:none">원</p>
+		                <p class="total">최종 결제금액: ${product.pdtPrice+3000}<input value="${product.pdtPrice}" name="orPayAmount" readOnly type="hidden">원</p>
 		            </div>
 		
 		            <!-- 결제 수단 -->
