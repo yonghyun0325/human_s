@@ -89,6 +89,7 @@
     <!-- 필터 스크립트 -->
     <script>
         $(document).ready(function() {
+            
             // 필터 버튼 클릭 시 이벤트 처리
             $('.filter-btn').on('click', function() {
                 // 모든 버튼에서 활성화 클래스 제거
@@ -99,31 +100,48 @@
                 
                 // 버튼 데이터 속성으로 기간 설정
                 const period = $(this).data('period');
+                const today = new Date(); // 오늘 날짜
+                let baseDate = new Date(today); // 기본값: 오늘
                 
-                // 기간에 따른 기본 날짜 설정
-                const today = new Date();
-                let baseDate = new Date(today);
-                
-                if (period === 'yesterday') {
-                    baseDate.setDate(today.getDate() - 1);
-                } else if (period === 'week') {
-                    baseDate.setDate(today.getDate() - 7);
-                } else if (period === 'month') {
-                    baseDate.setMonth(today.getMonth() - 1);
-                } else if (period === 'threeMonths') {
-                    baseDate.setMonth(today.getMonth() - 3);
-                } else if (period === 'year') {
-                    baseDate.setFullYear(today.getFullYear() - 1);
-                }
-                
-             	// '오늘' 버튼 클릭 시 오늘 날짜 유지
-                if (period === 'today') {
-                    baseDate = today; // 오늘 날짜 그대로
+             	// 기간 설정
+                switch (period) {
+                    case 'yesterday':
+                        baseDate.setDate(today.getDate() - 1); // 어제
+                        break;
+                    case 'week':
+                        baseDate.setDate(today.getDate() - 7); // 1주일 전
+                        break;
+                    case 'month':
+                        baseDate.setMonth(today.getMonth() - 1); // 1개월 전
+                        break;
+                    case 'threeMonths':
+                        baseDate.setMonth(today.getMonth() - 3); // 3개월 전
+                        break;
+                    case 'year':
+                        baseDate.setFullYear(today.getFullYear() - 1); // 1년 전
+                        break;
                 }
                 
                 // 날짜 입력 필드에 값 설정
                 $('#baseDate').val(baseDate.toISOString().split('T')[0]);
                 $('#endDate').val(today.toISOString().split('T')[0]);
+                
+            });
+            
+         	// 조회하기 버튼 클릭 시 서버로 요청
+            $('.search-btn').on('click', function() {
+                const startDate = $('#baseDate').val(); // 시작 날짜 값
+                const endDate = $('#endDate').val();   // 종료 날짜 값
+                
+                // 날짜 값이 없을 경우 경고 표시
+                if (!startDate || !endDate) {
+                    alert('날짜를 선택해주세요.');
+                    return;
+                }
+
+                // 서버로 GET 요청 보내기
+                const url = "/hms/orderdetails/search?startDate=" + startDate + "&endDate=" + endDate;
+                window.location.href = url; // 페이지 이동
             });
         });
     </script>

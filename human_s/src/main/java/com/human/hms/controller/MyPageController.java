@@ -108,4 +108,8 @@ public class MyPageController {
     public String showMyArticle(){
         return "mypage/myarticle";
     }
+    @GetMapping("/addaddress.do")
+    public String addAddressPage() {
+        return "mypage/addaddress";
+    }
 }
