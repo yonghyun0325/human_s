@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문완료</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/orderdetails.css">
 <script src="../resources/js/jquery-3.7.1.min.js"></script>
 </head>
@@ -33,7 +33,7 @@
 			</div>
 			<div>
 				<h4>주문상품</h4>
-				<span>이용현</span>
+				<span>${order.orRecHuman}</span>
 				<p>010-####-####</p>
 				<p>주문자 정보로 주문 관련 정보가 문자와 이메일로 발송됩니다</p>
 				<p>비회원은 이메일과 주문번호로 주문조회가 가능합니다</p>
@@ -42,8 +42,8 @@
 				<h4>배송지</h4>
 				<p>이용현</p>
 				<p>[31115]충청남도 천안시 동남구 북일로 70(힐스테이트 천안 신부) 109동 1803호</p>
-				<p>010-####-####</p>
-				<p>yonghyunbabo@naver.com</p>
+				<p>${product.pdtRecPhone}</p>
+				
 			</div>
 		</div>
 		<!-- 오른쪽 -->
