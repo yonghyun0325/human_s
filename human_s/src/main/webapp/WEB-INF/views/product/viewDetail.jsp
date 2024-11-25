@@ -77,15 +77,23 @@
 					<p><span>${ product.pdtPrice }</span>원</p>
 				</div>
 				<div class="buttons">
+	<c:choose>
+		<c:when test="${ not empty user }">
 					<button class="btn wishlist" value="wishlist">찜하기</button>
-					<button class="btn cart" value="cart">장바구니</button>
+					<button class="btn cart" value="cart">장바구니</button>		
+		</c:when>
+		<c:otherwise>
+					<a class="btn wishlist" href="/hms/user/login.no">찜하기</a>
+					<a class="btn cart" href="/hms/user/login.no">장바구니</a>
+		</c:otherwise>
+	</c:choose>
 					<button class="btn buy" value="buy">바로구매</button>
 				</div>
 			</div>
 		</div>
 		<div class="detailAll">
 			<div class="detailList">
-				<div>
+				<div class="detailImgs">
 					<div class="detailNav">
 						<button value="detailImgs" class="selected">상품상세정보</button>
 						<button value="shopInfo">배송/교환/환불</button>
@@ -95,7 +103,7 @@
 					<div class="imgList">
 	<c:choose>
 		<c:when test="${ not empty product.attachedList }">
-			<c:forEach var="i" begin="0" end="${ product.attachedList.size() }">
+			<c:forEach var="i" begin="0" end="${ product.attachedList.size()-1 }">
 						<img src="${pageContext.request.contextPath}/resources/uploads/${ product.attachedList[i].piSave }" alt="${ i }">
 			</c:forEach>
 		</c:when>
@@ -137,16 +145,23 @@
 					        	</tr>
 					        </thead>
 					        <tbody>
+	<c:if test="${ not empty pinquiryList }">
+		<c:forEach var="item" items="${ pinquiryList }" varStatus="i">
 					        	<tr>
-						            <td class="qNumber">1</td>
-						            <td class="qTitle">title</td>
-						            <td class="qWriter">writer</td>
-						            <td class="qDate">date</td>
-						            <td class="qNumber">view</td>
+						            <td class="cNumber">${ i.index+1 }</td>
+						            <td class="cTitle">${ item.reviewTitle }</td>
+						            <td class="cWriter">${ item.author }</td>
+						            <td class="cDate">${ item.createdDate }</td>
+						            <td class="cStar">⭐⭐⭐⭐</td>
+						            <td class="cNumber">${ item.views }</td>
 						        </tr>
+		</c:forEach>
+	</c:if>		  
+	<c:if test="${ empty pinquiryList }">
 						        <tr>
-						        	<td colspan="5">내용</td>
+						        	<td colspan="6">등록된 문의가 없습니다.</td>
 						        </tr>
+	</c:if>    
 					        </tbody>
 						</table>
 						<!-- 페이지네이션 -->
@@ -267,8 +282,16 @@
 						<p><span>${ product.pdtPrice }</span>원</p>
 					</div>
 					<div class="buttons">
+						<c:choose>
+		<c:when test="${ not empty user }">
 						<button class="btn wishlist" value="wishlist">찜하기</button>
-						<button class="btn cart" value="cart">장바구니</button>
+						<button class="btn cart" value="cart">장바구니</button>		
+		</c:when>
+		<c:otherwise>
+						<a class="btn wishlist" href="/hms/user/login.no">찜하기</a>
+						<a class="btn cart" href="/hms/user/login.no">장바구니</a>
+		</c:otherwise>
+	</c:choose>
 					</div>
 					<button class="btn buy" value="buy">바로구매</button>
 				</div>

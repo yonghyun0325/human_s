@@ -17,7 +17,7 @@
             	<img src="${pageContext.request.contextPath}/resources/img/Logo.png" alt="GreenCart">
             </a>
             <div class="search">
-                <input type="text" class="searchProduct">
+                <input type="text" class="searchProduct" value="${ select }">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="userIcon">

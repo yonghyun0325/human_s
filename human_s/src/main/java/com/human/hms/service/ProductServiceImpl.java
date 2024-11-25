@@ -12,12 +12,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.human.hms.entity.BasketEntity;
+import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.PriceRealEntity;
 import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ProductImgEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
+import com.human.hms.repository.BasketRepository;
 import com.human.hms.repository.DmsjPriceRealRepository;
+import com.human.hms.repository.PinquiryRepository;
 import com.human.hms.repository.ProductImgRepository;
 import com.human.hms.repository.ProductRepository;
 import com.human.hms.repository.ReviewRepository;
@@ -33,7 +37,9 @@ public class ProductServiceImpl implements ProductService {
 	private ProductFileManager fileManager;
 	private ProductRepository productRepository;
 	private ProductImgRepository productImgRepository;
-	private ReviewRepository reviewRepository;
+	private ReviewRepository reviewRepository;		 	//상품리뷰
+	private BasketRepository basketRepository;
+	private PinquiryRepository pinquiryRepository;		//상품문의
 
 
 	//대분류코드 조회
@@ -246,6 +252,31 @@ public class ProductServiceImpl implements ProductService {
 		result = productRepository.deleteProduct(idx);
 		
 		return result;
+	}
+
+	//상품을 장바구니에 등록하기
+	@Override
+	public int productInCart(BasketEntity entity) {
+		int result = 0;
+		
+		if(basketRepository.checkCart(entity) == 0) { //장바구니에 없으면
+			if(basketRepository.save(entity) != null) {
+				result = 1;
+			}
+		}else { //장바구니에 이미 존재하면 : 기존 수량 + 현재 수량
+			if(basketRepository.updateCart(entity.getQty(), entity.getUserEntity().getUserIdx(), 
+					entity.getProductEntity().getPdtIdx()) == 1) {
+				result = 1;
+			}
+		}
+		
+		return result;
+	}
+
+	//상품 문의 목록 조회
+	@Override
+	public List<PinquiryEntity> getPinquiryList(int idx) {
+		return pinquiryRepository.getPinquiryList(idx);
 	}
 
 }

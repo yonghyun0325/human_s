@@ -81,7 +81,7 @@
 			        </div>
         		</div>
 		        <div class="graphSection">
-			        <canvas id="myChart" style="height: 35vh; width: 45vw;"></canvas>
+			        <canvas id="myChart" style="height: 35vh; width: 45vw; max-width:580px;"></canvas>
 		        </div>
 	        </div>
         </div>
@@ -118,11 +118,13 @@
 			<c:when test="${ not empty newList[i].img }">
 	                <div class="newItem item" style="background-image: url('${ newList[i].img }');">
 	                    <div>${ newList[i].pdtTitle }</div>
+	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
 	                </div>
 			</c:when>
 			<c:otherwise>
 					<div class="newItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${newList[i].pdtSave}');">
 	                    <div>${ newList[i].pdtTitle }</div>
+	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
 	                </div>
 			</c:otherwise>
 		</c:choose>
@@ -135,19 +137,25 @@
             <h4>지역 특산물</h4>
             <div class="areaContainer container">
             	<div class="areaList list">
-    <c:forEach var="i" begin="0" end="${ areaList.size() }">
+    <c:forEach var="i" begin="0" end="${ areaList.size()-1 }">
 					<a href="/hms/product/viewDetail.no?idx=${ areaList[i].pdtIdx }">
 		<c:choose>
 			<c:when test="${ not empty areaList[i].img }">
 	                <div class="areaItem item" style="background-image: url('${ areaList[i].img }');">
 	                	<div>${ areaList[i].pdtArea }</div>
-	                    <div>${ areaList[i].pdtTitle }</div>
+	                	<div class="areaBox">
+		                    <div>${ areaList[i].pdtTitle }</div>
+		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice } 원</span></div>
+	                	</div>
 	                </div>
 			</c:when>
 			<c:otherwise>
 					<div class="areaItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${areaList[i].pdtSave}');">
 	                    <div>${ areaList[i].pdtArea }</div>
-	                    <div>${ areaList[i].pdtTitle }</div>
+	                    <div class="areaBox">
+		                    <div>${ areaList[i].pdtTitle }</div>
+		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice } 원</span></div>
+	                	</div>
 	                </div>
 			</c:otherwise>
 		</c:choose>
@@ -190,5 +198,8 @@
         </div>
     </section>
 
+	<script>
+		const contextPath = '${pageContext.request.contextPath}';
+	</script>
 </body>
 </html>

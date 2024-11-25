@@ -119,6 +119,8 @@ public class ApiProductServiceImpl implements ApiProductService {
 			dailyPrice.setItemKindRankCode(dailyPrice.getItem_code()+dailyPrice.getKind_code()
 												+dailyPrice.getRank_code());
 			
+			String img = productRepository.getImg(dailyPrice.getItem_name());
+			
 			DailyPriceByCategoryEntity entity = DailyPriceByCategoryEntity.builder()
 												.itemKindRankCode(dailyPrice.getItemKindRankCode())
 												.item_name(dailyPrice.getItem_name())
@@ -142,6 +144,7 @@ public class ApiProductServiceImpl implements ApiProductService {
 												.dpr6(dailyPrice.getDpr6())
 												.day7(dailyPrice.getDay7())
 												.dpr7(dailyPrice.getDpr7())
+												.img(img)
 												.build();
 			if(dailyPriceRepository.save(entity) != null) {
 				result++;

@@ -73,5 +73,12 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	@Query("delete from ProductEntity p "
 			+ "where p.pdtIdx = :idx")
 	int deleteProduct(@Param("idx") int idx);
+
+	//메인화면 그래프 이미지 저장하기
+	@Query(value = "select pdt_img from product p "
+			+ "where pdt_midname like %:itemName% or pdt_smallname like %:itemName% or pdt_title like %:itemName% "
+			+ "and pdt_img is not null "
+			+ "limit 1 ", nativeQuery = true)
+	String getImg(@Param("itemName") String itemName);
 	
 }

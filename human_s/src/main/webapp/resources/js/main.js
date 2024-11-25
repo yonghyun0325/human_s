@@ -16,6 +16,13 @@ $(function(){
 		
 		location.href = "/hms/product/checkBoxList.no?select="+select;
 	});
+	//상단 검색 엔터키로도 구현
+	$(".headerTop > .search > .searchProduct").on("keydown", function(event){
+	    if (event.key === "Enter" || event.keyCode === 13) {
+	        let select = $(this).val();
+	        location.href = "/hms/product/checkBoxList.no?select=" + select;
+	    }
+	});
 	
 	//주소창에서 /텍스트.no의 텍스트를 추출해냄
 	const extractContent = () => {
@@ -48,8 +55,10 @@ $(function(){
 			let select = getParameterByName("select").trim();
 			if(select === 'areaSelect'){
 				$(".otherPage > a:nth-child(3)").css("color", "#7cb43f"); break;
-			}else{
+			}else if(select === 'category'){
 				$(".otherPage > a:nth-child(4)").css("color", "#7cb43f"); break;
+			}else{
+				$(".otherPage > a").css("color", "#000"); break;
 			}
 		}
 		case 'farmstory' : $(".otherPage > a:nth-child(5)").css("color", "#7cb43f"); break;

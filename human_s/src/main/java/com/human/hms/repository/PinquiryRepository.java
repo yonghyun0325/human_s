@@ -29,6 +29,10 @@ public interface PinquiryRepository extends JpaRepository<PinquiryEntity, Long> 
     @Query("SELECT n FROM PinquiryEntity n WHERE n.pinquiryContent LIKE %:keyword%")
     List<PinquiryEntity> findByContent(@Param("keyword") String keyword, Pageable pageable);
 
+    //상품상세보기 - 상품별 문의내역 가져오기
+    @Query(value="select * from pinquiry p where p.pdt_idx = ?1", nativeQuery = true)
+	List<PinquiryEntity> getPinquiryList(int idx);
+
 
 	
 }

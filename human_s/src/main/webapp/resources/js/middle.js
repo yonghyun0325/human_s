@@ -132,6 +132,12 @@ $(function(){
             		selectedRankCode: selectedRankCode},
             headers: {"Accept": "application/json"},
             success:function(graphData){
+            	if(graphData.img == null){
+            		$(".infoSection>.priceImage").css("background-image", `url(${contextPath}/resources/img/Logo.png)`);   
+            	}else{
+	            	$(".infoSection>.priceImage").css("background-image", `url(${graphData.img})`);  
+            	}
+            	
                 $(".infoSection>.title").text(graphData.item_name+" ("+graphData.rank.substring(0, 1)+")");
                 
                 let match = graphData.day1.match(/\((\d{1,2})\/(\d{1,2})\)/);

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.human.hms.entity.BasketEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ReviewEntity;
-import com.human.hms.service.PinquiryService;
+import com.human.hms.entity.UserEntity;
 import com.human.hms.service.ProductService;
-import com.human.hms.service.ReviewService;
 import com.human.hms.vo.ProductVO;
 
 import lombok.AllArgsConstructor;
@@ -66,6 +66,7 @@ public class ProductController {
 			productList = productServiceImpl.findAll();
 		}else {
 			productList = productServiceImpl.getSelectList(select);
+			mav.addObject("select", select);
 		}
 		
 		mav.addObject("productList", productList);
@@ -83,6 +84,8 @@ public class ProductController {
 		mav.addObject("product", product);
 		
 		//해당 상품 문의 조회
+		List<PinquiryEntity> pinquiryList = productServiceImpl.getPinquiryList(idx);
+		mav.addObject("pinquiryList", pinquiryList);
 		
 		//해당 상품 후기 조회
 		List<ReviewEntity> reviewList = productServiceImpl.getReviewList(idx);
@@ -258,6 +261,25 @@ public class ProductController {
 		mav.setViewName(viewName);
 		
 		return mav;
+	}
+	
+	//상품을 장바구니에 등록하기
+	@ResponseBody
+	@GetMapping("/productInCart.do")
+	public String productInCart(@RequestParam int idx, @RequestParam int qty, HttpServletRequest request) {
+		
+		String result = "fail";
+		BasketEntity entity = BasketEntity.builder()
+								.qty(qty)
+								.build();
+		entity.updateProductEntity(productServiceImpl.findbyId(idx));
+		entity.updateUserEntity((UserEntity)request.getSession().getAttribute("user"));
+		
+		if(productServiceImpl.productInCart(entity) == 1) {
+			result = "ok";
+		}
+		
+		return result;
 	}
 	
 }
