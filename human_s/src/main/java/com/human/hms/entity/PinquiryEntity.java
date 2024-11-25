@@ -48,6 +48,10 @@ public class PinquiryEntity {
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
     
+    @ManyToOne
+    @JoinColumn(name = "pdt_idx", updatable = false)
+    private ProductEntity productEntity;
+    
 	@Builder
 	public PinquiryEntity(String author, String pinquiryContent, String pinquiryTitle) {
 		this.author = author;

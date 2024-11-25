@@ -36,7 +36,7 @@
             <div class="footerContactHours">09:30 ~ 17:30 / 주말, 공휴일 휴무</div>
         </div>
         <div class="footerRight">
-            <img src="${pageContext.request.contextPath}/resources/img/Logo.webp" alt="GreenCart" class="logo">
+            <img src="${pageContext.request.contextPath}/resources/img/Logo.png" alt="GreenCart" class="logo">
             <div class="api">aT 도매시장 통합홈페이지</div>
             <div class="api">KAMIS</div>
         </div>

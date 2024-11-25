@@ -48,16 +48,49 @@ $(function(){
     $(".btn").click(function(){
     	let btn = $(this).val();
     	let idx = getParameterByName("idx");
+    	let qty = $(".productQty").val();
     
 	    if ($(".productQty").val() === "0" && (btn === "cart" || btn === "buy")) {
 	        alert("수량을 입력해주세요.");
 	    }else{
-	    	if(btn === 'wishlist'){
-	    		location.href="/hms/mypage/favorite.do";
-	    	}else if(btn === 'cart'){
-	    		location.href="/hms/mypage/basket.do";
-	    	}else{
-	    		location.href="/hms/orderdetails/order.no?p_idx="+idx;
+	    	if(btn === 'wishlist'){ //찜하기
+	    		$.ajax({
+	    			type: "get",
+	    			url: "/hms/product/inFavorite.do",
+	    			data: {idx:idx},
+	    			success: function(data){
+	    				if(data.trim() == 'in'){ //찜하기 성공
+	    					alert("찜 목록에 등록되었습니다.");
+	    				}else if(data.trim() == 'out'){ //찜하기 삭제 성공
+	    					alert("찜 목록에서 삭제되었습니다.");
+	    				}else{ //찜하기 실패
+	    					alert("찜하기에 실패했습니다.");
+	    				}
+	    			},
+	    			error: function(){
+	    				console.log("찜하기 등록 중 오류 발생");
+	    			}
+	    		});
+	    		
+	    	}else if(btn === 'cart'){ //장바구니
+	    		$.ajax({
+	    			type: "get",
+	    			url: "/hms/product/productInCart.do",
+	    			data: {qty:qty, idx:idx},
+	    			success: function(data){
+	    				if(data.trim() == 'ok'){
+	    					alert("장바구니에 등록되었습니다");
+	    				}else{
+	    					alert("장바구니 등록에 실패했습니다");
+	    				}
+	    			},
+	    			error: function(){
+	    				console.log("장바구니 등록 중 오류 발생");
+	    			}
+	    		});
+	    		
+	    	}else{ //바로구매
+	    		location.href="/hms/orderdetails/order.no?p_idx="+idx+"&qty="+qty;
 	    	}
 	    }
 	});

@@ -82,11 +82,14 @@ public class DailyPriceByCategoryEntity {
 	@Column(name="dpr7", nullable=false)
     private String dpr7; 	  //평년 가격
 	
+	@Column(name="img")
+    private String img; 	  //이미지
+	
 	@Builder
 	public DailyPriceByCategoryEntity(String itemKindRankCode, String item_name, String item_code, String kind_name,
 			String kind_code, String rank, String rank_code, String unit, String day1, String dpr1,
 			String day2, String dpr2, String day3, String dpr3, String day4, String dpr4, String day5, String dpr5,
-			String day6, String dpr6, String day7, String dpr7) {
+			String day6, String dpr6, String day7, String dpr7, String img) {
 		
 		this.itemKindRankCode = itemKindRankCode;
 		this.item_name = item_name;
@@ -110,6 +113,7 @@ public class DailyPriceByCategoryEntity {
 		this.dpr6 = dpr6;
 		this.day7 = day7;
 		this.dpr7 = dpr7;
+		this.img = img;
 		
 	}
     

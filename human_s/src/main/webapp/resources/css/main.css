@@ -193,10 +193,10 @@ section{
 .priceGraph>.content .infoSection>.priceImage{
 	width: 100px;
     height: 100px;
-    background-color: #fff;
     border-radius: 50%;
     margin-bottom: 20px;
-    background-image: url("../../resources/uploads/1732234723382_무화과1.jpg");
+    background: no-repeat center center;
+    background-size: cover;
 }
 .priceGraph>.content .infoSection>.title{
 	font-size: 18px;
@@ -293,6 +293,7 @@ section{
 	background-color: #333;
 }
 .bestProduct .popNum{
+	width: 100%;
 	padding: 10px 10px 0px 10px;
 }
 .bestProduct .popNum>img{
@@ -342,7 +343,10 @@ section{
     background: no-repeat center center;
     background-size: cover;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: flex-end;
+    overflow: hidden;
 }
 .product .container .areaList .areaItem{
 	display: flex;
@@ -357,11 +361,15 @@ section{
 .product .container>.list .item>div{
 	color: #fff;
 	font-weight: bold;
-	background-color: #777;
+	background-color: #7779;
 	padding: 2% 5%;
 	white-space: nowrap; /* 줄 바꿈 방지 */
 	overflow: hidden;
 	text-overflow: ellipsis; /* ...으로 표시하기 */
+}
+.product .container>.list .areaBox{
+	width: 100%;
+	text-align: center;
 }
 .farmAndNotice{
 	display: flex;
