@@ -14,7 +14,7 @@
             <h3>쇼핑정보</h3>
             <ul>
                 <li><a href="order.do">주문배송현황</a></li>
-                <li><a href="#">취소/환불 내역</a></li>
+                <li><a href="orderRefundCancel.no">환불/취소 내역</a></li>
 		<c:if test="${ not empty user }">
                 <li><a href="address.do">나의 배송지 관리</a></li>
 		</c:if>

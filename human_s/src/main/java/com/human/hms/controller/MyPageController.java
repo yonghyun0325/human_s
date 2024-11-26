@@ -120,4 +120,9 @@ public class MyPageController {
     public String addAddressPage() {
         return "mypage/addaddress";
     }
+    //취소환불내역 이동
+    @GetMapping("orderRefundCancel.no")
+    public String orderRefundCancel() {
+    	return "mypage/orderRefundCancel";
+    }
 }
