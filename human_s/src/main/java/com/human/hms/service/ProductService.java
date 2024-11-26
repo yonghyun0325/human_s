@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.human.hms.entity.BasketEntity;
+import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ReviewEntity;
@@ -55,5 +56,7 @@ public interface ProductService {
 	int productInCart(BasketEntity entity);
 
 	List<PinquiryEntity> getPinquiryList(int idx);
+
+	int productInFavorite(FavoriteEntity entity);
 
 }

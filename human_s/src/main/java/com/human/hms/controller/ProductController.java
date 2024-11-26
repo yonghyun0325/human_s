@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.human.hms.entity.BasketEntity;
+import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ReviewEntity;
@@ -277,6 +278,26 @@ public class ProductController {
 		
 		if(productServiceImpl.productInCart(entity) == 1) {
 			result = "ok";
+		}
+		
+		return result;
+	}
+	
+	//상품을 찜목록에 등록하기
+	@ResponseBody
+	@GetMapping("/inFavorite.do")
+	public String productInFavorite(@RequestParam int idx, HttpServletRequest request) {
+		String result = "fail";
+		FavoriteEntity entity = new FavoriteEntity();
+		entity.updateUser((UserEntity)request.getSession().getAttribute("user"));
+		entity.updateProduct(productServiceImpl.findbyId(idx));
+		
+		int count = productServiceImpl.productInFavorite(entity);
+		
+		if(count == 1) {
+			result = "in"; //찜하기 성공
+		}else if(count == 2) {
+			result = "out"; //찜하기 삭제 성공
 		}
 		
 		return result;
