@@ -43,7 +43,8 @@ public class AddressEntity {
 	private UserEntity userEntity;
 	
 	@Builder
-	public AddressEntity(String addPost, String add1, String add2) {
+	public AddressEntity(String addPost, String add1, String add2,int addIdx) {
+		this.addIdx =addIdx;
 		this.addPost = addPost;
 		this.add1 = add1;
 		this.add2 = add2;
@@ -66,4 +67,21 @@ public class AddressEntity {
 	public void updateStatus(int addStatus) {
 		this.addStatus = addStatus;
 	}
+
+	public void setAddPost(String addPost2) {
+		this.addPost=addPost2;
+		
+	}
+
+	public void setAdd1(String add12) {
+		this.add1=add12;
+		
+	}
+
+	public void setAdd2(String add22) {
+		this.add2=add22;
+		
+	}
+
+
 }

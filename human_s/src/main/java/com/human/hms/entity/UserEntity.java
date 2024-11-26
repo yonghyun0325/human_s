@@ -61,9 +61,9 @@ public class UserEntity {
     
     
     @Builder
-    public UserEntity(String userEmail, String userPw, String userNick, 
+    public UserEntity(int userIdx,String userEmail, String userPw, String userNick, 
     		String userName, String userPhone, String birth)  {
-    	
+    	this.userIdx= userIdx;
     	this.userEmail = userEmail;
     	this.userPw = userPw;
     	this.userNick = userNick;
@@ -96,5 +96,15 @@ public class UserEntity {
     public void setGrade(int grade) {
     	this.grade = grade;
     }
+
+	public void setUserPhone(String newPhone) {
+		this.userPhone =newPhone;
+		
+	}
+
+	public void setUserPw(String userPw2) {
+		this.userPw =userPw2;
+		
+	}
 
 }

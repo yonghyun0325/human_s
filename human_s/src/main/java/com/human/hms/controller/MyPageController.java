@@ -6,17 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.FavoriteEntity;
@@ -46,7 +40,7 @@ public class MyPageController {
     	model.addAttribute("review_list", listReview);
         return "mypage/mypage";
     }
-    // userUpdate.jsp로 이동
+    //userUpdate.jsp로 이동
     @GetMapping("/update.do")
     public String showUserUpdate(Model model, HttpServletRequest request){
     	UserEntity entity = (UserEntity) request.getSession().getAttribute("user");
@@ -55,6 +49,41 @@ public class MyPageController {
     	model.addAttribute("add", address);
         return "mypage/userUpdate";
     }    
+    
+    //회원정보 업데이트
+    @PostMapping("/updateProcess.do")
+    public String updateProcess(int userAdd,int userIdx,UserVO vo, HttpServletRequest request) {
+        String viewName = "mypage/userUpdate"; // 기본적으로 실패 시 이동할 뷰
+        
+       
+        UserEntity userEntity = UserEntity.builder()
+        		.userIdx(userIdx)
+                .userName(vo.getUserName())
+                .userPhone(vo.getUserPhone())
+                .userPw(vo.getUserPw())
+                .build();
+
+        AddressEntity addressEntity = AddressEntity.builder()
+                .addPost(vo.getAddPost())
+                .addIdx(userAdd)
+                .add1(vo.getAdd1())
+                .add2(vo.getAdd2())
+                .build();
+
+        // 업데이트 서비스 호출
+        int result = myPageService.updateInfo(userEntity, addressEntity);
+
+        // 세션 갱신 (성공 시)
+        if (result == 1) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", userEntity); // 세션에 업데이트된 사용자 정보 저장
+            session.setAttribute("add", addressEntity); // 세션에 업데이트된 주소 정보 저장
+            viewName = "redirect:/index.no"; // 성공 시 마이페이지로 이동
+        }
+
+        return viewName;
+    }
+
     
     // orderShippingStatus.jsp로 이동
     @GetMapping("/order.do")

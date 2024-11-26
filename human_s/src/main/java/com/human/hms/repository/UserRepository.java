@@ -39,7 +39,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	@Modifying
 	@Query("update UserEntity u set u.userPw = ?2 where u.userEmail = ?1")
 	int changePassword(String userEmail, String userPw);
-	
+
 
 	
 }
