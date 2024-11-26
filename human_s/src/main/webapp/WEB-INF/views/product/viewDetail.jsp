@@ -83,8 +83,8 @@
 					<button class="btn cart" value="cart">장바구니</button>		
 		</c:when>
 		<c:otherwise>
-					<a class="btn wishlist" href="/hms/user/login.no">찜하기</a>
-					<a class="btn cart" href="/hms/user/login.no">장바구니</a>
+					<button class="btn wishlist" value="wishlistNo">찜하기</button>
+					<button class="btn cart" value="cartNo">장바구니</button>
 		</c:otherwise>
 	</c:choose>
 					<button class="btn buy" value="buy">바로구매</button>
@@ -288,8 +288,8 @@
 						<button class="btn cart" value="cart">장바구니</button>		
 		</c:when>
 		<c:otherwise>
-						<a class="btn wishlist" href="/hms/user/login.no">찜하기</a>
-						<a class="btn cart" href="/hms/user/login.no">장바구니</a>
+						<button class="btn wishlist" value="wishlistNo">찜하기</button>
+						<button class="btn cart" value="cartNo">장바구니</button>
 		</c:otherwise>
 	</c:choose>
 					</div>

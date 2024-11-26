@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.BasketEntity;
+import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.PriceRealEntity;
 import com.human.hms.entity.ProductEntity;
@@ -21,6 +22,7 @@ import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.BasketRepository;
 import com.human.hms.repository.DmsjPriceRealRepository;
+import com.human.hms.repository.FavoriteRepository;
 import com.human.hms.repository.PinquiryRepository;
 import com.human.hms.repository.ProductImgRepository;
 import com.human.hms.repository.ProductRepository;
@@ -40,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
 	private ReviewRepository reviewRepository;		 	//상품리뷰
 	private BasketRepository basketRepository;
 	private PinquiryRepository pinquiryRepository;		//상품문의
+	private FavoriteRepository favoriteRepository;		//찜목록
 
 
 	//대분류코드 조회
@@ -277,6 +280,22 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<PinquiryEntity> getPinquiryList(int idx) {
 		return pinquiryRepository.getPinquiryList(idx);
+	}
+
+	//상품을 찜목록에 등록하기
+	@Override
+	public int productInFavorite(FavoriteEntity entity) {
+		int result = 0;
+		
+		if(favoriteRepository.checkFavorite(entity) == 0) {
+			favoriteRepository.save(entity);
+			result = 1;
+		}else {
+			favoriteRepository.deleteFavorite(entity.getUserEntity().getUserIdx(), entity.getProductEntity().getPdtIdx());
+			result = 2;
+		}
+		
+		return result;
 	}
 
 }

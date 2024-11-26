@@ -61,4 +61,9 @@ public class AddressEntity {
 	public void updateUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
+	
+	//배송지 기본값(0) 추가주소(1) 업데이트
+	public void updateStatus(int addStatus) {
+		this.addStatus = addStatus;
+	}
 }

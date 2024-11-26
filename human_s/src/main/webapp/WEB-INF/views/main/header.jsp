@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/d7e414b2e7.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
@@ -38,7 +39,7 @@
                 </a>
 	</c:if>
                 <a href="/hms/mypage/basket.do">
-                	<i class="far fa-shopping-cart"></i><br>
+                	<i class="fa-solid fa-basket-shopping"></i><br>
                 	<span>장바구니</span>
                 </a>
 	<c:if test="${ not empty user }">

@@ -178,7 +178,7 @@ section{
 .priceGraph>.content>div{
 	flex: 2;
 	display: flex;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 부드럽고 은은한 그림자 */
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 부드럽고 은은한 그림자 */
 }
 .priceGraph>.content .infoSection{
 	flex: 1;
@@ -263,8 +263,7 @@ section{
 .priceGraph>.content .graphSection{
 	flex: 2;
 	height: 350px;
-    border-radius: 12px;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 부드럽고 은은한 그림자 */
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 부드럽고 은은한 그림자 */
 }
 .bestProduct>.bestList{ /* Best 상품 */
     display: grid;

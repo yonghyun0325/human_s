@@ -140,6 +140,7 @@ public class UserController {
 								.add1(vo.getAdd1())
 								.add2(vo.getAdd2())
 								.build();
+	a_entity.updateStatus(0);
 	
 	String viewName = "user/join"; //회원가입 실패 시 뷰이름
 	
@@ -184,6 +185,7 @@ public class UserController {
 								.add1(vo.getAdd1())
 								.add2(vo.getAdd2())
 								.build();
+	a_entity.updateStatus(0);
 	
 	SellerEntity s_entity = SellerEntity.builder()
 								.seIdNum(vo.getSeIdNum())
