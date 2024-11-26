@@ -23,7 +23,7 @@
         <!-- 메인 콘텐츠 영역 -->
         <div class="main-content">
             <div class="info-box">
-                <p><span class="highlight">${user.userName}</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
+                <p><span class="highlight">${user.userName}${ unuser.unName }</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
             </div>
             
             <div class="filter-container">

@@ -133,7 +133,7 @@ $(function(){
             headers: {"Accept": "application/json"},
             success:function(graphData){
             	if(graphData.img == null){
-            		$(".infoSection>.priceImage").css("background-image", `url(${contextPath}/resources/img/Logo.png)`);   
+            		$(".infoSection>.priceImage").css("background-image", `url(${contextPath}/resources/img/쌀.jpg)`);   
             	}else{
 	            	$(".infoSection>.priceImage").css("background-image", `url(${graphData.img})`);  
             	}
