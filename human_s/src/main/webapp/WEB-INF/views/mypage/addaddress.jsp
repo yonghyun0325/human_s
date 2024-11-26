@@ -88,24 +88,13 @@
     </div>
 
     <script>
-        // 폼 제출 이벤트 처리
-        document.getElementById('addressForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // 기본 제출 동작 막기
-            const formData = new FormData(this);
-
-            // 데이터 확인용 (추후 서버로 전달 가능)
-            console.log(Object.fromEntries(formData.entries()));
-
-            alert('배송지가 저장되었습니다.');
-            window.close(); // 팝업 닫기
-        });
         
     	 // 우편번호 검색 함수
         function searchPostcode() {
             new daum.Postcode({
                 oncomplete: function(data) {
                     // 우편번호와 주소 정보를 받아와서 입력 필드에 채움
-                    document.getElementById('postcode').vajlue = data.zonecode; // 우편번호
+                    document.getElementById('postcode').value = data.zonecode; // 우편번호
                     document.getElementById('address').value = data.address; // 기본 주소
 
                     // 상세 주소 필드로 포커스 이동
