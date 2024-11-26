@@ -214,11 +214,11 @@ public class ProductServiceImpl implements ProductService {
 				.getPricebyCode(entity.getPdtLargeCode(), entity.getPdtMidCode(), entity.getPdtSmallCode());
 		entity.updateCodeName(pEntity.getLargeName(), pEntity.getMidName(), pEntity.getSmallName());
 		
-		//기존에 저장된 상세내용 이미지 파일이 있는지 조회
-		List<ProductImgEntity> haveImg = productImgRepository.getImgList(entity.getPdtIdx());
-		if(haveImg != null && !haveImg.isEmpty()) {
-			productImgRepository.deleteByPdtIdx(entity.getPdtIdx());			
-		}
+//		//기존에 저장된 상세내용 이미지 파일이 있는지 조회
+//		List<ProductImgEntity> haveImg = productImgRepository.getImgList(entity.getPdtIdx());
+//		if(haveImg != null && !haveImg.isEmpty()) {
+//			productImgRepository.deleteByPdtIdx(entity.getPdtIdx());			
+//		}
 		
 		entity = fileManager.pdtFile(entity, request);
 		
