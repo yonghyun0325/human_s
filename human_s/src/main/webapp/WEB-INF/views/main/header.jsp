@@ -38,16 +38,30 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 	<span>마이페이지</span>
                 </a>
 	</c:if>
+	<c:if test="${ empty unuser }">
                 <a href="/hms/mypage/basket.do">
                 	<i class="fa-solid fa-basket-shopping"></i><br>
                 	<span>장바구니</span>
                 </a>
-	<c:if test="${ not empty user }">
+    </c:if>
+	<c:if test="${ not empty user && empty unuser }">
                 <a href="/hms/user/logout.do">
                 	<i class="fa-solid fa-right-from-bracket"></i><br>
                 	<span>로그아웃</span>
                 </a>
 	</c:if>  
+	<c:if test="${ not empty unuser }">
+                <a href="/hms/mypage/order.do">
+                	<i class="fa-solid fa-list"></i><br>
+                	<span>주문내역</span>
+                </a>
+	</c:if>
+	<c:if test="${ not empty unuser }">
+                <a href="/hms/user/unUserlogout.no">
+                	<i class="fa-solid fa-right-from-bracket"></i><br>
+                	<span>로그아웃</span>
+                </a>
+	</c:if> 
             </div>
         </div>
         <div class="navigation">

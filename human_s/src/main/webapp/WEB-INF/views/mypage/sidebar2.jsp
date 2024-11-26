@@ -10,17 +10,11 @@
 <body>  
         <!-- 좌측 메뉴 -->
         <div class="sidebar">
-	<c:if test="${ user.grade == 1 || not empty unuser }">
             <h3>쇼핑정보</h3>
             <ul>
                 <li><a href="order.do">주문배송현황</a></li>
-                <li><a href="#">취소/환불 내역</a></li>
-		<c:if test="${ not empty user }">
                 <li><a href="address.do">나의 배송지 관리</a></li>
-		</c:if>
             </ul>
-	</c:if>
-	<c:if test="${ user.grade == 1 }">
             <h3>혜택정보</h3>
             <ul>
                 <li><a href="coupon.do">할인쿠폰내역</a></li>
@@ -34,26 +28,11 @@
                 <li><a href="inquiry.do">1:1 문의내역</a></li>
                 <li><a href="myarticle.do">내 게시글 보기</a></li>
             </ul>
-	</c:if>
-	<c:if test="${ user.grade == 2 }">
-            <h3>판매정보</h3>
-            <ul>
-                <li><a href="#">판매 현황</a></li>
-            </ul>
-            <h3>활동정보</h3>
-            <ul>
-            	<li><a href="#">상품 문의 내역</a></li>
-                <li><a href="#">1:1 문의내역</a></li>
-                <li><a href="#">내 게시글 보기</a></li>
-            </ul>
-	</c:if>
-	<c:if test="${ not empty user }">
             <h3>개인정보</h3>
             <ul>
                 <li><a href="update.do" class="no-underline">회원정보수정</a></li>
                 <li><a href="javascript:void(0);" onclick="confirmWithdrawal()">회원탈퇴</a></li>
             </ul>
-	</c:if>
         </div>
         
         <script>
