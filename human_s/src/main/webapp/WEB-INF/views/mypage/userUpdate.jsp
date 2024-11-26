@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>회원정보수정 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userupdate.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/userUpdate.js"></script>
 </head>
 <body>
     <%@ include file="../main/header.jsp"%>
@@ -22,15 +24,15 @@
             </div>
             <hr>
     
-            <form action="#" method="post">
+            <form action="updateProcess.do" method="post">
                 <table>
                     <tr>
                         <th><label for="name"><span class="red-star">*</span> 이름</label></th>
-                        <td><input type="text" id="name" name="name" value="이용현"></td>
+                        <td><input type="text" id="name" name="name" value="${user.userName}"></td>
                     </tr>
                     <tr>
                         <th><label for="username"><span class="red-star">*</span> 아이디</label></th>
-                        <td><input type="text" id="username" name="username" value="ka@89a3e3c6b" readonly></td>
+                        <td><input type="text" id="username" name="username" value="${user.userEmail}" readonly></td>
                     </tr>
                     <tr>
                         <th><label for="password"><span class="red-star">*</span> 비밀번호</label></th>
@@ -38,18 +40,19 @@
                     </tr>
                     <tr>
                         <th><label for="confirm_password"><span class="red-star">*</span> 비밀번호 확인</label></th>
-                        <td><input type="password" id="confirm_password" name="confirm_password"></td>
+                        <td><input type="password" id="confirm_password"></td>
                     </tr>
                     <tr>
                         <th><label for="birth"><span class="red-star">*</span> 생년/성별</label></th>
-                        <td><input type="text" id="birth" name="birth"></td>
+                        <td><input type="text" id="birth" name="birth" value="${user.birth}" readonly></td>
                     </tr>
                     <tr>
                         <th><label for="address"><span class="red-star">*</span> 주소</label></th>
                         <td>
-                            <input type="text" id="address" name="address">
+                            <input type="text" id="address" name="address" value="${add.addPost}">
                             <button type="button" class="btn">우편번호검색</button><br>
-                            <input type="text" id="address1" name="address1" class="address_particular">
+                            <input type="text" id="address1" name="address1" class="address_particular" value="${add.add1}">
+                            <input type="text" id="address2" name="add2" value="${add.add2}">
                         </td>
                     </tr>
                     <tr>
@@ -58,12 +61,13 @@
                     <tr>
                         <th><label for="phone"><span class="red-star">*</span> 휴대폰</label></th>
                         <td>
-                            <select name="phone1" class="phone1">
+                            <select  class="phone1">
                                 <option value="010">010</option>
                                 <option value="011">011</option>
                             </select>
-                            - <input type="text" name="phone2" class="phone2" size="4" maxlength="4">
-                            - <input type="text" name="phone3" class="phone3" size="4" maxlength="4">
+                            - <input type="text"  class="phone2" size="4" maxlength="4">
+                            - <input type="text"  class="phone3" size="4" maxlength="4">
+                       			<input type="hidden" name="userPhone" >
                         </td>
                     </tr>
                     <tr>

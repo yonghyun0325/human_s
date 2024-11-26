@@ -2,6 +2,7 @@ package com.human.hms.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.MyPageService;
+import com.human.hms.vo.UserVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -45,9 +48,14 @@ public class MyPageController {
     }
     // userUpdate.jsp로 이동
     @GetMapping("/update.do")
-    public String showUserUpdate(){
+    public String showUserUpdate(Model model, HttpServletRequest request){
+    	UserEntity entity = (UserEntity) request.getSession().getAttribute("user");
+    	//userIdx값으로 주소 불러오기
+    	AddressEntity address = myPageService.getAddress(entity.getUserIdx());
+    	model.addAttribute("add", address);
         return "mypage/userUpdate";
-    }
+    }    
+    
     // orderShippingStatus.jsp로 이동
     @GetMapping("/order.do")
     public String showOrderShippingStatus(HttpSession session, Model model){
