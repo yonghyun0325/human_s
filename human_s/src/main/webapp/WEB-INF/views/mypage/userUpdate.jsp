@@ -7,7 +7,6 @@
 <title>회원정보수정 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userupdate.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/userUpdate.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/popup_2.js"></script>
 </head>
 <body>
@@ -63,27 +62,15 @@
                         
                     </tr>
                     <tr>
-                        <th><label for="phone"><span class="red-star">*</span> 휴대폰</label></th>
+                        <th><label for="userPhone"><span class="red-star">*</span> 휴대폰</label></th>
                         <td>
-                            <select  class="phone1">
-                                <option value="010">010</option>
-                                <option value="011">011</option>
-                            </select>
-                            - <input type="text"  class="phone2" size="4" maxlength="4">
-                            - <input type="text"  class="phone3" size="4" maxlength="4">
-                       			<input type="hidden" name="userPhone" id="phoneNum">
+                     			<input type="text" name="userPhone" id="phoneNum" maxlength="13" value="${ user.userPhone }">
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="email"><span class="red-star">*</span> 이메일</label></th>
+                        <th><label for="userNick"><span class="red-star">*</span> 닉네임</label></th>
                         <td>
-                            <input type="text">
-                            @ <select>
-                                <option value="kakao.com">kakao.com</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="직접입력">직접입력</option>
-                            </select>
-                            <button type="button" class="btn">이메일 중복확인</button>
+                            <input type="text" name="userNick" value="${ user.userNick }">
                         </td>
                     </tr>
                     <tr>
@@ -125,5 +112,30 @@
     <%@ include file="../main/footer.jsp"%>
     <!-- 우편번호버튼 눌렀을때 불러오는 스크립트 -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+    	$(function(){
+    		
+    		$("#phoneNum").on("input", function(){
+    			
+	   			 let input = $(this).val().replace(/[^0-9]/g, ""); // 숫자만 남기기
+	   			    let formatted = "";
+	
+	   			    if (input.length <= 3) {
+	   			        // 3자리 이하일 때 그대로 유지
+	   			        formatted = input;
+	   			    } else if (input.length <= 7) {
+	   			        // 4~7자리일 때 010-123 형식
+	   			        formatted = input.slice(0, 3) + "-" + input.slice(3);
+	   			    } else {
+	   			        // 8자리 이상일 때 010-1234-5678 형식
+	   			        formatted = input.slice(0, 3) + "-" + input.slice(3, 7) + "-" + input.slice(7, 11);
+	   			    }
+	
+	   			    $(this).val(formatted); // 포맷팅된 값 설정
+    			
+    		});
+    		
+    	});
+    </script>
 </body>
 </html>

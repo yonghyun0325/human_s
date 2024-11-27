@@ -86,6 +86,10 @@ public class UserEntity {
     	this.userName = userName;
     }
     
+    public void setUserNick(String userNick) {
+    	this.userNick = userNick;
+    }
+    
     public void setUserEmail(String userEmail) {
     	this.userEmail = userEmail;
     }

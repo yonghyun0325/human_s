@@ -61,6 +61,7 @@ public class MyPageController {
                 .userName(vo.getUserName())
                 .userPhone(vo.getUserPhone())
                 .userPw(vo.getUserPw())
+                .userNick(vo.getUserNick())
                 .build();
 
         AddressEntity addressEntity = AddressEntity.builder()

@@ -71,7 +71,12 @@ public class MyPageServiceImpl implements MyPageService {
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
         existingUser.setUserName(userEntity.getUserName());
         existingUser.setUserPhone(userEntity.getUserPhone());
-        existingUser.setUserPw(userEntity.getUserPw());
+        existingUser.setUserNick(userEntity.getUserNick());
+        
+        // 비밀번호가 null이 아닐 때만 업데이트
+        if (userEntity.getUserPw() != null && !userEntity.getUserPw().isEmpty() ) {
+            existingUser.setUserPw(userEntity.getUserPw());
+        }
 
         // 2. 주소 정보 업데이트
         AddressEntity existingAddress = addressRepository.findById(addressEntity.getAddIdx())
