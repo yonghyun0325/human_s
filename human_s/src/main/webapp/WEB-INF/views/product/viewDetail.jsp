@@ -87,7 +87,7 @@
 					<button class="btn cart" value="cartNo">장바구니</button>
 		</c:otherwise>
 	</c:choose>
-					<button class="btn buy" value="buy">바로구매</button>
+					<button class="btn buy" value="buy" data-grade="${ user.grade }">바로구매</button>
 				</div>
 			</div>
 		</div>
@@ -293,7 +293,7 @@
 		</c:otherwise>
 	</c:choose>
 					</div>
-					<button class="btn buy" value="buy">바로구매</button>
+					<button class="btn buy" value="buy" data-grade="${ user.grade }">바로구매</button>
 				</div>
 			</div>
 		</div>

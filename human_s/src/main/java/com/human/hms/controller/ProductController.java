@@ -1,6 +1,7 @@
 package com.human.hms.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -301,6 +302,26 @@ public class ProductController {
 		}
 		
 		return result;
+	}
+	
+	//Hidden Nav 안의 과일~기타
+	@GetMapping("/hiddenList.no")
+	public ModelAndView hiddenList(ModelAndView mav, @RequestParam String select, @RequestParam("checked") String checked) {
+		mav.setViewName("product/checkBoxList");
+		List<ProductEntity> productList = null;
+		List<String> checkeds = null;
+		
+		switch(checked) {
+			case "fruit": checkeds = Arrays.asList("06", "07", "08"); break;
+			case "vagetable": checkeds = Arrays.asList("09", "10", "11", "12", "13", "14"); break;
+			case "grainsNuts": checkeds = Arrays.asList("03", "05", "16", "19"); break;
+			default: checkeds = Arrays.asList("17", "26"); break;
+		}
+		productList = productServiceImpl.checkHiddenList(checkeds);
+		
+		mav.addObject("productList", productList);
+		
+		return mav;
 	}
 	
 }

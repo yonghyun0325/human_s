@@ -80,5 +80,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 			+ "and pdt_img is not null "
 			+ "limit 1 ", nativeQuery = true)
 	String getImg(@Param("itemName") String itemName);
+
+	//Hidden Nav 안의 과일~기타
+	@Query("select p from ProductEntity p "
+			+ "where p.pdtLargeCode in :checkeds ")
+	List<ProductEntity> checkHiddenList(@Param("checkeds") List<String> checkeds);
 	
 }

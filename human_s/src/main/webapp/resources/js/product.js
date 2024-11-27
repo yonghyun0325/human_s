@@ -49,13 +49,18 @@ $(function(){
     	let btn = $(this).val();
     	let idx = getParameterByName("idx");
     	let qty = $(".productQty").val();
+    	let grade = $(".buy").data("grade");
     
     	if(btn === "wishlistNo" || btn === "cartNo"){
     		alert("로그인 후 이용해주세요.");
     		
     		location.href = "/hms/user/login.no";
+	    }else if (grade == '2' || grade == '3'){
+	    	alert("구매할 수 있는 계정이 아닙니다.");
+	    	
 	    }else if ($(".productQty").val() === "0" && (btn === "cart" || btn === "buy")) {
 	        alert("수량을 입력해주세요.");
+	        
 	    }else{
 	    	if(btn === 'wishlist'){ //찜하기
 	    		$.ajax({
