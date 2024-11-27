@@ -83,5 +83,7 @@ public class AddressEntity {
 		
 	}
 
-
+	public void setAddStatus(int addStatus) {
+	    this.addStatus = addStatus;
+	}
 }

@@ -26,7 +26,7 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService myPageService;
-    
+	
     // 공통적으로 세션 데이터를 전달하는 메서드
     private UserEntity addSessionDataToModel(HttpSession session) {
         UserEntity user = (UserEntity) session.getAttribute("user"); // 세션에서 사용자 이름 가져오기
@@ -85,7 +85,6 @@ public class MyPageController {
         return viewName;
     }
 
-    
     // orderShippingStatus.jsp로 이동
     @GetMapping("/order.do")
     public String showOrderShippingStatus(HttpSession session, Model model){
@@ -100,8 +99,41 @@ public class MyPageController {
     }
     // addressmanagement.jsp로 이동
     @GetMapping("/address.do")
-    public String showAddressManagement(){
+    public String showAddressManagement(HttpSession session, Model model){
+    	UserEntity user = (UserEntity) session.getAttribute("user");
+    	if (user != null) {
+			List<AddressEntity> addressList = myPageService.getAddressesByUserId(user.getUserIdx());
+			model.addAttribute("addressList",addressList);
+		} else {
+			model.addAttribute("error","로그인이 필요합니다.");
+		}
         return "mypage/addressmanagement";
+    }
+    // 새로운 주소 추가 요청 처리
+    @PostMapping("/addaddress.do")
+    public String addAddress(HttpSession session, AddressEntity addressEntity, Model model) {
+    	UserEntity user = (UserEntity) session.getAttribute("user");
+    	if (user != null) {
+            // 중복 데이터 확인
+            if (myPageService.isAddressDuplicate(user.getUserIdx(), addressEntity)) {
+                model.addAttribute("error", "이미 동일한 주소가 등록되어 있습니다.");
+                return "mypage/addaddress"; // 오류 메시지와 함께 다시 주소 추가 페이지로 이동
+            }
+
+            // 기본 배송지 설정 여부 확인
+            if (addressEntity.getAddStatus() == 0) {
+                // 만약 새로운 기본 배송지를 추가하면 기존 기본 배송지를 모두 추가 배송지로 변경
+                myPageService.updateAllAddressesToAdditional(user.getUserIdx());
+            }
+
+            // 유저와 연관된 주소로 설정
+            addressEntity.updateUserEntity(user);
+            myPageService.saveAddress(addressEntity);
+            return "redirect:/mypage/address.do"; // 저장 후 주소 관리 페이지로 리다이렉트
+        } else {
+            model.addAttribute("error", "로그인이 필요합니다.");
+            return "mypage/addaddress"; // 로그인 필요 페이지로 이동
+        }
     }
     // discountcoupon.jsp로 이동
     @GetMapping("/coupon.do")

@@ -37,10 +37,27 @@
                         </tr>
                     </thead>
                     <tbody id="addressTableBody">
-                        <tr>
-                            <td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td>
-                        </tr>
-                    </tbody>
+				    <c:choose>
+				        <c:when test="${not empty addressList}">
+				            <c:forEach var="address" items="${addressList}">
+				                <tr>
+				                    <td><input type="checkbox"></td>
+				                    <td>[기본 배송지] ${address.addPost} ${address.add1} ${address.add2}</td>
+				                    <td>${address.userEntity.userPhone}</td>
+				                    <td>${address.addStatus == 0 ? '기본 배송지' : '추가 배송지'}</td>
+				                    <td>
+				                        <button type="button" onclick="removeRow(this)">삭제</button>
+				                    </td>
+				                </tr>
+				            </c:forEach>
+				        </c:when>
+				        <c:otherwise>
+				            <tr>
+				                <td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td>
+				            </tr>
+				        </c:otherwise>
+				    </c:choose>
+				</tbody>
                 </table>
                 <div class="button-container">
                     <button class="add-btn" id="add-address-btn" onclick="openAddAddressPopup()">배송지 추가</button>

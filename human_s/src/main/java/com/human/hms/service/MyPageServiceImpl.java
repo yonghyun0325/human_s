@@ -2,6 +2,8 @@ package com.human.hms.service;
 
 import java.util.List;
 
+import javax.mail.internet.NewsAddress;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,6 +91,45 @@ public class MyPageServiceImpl implements MyPageService {
         return 1;
     }
 
+	@Override
+	public List<AddressEntity> getAddressesByUserId(int userIdx) {
+		// 특정 사용자의 userIdx를 기반으로 등록된 모든 주소 리스트를 반환합니다.
+		return addressRepository.getAddressesByUserId(userIdx);
+	}
 
+	@Override
+	public void saveAddress(AddressEntity addressEntity) {
+		// 주소(AddressEntity)를 데이터베이스에 저장합니다.
+	    // 기존 주소는 업데이트되고, 새로운 주소는 추가됩니다.
+		addressRepository.save(addressEntity);
+	}
 
+	@Override
+	public boolean isAddressDuplicate(int userIdx, AddressEntity addressEntity) {
+		// 특정 사용자의 기존 주소 리스트와 새로운 주소를 비교하여 중복 여부를 확인합니다.
+	    // 동일한 우편번호(addPost), 기본 주소(add1), 상세 주소(add2)가 있는 경우 중복으로 간주합니다.
+		List<AddressEntity> existingAddressEntities = addressRepository.getAddressesByUserId(userIdx);
+		for (AddressEntity address : existingAddressEntities) {
+			if (address.getAddPost().equals(addressEntity.getAddPost()) && 
+					address.getAdd1().equals(addressEntity.getAdd1()) &&
+					address.getAdd2().equals(addressEntity.getAdd2())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public void updateAllAddressesToAdditional(int userIdx) {
+		// 특정 사용자의 기본 배송지를 모두 추가 배송지로 변경합니다.
+	    // 기본 배송지(addStatus == 0)가 있는 경우, 해당 상태를 추가 배송지(addStatus == 1)로 변경 후 저장합니다.
+		List<AddressEntity> addressEntities = addressRepository.getAddressesByUserId(userIdx);
+		for (AddressEntity address : addressEntities) {
+			if (address.getAddStatus()==0) {
+				address.setAddStatus(1);
+				addressRepository.save(address);
+			}
+		}
+	}
 }
