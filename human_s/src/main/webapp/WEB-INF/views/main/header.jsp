@@ -18,14 +18,33 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             	<img src="${pageContext.request.contextPath}/resources/img/Logo.png" alt="GreenCart">
             </a>
             <div class="search">
+	<c:if test="${ select != 'hidden' }">
                 <input type="text" class="searchProduct" value="${ select }">
+	</c:if>
+	<c:if test="${ select == 'hidden' }">
+				<input type="text" class="searchProduct">
+	</c:if>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="userIcon">
+	<c:if test="${ (empty user && empty unuser) || user.grade == 1 }">
                 <a href="/hms/mypage/favorite.do">
                 	<i class="fa-regular fa-heart"></i><br>
                 	<span>찜목록</span>
+                </a>   
+	</c:if>       
+	<c:if test="${ not empty unuser }">
+                <a href="/hms/mypage/order.do">
+                	<i class="fa-solid fa-list"></i><br>
+                	<span>주문내역</span>
                 </a>
+	</c:if>
+	<c:if test="${ user.grade == 2 }">
+                <a href="#">
+                	<i class="fa-solid fa-list"></i><br>
+                	<span>판매내역</span>
+                </a>
+	</c:if>
 	<c:if test="${ empty user }">
                 <a href="/hms/user/login.no">
                 	<i class="fa-regular fa-user"></i><br>
@@ -44,24 +63,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 	<span>장바구니</span>
                 </a>
     </c:if>
-	<c:if test="${ not empty user && empty unuser }">
+	<c:if test="${ not empty user || not empty unuser }">
                 <a href="/hms/user/logout.do">
                 	<i class="fa-solid fa-right-from-bracket"></i><br>
                 	<span>로그아웃</span>
                 </a>
-	</c:if>  
-	<c:if test="${ not empty unuser }">
-                <a href="/hms/mypage/order.do">
-                	<i class="fa-solid fa-list"></i><br>
-                	<span>주문내역</span>
-                </a>
 	</c:if>
-	<c:if test="${ not empty unuser }">
-                <a href="/hms/user/unUserlogout.no">
-                	<i class="fa-solid fa-right-from-bracket"></i><br>
-                	<span>로그아웃</span>
-                </a>
-	</c:if> 
             </div>
         </div>
         <div class="navigation">
@@ -72,10 +79,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	            	<a href="/hms/product/popNewList.no?select=pop">인기순</a>
 	            	<a href="/hms/product/popNewList.no?select=new">신상품</a>
 	            	<a href="/hms/product/checkBoxList.no?select=areaSelect">지역특산물</a>
-	            	<a href="">곡류</a>
-	            	<a href="">과일</a>
-	            	<a href="">채소</a>
-	            	<a href="">견과류</a>
+	            	<a href="/hms/product/hiddenList.no?select=hidden&checked=fruit">과일</a>
+	            	<a href="/hms/product/hiddenList.no?select=hidden&checked=vagetable">채소</a>
+	            	<a href="/hms/product/hiddenList.no?select=hidden&checked=grainsNuts">곡물 및 견과</a>
+	            	<a href="/hms/product/hiddenList.no?select=hidden&checked=other">기타</a>
 	            </div>
             </div>
             <div class="otherPage">

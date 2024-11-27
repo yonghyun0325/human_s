@@ -61,6 +61,7 @@ $(function(){
 				$(".otherPage > a").css("color", "#000"); break;
 			}
 		}
+		case 'hiddenList' : $(".otherPage > a:nth-child(4)").css("color", "#7cb43f"); break;
 		case 'farmstory' : $(".otherPage > a:nth-child(5)").css("color", "#7cb43f"); break;
 		case 'notice' : $(".otherPage > a:nth-child(6)").css("color", "#7cb43f"); break;
 		case 'manager' : $(".otherPage > a:nth-child(7)").css("color", "#7cb43f"); break;

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.human.hms.entity.ProductEntity;
+import com.human.hms.entity.StoryCommentEntity;
 import com.human.hms.entity.StoryEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.ProductService;
@@ -140,6 +142,10 @@ public class StoryController {
             }
 
             model.addAttribute("story", story);
+            
+            List<StoryCommentEntity> comment = storyService.getCommentBystory(storyId);
+            model.addAttribute("storyComList", comment);
+            
             return "story/story_view";
         } else {
             return "error/404";
@@ -158,4 +164,38 @@ public class StoryController {
         mav.setViewName(result == 1 ? "redirect:/story/farmstory.no" : "error/invalid_request");
         return mav;
     }
+    
+    //스토리 댓글 등록
+    @ResponseBody
+    @GetMapping("/saveComment.do")
+    public StoryCommentEntity saveComment(@RequestParam String comment, @RequestParam Long id, HttpServletRequest request) {
+    	
+    	StoryCommentEntity entity = StoryCommentEntity.builder()
+    									.comment(comment)
+    									.build();
+    	
+    	Optional<StoryEntity> storyOptional = storyService.getStoryById(id);
+    	if (storyOptional.isPresent()) {
+    		StoryEntity story = storyOptional.get();
+    		entity.updateStory(story);
+    	}
+    	
+    	UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+    	entity.updateUser(user);
+    	
+    	return storyService.insertComment(entity);
+    }
+    
+    //스토리 댓글 삭제
+    @ResponseBody
+    @GetMapping("/deleteComment.do")
+    public List<StoryCommentEntity> deleteComment(@RequestParam int scIdx, @RequestParam Long id){
+    	List<StoryCommentEntity> commentList = null;
+    	
+    	storyService.deleteComment(scIdx);
+    	commentList = storyService.getCommentBystory(id);
+    	
+    	return commentList;
+    }
+    
 }

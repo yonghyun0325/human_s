@@ -117,14 +117,16 @@
 		<c:choose>
 			<c:when test="${ not empty newList[i].img }">
 	                <div class="newItem item" style="background-image: url('${ newList[i].img }');">
-	                    <div>${ newList[i].pdtTitle }</div>
-	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
+	                	<div class="areaBox">
+		                    <div>${ newList[i].pdtTitle }</div>
+		                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
+	                	</div>
 	                </div>
 			</c:when>
 			<c:otherwise>
 					<div class="newItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${newList[i].pdtSave}');">
 	                    <div>${ newList[i].pdtTitle }</div>
-	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
+	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice }원</span></div>
 	                </div>
 			</c:otherwise>
 		</c:choose>
@@ -145,7 +147,7 @@
 	                	<div>${ areaList[i].pdtArea }</div>
 	                	<div class="areaBox">
 		                    <div>${ areaList[i].pdtTitle }</div>
-		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice } 원</span></div>
+		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice }원</span></div>
 	                	</div>
 	                </div>
 			</c:when>

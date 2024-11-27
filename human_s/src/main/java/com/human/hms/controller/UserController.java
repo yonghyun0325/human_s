@@ -320,18 +320,9 @@ public class UserController {
 		return viewName;
 	} 
 	
-	//일반 로그아웃
+	//로그아웃
 	@GetMapping("/logout.do")
 	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		return "redirect:/index.no";
-	}
-	
-	//비회원 로그아웃
-	@GetMapping("/unUserlogout.no")
-	public String unUserlogout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		

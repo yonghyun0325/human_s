@@ -298,4 +298,10 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	//Hidden Nav 안의 과일~기타
+	@Override
+	public List<ProductEntity> checkHiddenList(List<String> checkeds) {
+		return productRepository.checkHiddenList(checkeds);
+	}
+
 }
