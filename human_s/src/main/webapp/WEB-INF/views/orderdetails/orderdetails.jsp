@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,17 +33,30 @@
 				</div>
 			</div>
 			<div>
-				<h4>주문상품</h4>
-				<span>${order.orRecHuman}</span>
-				<p>010-####-####</p>
+				<h4>주문자</h4>
+				<c:choose>
+				    <c:when test="${not empty sessionScope.user}">
+				        <p>${sessionScope.user.userName}</p>
+				        <p>${sessionScope.user.userPhone}</p>
+				        <p>${sessionScope.user.userEmail}</p>
+				    </c:when>
+				
+				    <c:otherwise>
+				        <p>${unuser.unName}</p>
+				        <p>${unuser.unPhone}</p>
+				        <p>${unuser.unEmail}</p>
+				    </c:otherwise>
+				</c:choose>
+
 				<p>주문자 정보로 주문 관련 정보가 문자와 이메일로 발송됩니다</p>
 				<p>비회원은 이메일과 주문번호로 주문조회가 가능합니다</p>
 			</div>
 			<div>
 				<h4>배송지</h4>
-				<p>이용현</p>
-				<p>[31115]충청남도 천안시 동남구 북일로 70(힐스테이트 천안 신부) 109동 1803호</p>
-				<p>${product.pdtRecPhone}</p>
+				<p>${order.orRecHuman}</p>
+				<p>[${order.orPost}]${order.orAdd1} ${order.orAdd2}</p>
+				<p>${order.orRecPhone}</p>
+				<p>배송메시지:${order.orMessage}</p>
 				
 			</div>
 		</div>
@@ -52,10 +66,25 @@
 		</div>
 	</div>
 	<div class="orderdetails_btm">
-		<button>MY페이지 주문내역</button>
-		<button>쇼핑 계속하기</button>
+		<button id="mypageBtn">MY페이지 주문내역</button>
+		<button id="shoppingBtn">쇼핑 계속하기</button>
 	</div>
 </div>
 <%@ include file="../main/footer.jsp"%>
+<script>
+	$('#mypageBtn').on('click', function(){
+		window.location.href="../mypage/order.do";
+		
+		
+	});
+	
+	$('#shoppingBtn').on('click', function(){
+		window.location.href="../index.no";
+		
+		
+	});
+	
+	
+</script>
 </body>
 </html>

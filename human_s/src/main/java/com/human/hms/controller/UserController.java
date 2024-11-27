@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.human.hms.api.MllBsComNmInfoApiExplorer;
 import com.human.hms.entity.AddressEntity;
@@ -298,11 +299,12 @@ public class UserController {
 	@GetMapping("/login.no")
 	public String login() {
 		return "login/login";
-	}
+	} 
 	
 	@PostMapping("/loginProcess.no")
-	public String loginProcess(String userEmail, String userPw, HttpServletRequest request, Model model) {
-		String viewName = "login/login";
+	public String loginProcess(String userEmail, String userPw, 
+			HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		String viewName = "redirect:/user/login.no";//실패시 주소값
 		
 		UserEntity vo = userServiceImpl.login(userEmail, userPw);
 		System.out.println(vo);
@@ -312,11 +314,11 @@ public class UserController {
 			session.setAttribute("user", vo);
 			viewName = "redirect:/index.no";
 		}else {
-			model.addAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
+			redirectAttributes.addFlashAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
 		}
 		
 		return viewName;
-	}
+	} 
 	
 	//일반 로그아웃
 	@GetMapping("/logout.do")
