@@ -25,7 +25,14 @@
 				<input type="password" name="userPw" placeholder="비밀번호를 입력하세요">
 			</div>		
 			<button class="login_btn">로그인</button>
+		  <!-- 세션 메시지 출력 -->
+		    <c:if test="${not empty msg}">
+		        <p style="color: red; font-size:13px;">*${msg}</p>
+		    </c:if>
+		    <c:remove var="msg" scope="session" />
 		</form>
+		
+		
 		<div class="find_and_join">
 			<a href="/hms/user/findid.no">아이디찾기</a>
 			<a href="/hms/user/findpw.no">비밀번호찾기</a>

@@ -50,9 +50,9 @@
 		                <h2>주문자</h2>
 		                <div class="form-group order-name">
 		                    <label>주문자 이름 <span class="required">*</span></label>
-		                    <input type="text" value="${user.userName}" name="orHuman" required>
+		                    <input type="text" value="${user.userName}" name="orHuman">
 		                </div>
-		                <div class="form-group phone-group">
+		                <div class="form-group">
 		                    <label>휴대폰 <span class="required">*</span></label>
 		                    <input type="text" name="orphone"  value="${user.userPhone}" required>
 		                </div>
@@ -71,21 +71,21 @@
 		                </div>
 		                <div class="form-group post-number">
 		                    <label>우편번호 <span class="required">*</span></label>
-		                    <input type="text" name="orPost" size="5" id="sample6_postcode" required>
+		                    <input type="text" name="orPost" size="5" id="sample6_postcode" readonly>
 		                    <button type="button" class="search-button" onclick="sample6_execDaumPostcode()">검색</button>
 		                </div>
 		                <div class="form-group">
 		                    <label>주소 <span class="required">*</span></label>
-		                    <input type="text" name="orAdd1" id="sample6_address" required>
+		                    <input type="text" name="orAdd1" id="sample6_address" readonly>
 		                </div>
 		                <div class="form-group">
 		                    <label>나머지 주소</label>
 		                    <input type="text" name="orAdd2" id="sample6_detailAddress">
 		                    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 		                </div>
-		                <div class="form-group phone-group">
+		                <div class="form-group">
 		                    <label>휴대폰 <span class="required">*</span></label>
-		                    <input type="text" name="orRecPhone" size="3" required>
+		                    <input type="text" name="orRecPhone">
 		                </div>
 		                <div class="form-group">
 		                    <label>배송 메시지 입력</label>
@@ -114,7 +114,7 @@
 		                <div class="cardInfo">
 		                	<input placeholder="이름">
 		                	<input placeholder="-를 제외한 카드번호 입력" name="orCardNum">
-		                	<input placeholder="cvc번호" name="orCvc">
+		                	<input placeholder="cvc번호" name="orCvc" maxlength="3">
 		                </div>
 		                <button type="button" class="method-button" id="bankBtn">계좌이체</button>
 		            	<div class="bankInfo">
@@ -144,5 +144,36 @@
 </div>
    <%@ include file="../main/footer.jsp"%>
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script>
+   $('input[name="orRecPhone"]').on('input', function () {
+	    let phone = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 남기기
+	    if (phone.length <= 3) {
+	        // 3자리 이하일 경우 그대로
+	        $(this).val(phone);
+	    } else if (phone.length <= 7) {
+	        // 3-4 형식
+	        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3));
+	    } else {
+	        // 3-4-4 형식
+	        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7, 11));
+	    }
+	});
+   
+   $('input[name="orphone"]').on('input', function () {
+	    let phone = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 남기기
+	    if (phone.length <= 3) {
+	        // 3자리 이하일 경우 그대로
+	        $(this).val(phone);
+	    } else if (phone.length <= 7) {
+	        // 3-4 형식
+	        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3));
+	    } else {
+	        // 3-4-4 형식
+	        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7, 11));
+	    }
+	});
+	   
+   
+   </script>
 </body>
 </html>
