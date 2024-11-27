@@ -18,7 +18,7 @@
     <div class="board-container">
         <form name="frmBoardWrite" action="writeProcess.do" method="post">
 
-            <!-- 작성자 (사용자가 직접 입력) -->
+            <!-- 작성자  -->
             <input type="hidden" id="author" name="author" value="${user.userName}">
 
             <!-- 제목 -->

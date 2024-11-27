@@ -32,6 +32,7 @@ public class StoryController {
 
     private final StoryService storyService;
     private final ProductService productService;
+	private StoryService storyServiceImpl;
 
     // 스토리 작성 페이지 요청
     @GetMapping("/story/write.do")
@@ -143,5 +144,18 @@ public class StoryController {
         } else {
             return "error/404";
         }
+    }
+    
+    //스토리 삭제처리
+    @GetMapping("/delete.do")
+    public ModelAndView storyDeleteProcess(@RequestParam(value = "storyIdx", required = false) Long storyIdx, ModelAndView mav) {
+        if (storyIdx == null) {
+            mav.addObject("msg", "잘못된 요청입니다. 게시글 ID가 없습니다.");
+            mav.setViewName("error/invalid_request");
+            return mav;
+        }
+        int result = storyServiceImpl.deleteStory(storyIdx);
+        mav.setViewName(result == 1 ? "redirect:/story/farmstory.no" : "error/invalid_request");
+        return mav;
     }
 }

@@ -6,8 +6,6 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
 }
 
 .layout {
@@ -53,3 +51,85 @@ body {
     margin-top: 10px;
 }
 
+        /* 태그된 작품 섹션 스타일 */
+        .tagged-items {
+            padding: 15px;
+            font-size: 14px;
+            border: 3px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .tagged-items img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .tagged-item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tagged-item-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: #ff6600;
+        }
+
+        .tagged-item-price {
+            font-size: 13px;
+            color: #333;
+        }
+        
+        /* 버튼 스타일 */
+		#detail-btn-group {
+		    text-align: center;
+		    margin-top: 20px;
+		}
+		
+		#detail-btn-group .btn {
+		    background-color: #007bff;
+		    color: white;
+		    border: none;
+		    padding: 10px 20px;
+		    margin: 5px;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    font-size: 14px;
+		    transition: background-color 0.3s;
+		}
+		
+		#detail-btn-group .btn:hover {
+		    background-color: #0056b3;
+		}
+		
+		.btn-edit {
+		    background-color: #4CAF50;
+		}
+		
+		.btn-edit:hover {
+		    background-color: #45a049;
+		}
+		
+		.btn-delete {
+		    background-color: #dc3545;
+		}
+		
+		.btn-delete:hover {
+		    background-color: #c82333;
+		}
+		
+		.btn-back {
+		    background-color: #6c757d;
+		}
+		
+		.btn-back:hover {
+		    background-color: #5a6268;
+		}
+		
+		
+		
+		

@@ -35,15 +35,16 @@
             </div>
 
             <!-- 태그할 상품 선택 -->
-            <div class="form-group">
-                <label for="product">태그할 상품</label>
-                <select id="product" name="productId" class="form-control" >
-                    <option value="">상품을 선택하세요</option> 
-                    <c:forEach var="product" items="${products}">
-                        <option value="${product.pdtIdx}">${product.pdtTitle}</option>
-                    </c:forEach>
-                </select>
-            </div>
+			<div class="form-group">
+			    <label for="product">태그할 상품</label>
+			    <select id="product" name="productId" class="form-control" required>
+			        <option value="">상품을 선택하세요</option> 
+			        <c:forEach var="product" items="${products}">
+			            <option value="${product.pdtIdx}">${product.pdtTitle}</option>
+			        </c:forEach>
+			    </select>
+			</div>
+
 
             <!-- 메인 이미지 업로드 -->
             <div class="form-group">
@@ -68,5 +69,6 @@
     </div>
 
     <%@ include file="../main/footer.jsp" %>
+    
 </body>
 </html>
