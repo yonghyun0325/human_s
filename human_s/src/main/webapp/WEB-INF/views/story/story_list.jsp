@@ -62,7 +62,8 @@
         </div>
     </a>
 
-    <!-- 태그된 아이템 (링크 없음) -->
+    <!-- 태그된 아이템  -->
+    <a href="${pageContext.request.contextPath}/product/viewDetail.no?idx=${story.product.pdtIdx}">
     <div class="tagged-items">
     <c:choose>
     	<c:when test="${ not empty story.product.img }">
@@ -75,9 +76,11 @@
     
         <div class="tagged-item-info">
             <div class="tagged-item-title">${story.product.pdtTitle}</div>
-            <div class="tagged-item-price">${story.product.pdtPrice}</div>
+            <div class="tagged-item-price">${story.product.pdtPrice}원</div>
         </div>
     </div>
+    </a>
+    
 </div>
 
                     <div class="story-footer">
