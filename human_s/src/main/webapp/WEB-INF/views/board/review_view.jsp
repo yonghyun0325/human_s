@@ -38,10 +38,10 @@
 
         <div id="detail-btn-group">
             <!-- 조건: 로그인 상태 + 자신이 작성한 게시물일 경우 -->
-            <%-- <c:if test="${(not empty member) and (member.user_idx eq review.user_idx)}"> --%>
+            <c:if test="${(not empty user) and (user.userIdx eq review.userEntity.userIdx)}"> 
                 <button class="btn btn-edit" onclick="location.href='${pageContext.request.contextPath}/board/review/update.do?reviewIdx=${review.id}'">수정하기</button>
                 <button class="btn btn-delete" onclick="deletePost()">삭제하기</button>
-            <%-- </c:if> --%>
+             </c:if> 
             <button class="btn btn-back" onclick="location.href='${pageContext.request.contextPath}/board/review.no'">목록으로</button>
         </div>
     </div>
