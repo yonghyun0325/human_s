@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.FavoriteEntity;
@@ -18,6 +19,7 @@ import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.MyPageService;
+import com.human.hms.vo.AddressVO;
 import com.human.hms.vo.UserVO;
 
 @Controller
@@ -103,6 +105,7 @@ public class MyPageController {
     	UserEntity user = (UserEntity) session.getAttribute("user");
     	if (user != null) {
 			List<AddressEntity> addressList = myPageService.getAddressesByUserId(user.getUserIdx());
+			model.addAttribute("user",user);
 			model.addAttribute("addressList",addressList);
 		} else {
 			model.addAttribute("error","로그인이 필요합니다.");
@@ -111,13 +114,30 @@ public class MyPageController {
     }
     // 새로운 주소 추가 요청 처리
     @PostMapping("/addaddress.do")
-    public String addAddress(HttpSession session, AddressEntity addressEntity, Model model) {
+    @ResponseBody
+    public String addAddress(HttpSession session, AddressVO vo, Model model) {
+    	
+    	System.out.println("addAddress 처리 요청 메소드 실행");
+    	
+    	String result = "SUCCESS";//정상적으로 배송지 추가시 결과값
+    	
+    	AddressEntity addressEntity= AddressEntity.builder()
+    			.addPost(vo.getAddPost())
+    			.add1(vo.getAdd1())
+    			.add2(vo.getAdd2())
+    			.addressName(vo.getAddressName())
+    			.receiverName(vo.getReceiverName())
+    			.phoneNumber(vo.getPhoneNumber())
+    			.orderMessage(vo.getOrderMessage())
+    			.build();
     	UserEntity user = (UserEntity) session.getAttribute("user");
+    	addressEntity.updateUserEntity(user);
     	if (user != null) {
             // 중복 데이터 확인
             if (myPageService.isAddressDuplicate(user.getUserIdx(), addressEntity)) {
-                model.addAttribute("error", "이미 동일한 주소가 등록되어 있습니다.");
-                return "mypage/addaddress"; // 오류 메시지와 함께 다시 주소 추가 페이지로 이동
+                //model.addAttribute("error", "이미 동일한 주소가 등록되어 있습니다.");
+                result="이미 동일한 주소가 등록되어 있습니다.";
+                //return "mypage/addaddress"; // 오류 메시지와 함께 다시 주소 추가 페이지로 이동
             }
 
             // 기본 배송지 설정 여부 확인
@@ -129,11 +149,14 @@ public class MyPageController {
             // 유저와 연관된 주소로 설정
             addressEntity.updateUserEntity(user);
             myPageService.saveAddress(addressEntity);
-            return "redirect:/mypage/address.do"; // 저장 후 주소 관리 페이지로 리다이렉트
+            
+            //return "redirect:/mypage/address.do"; // 저장 후 주소 관리 페이지로 리다이렉트
         } else {
-            model.addAttribute("error", "로그인이 필요합니다.");
-            return "mypage/addaddress"; // 로그인 필요 페이지로 이동
+            //model.addAttribute("error", "로그인이 필요합니다.");
+            result="로그인이 필요합니다.";
+            //return "mypage/addaddress"; // 로그인 필요 페이지로 이동
         }
+    	return result;
     }
     // discountcoupon.jsp로 이동
     @GetMapping("/coupon.do")

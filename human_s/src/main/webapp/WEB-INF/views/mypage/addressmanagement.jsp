@@ -40,16 +40,20 @@
 				    <c:choose>
 				        <c:when test="${not empty addressList}">
 				            <c:forEach var="address" items="${addressList}">
-				                <tr>
-				                    <td><input type="checkbox"></td>
-				                    <td>[기본 배송지] ${address.addPost} ${address.add1} ${address.add2}</td>
-				                    <td>${address.userEntity.userPhone}</td>
-				                    <td>${address.addStatus == 0 ? '기본 배송지' : '추가 배송지'}</td>
-				                    <td>
-				                        <button type="button" onclick="removeRow(this)">삭제</button>
-				                    </td>
-				                </tr>
-				            </c:forEach>
+							    <tr>
+							        <td><input type="checkbox"></td>
+							        <td>
+							            [<c:choose>
+							                <c:when test="${address.addStatus == 0}">기본 배송지</c:when>
+							                <c:otherwise>추가 배송지</c:otherwise>
+							            </c:choose>] 
+							            ${address.addPost} ${address.add1} ${address.add2}
+							        </td>
+							        <td>${address.userEntity.userPhone}</td>
+							        <td>${address.orderMessage != null ? address.orderMessage : '없음'}</td>
+							        <td><button type="button" onclick="removeRow(this)">삭제</button></td>
+							    </tr>
+							</c:forEach>
 				        </c:when>
 				        <c:otherwise>
 				            <tr>
@@ -98,7 +102,7 @@
             );
         }
         
-     // 팝업에서 데이터를 추가하는 함수
+     	// 팝업에서 데이터를 추가하는 함수
         function addAddressToTable(addressData) {
             const tableBody = document.getElementById('addressTableBody');
 

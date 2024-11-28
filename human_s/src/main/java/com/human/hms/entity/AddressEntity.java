@@ -28,29 +28,50 @@ public class AddressEntity {
 	@Column(name = "a_idx",  nullable = false)
 	public int addIdx;
 	@Column(name = "a_post",  nullable = false)
-	public String addPost;
+	public String addPost; // 우편번호
 	@Column(name = "a_add1",  nullable = false)
-	public String add1;
+	public String add1; // 기본 주소
 	@Column(name = "a_add2",  nullable = false)
-	public String add2;
+	public String add2; // 상세 주소
 	@Column(name = "a_date",  columnDefinition="DATETIME DEFAULT NOW()")
-	public Date addDate;
+	public Date addDate; // 생성일
 	@Column(name = "a_status",  columnDefinition = "TINYINT DEFAULT 1")
-	public int addStatus;
+	public int addStatus; // 기본 배송지 여부 (0: 기본 배송지, 1: 추가 주소)
 	
 	@ManyToOne
 	@JoinColumn(name="user_idx", updatable=false)
 	private UserEntity userEntity;
 	
+	// 새로운 필드 추가
+    @Column(name = "a_name", nullable = false)
+    private String addressName; // 배송지 이름
+
+    @Column(name = "a_receiver", nullable = false)
+    private String receiverName; // 받는 사람 이름
+
+    @Column(name = "a_phone", nullable = false)
+    private String phoneNumber; // 연락처
+
+    @Column(name = "a_message", length = 300)
+    private String orderMessage; // 주문 메시지
+
+    @Column(name = "a_updated", columnDefinition = "DATETIME DEFAULT NOW() ON UPDATE NOW()")
+    private Date updatedAt; // 수정일
+	
 	@Builder
-	public AddressEntity(String addPost, String add1, String add2,int addIdx) {
-		this.addIdx =addIdx;
-		this.addPost = addPost;
-		this.add1 = add1;
-		this.add2 = add2;
-		
-		this.addDate = new Date();
-		this.addStatus = 1;
+	public AddressEntity(String addPost, String add1, String add2, int addIdx, String addressName, 
+            String receiverName, String phoneNumber, String orderMessage) {
+		this.addIdx = addIdx;
+        this.addPost = addPost;
+        this.add1 = add1;
+        this.add2 = add2;
+        this.addressName = addressName;
+        this.receiverName = receiverName;
+        this.phoneNumber = phoneNumber;
+        this.orderMessage = orderMessage;
+        this.addDate = new Date(); // 생성일 초기화
+        this.updatedAt = new Date(); // 수정일 초기화
+        this.addStatus = 1; // 기본값: 추가 주소
 	}
 	
 	//a_idx에 대한 값의 변경 메소드
