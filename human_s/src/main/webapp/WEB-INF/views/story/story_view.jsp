@@ -53,7 +53,7 @@
 				<div><fmt:formatDate value="${item.commDate}" pattern="yyyy-MM-dd" /></div>
 			</div>
 	<c:if test="${ item.userEntity.userIdx == user.userIdx }">
-			<button value="${ item.scIdx }" data-id="${ story.id }" data-userIdx="${ item.userEntity.userIdx }">삭제</button>
+			<button value="${ item.scIdx }" data-id="${ story.id }" data-userIdx="${ user.userIdx }">삭제</button>
 	</c:if>
 		</div>
 </c:forEach>
@@ -65,7 +65,7 @@
 <c:if test="${ empty user }">
 		<input class="unuserComment" placeholder="로그인 후 이용해주세요" disabled></input>
 </c:if>
-		<button value="${ story.id }">등록하기</button>
+		<button value="${ story.id }" data-userIdx="${ user.userIdx }">등록하기</button>
 	</div>
     
     
@@ -97,6 +97,7 @@
     	$("#insertComment button").click(function(){
     		let comment = $(".userComment").val();
     		let id = $(this).val();
+    		let userIdx = $(this).attr("data-userIdx");
     		
     		$.ajax({
     			type: "get",
@@ -128,6 +129,7 @@
     			    const button = document.createElement("button");
     			    button.value = item.scIdx;
     			    button.setAttribute("data-id", item.storyEntity.id);
+    			    button.setAttribute("data-userIdx", userIdx);
     			    button.textContent = "삭제";
 
     			    innerDiv.appendChild(nickDiv);
@@ -152,7 +154,7 @@
     	$(document).on("click", "#story_comment > .comment button", function () {
     		let scIdx = $(this).val();
     		let id = $(this).data("id");
-    		let userIdx = $(this).data("userIdx");
+    		let userIdx = $(this).attr("data-userIdx");
     		
     		$.ajax({
     			type: "get",
@@ -186,21 +188,26 @@
 
     	                const dateDiv = document.createElement("div");
     	                dateDiv.textContent = commentDate;
+    	                
+    	             	// DOM 구조 구성
+    	                innerDiv.appendChild(nickDiv);
+    	                innerDiv.appendChild(contentDiv);
+    	                innerDiv.appendChild(dateDiv);
+    	                commentDiv.appendChild(innerDiv);
 
     	                if(userIdx == item.userEntity.userIdx){
 	    	                const button = document.createElement("button");
 	    	                button.value = item.scIdx;
 	    	                button.setAttribute("data-id", item.storyEntity.id);
+	    	                button.setAttribute("data-userIdx", userIdx);
 	    	                button.textContent = "삭제";
+	    	                
+	    	                //DOM
+    	                	commentDiv.appendChild(button);
     	                }
 
-    	                // DOM 구조 구성
-    	                innerDiv.appendChild(nickDiv);
-    	                innerDiv.appendChild(contentDiv);
-    	                innerDiv.appendChild(dateDiv);
-    	                commentDiv.appendChild(innerDiv);
+    	                
     	                if(userIdx == item.userEntity.userIdx){
-    	                	commentDiv.appendChild(button);
     	                }
 
     	                // 새 댓글을 DOM에 추가
