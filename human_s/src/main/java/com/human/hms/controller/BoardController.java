@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.human.hms.entity.CinquiryEntity;
+import com.human.hms.entity.CommentEntity;
 import com.human.hms.entity.NoticeEntity;
 import com.human.hms.entity.PinquiryEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.service.CinquiryService;
+import com.human.hms.service.CommentService;
 import com.human.hms.service.NoticeService;
 import com.human.hms.service.PinquiryService;
 import com.human.hms.service.ReviewService;
@@ -38,6 +40,7 @@ public class BoardController {
     private ReviewService reviewServiceImpl;
     private PinquiryService pinquiryServiceImpl;
     private CinquiryService cinquiryServiceImpl;
+    private CommentService commentService;
 
     // 공지사항 목록
     @GetMapping("/notice.no")
@@ -243,9 +246,14 @@ public class BoardController {
         cinquiryServiceImpl.updateReadCount(cinquiryId);
         Optional<CinquiryEntity> optional = cinquiryServiceImpl.getCinquiryById(cinquiryId);
         optional.ifPresent(cinquiryEntity -> mav.addObject("cinquiry", cinquiryEntity));
+        
+        List<CommentEntity> comment = commentService.getCommentBycinquiry(cinquiryId);
+        mav.addObject("ComList", comment);
         mav.setViewName("board/cinquiry_view");
         return mav;
     }
+    
+  
     
   
 
@@ -411,6 +419,10 @@ public class BoardController {
         mav.setViewName(result == 1 ? "redirect:/board/cinquiry.no" : "error/invalid_request");
         return mav;
     }
+    
+    // 고객문의 댓글 데이터 전달
+    
+    
 
     // FAQ 페이지
     @GetMapping("/faq.no")
