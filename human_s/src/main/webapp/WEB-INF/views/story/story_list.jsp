@@ -53,10 +53,8 @@
     <!-- 게시물 메인 이미지 (스토리 상세 페이지로 이동) -->
     <a href="${pageContext.request.contextPath}/story/view?storyId=${story.id}">
         <img src="${pageContext.request.contextPath}${story.mainImage}" alt="게시 이미지" class="story-image">
-    </a>
 
     <!-- 게시물 설명 (스토리 상세 페이지로 이동) -->
-    <a href="${pageContext.request.contextPath}/story/view?storyId=${story.id}">
         <div class="story-description">
             ${story.storyContent}
         </div>
@@ -84,10 +82,11 @@
 </div>
 
                     <div class="story-footer">
-                        <button>
-                            <img src="https://img.icons8.com/ios/50/happy--v1.png" alt="공감하기"> 공감하기
+                        <button class="thumbsUpBtn">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            <i class="fa-regular fa-thumbs-up"></i> 공감하기
                         </button>
-                        <button>
+                        <button class="insertcomment" data-id="${ story.id }">
                             <img src="https://img.icons8.com/ios/50/comments--v1.png" alt="댓글쓰기"> 댓글쓰기
                         </button>
                     </div>
@@ -99,8 +98,32 @@
 
   <script>
   
+  $(function(){
+	  
+	  $(".insertcomment").click(function(){
+		  let id = $(this).data("id");
+		  console.log(id);
+		  
+		  //페이지 이동 후 댓글창으로 스크롤 내리기 위한 #insertComment
+		  location.href = "/hms/story/view?storyId="+id+"#insertComment";
+	  });
+	  
+	  $(".thumbsUpBtn").click(function(){
+		 $(this).children("i").toggle(); 
+		 
+		 let currentColor = $(this).css("color");
+		 
+	     if (currentColor === "rgb(51, 51, 51)") {
+			 $(this).css("color", "#ff3333");
+		 }else{
+			 $(this).css("color", "#666");
+		 }
+	  });
+	  
+  });
   
-  <!--      let page = 1; // 초기 페이지
+  
+	    /* let page = 1; // 초기 페이지
         const size = 6; // 한 번에 가져올 항목 수
 
         // 무한 스크롤 이벤트
@@ -147,7 +170,7 @@
                     page++; // 다음 페이지로 증가
                 })
                 .catch(error => console.error('Error loading more stories:', error));
-        } -->
+        } */
     </script>
 </body>
 </html>

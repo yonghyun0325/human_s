@@ -132,11 +132,11 @@ body {
 		
 		
 /* 댓글 */	
-.story_comment{
+#story_comment{
 	width: 100%;
 	margin-top: 10px;
 }
-.story_comment .comment{
+#story_comment .comment{
 	display: flex;
     flex-direction: column;
     gap: 8px;
@@ -158,13 +158,12 @@ body {
     flex:1;
 }
 .comment div div:nth-child(2){
-	flex:2;
+	flex:3;
 }
 .comment div div:nth-child(3){
 	flex:1;
 }
 .comment button {
-	flxe: 1;
     margin-top: 10px;
     padding: 5px 10px;
     font-size: 12px;
@@ -174,17 +173,18 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    align-self: flex-end;
 }
 .comment button:hover {
     background-color: #7cb43f;
 }
 /* 댓글 작성 영역 */
-.insertComment {
+#insertComment {
     margin-top: 20px;
     display: flex;
     gap: 10px;
 }
-.insertComment input {
+#insertComment input {
 	flex: 10;
     width: 100%;
     padding: 10px;
@@ -194,13 +194,13 @@ body {
     resize: none;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
-.insertComment input.unuserComment {
+#insertComment input.unuserComment {
 	flex: 10;
     background-color: #f0f0f0;
     color: #aaa;
     cursor: not-allowed;
 }
-.insertComment button {
+#insertComment button {
 	flex: 1;
     align-self: flex-end;
     padding: 8px 16px;
@@ -212,6 +212,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.insertComment button:hover {
+#insertComment button:hover {
     background-color: #66a032;
 }

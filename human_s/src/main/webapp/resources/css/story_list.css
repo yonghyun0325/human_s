@@ -134,7 +134,7 @@
         .story-footer button {
             border: none;
             background: none;
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
             color: #666;
             display: flex;
@@ -149,6 +149,16 @@
             width: 16px;
             margin-right: 5px;
         }
+        .story-footer button i {
+        	font-size: 16px;
+        	color: #666;
+        	margin-right: 3px;
+        }
+        .story-footer button i:first-child{
+        	display:none;
+        	color: #ff3333;
+        }
+        
                 /* 버튼 컨테이너 스타일 */
 
 		.story-write{
