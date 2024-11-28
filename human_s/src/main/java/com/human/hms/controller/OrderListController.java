@@ -39,9 +39,10 @@ public class OrderListController {
         return "orderdetails/orderdetails";
     }
     @GetMapping("/order.no")
-    public String order(@RequestParam("p_idx")int idx, Model model) {
+    public String order(@RequestParam("p_idx")int idx, @RequestParam("qty")int qty,Model model) {
     	System.out.println(idx);
 		ProductEntity product = productServiceImpl.findbyId(idx);
+		model.addAttribute("qty", qty);
 		model.addAttribute("product", product);
 		 
     	return "orderdetails/order";
@@ -51,7 +52,9 @@ public class OrderListController {
     public String orderProcess(OrderListVO vo, HttpServletRequest request, RedirectAttributes redirectModel) {
     	String viewName = "orderdetail/order.no?p_idx="+vo.getPdtIdx();//실패시 뷰네임
     	OrderListEntity entity = OrderListEntity.builder()
-    									.orPayAmount(String.valueOf(Integer.parseInt(vo.getOrPayAmount()) + 3000))
+    									.orPayAmount(String.valueOf(
+    										    Integer.parseInt(vo.getOrPayAmount()) * Integer.parseInt(vo.getOrCount()) + 3000
+    											))
     									.orPayType(vo.getOrPayType())
     									.orName(vo.getOrName())
     									.orCount(vo.getOrCount())
