@@ -49,7 +49,7 @@
 							            </c:choose>] 
 							            ${address.addPost} ${address.add1} ${address.add2}
 							        </td>
-							        <td>${address.userEntity.userPhone}</td>
+							        <td>${address.phoneNumber}</td>
 							        <td>${address.orderMessage != null ? address.orderMessage : '없음'}</td>
 							        <td><button type="button" onclick="removeRow(this)">삭제</button></td>
 							    </tr>
