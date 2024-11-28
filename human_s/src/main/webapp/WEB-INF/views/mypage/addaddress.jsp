@@ -7,13 +7,14 @@
 <title>배송지 추가</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addaddress.css">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
 <body>
 	<div class="popup-container">
         <h2>배송지 추가</h2>
         <p class="description">배송을 받을 수취인 정보를 입력합니다.</p>
-        <form id="addressForm">
+        <form name="addressForm" id="addressForm" action="${pageContext.request.contextPath}/mypage/addaddress.do" method="post">
             <table class="form-table">
                 <tr>
                     <th><label for="addressName">배송지명</label></th>
@@ -21,17 +22,17 @@
                 </tr>
                 <tr>
                     <th><label for="recipient">받는 사람(이름)</label></th>
-                    <td><input type="text" id="recipient" name="recipient" required></td>
+                    <td><input type="text" id="receiverName" name="receiverName" required></td>
                 </tr>
                 <tr>
                     <th><label for="address">주소</label></th>
                     <td>
                         <div class="address-wrapper">
-                            <input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
+                            <input type="text" id="postcode" name="addPost" placeholder="우편번호" required>
                             <button type="button" class="btn-postcode" onclick="searchPostcode()">우편번호</button>
                         </div>
-                        <input type="text" id="address" name="address" placeholder="기본 주소" required>
-                        <input type="text" id="addressDetail" name="addressDetail" placeholder="상세 주소">
+                        <input type="text" id="address" name="add1" placeholder="기본 주소" required>
+                        <input type="text" id="addressDetail" name="add2" placeholder="상세 주소">
                     </td>
                 </tr>
                 <tr>
@@ -43,6 +44,7 @@
                             <input type="tel" id="phone2" name="phone2" maxlength="4" placeholder="1234" required>
                             <span>-</span>
                             <input type="tel" id="phone3" name="phone3" maxlength="4" placeholder="5678" required>
+                            <input type="hidden" name="phoneNumber" id="phoneNumber">
                         </div>
                     </td>
                 </tr>
@@ -88,44 +90,71 @@
     </div>
 
     <script>
-        
-    	 // 우편번호 검색 함수
-        function searchPostcode() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    // 우편번호와 주소 정보를 받아와서 입력 필드에 채움
-                    document.getElementById('postcode').value = data.zonecode; // 우편번호
-                    document.getElementById('address').value = data.address; // 기본 주소
-
-                    // 상세 주소 필드로 포커스 이동
-                    document.getElementById('addressDetail').focus();
+            $(".btn-save").on("click", function(event){//저장 버튼을 클릭했을 때
+            	
+            	//submit 이벤트 막기
+            	event.preventDefault();
+                //전화번호 세팅
+                const phoneNumber = $("#phone1").val()+"-"+$("#phone2").val()+"-"+$("#phone3").val();
+                $("#phoneNumber").val(phoneNumber);
+                
+                const address = {
+                		addressName: $("#addressName").val(),
+                		receiverName: $("#receiverName").val(),
+                		addPost: $("#postcode").val(),
+                		add1: $("#address").val(),
+                		add2: $("#addressDetail").val(),
+                		phoneNumber: phoneNumber,
+                		message: $("#message").val()
+                 }
+                
+                $.ajax({
+                	type: "POST",
+                	url: "/hms/mypage/addaddress.do",
+                	data: address,
+                	success: function(response){
+                		
+                		console.log("ajax 결과:",response);
+                		
+                 		if(response === "SUCCESS"){
+                			window.opener.location.href= "/hms/mypage/address.do";
+                		}else{
+                			console.log("에러 발생:"+response);
+                		}
+                		window.close();
+                		 
+                	}, 
+                	error: function(e){
+                		console.log("배송지 추가 시 예외발생: "+e);
+                	}
+              	
+                });//end of ajax
+                
+                
+             	/* // 부모 창의 URL 변경
+                if (window.opener) {
+                	
+                    window.opener.location.href = `${contextPath}/mypage/address.do`; // 부모 창 URL 변경
+                    
                 }
-            }).open();
-        }
-    	 
-        document.getElementById('addressForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // 기본 제출 동작 막기
+            	//submit 처리
+            	document.addressForm.submit(); */
+            	
+            });
+            
+         	// 우편번호 검색 함수
+            function searchPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        // 우편번호와 주소 정보를 받아와서 입력 필드에 채움
+                        document.getElementById('postcode').value = data.zonecode; // 우편번호
+                        document.getElementById('address').value = data.address; // 기본 주소
 
-            // 폼 데이터 읽기
-            const formData = new FormData(this);
-
-            // 입력값 가져오기
-            const addressData = {
-                addressName: formData.get('addressName'), // 배송지명
-                recipient: formData.get('recipient'), // 받는 사람
-                address: `${formData.get('postcode')} ${formData.get('address')} ${formData.get('addressDetail')}`, // 주소
-                phone: `${formData.get('phone1')}-${formData.get('phone2')}-${formData.get('phone3')}`, // 연락처
-                message: formData.get('message') || '없음' // 메시지 (없으면 기본값)
-            };
-
-            // 부모 창으로 데이터 전달
-            if (window.opener && !window.opener.closed) {
-                window.opener.addAddressToTable(addressData);
-            }
-
-            alert('배송지가 추가되었습니다.');
-            window.close(); // 팝업 닫기
-        });
+                        // 상세 주소 필드로 포커스 이동
+                        document.getElementById('addressDetail').focus();
+                    }
+                }).open();
+        	 }
     </script>
 </body>
 </html>
