@@ -59,4 +59,6 @@ public interface ProductService {
 
 	int productInFavorite(FavoriteEntity entity);
 
+	List<ProductEntity> checkHiddenList(List<String> checkeds);
+
 }

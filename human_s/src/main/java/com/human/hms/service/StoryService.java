@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.human.hms.entity.StoryCommentEntity;
 import com.human.hms.entity.StoryEntity;
 import com.human.hms.vo.StoryVO;
 
@@ -33,4 +34,14 @@ public interface StoryService {
 
     // 스토리 저장 (Entity 기반)
     void insertStory(StoryEntity entity, HttpServletRequest request);
+
+    //스토리 댓글 저장
+	StoryCommentEntity insertComment(StoryCommentEntity entity);
+
+	//스토리에 맞는 댓글 조회
+	List<StoryCommentEntity> getCommentBystory(Long storyId);
+
+	//스토리 댓글 삭제
+	void deleteComment(int scIdx);
+
 }

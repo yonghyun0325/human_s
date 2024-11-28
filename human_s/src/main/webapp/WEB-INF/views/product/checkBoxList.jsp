@@ -56,6 +56,7 @@
 				</div>
 			</div>
 		</div>
+		<h3></h3>
 		<div>
 			<div class="newContent">
 	<c:if test="${ user.grade == 2 or user.grade == 3 }">
@@ -86,7 +87,7 @@
 		</c:forEach>
 	</c:if>
 	<c:if test="${ empty productList }">
-			<div>검색 결과가 없습니다.</div>
+			<div class="noneList">검색 결과가 없습니다.</div>
 	</c:if>
 		</div>
 	</section>

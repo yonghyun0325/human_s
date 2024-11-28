@@ -31,8 +31,17 @@
 		<interceptor>
 			<mapping path="/**/*.do" />
 			
+			<!-- 로그아웃은 인터셉터에서 제외 -->
+			<exclude-mapping path="/user/logout.do"/>
+			
 			<!-- 주문내역은 인터셉터에서 제외 -->
 			<exclude-mapping path="/mypage/order.do"/>
+			
+			<!-- 고객센터 상세 글 보기는 인터셉터에서 제외 -->
+			<exclude-mapping path="/board/notice/view.do"/>
+			<exclude-mapping path="/board/pinquiry/view.do"/>
+			<exclude-mapping path="/board/review/view.do"/>
+			<exclude-mapping path="/board/cinquiry/view.do"/>
 			
 			<!-- 로그인 인터셉터 빈 등록 -->
 			<beans:bean id="LoginInterceptor" class="com.human.hms.interceptor.LoginInterceptor" />

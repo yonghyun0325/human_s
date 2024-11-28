@@ -32,14 +32,14 @@
     <!-- 상단 헤더 -->
     <div class="story-header">
         <!-- 프로필 사진 (프로필 페이지로 이동) -->
-        <a href="${pageContext.request.contextPath}/profile/view?author=${story.author}">
+        <a href="#">
             <img src="${pageContext.request.contextPath}/resources/img/han.jpg" alt="프로필 사진" class="profile-pic">
         </a>
 
         <!-- 이름 (다른 페이지로 이동) -->
         <div class="seller-info">
-            <a href="${pageContext.request.contextPath}/seller/view?author=${story.author}" class="seller-name">
-                ${story.author}
+            <a href="#" class="seller-name">
+                ${story.userEntity.userNick}
             </a>
             <div class="story-time">
                 <fmt:formatDate value="${story.createdDate}" pattern="yyyy-MM-dd" />

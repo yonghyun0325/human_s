@@ -83,51 +83,71 @@ $(function() {
     
     
     
-    
+    $('input[name="userPhone"]').on('input', function () {
+    let phone = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 남기기
+    if (phone.length <= 3) {
+        // 3자리 이하일 경우 그대로
+        $(this).val(phone);
+    } else if (phone.length <= 7) {
+        // 3-4 형식
+        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3));
+    } else {
+        // 3-4-4 형식
+        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7, 11));
+    }
+});
    
 
-    // 회원가입 버튼 클릭 시 유효성 검사
-    $('.joinbutton').on('click', function(event) {
-        let isValid = true;
-        let errorMessage = "";
+// 회원가입 버튼 클릭 시 유효성 검사
+$('.joinbutton').on('click', function(event) {
+    let isValid = true;
+    let errorMessage = "";
 
-        // 필수 입력 필드 가져오기
-        const email = $('.email').val();
-        const password = $('input[name="userPw"]').val();
-        const confirmPassword = $('input[placeholder="비밀번호 재입력"]').val();
-        const nickname = $('input[name="userNick"]').val();
-        const name = $('input[name="userName"]').val();
-        const phone = $('input[name="userPhone"]').val();
-        const birth = $('input[name="birth"]').val();
-        const postCode = $('#sample6_postcode').val();
-        const address = $('#sample6_address').val();
-        const detailAddress = $('#sample6_detailAddress').val();
+    // 필수 입력 필드 가져오기
+    const email = $('.email').val();
+    const password = $('input[name="userPw"]').val();
+    const confirmPassword = $('input[placeholder="비밀번호 재입력"]').val();
+    const nickname = $('input[name="userNick"]').val();
+    const name = $('input[name="userName"]').val();
+    const phone = $('input[name="userPhone"]').val();
+    const birth = $('input[name="birth"]').val();
+    const postCode = $('#sample6_postcode').val();
+    const address = $('#sample6_address').val();
+    const detailAddress = $('#sample6_detailAddress').val();
 
-        // 빈 필드 확인
-        if (!email || !password || !confirmPassword || !nickname || !name || !phone || !birth || !postCode || !address || !detailAddress) {
-            isValid = false;
-            errorMessage = "모든 필수 입력 필드를 채워주세요.";
-        }
+    // 빈 필드 확인
+    if (!email || !password || !confirmPassword || !nickname || !name || !phone || !birth || !postCode || !address || !detailAddress) {
+        isValid = false;
+        errorMessage = "모든 필수 입력 필드를 채워주세요.";
+    }
 
-        // 비밀번호 유효성 검사 (영문, 숫자, 특수문자 포함 8자 이상)
-        const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if (!passwordPattern.test(password)) {
-            isValid = false;
-            errorMessage = "비밀번호는 영문, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.";
-        }
+    // 비밀번호 유효성 검사 (영문, 숫자, 특수문자 포함 8자 이상)
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordPattern.test(password)) {
+        isValid = false;
+        errorMessage = "비밀번호는 영문, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.";
+    }
 
-        // 비밀번호 일치 확인
-        if (password !== confirmPassword) {
-            isValid = false;
-            errorMessage = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
-        }
+    // 비밀번호 일치 확인
+    if (password !== confirmPassword) {
+        isValid = false;
+        errorMessage = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+    }
 
-        // 유효성 검사 실패 시, 경고 메시지 출력 및 제출 중단
-        if (!isValid) {
-            alert(errorMessage);
-            event.preventDefault(); // 폼 제출 방지
-        }
-    });
+    // 전화번호 유효성 검사 (3-4-4 형식)
+    const phonePattern = /^010-\d{4}-\d{4}$/;
+    if (!phonePattern.test(phone)) {
+        isValid = false;
+        errorMessage = "전화번호는 010-XXXX-XXXX 형식으로 입력해주세요.";
+    }
+
+    // 유효성 검사 실패 시, 경고 메시지 출력 및 제출 중단
+    if (!isValid) {
+        alert(errorMessage);
+        event.preventDefault(); // 폼 제출 방지
+    }
+});
+
    
     
     

@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.human.hms.entity.StoryCommentEntity;
 import com.human.hms.entity.StoryEntity;
 import com.human.hms.entity.UserEntity;
+import com.human.hms.repository.StoryCommentRepository;
 import com.human.hms.repository.StoryRepository;
 import com.human.hms.util.StoryFileManager;
 import com.human.hms.vo.StoryVO;
@@ -21,8 +23,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class StoryServiceImpl implements StoryService {
 
-    private final StoryRepository storyRepository;
-    private final StoryFileManager fileManager;
+    private StoryRepository storyRepository;
+    private StoryFileManager fileManager;
+    private StoryCommentRepository storyCommentRepository;
 
     // 전체 스토리 조회 (최신순 정렬)
     @Override
@@ -145,5 +148,23 @@ public class StoryServiceImpl implements StoryService {
                 .mainImage(imagePath)
                 .build();
     }
+
+    //스토리 댓글 저장
+	@Override
+	public StoryCommentEntity insertComment(StoryCommentEntity entity) {
+		return storyCommentRepository.save(entity);
+	}
+
+	//스토리에 맞는 댓글 조회
+	@Override
+	public List<StoryCommentEntity> getCommentBystory(Long storyId) {
+		return storyCommentRepository.getCommentBystory(storyId);
+	}
+
+	//스토리 댓글 삭제
+	@Override
+	public void deleteComment(int scIdx) {
+		storyCommentRepository.deleteById(scIdx);
+	}
    
 }

@@ -34,28 +34,48 @@ $(function(){
 	if(select === "pop"){
 		$("section > img:nth-child(1)").show();
 		$(".productItem > .productRow").show();
+		
+		//인기순 1-3위만 순위 박스 빨갛게
+		let rowNum = document.querySelectorAll(".productRow");
+		for(let i=0; i<3; i++){
+			rowNum[i].style.backgroundColor = "#C76B6B";
+		}
 	}else{
 		$("section > img:nth-child(2)").show();
 		$(".productItem > .productRow").hide();
 	}
 	
-	//인기순 1-3위만 순위 박스 빨갛게
-	let rowNum = document.querySelectorAll(".productRow");
-	for(let i=0; i<3; i++){
-		rowNum[i].style.backgroundColor = "#C76B6B";
-	}
 	
 	
 //checkBoxList.jsp
 	//주소값에 따라 달라지는 체크박스 창
-	if(select === "category"){
+	if(select === "category"){ //전체상품
 		$(".checkContainer .category").show();
 		$(".checkContainer .areaSelect").hide();
-	}else if(select === "areaSelect"){
+		$(".checkContainer + h3").hide();
+		
+	}else if(select === "areaSelect"){ //지역특산물
 		$(".checkContainer .category").hide();
 		$(".checkContainer .areaSelect").show();
+		$(".checkContainer + h3").hide();
+		
+	}else if(select === "hidden"){ //히든네비 과일~기타
+		$(".checkContainer").hide();
+		
+		let checked = getParameterByName("checked").trim();
+		let checkText = "";
+		switch(checked){
+			case 'fruit': checkText = "과일 (과실, 수실, 과일과채)"; break;
+			case 'vagetable': checkText = "채소 (근채, 엽경채, 조미채소, 양채, 과채, 산채)"; break;
+			case 'grainsNuts': checkText = "곡물 및 견과 (두류, 서류, 특용작물류, 약용작물류)"; break;
+			case 'other': checkText = "기타 (버섯, 관엽식물)"; break;
+		};
+		
+		$(".checkContainer + h3").show().text(checkText);
+	
 	}else{
 		$(".checkContainer").hide();
+		$(".checkContainer + h3").hide();
 	}
 	
 	//체크박스 '전체'가 선택되면 나머지 해제, 나머지 중 하나가 선택되면 '전체'해제
