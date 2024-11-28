@@ -44,21 +44,21 @@
         <small>작성일: <fmt:formatDate value="${story.createdDate}" pattern="yyyy-MM-dd" /></small>
     </div>
     
-    <div class="story_comment">
+    <div id="story_comment">
 <c:forEach var="item" items="${ storyComList }">
 		<div class="comment">
 			<div>
 				<div>${ item.userEntity.userNick }</div>
 				<div>${ item.comment }</div>
 				<div><fmt:formatDate value="${item.commDate}" pattern="yyyy-MM-dd" /></div>
-	<c:if test="${ item.userEntity.userIdx == user.userIdx }">
-			<button value="${ item.scIdx }" data-id="${ story.id }">삭제</button>
-	</c:if>
 			</div>
+	<c:if test="${ item.userEntity.userIdx == user.userIdx }">
+			<button value="${ item.scIdx }" data-id="${ story.id }" data-userIdx="${ item.userEntity.userIdx }">삭제</button>
+	</c:if>
 		</div>
 </c:forEach>
     </div>
-	<div class="insertComment">
+	<div id="insertComment">
 <c:if test="${ not empty user }">
 		<input class="userComment"></input>
 </c:if>
@@ -92,24 +92,9 @@
         }
     }
     
-    function comment(item){
-    	let commentDate = new Date(item.commDate).toLocaleString();
-    	
-    	return `
-	    	<div class="comment">
-				<div>
-					<div>${ item.userEntity.userNick }</div>
-					<div>${ item.comment }</div>
-					<div>${ commentDate }</div>
-					<button value="${ item.scIdx }" data-id="${ item.storyEntity.id }">삭제</button>
-				</div>
-			</div>   	
-	    `;
-    };
-    
     $(function(){
     	//스토리 댓글 등록
-    	$(".insertComment button").click(function(){
+    	$("#insertComment button").click(function(){
     		let comment = $(".userComment").val();
     		let id = $(this).val();
     		
@@ -119,21 +104,39 @@
     			data: {comment: comment, id: id},
     			headers: {"Accept": "application/json"},
     			success: function(item){
-    				let htmlContent = "";
-    				let commentDate = new Date(item.commDate).toLocaleString();
-    				
-    				htmlContent += `
-    					<div class="comment">
-	    					<div>
-	    						<div>${ item.userEntity.userNick }</div>
-	    						<div>${ item.comment }</div>
-	    						<div>${ commentDate }</div>
-	    						<button value="${ item.scIdx }" data-id="${ item.storyEntity.id }">삭제</button>
-	    					</div>
-	    				</div>  
-    				`;
-    	    		
-    	    		$(".story_comment").append(htmlContent);
+    				let date = new Date(item.commDate); // item.commDate: 밀리초 기반 시간
+    				let commentDate = 
+    				    date.getFullYear() + "-" + 
+    				    String(date.getMonth() + 1).padStart(2, "0") + "-" + 
+    				    String(date.getDate()).padStart(2, "0");			    
+
+    			    // DOM 요소 직접 생성
+    			    const commentDiv = document.createElement("div");
+    			    commentDiv.classList.add("comment");
+
+    			    const innerDiv = document.createElement("div");
+
+    			    const nickDiv = document.createElement("div");
+    			    nickDiv.textContent = item.userEntity.userNick;
+
+    			    const contentDiv = document.createElement("div");
+    			    contentDiv.textContent = item.comment;
+
+    			    const dateDiv = document.createElement("div");
+    			    dateDiv.textContent = commentDate;
+
+    			    const button = document.createElement("button");
+    			    button.value = item.scIdx;
+    			    button.setAttribute("data-id", item.storyEntity.id);
+    			    button.textContent = "삭제";
+
+    			    innerDiv.appendChild(nickDiv);
+    			    innerDiv.appendChild(contentDiv);
+    			    innerDiv.appendChild(dateDiv);
+    			    commentDiv.appendChild(innerDiv);
+    			    commentDiv.appendChild(button);
+
+    			    document.getElementById("story_comment").appendChild(commentDiv);
     	    		
     	    		$(".userComment").val("");
             	},
@@ -146,9 +149,10 @@
     	
     	
     	//스토리 댓글 삭제
-    	$(document).on("click", ".story_comment > .comment button", function () {
+    	$(document).on("click", "#story_comment > .comment button", function () {
     		let scIdx = $(this).val();
     		let id = $(this).data("id");
+    		let userIdx = $(this).data("userIdx");
     		
     		$.ajax({
     			type: "get",
@@ -156,15 +160,52 @@
     			data: {scIdx: scIdx, id:id},
     			headers: {"Accept": "application/json"},
     			success: function(storyComList){
-    				let htmlContent = "";
-    				
-    				storyComList.forEach(function(item){
-	    				
-	    				htmlContent += comment(item);
-    					
-    				});
-    	    		
-    	    		$(".story_comment").html(htmlContent);
+    				// 기존 댓글 DOM 비우기
+    	            $("#story_comment").empty();
+
+    	            // 삭제 후 반환된 댓글 리스트를 DOM으로 추가
+    	            storyComList.forEach(function(item) {
+    	                // 날짜 포맷팅
+    	                let date = new Date(item.commDate);
+    	                let commentDate =
+    	                    date.getFullYear() + "-" +
+    	                    String(date.getMonth() + 1).padStart(2, "0") + "-" +
+    	                    String(date.getDate()).padStart(2, "0");
+
+    	                // 댓글 요소 생성
+    	                const commentDiv = document.createElement("div");
+    	                commentDiv.classList.add("comment");
+
+    	                const innerDiv = document.createElement("div");
+
+    	                const nickDiv = document.createElement("div");
+    	                nickDiv.textContent = item.userEntity.userNick;
+
+    	                const contentDiv = document.createElement("div");
+    	                contentDiv.textContent = item.comment;
+
+    	                const dateDiv = document.createElement("div");
+    	                dateDiv.textContent = commentDate;
+
+    	                if(userIdx == item.userEntity.userIdx){
+	    	                const button = document.createElement("button");
+	    	                button.value = item.scIdx;
+	    	                button.setAttribute("data-id", item.storyEntity.id);
+	    	                button.textContent = "삭제";
+    	                }
+
+    	                // DOM 구조 구성
+    	                innerDiv.appendChild(nickDiv);
+    	                innerDiv.appendChild(contentDiv);
+    	                innerDiv.appendChild(dateDiv);
+    	                commentDiv.appendChild(innerDiv);
+    	                if(userIdx == item.userEntity.userIdx){
+    	                	commentDiv.appendChild(button);
+    	                }
+
+    	                // 새 댓글을 DOM에 추가
+    	                document.getElementById("story_comment").appendChild(commentDiv);
+    	            });
             	},
             	error: function(){
             		console.log("댓글 리스트를 불러오는 데 실패했습니다.");
