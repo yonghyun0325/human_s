@@ -105,7 +105,7 @@
                 		add1: $("#address").val(),
                 		add2: $("#addressDetail").val(),
                 		phoneNumber: phoneNumber,
-                		message: $("#message").val()
+                		orderMessage: $("#message").val()
                  }
                 
                 $.ajax({
