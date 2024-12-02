@@ -43,13 +43,13 @@ public class AddressEntity {
 	private UserEntity userEntity;
 	
 	// 새로운 필드 추가
-    @Column(name = "a_name", nullable = false)
+    @Column(name = "a_name")
     private String addressName; // 배송지 이름
 
-    @Column(name = "a_receiver", nullable = false)
+    @Column(name = "a_receiver")
     private String receiverName; // 받는 사람 이름
 
-    @Column(name = "a_phone", nullable = false)
+    @Column(name = "a_phone")
     private String phoneNumber; // 연락처
 
     @Column(name = "a_message", length = 300)

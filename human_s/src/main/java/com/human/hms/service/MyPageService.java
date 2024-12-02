@@ -29,4 +29,6 @@ public interface MyPageService {
 
 	void updateAllAddressesToAdditional(int userIdx);
 
+	boolean deleteAddressById(int addressId); //주소 삭제하기
+
 }

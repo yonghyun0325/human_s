@@ -40,7 +40,7 @@
 				<div class="productContent">
 					<div class="title">${ item.pdtTitle }</div>
 					<div class="price">(100g당 ${ item.pdtGPrice }원)<span>${ item.pdtPrice } 원</span></div>
-					<div class="company">${ item.pdtWriter }</div>
+					<div class="company">${ item.userEntity.userNick }</div>
 				</div>
 			</div>
 	</c:forEach>

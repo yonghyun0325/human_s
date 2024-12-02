@@ -101,8 +101,8 @@
 					</div>
 					<div class="productContent">
 						<div class="title">${ popList[i].pdtTitle }</div>
-						<div class="price">(100g당 ${ popList[i].pdtGPrice }원)<span>${ popList[i].pdtPrice } 원</span></div>
-						<div class="company">${ popList[i].pdtWriter }</div>
+						<div class="price"><span>${ popList[i].pdtPrice } 원</span><br>(100g당 ${ popList[i].pdtGPrice }원)</div>
+						<div class="company">${ popList[i].userEntity.userNick }</div>
 					</div>
                 </div>
 	</c:forEach>
@@ -116,18 +116,18 @@
 					<a href="/hms/product/viewDetail.no?idx=${ newList[i].pdtIdx }">
 		<c:choose>
 			<c:when test="${ not empty newList[i].img }">
-	                <div class="newItem item" style="background-image: url('${ newList[i].img }');">
-	                	<div class="areaBox">
-		                    <div>${ newList[i].pdtTitle }</div>
-		                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice } 원</span></div>
-	                	</div>
-	                </div>
+	                <div class="newItem item" style="background-image: url('${ newList[i].img }');"></div>
+                	<div class="areaBox">
+	                    <div>${ newList[i].pdtTitle }</div>
+	                    <div class="price"><span>${ newList[i].pdtPrice } 원</span> (100g당 ${ newList[i].pdtGPrice }원)</div>
+                	</div>
 			</c:when>
 			<c:otherwise>
-					<div class="newItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${newList[i].pdtSave}');">
+					<div class="newItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${newList[i].pdtSave}');"></div>
+					<div class="areaBox">
 	                    <div>${ newList[i].pdtTitle }</div>
-	                    <div class="price">(100g당 ${ newList[i].pdtGPrice }원) <span>${ newList[i].pdtPrice }원</span></div>
-	                </div>
+	                    <div class="price"><span>${ newList[i].pdtPrice } 원</span> (100g당 ${ newList[i].pdtGPrice }원)</div>
+                	</div>
 			</c:otherwise>
 		</c:choose>
 					</a>
@@ -145,20 +145,20 @@
 			<c:when test="${ not empty areaList[i].img }">
 	                <div class="areaItem item" style="background-image: url('${ areaList[i].img }');">
 	                	<div>${ areaList[i].pdtArea }</div>
-	                	<div class="areaBox">
-		                    <div>${ areaList[i].pdtTitle }</div>
-		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice }원</span></div>
-	                	</div>
 	                </div>
+	                <div class="areaBox">
+	                    <div>${ areaList[i].pdtTitle }</div>
+	                    <div class="price"><span>${ areaList[i].pdtPrice }원</span> (100g당 ${ newList[i].pdtGPrice }원)</div>
+                	</div>
 			</c:when>
 			<c:otherwise>
 					<div class="areaItem item" style="background-image: url('${pageContext.request.contextPath}/resources/uploads/${areaList[i].pdtSave}');">
 	                    <div>${ areaList[i].pdtArea }</div>
-	                    <div class="areaBox">
-		                    <div>${ areaList[i].pdtTitle }</div>
-		                    <div class="price">(100g당 ${ areaList[i].pdtGPrice }원) <span>${ areaList[i].pdtPrice } 원</span></div>
-	                	</div>
 	                </div>
+	                <div class="areaBox">
+	                    <div>${ areaList[i].pdtTitle }</div>
+	                    <div class="price"><span>${ areaList[i].pdtPrice }원</span> (100g당 ${ newList[i].pdtGPrice }원)</div>
+                	</div>
 			</c:otherwise>
 		</c:choose>
 					</a>
