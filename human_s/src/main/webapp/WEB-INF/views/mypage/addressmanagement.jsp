@@ -7,6 +7,7 @@
 <title>나의 배송지 관리</title>
 <!-- 마이페이지 전용 스타일 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressmanagement.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -40,7 +41,7 @@
 				    <c:choose>
 				        <c:when test="${not empty addressList}">
 				            <c:forEach var="address" items="${addressList}">
-							    <tr>
+							    <tr data-id="${address.addIdx}">
 							        <td><input type="checkbox"></td>
 							        <td>
 							            [<c:choose>
@@ -127,14 +128,39 @@
 
         // 행 삭제 기능
         function removeRow(button) {
-            const row = button.closest('tr');
-            row.remove();
+        	const row = button.closest('tr'); // 삭제할 행 찾기
+            const addressId = row.getAttribute('data-id'); // 배송지 ID 가져오기 (addIdx 값)
 
-            // 테이블이 비었으면 안내 문구 추가
-            const tableBody = document.getElementById('addressTableBody');
-            if (tableBody.children.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td></tr>`;
+            // 삭제 확인 대화상자
+            if (!confirm("정말로 이 배송지를 삭제하시겠습니까?")) {
+                return;
             }
+
+            // 서버로 삭제 요청 보내기
+            $.ajax({
+                type: "DELETE",
+                url: "/hms/mypage/deleteaddress.do/" + addressId, // RESTful URL
+                success: function (response) {
+                    console.log("삭제 요청 결과:", response);
+
+                    if (response === "SUCCESS") {
+                        // 행 삭제
+                        row.re  move();
+
+                        // 테이블이 비었으면 안내 문구 추가
+                        const tableBody = document.getElementById("addressTableBody");
+                        if (tableBody.children.length === 0) {
+                            tableBody.innerHTML = `<tr><td colspan="5">자주 사용하는 배송지를 주소록에 추가해주세요.</td></tr>`;
+                        }
+                    } else {
+                        alert("삭제에 실패했습니다. 다시 시도해주세요.");
+                    }
+                },
+                error: function (error) {
+                    console.log("배송지 삭제 시 예외 발생:", error);
+                    alert("서버와의 통신 중 문제가 발생했습니다.");
+                },
+            });
         }
     </script>
 </body>

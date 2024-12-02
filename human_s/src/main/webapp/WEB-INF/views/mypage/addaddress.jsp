@@ -127,19 +127,7 @@
                 	error: function(e){
                 		console.log("배송지 추가 시 예외발생: "+e);
                 	}
-              	
                 });//end of ajax
-                
-                
-             	/* // 부모 창의 URL 변경
-                if (window.opener) {
-                	
-                    window.opener.location.href = `${contextPath}/mypage/address.do`; // 부모 창 URL 변경
-                    
-                }
-            	//submit 처리
-            	document.addressForm.submit(); */
-            	
             });
             
          	// 우편번호 검색 함수

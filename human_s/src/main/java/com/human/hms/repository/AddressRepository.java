@@ -1,6 +1,7 @@
 package com.human.hms.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,4 @@ public interface AddressRepository extends JpaRepository<AddressEntity, Integer>
 	// 특정 유저의 모든 주소 목록 조회
     @Query("SELECT a FROM AddressEntity a WHERE a.userEntity.userIdx = :userIdx")
     List<AddressEntity> getAddressesByUserId(@Param("userIdx") int userIdx);
-
-
 }
