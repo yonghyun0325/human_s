@@ -7,7 +7,7 @@
 <title>나의 배송지 관리</title>
 <!-- 마이페이지 전용 스타일 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addressmanagement.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
+
 </head>
 <body>
     <%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -145,7 +145,7 @@
 
                     if (response === "SUCCESS") {
                         // 행 삭제
-                        row.re  move();
+                        row.remove();
 
                         // 테이블이 비었으면 안내 문구 추가
                         const tableBody = document.getElementById("addressTableBody");
