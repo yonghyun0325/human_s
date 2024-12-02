@@ -133,4 +133,14 @@ public class MyPageServiceImpl implements MyPageService {
 			}
 		}
 	}
+
+	//주소 삭제하기
+	@Override
+	public boolean deleteAddressById(int addressId) {
+		if(addressRepository.deleteAddressById(addressId) == 1) {
+			return true;
+		}
+		
+		return false;
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -159,6 +160,18 @@ public class MyPageController {
         }
     	return result;
     }
+    //추가된 주소 삭제하기
+    @DeleteMapping("/deleteaddress.do/{addressId}")
+    @ResponseBody
+    public String deleteAddress(@PathVariable int addressId, HttpSession session) {
+
+        // 삭제 서비스 호출
+        boolean isDeleted = myPageService.deleteAddressById(addressId);
+
+        // 결과 반환
+        return isDeleted ? "SUCCESS" : "FAIL";
+    }
+    
     // discountcoupon.jsp로 이동
     @GetMapping("/coupon.do")
     public String showDiscountCoupon(){
