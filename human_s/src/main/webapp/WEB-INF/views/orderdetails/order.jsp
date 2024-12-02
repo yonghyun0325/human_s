@@ -127,16 +127,43 @@
 		            <!-- 약관 동의 -->
 		            <div class="terms">
 		                <h2>약관 동의</h2>
-		                <label><input type="checkbox" id="checkbox1"> 전체동의</label>
-		                <label><input type="checkbox" id="checkbox2"> 쇼핑몰 이용 약관 (필수)</label>
-		                <label><input type="checkbox" id="checkbox3"> 개인정보 수집 및 이용 (필수)</label>
-		                <label><input type="checkbox" id="checkbox4"> 개인정보 제3자 제공 동의 (필수)</label>
+		                <div class="term">
+			                <label><input type="checkbox" id="checkbox1"> 전체동의</label>
+		                </div>
+		                <div class="term">
+			                <label><input type="checkbox" id="checkbox2"> 쇼핑몰 이용 약관 (필수)</label><i class="fa-solid fa-chevron-down" id="down1"></i><i class="fa-solid fa-chevron-up" id="up1"></i>
+		                </div>
+		                <div class="interm" id="interm1">
+		                	<p>온라인으로 서비스를 제공하는 경우 플랫폼을 방문하는 고객을 위한 이용약관 및 고객의 개인정보 수집을 위한 내용(개인정보취급방침) 등을 정해야 합니다. 약관의 경우 약관의 규제에 관한 법률 (약관규제법)의 적용을 받아 불공정한 내용이 포함될 경우 고객이 동의하였다고 해도 효력이 없습니다. 그러므로 신중하게 검토하여 작성할 필요가 있습니다. 
+		                		일반적으로 이용약관에 들어가는 기본 내용은 회사의 의무, 서비스 제공에 관한 사항, 서비스 목적과 용어 등의 정의 규정부터, 손해배상, 분쟁 시 해결방안 등이 포함되어 있습니다.
+								이용약관 검토시 각 항목을 면밀히 점검하여 추가 혹은 불공정한 것으로 판단될 가능성이 높아 제거해야 하는 부분이 없는지 확인이 필요합니다. 표준 약관 혹은 동종 업종의 이용약관 등을 활용해서 작성해도 되지만 전문가의 조력을 받아 사업에 맞게 제대로 설정하는 것이 필요합니다.
+								저희 법무법인 테헤란 기업법무팀에서는 프랜차이즈, 엔터테인먼트, 스타트업 등 다양한 분야에 관하여 법률자문 서비스를 제공하고 있습니다. 아래 연락처를 통하여 문의주시면 보다 자세한 상담을 도와드리겠습니다.</p>
+		                </div>
+            	       	<div class="term">
+			                <label><input type="checkbox" id="checkbox3"> 개인정보 수집 및 이용 (필수)</label><i class="fa-solid fa-chevron-down" id="down2"></i><i class="fa-solid fa-chevron-up" id="up2"></i>
+            	       	</div>
+            	       	<div class="interm" id="interm2">
+            	       			<p>온라인으로 서비스를 제공하는 경우 플랫폼을 방문하는 고객을 위한 이용약관 및 고객의 개인정보 수집을 위한 내용(개인정보취급방침) 등을 정해야 합니다. 약관의 경우 약관의 규제에 관한 법률 (약관규제법)의 적용을 받아 불공정한 내용이 포함될 경우 고객이 동의하였다고 해도 효력이 없습니다. 그러므로 신중하게 검토하여 작성할 필요가 있습니다. 
+		                		일반적으로 이용약관에 들어가는 기본 내용은 회사의 의무, 서비스 제공에 관한 사항, 서비스 목적과 용어 등의 정의 규정부터, 손해배상, 분쟁 시 해결방안 등이 포함되어 있습니다.
+								이용약관 검토시 각 항목을 면밀히 점검하여 추가 혹은 불공정한 것으로 판단될 가능성이 높아 제거해야 하는 부분이 없는지 확인이 필요합니다. 표준 약관 혹은 동종 업종의 이용약관 등을 활용해서 작성해도 되지만 전문가의 조력을 받아 사업에 맞게 제대로 설정하는 것이 필요합니다.
+								저희 법무법인 테헤란 기업법무팀에서는 프랜차이즈, 엔터테인먼트, 스타트업 등 다양한 분야에 관하여 법률자문 서비스를 제공하고 있습니다. 아래 연락처를 통하여 문의주시면 보다 자세한 상담을 도와드리겠습니다.</p>
+								</div>
+						<div class="term">
+			                <label><input type="checkbox" id="checkbox4"> 개인정보 제3자 제공 동의 (필수)</label><i class="fa-solid fa-chevron-down" id="down3"></i><i class="fa-solid fa-chevron-up" id="up3"></i>
+						</div>
+						<div class="interm" id="interm3">
+							<p>온라인으로 서비스를 제공하는 경우 플랫폼을 방문하는 고객을 위한 이용약관 및 고객의 개인정보 수집을 위한 내용(개인정보취급방침) 등을 정해야 합니다. 약관의 경우 약관의 규제에 관한 법률 (약관규제법)의 적용을 받아 불공정한 내용이 포함될 경우 고객이 동의하였다고 해도 효력이 없습니다. 그러므로 신중하게 검토하여 작성할 필요가 있습니다. 
+		                		일반적으로 이용약관에 들어가는 기본 내용은 회사의 의무, 서비스 제공에 관한 사항, 서비스 목적과 용어 등의 정의 규정부터, 손해배상, 분쟁 시 해결방안 등이 포함되어 있습니다.
+								이용약관 검토시 각 항목을 면밀히 점검하여 추가 혹은 불공정한 것으로 판단될 가능성이 높아 제거해야 하는 부분이 없는지 확인이 필요합니다. 표준 약관 혹은 동종 업종의 이용약관 등을 활용해서 작성해도 되지만 전문가의 조력을 받아 사업에 맞게 제대로 설정하는 것이 필요합니다.
+								저희 법무법인 테헤란 기업법무팀에서는 프랜차이즈, 엔터테인먼트, 스타트업 등 다양한 분야에 관하여 법률자문 서비스를 제공하고 있습니다. 아래 연락처를 통하여 문의주시면 보다 자세한 상담을 도와드리겠습니다.</p>
+						</div>
 		            </div>
 	
 	            	<!-- 결제 버튼 -->
 	            	<div class="submit-button">
 	           	     <button type="submit">결제하기</button>
 	            	</div>
+	            	<img src="${pageContext.request.contextPath}/resources/img/결제창배너.png">
 	        	</div>
 	    	</div>
 		</form>
@@ -172,7 +199,41 @@
 	        $(this).val(phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7, 11));
 	    }
 	});
-	   
+   $('#down1').on('click', function() {
+	    $('#interm1').css('display', 'flex');
+	    $('#down1').css('display', 'none');
+	    $('#up1').css('display', 'flex');
+	});
+
+	$('#up1').on('click', function() {
+	    $('#interm1').css('display', 'none');
+	    $('#down1').css('display', 'flex');
+	    $('#up1').css('display', 'none');
+	});
+
+	$('#down2').on('click', function() {
+	    $('#interm2').css('display', 'flex');
+	    $('#down2').css('display', 'none');
+	    $('#up2').css('display', 'flex');
+	});
+
+	$('#up2').on('click', function() {
+	    $('#interm2').css('display', 'none');
+	    $('#down2').css('display', 'flex');
+	    $('#up2').css('display', 'none');
+	});
+
+	$('#down3').on('click', function() {
+	    $('#interm3').css('display', 'flex');
+	    $('#down3').css('display', 'none');
+	    $('#up3').css('display', 'flex');
+	});
+
+	$('#up3').on('click', function() {
+	    $('#interm3').css('display', 'none');
+	    $('#down3').css('display', 'flex');
+	    $('#up3').css('display', 'none');
+	});
    
    </script>
 </body>
