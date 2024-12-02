@@ -30,6 +30,16 @@ h1 {
 	color: #4caf50;
 }
 
+.right-section{
+	width: 30%;
+	padding-top: 20px;
+	display:flex;
+	flex-direction:column;
+}
+
+.right-section img{
+	margin-top:60px;
+}
 /* 주문상품 정보 박스 스타일 */
 .order-product-info {
 	border: 1px solid #ddd;
@@ -230,6 +240,11 @@ label {
 	margin: 5px 0;
 }
 
+.payment-method{
+	display:flex;
+	flex-direction:column;
+}
+
 .payment-info .total {
 	font-size: 18px;
 	font-weight: bold;
@@ -250,11 +265,38 @@ label {
 	color: white;
 }
 
-.terms label {
-	display: block;
+.terms  {
+	display: flex;
+	flex-direction:column;
 	margin-top: 5px;
 }
 
+.term{
+	margin-top:5px;
+	display:flex;
+}
+
+.term i{
+	margin-top:2px;
+	margin-left:5px;
+}
+
+.interm{
+	border:1px solid rgba(0,0,0,0.3); 
+	width:300px; 
+	height:50px;
+	margin-top:5px;
+	overflow-y:scroll;
+	display:none;
+}
+.interm p{
+	font-size:10px;
+	color:rgba(0,0,0,0.5);
+}
+
+.term #up1,.term #up2,.term #up3{
+	display:none;
+}
 /* 결제 버튼 스타일 */
 .submit-button {
 	text-align: center;
