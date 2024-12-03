@@ -1,45 +1,36 @@
 package com.human.hms.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.mail.internet.NewsAddress;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.BasketEntity;
 import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.repository.AddressRepository;
+import com.human.hms.repository.BasketRepository;
 import com.human.hms.repository.FavoriteRepository;
 import com.human.hms.repository.OrderListRepository;
 import com.human.hms.repository.ReviewRepository;
 import com.human.hms.repository.UserRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class MyPageServiceImpl implements MyPageService {
 
-//	@Autowired
-//	private UserRepository userRepository;
 	
-	@Autowired
 	private ReviewRepository reviewRepository;
-	
-	@Autowired
 	private FavoriteRepository favoriteRepository;
-	
-	@Autowired
 	private OrderListRepository orderListRepository;
-	
-	@Autowired
 	private AddressRepository addressRepository;
-	
-	@Autowired
 	private UserRepository userRepository;
+	private BasketRepository basketRepository;
 
 	@Override
 	public List<ReviewEntity> getReviewList(int idx) {
@@ -47,6 +38,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return reviewRepository.select(idx);
 	}
 
+	//찜 목록 불러오기
 	@Override
 	public List<FavoriteEntity> getFavoriteByUser(int userIdx) {
 		// TODO Auto-generated method stub
@@ -142,5 +134,11 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 		
 		return false;
+	}
+
+	//장바구니 목록 불러오기
+	@Override
+	public List<BasketEntity> getBasketByUser(int userIdx) {
+		return basketRepository.getBasketByUser(userIdx);
 	}
 }

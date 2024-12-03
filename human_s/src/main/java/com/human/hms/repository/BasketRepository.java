@@ -1,5 +1,7 @@
 package com.human.hms.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,5 +26,10 @@ public interface BasketRepository extends JpaRepository<BasketEntity, Integer>{
 			+ "where b.userEntity.userIdx = :userIdx "
 			+ "and b.productEntity.pdtIdx = :pdtIdx ")
 	int updateCart(@Param("qty") int qty, @Param("userIdx") int userIdx, @Param("pdtIdx") int pdtIdx);
+
+	//장바구니 목록 불러오기
+	@Query("select b from BasketEntity b "
+			+ "where b.userEntity.userIdx = :userIdx ")
+	List<BasketEntity> getBasketByUser(@Param("userIdx") int userIdx);
 
 }

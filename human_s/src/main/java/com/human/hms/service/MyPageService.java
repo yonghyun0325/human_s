@@ -3,6 +3,7 @@ package com.human.hms.service;
 import java.util.List;
 
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.BasketEntity;
 import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
@@ -30,5 +31,7 @@ public interface MyPageService {
 	void updateAllAddressesToAdditional(int userIdx);
 
 	boolean deleteAddressById(int addressId); //주소 삭제하기
+
+	List<BasketEntity> getBasketByUser(int userIdx);
 
 }
