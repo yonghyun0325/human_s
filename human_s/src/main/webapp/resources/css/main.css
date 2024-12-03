@@ -303,6 +303,7 @@ section{
 	padding: 5px 10px 10px 10px;
 	display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .productContent .title{
 	font-size: 14px;
@@ -315,16 +316,16 @@ section{
 	color: #aaa;
 	font-size: 10px;
 	white-space: nowrap; /* 줄 바꿈 방지 */
+	align-self: flex-end;
 }
 .productContent .price>span{
 	font-weight: bold;
 	font-size: 14px;
-	margin-right: 5px;
+	margin-left: 5px;
 }
 .productContent .company{
 	font-size: 13px;
 	color: #777;
-	margin-top: 8px;
 }
 .product>div{ /* 따끈따끈한 신상, 지역특산물 */
 	display: flex;

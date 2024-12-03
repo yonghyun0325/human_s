@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.human.hms.entity.AddressEntity;
+import com.human.hms.entity.BasketEntity;
 import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
@@ -197,7 +198,14 @@ public class MyPageController {
     }
     // basket.jsp로 이동
     @GetMapping("/basket.do")
-    public String showBasket(){
+    public String showBasket(Model model, HttpServletRequest request){
+    	UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+    	List<BasketEntity> basketList = myPageService.getBasketByUser(user.getUserIdx());
+    	model.addAttribute("basketList", basketList);
+    	
+    	List<FavoriteEntity> favoriteList = myPageService.getFavoriteByUser(user.getUserIdx());
+    	model.addAttribute("favoriteList", favoriteList);
+    	
         return "mypage/basket";
     }
     // inquiry.jsp로 이동

@@ -101,7 +101,7 @@
 					</div>
 					<div class="productContent">
 						<div class="title">${ popList[i].pdtTitle }</div>
-						<div class="price"><span>${ popList[i].pdtPrice } 원</span><br>(100g당 ${ popList[i].pdtGPrice }원)</div>
+						<div class="price">(100g당 ${ popList[i].pdtGPrice }원) <span>${ popList[i].pdtPrice }원</span></div>
 						<div class="company">${ popList[i].userEntity.userNick }</div>
 					</div>
                 </div>

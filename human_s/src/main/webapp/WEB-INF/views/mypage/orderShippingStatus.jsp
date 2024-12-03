@@ -44,7 +44,7 @@
 			    </div>
 			    
 			    <!-- 조회 버튼 -->
-			    <button class="filter-btn search-btn selects">조회하기</button>
+			    <button class="search-btn selects">조회하기</button>
 			</div>
             
             <table class="order-table">
@@ -122,16 +122,20 @@
                         break;
                 }
                 
+                const endDate = new Date(today); // 종료 날짜를 위해 today 복사
+                endDate.setDate(endDate.getDate() + 1); // 종료 날짜를 1일 더하기
+                
                 // 날짜 입력 필드에 값 설정
                 $('#baseDate').val(baseDate.toISOString().split('T')[0]);
-                $('#endDate').val(today.toISOString().split('T')[0]);
-                
+                $('#endDate').val(endDate.toISOString().split('T')[0]);
             });
             
          	// 조회하기 버튼 클릭 시 서버로 요청
             $('.search-btn').on('click', function() {
                 const startDate = $('#baseDate').val(); // 시작 날짜 값
                 const endDate = $('#endDate').val();   // 종료 날짜 값
+                console.log(startDate);
+                console.log(endDate);
                 
                 // 날짜 값이 없을 경우 경고 표시
                 if (!startDate || !endDate) {
