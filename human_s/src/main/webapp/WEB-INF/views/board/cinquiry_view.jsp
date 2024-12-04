@@ -45,11 +45,11 @@
 </c:forEach>
     </div>
 	<div id="insertComment">
-<c:if test="${ not empty user }">
+<c:if test="${ user.grade == 3 }">
 		<input class="userComment"></input>
 </c:if>
-<c:if test="${ empty user }">
-		<input class="unuserComment" placeholder="로그인 후 이용해주세요" disabled></input>
+<c:if test="${ empty user || user.grade != 3 }">
+		<input class="unuserComment" placeholder="관리자만 댓글을 달 수 있습니다." disabled></input>
 </c:if>
 		<button value="${ cinquiry.id }" data-userIdx="${ user.userIdx }">등록하기</button>
 	</div>
@@ -136,6 +136,11 @@
     	
     	//스토리 댓글 삭제
     	$(document).on("click", "#cinquiry_comment > .comment button", function () {
+    		if (!confirm("댓글을 삭제하시겠습니까?")) {
+    	        // 취소를 누르면 함수 종료
+    	        return;
+    	    }
+    		
     		let ccIdx = $(this).val();
     		let id = $(this).data("id");
     		let userIdx = $(this).attr("data-userIdx");

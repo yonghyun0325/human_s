@@ -206,6 +206,7 @@ table .cWriter, table .cDate{
 }
 table .cStar{
 	width: 15%;
+	font-size: 11px;
 }
 table+div{ 
 	display: flex;

@@ -30,6 +30,8 @@ public interface PinquiryService {
 
 	PinquiryEntity insertPinquiry(PinquiryEntity entity, HttpServletRequest request);
 
+	PinquiryEntity updateComment(String comment, Long id);
+
 	
 
 

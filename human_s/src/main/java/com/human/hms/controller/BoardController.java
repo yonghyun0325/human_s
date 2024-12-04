@@ -11,17 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.human.hms.entity.CinquiryEntity;
 import com.human.hms.entity.CommentEntity;
 import com.human.hms.entity.NoticeEntity;
 import com.human.hms.entity.PinquiryEntity;
+import com.human.hms.entity.ProductEntity;
 import com.human.hms.entity.ReviewEntity;
 import com.human.hms.service.CinquiryService;
 import com.human.hms.service.CommentService;
 import com.human.hms.service.NoticeService;
 import com.human.hms.service.PinquiryService;
+import com.human.hms.service.ProductService;
 import com.human.hms.service.ReviewService;
 import com.human.hms.vo.CinquiryVO;
 import com.human.hms.vo.NoticeVO;
@@ -41,6 +44,7 @@ public class BoardController {
     private PinquiryService pinquiryServiceImpl;
     private CinquiryService cinquiryServiceImpl;
     private CommentService commentService;
+    private ProductService productServiceImpl;
 
     // 공지사항 목록
     @GetMapping("/notice.no")
@@ -127,15 +131,27 @@ public class BoardController {
 
     // 리뷰 작성 페이지
     @GetMapping("/review/write.do")
-    public ModelAndView reviewWrite(ModelAndView mav) {
+    public ModelAndView reviewWrite(ModelAndView mav, @RequestParam(required = false, defaultValue = "0") int pdtIdx) {
         mav.setViewName("board/review_write");
+
+        if(pdtIdx != 0) {
+        	ProductEntity product = productServiceImpl.findbyId(pdtIdx);
+        	mav.addObject("product", product);        	
+        }
+        
         return mav;
     }
 
     // 상품문의 작성 페이지
     @GetMapping("/pinquiry/write.do")
-    public ModelAndView pinquiryWrite(ModelAndView mav) {
+    public ModelAndView pinquiryWrite(ModelAndView mav, @RequestParam(required = false, defaultValue = "0") int pdtIdx) {
         mav.setViewName("board/pinquiry_write");
+        
+        if(pdtIdx != 0) {
+        	ProductEntity product = productServiceImpl.findbyId(pdtIdx);
+        	mav.addObject("product", product);        	
+        }
+        
         return mav;
     }
 
@@ -170,6 +186,9 @@ public class BoardController {
                 .reviewContent(vo.getReviewContent())
                 .rating(vo.getRating())
                 .build();
+        if(vo.getPdtIdx() != 0) {
+        	entity.updateProductEntity(productServiceImpl.getProductById(vo.getPdtIdx()));        	
+        }
 
         ReviewEntity savedEntity = reviewServiceImpl.insertReview(entity, request);
         String viewName = (savedEntity != null) ? "redirect:/board/review.no" : "board/write";
@@ -185,6 +204,9 @@ public class BoardController {
                 .pinquiryTitle(vo.getPinquiryTitle())
                 .pinquiryContent(vo.getPinquiryContent())
                 .build();
+        if(vo.getPdtIdx() != 0) {
+        	entity.updateProductEntity(productServiceImpl.getProductById(vo.getPdtIdx()));        	
+        }
 
         PinquiryEntity savedEntity = pinquiryServiceImpl.insertPinquiry(entity, request);
         String viewName = (savedEntity != null) ? "redirect:/board/pinquiry.no" : "board/write";
@@ -253,7 +275,16 @@ public class BoardController {
         return mav;
     }
     
-  
+    //상품문의 판매자 답변 등록
+    @GetMapping("/pinquiry/saveComment.do")
+    @ResponseBody
+    public PinquiryEntity saveComment(@RequestParam String comment, @RequestParam Long id) {
+    	PinquiryEntity pinquiry = null;
+    	
+    	pinquiry = pinquiryServiceImpl.updateComment(comment, id);
+    	
+    	return pinquiry;
+    }
     
   
 
@@ -419,10 +450,6 @@ public class BoardController {
         mav.setViewName(result == 1 ? "redirect:/board/cinquiry.no" : "error/invalid_request");
         return mav;
     }
-    
-    // 고객문의 댓글 데이터 전달
-    
-    
 
     // FAQ 페이지
     @GetMapping("/faq.no")

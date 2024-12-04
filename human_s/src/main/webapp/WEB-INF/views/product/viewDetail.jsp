@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@
 					</div>
 					<div>
 						<p>수량</p>
-						<input type="number" name="product_qty" class="productQty" value="0"> 개
+						<input type="number" name="product_qty" class="productQty" value="0" min="0"> 개
 					</div>
 				</div>
 				<div class="totalPrice">
@@ -148,11 +149,14 @@
 	<c:if test="${ not empty pinquiryList }">
 		<c:forEach var="item" items="${ pinquiryList }" varStatus="i">
 					        	<tr>
-						            <td class="cNumber">${ i.index+1 }</td>
-						            <td class="cTitle">${ item.reviewTitle }</td>
-						            <td class="cWriter">${ item.author }</td>
-						            <td class="cDate">${ item.createdDate }</td>
-						            <td class="cStar">⭐⭐⭐⭐</td>
+						            <td class="cNumber">${ item.id }</td>
+						            <td class="cTitle">
+						            	<a href="/hms/board/pinquiry/view.do?pinquiryId=${ item.id }">
+						            		${ item.pinquiryTitle }
+						            	</a>
+						            </td>
+						            <td class="cWriter">${ item.userEntity.userNick }</td>
+						            <td class="cDate"><fmt:formatDate value="${ item.createdDate }" type="date" pattern="yyyy-MM-dd"/></td>
 						            <td class="cNumber">${ item.views }</td>
 						        </tr>
 		</c:forEach>
@@ -169,12 +173,11 @@
 						    <div class="pagination">
 						        <a href="#">&laquo;</a>
 						        <a href="#" class="active">1</a>
-						        <a href="#">2</a>
 						        <a href="#">&raquo;</a>
 						    </div>
 						    <div>
 						    	<a href="/hms/board/pinquiry.no">전체보기</a>
-						    	<a href="/hms/board/pinquiry/write.do">문의하기</a>
+						    	<a href="/hms/board/pinquiry/write.do?pdtIdx=${ product.pdtIdx }">문의하기</a>
 						    </div>
 						</div>
 					</div>
@@ -203,11 +206,19 @@
 	<c:if test="${ not empty reviewList }">
 		<c:forEach var="item" items="${ reviewList }" varStatus="i">
 					        	<tr>
-						            <td class="cNumber">${ i.index+1 }</td>
-						            <td class="cTitle">${ item.reviewTitle }</td>
+						            <td class="cNumber">${ item.id }</td>
+						            <td class="cTitle">
+						            	<a href="/hms/board/review/view.do?reviewId=${ item.id }">
+						            		${ item.reviewTitle }
+						            	</a>
+						            </td>
 						            <td class="cWriter">${ item.author }</td>
-						            <td class="cDate">${ item.createdDate }</td>
-						            <td class="cStar">⭐⭐⭐⭐</td>
+						            <td class="cDate"><fmt:formatDate value="${ item.createdDate }" type="date" pattern="yyyy-MM-dd"/></td>
+						            <td class="cStar">
+						            	<c:forEach begin="1" end="${ item.rating }" var="star">
+					                        ⭐
+					                    </c:forEach>
+						            </td>
 						            <td class="cNumber">${ item.views }</td>
 						        </tr>
 		</c:forEach>
@@ -224,12 +235,11 @@
 						    <div class="pagination">
 						        <a href="#">&laquo;</a>
 						        <a href="#" class="active">1</a>
-						        <a href="#">2</a>
 						        <a href="#">&raquo;</a>
 						    </div>
 						    <div>
 						    	<a href="/hms/board/review.no">전체보기</a>
-						    	<a href="/hms/board/review/write.do">후기쓰기</a>
+						    	<a href="/hms/board/review/write.do?pdtIdx=${ product.pdtIdx }">후기쓰기</a>
 						    </div>
 						</div>
 					</div>
@@ -274,7 +284,7 @@
 						</div>
 						<div>
 							<p>수량</p>
-							<input type="number" name="product_qty" class="productQty" value="0"> 개
+							<input type="number" name="product_qty" class="productQty" value="0" min="0"> 개
 						</div>
 					</div>
 					<div class="totalPrice">

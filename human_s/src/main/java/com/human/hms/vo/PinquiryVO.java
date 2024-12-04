@@ -3,12 +3,10 @@ package com.human.hms.vo;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PinquiryVO {
@@ -23,6 +21,7 @@ public class PinquiryVO {
     private Date pinquiryDate;
     private String pinquiryTitle;
     private Long userIdx;
+    private int pdtIdx;
 }
 
   

@@ -152,6 +152,11 @@
     	
     	//스토리 댓글 삭제
     	$(document).on("click", "#story_comment > .comment button", function () {
+    		if (!confirm("댓글을 삭제하시겠습니까?")) {
+    	        // 취소를 누르면 함수 종료
+    	        return;
+    	    }
+    		
     		let scIdx = $(this).val();
     		let id = $(this).data("id");
     		let userIdx = $(this).attr("data-userIdx");

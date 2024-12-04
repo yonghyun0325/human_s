@@ -14,6 +14,7 @@ public class ReviewVO {
     private int views;
     private Long reviewIdx;
     private Long userIdx; // UserEntity ID를 위한 필드
+    private int pdtIdx;
 	
 	}
 

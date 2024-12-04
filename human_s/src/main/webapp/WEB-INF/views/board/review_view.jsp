@@ -32,6 +32,30 @@
             </div>
         </div>
         
+<c:if test="${ not empty review.productEntity }">
+        <!-- 태그된 상품 -->    
+		<div class="tagged-products">
+			<a href="/hms/product/viewDetail.no?idx=${ review.productEntity.pdtIdx }">
+	            <div class="tagged-items">
+    <c:choose>
+    	<c:when test="${ not empty review.productEntity.img }">
+		        	<img src="${ review.productEntity.img }" alt="태그된 상품 이미지">
+    	</c:when>
+    	<c:otherwise>
+	    			<img src="${pageContext.request.contextPath}/resources/uploads/${ review.productEntity.pdtSave }" 
+	    				alt="${ review.productEntity.pdtOrigin }">
+    	</c:otherwise>
+    </c:choose>
+		    
+			        <div class="tagged-item-info">
+			            <div class="tagged-item-title">${ review.productEntity.pdtTitle }</div>
+			            <div class="tagged-item-price">${ review.productEntity.pdtPrice }원</div>
+			        </div>
+	    		</div>
+	    	</a>
+	    <div>
+</c:if>
+        
         <div class="detail-content">
             <p>${review.reviewContent}</p>
         </div>

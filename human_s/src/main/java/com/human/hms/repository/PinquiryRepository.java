@@ -30,8 +30,13 @@ public interface PinquiryRepository extends JpaRepository<PinquiryEntity, Long> 
     List<PinquiryEntity> findByContent(@Param("keyword") String keyword, Pageable pageable);
 
     //상품상세보기 - 상품별 문의내역 가져오기
-    @Query(value="select * from pinquiry p where p.pdt_idx = ?1", nativeQuery = true)
+    @Query(value="select * from pinquiry p where p.pdt_idx = ?1 order by p.id desc", nativeQuery = true)
 	List<PinquiryEntity> getPinquiryList(int idx);
+
+    //판매자 답변 등록하기
+    @Modifying
+    @Query("update PinquiryEntity p set p.pinquiryComment = :comment, p.updateComment = now() where p.id = :id")
+	int updateComment(@Param("comment") String comment, @Param("id") Long id);
 
 
 	
