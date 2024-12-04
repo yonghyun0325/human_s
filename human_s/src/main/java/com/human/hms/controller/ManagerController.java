@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,9 @@ import com.human.hms.api.DmsjPriceRealApiExplorer;
 import com.human.hms.api.KamisDailyPriceApiExplorer;
 import com.human.hms.api.NsrLocalSpcprdApiExplorer;
 import com.human.hms.entity.CodeWhsalEntity;
+import com.human.hms.entity.UserEntity;
 import com.human.hms.service.ApiProductService;
+import com.human.hms.service.UserService;
 import com.human.hms.vo.CodeWhsalVO;
 import com.human.hms.vo.DailyPriceByCategoryVO;
 import com.human.hms.vo.PriceRealVO;
@@ -30,10 +33,17 @@ import lombok.RequiredArgsConstructor;
 public class ManagerController {
 	
 	private final ApiProductService apiProductServiceImpl;
+	private final UserService userServiceImpl;
 	
 	//관리자 페이지 이동
 	@GetMapping("/manager.do")
-	public String manager() {
+	public String manager(Model model) {
+		List<UserEntity> userList = userServiceImpl.getUserList();
+		model.addAttribute("userList", userList);
+		
+		List<UserEntity> sellerList = userServiceImpl.getSellerList();
+		model.addAttribute("sellerList", sellerList);
+		
 		return "manager/manager";
 	}
 	

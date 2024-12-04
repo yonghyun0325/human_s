@@ -232,4 +232,14 @@ public class MyPageController {
     public String orderRefundCancel() {
     	return "mypage/orderRefundCancel";
     }
+    //판매현황 페이지 이동
+    @GetMapping("sell.do")
+    public String sell(Model model, HttpServletRequest request) {
+    	UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+    	
+		List<OrderListEntity> sellList = myPageService.getSellList(user.getUserIdx());
+		model.addAttribute("sellList", sellList);
+		
+    	return "mypage/sellShippingStatus";
+    }
 }

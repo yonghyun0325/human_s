@@ -108,8 +108,13 @@ public class OrderListServiceImpl implements OrderListService {
 	}
 
 	@Override
-	public List<OrderListEntity> getOrdersByDateRange(Date startDate, Date endDate) {
+	public List<OrderListEntity> getOrdersByDateRange(Date startDate, Date endDate, int userIdx) {
 		// TODO Auto-generated method stub
-		return repository.findByOrPayDateBetween(startDate, endDate);
+		return repository.findByOrPayDateBetween(startDate, endDate, userIdx);
+	}
+
+	@Override
+	public List<OrderListEntity> getSellsByDateRange(Date startDate, Date endDate, int userIdx) {
+		return repository.findBySellDateBetween(startDate, endDate, userIdx);
 	}
 }

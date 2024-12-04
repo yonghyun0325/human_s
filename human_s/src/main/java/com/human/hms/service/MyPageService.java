@@ -34,4 +34,6 @@ public interface MyPageService {
 
 	List<BasketEntity> getBasketByUser(int userIdx);
 
+	List<OrderListEntity> getSellList(int userIdx); //판매내역 조회하기
+
 }

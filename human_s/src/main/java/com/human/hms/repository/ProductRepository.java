@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.human.hms.entity.ProductEntity;
 
@@ -88,6 +89,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
 	//인기순을 위한 카운트 증가
 	@Modifying
+	@Transactional
 	@Query("update ProductEntity p "
 			+ "set p.orderCount = p.orderCount+1 "
 			+ "where p.pdtIdx = :idx")

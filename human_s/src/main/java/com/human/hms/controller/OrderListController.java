@@ -97,13 +97,29 @@ public class OrderListController {
     public String searchOrders(
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
-            Model model) {
+            Model model, HttpServletRequest request) {
+    	UserEntity user = (UserEntity) request.getSession().getAttribute("user");
     	
         // 서비스 호출로 데이터 조회
-        List<OrderListEntity> orderList = OrderListServiceImpl.getOrdersByDateRange(startDate, endDate);
+        List<OrderListEntity> orderList = OrderListServiceImpl.getOrdersByDateRange(startDate, endDate, user.getUserIdx());
         
         // 조회 결과를 모델에 추가
         model.addAttribute("orderList", orderList);
         return "mypage/orderShippingStatus"; // JSP 파일 이름
+    }
+    
+    @GetMapping("/sellSearch.do")
+    public String searchSells(
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
+            Model model, HttpServletRequest request) {
+    	UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+    	
+        // 서비스 호출로 데이터 조회
+        List<OrderListEntity> sellList = OrderListServiceImpl.getSellsByDateRange(startDate, endDate, user.getUserIdx());
+        
+        // 조회 결과를 모델에 추가
+        model.addAttribute("sellList", sellList);
+        return "mypage/sellShippingStatus"; // JSP 파일 이름
     }
 }

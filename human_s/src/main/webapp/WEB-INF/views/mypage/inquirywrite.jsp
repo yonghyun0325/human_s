@@ -17,47 +17,37 @@
         <%@ include file="/WEB-INF/views/mypage/sidebar.jsp"%>
 
         <!-- 메인 콘텐츠 -->
-        <main class="main-content">
-            <main class="main-content">
-                <div class="info-message">[<span class="highlight">${user.userName}</span>]의 문의에 답변이 등록되면 알려드립니다.</div>
+            <form class="main-content" name="frmBoardWrite" action="/hms/board/cinquiry/writeProcess.do" method="post">
+                <div class="info-message">[<span class="highlight">${user.userName}</span>]님의 문의에 답변이 등록되면 알려드립니다.</div>
                 <div class="form-section">
                     <table class="form-table">
                         <tr>
                             <th>이름</th>
-                            <td><input type="text" placeholder="이름" value="이용현" disabled></td>
+                            <td><input type="text" name="author" value="${ user.userName }" readonly></td>
                         </tr>
                         <tr>
                             <th>이메일</th>
-                            <td><input type="email" placeholder="이메일" value="dldydgus426@kakao.com" disabled></td>
+                            <td><input type="email" value="${ user.userEmail }" disabled></td>
                         </tr>
                         <tr>
                             <th>핸드폰</th>
-                            <td><input type="tel" placeholder="핸드폰 번호" value="01041636553"></td>
+                            <td><input type="tel" placeholder="핸드폰 번호" value="${ user.userPhone }"></td>
                         </tr>
                         <tr>
                             <th>제목</th>
-                            <td><input type="text" placeholder="제목"></td>
+                            <td><input type="text" name="cinquiryTitle" placeholder="제목" required></td>
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td><textarea placeholder="문의 내용을 입력하세요"></textarea></td>
-                        </tr>
-                        <tr>
-                            <th>첨부</th>
-                            <td>
-                                <div class="file-upload-container">
-                                    <input type="text" placeholder="선택된 파일 없음" disabled>
-                                    <button class="file-upload-btn">파일첨부</button>
-                                </div>
-                            </td>
+                            <td><textarea name="cinquiryContent" placeholder="문의 내용을 입력하세요" required></textarea></td>
                         </tr>
                     </table>
                     <div class="button-group">
-                        <button class="submit-btn">문의하기</button>
-                        <button class="cancel-btn">취소하기</button>
+                        <button type="submit" class="submit-btn">문의하기</button>
+                        <button class="cancel-btn" onclick="history.back()">취소하기</button>
                     </div>
                 </div>
-            </main>
+            </form>
         </div>
 
     <%@ include file="/WEB-INF/views/main/footer.jsp" %>

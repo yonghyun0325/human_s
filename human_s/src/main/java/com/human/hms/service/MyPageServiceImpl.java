@@ -141,4 +141,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<BasketEntity> getBasketByUser(int userIdx) {
 		return basketRepository.getBasketByUser(userIdx);
 	}
+
+	//판매내역 조회하기
+	@Override
+	public List<OrderListEntity> getSellList(int userIdx) {
+		return orderListRepository.getSellList(userIdx);
+	}
 }

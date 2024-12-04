@@ -1,5 +1,7 @@
 package com.human.hms.service;
 
+import java.util.List;
+
 import com.human.hms.entity.AddressEntity;
 import com.human.hms.entity.SellerEntity;
 import com.human.hms.entity.UserEntity;
@@ -32,6 +34,10 @@ public interface UserService {
 	int changePassword(String userEmail, String userPw);//비밀번호 변경
 
 	void deleteUser(int userIdx); // 회원 탈퇴
+
+	List<UserEntity> getUserList();
+
+	List<UserEntity> getSellerList();
 
 
 }
