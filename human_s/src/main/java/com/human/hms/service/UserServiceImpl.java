@@ -1,5 +1,7 @@
 package com.human.hms.service;
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -134,6 +136,18 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int userIdx) {
 		// TODO Auto-generated method stub
 		repository.deleteById(userIdx);
+	}
+
+	//회원 조회
+	@Override
+	public List<UserEntity> getUserList() {
+		return repository.getUserList();
+	}
+
+	//판매자 조회
+	@Override
+	public List<UserEntity> getSellerList() {
+		return repository.getSellerList();
 	}
 
 

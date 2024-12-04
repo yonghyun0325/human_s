@@ -38,7 +38,7 @@
 			<c:if test="${ user.grade == 2 }">
 		            <h3>판매정보</h3>
 		            <ul>
-		                <li><a href="#">판매 현황</a></li>
+		                <li><a href="/hms/mypage/sell.do">판매 현황</a></li>
 		            </ul>
 		            <h3>활동정보</h3>
 		            <ul>

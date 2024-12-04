@@ -11,7 +11,7 @@
 <body>
     <%@ include file="/WEB-INF/views/main/header.jsp"%>
     
-    <h1>관리자</h1>
+    <h1></h1>
     <!-- 마이페이지 컨테이너 -->
     <div class="managerContainer">
         <!-- 좌측 사이드바 -->
@@ -22,21 +22,17 @@
                 <li><a href="/hms/manager/manager.do?select=seller">판매자관리</a></li>
                 <li><a href="/hms/manager/manager.do?select=coupon">쿠폰 전송</a></li>
                 <li><a href="/hms/manager/manager.do?select=api">API 관리</a></li>
-                <li><a href="/hms/manager/manager.do?select=story">팜스토리 관리</a></li>
             </ul>
         </div>
 
         <div class="main-content">
             <div class="user content">
-            	<a href="#">저장</a>
             	<table>
 						<tr>
 							<th>회원 번호</th>
 							<th>아이디</th>
 							<th>이름</th>
 							<th>전화번호</th>
-							<th>탈퇴신청여부</th>
-							<th>판매자등록여부</th>
 							<th>등급</th>
 							<th>삭제</th>
 						</tr>
@@ -47,13 +43,9 @@
 							<td>${ item.userEmail }</td>
 							<td>${ item.userName }</td>
 							<td>${ item.userPhone }</td>
-							<td>${ item.status }</td>
-							<td>${ item.sellapply }</td>
 							<td>${ item.grade }</td>
 							<td>
-				<c:if test="${ item.status eq '1' }">
-							<i class="fa-solid fa-trash-can deleteMember" data-id="${ item.m_id }"></i>
-				</c:if>
+								<i class="fa-solid fa-trash-can deleteMember" data-id="${ item.userIdx }"></i>
 							</td>
 						</tr>
 			</c:forEach>
@@ -61,7 +53,30 @@
 					</table>
             </div>
             <div class="seller content">
-            	판매자관리
+            	<table>
+						<tr>
+							<th>판매자 번호</th>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>전화번호</th>
+							<th>등급</th>
+							<th>삭제</th>
+						</tr>
+		<c:if test="${ not empty userList }">
+			<c:forEach var="item" items="${ sellerList }">
+						<tr>
+							<td>${ item.userIdx }</td>
+							<td>${ item.userEmail }</td>
+							<td>${ item.userName }</td>
+							<td>${ item.userPhone }</td>
+							<td>${ item.grade }</td>
+							<td>
+								<i class="fa-solid fa-trash-can deleteMember" data-id="${ item.userIdx }"></i>
+							</td>
+						</tr>
+			</c:forEach>
+		</c:if>
+					</table>
             </div>
             <div class="coupon content">
             	쿠폰
@@ -93,9 +108,6 @@
             		</tr>
             	</table>
             </div>
-            <div class="story content">
-            	팜스토리
-            </div>
         </div>
     </div>
 
@@ -120,6 +132,13 @@
    		    } else {
    		        $(".main-content > .user").show();
    		    }
+   			
+   			switch(select){
+   				case 'user': $("h1").text("회원관리"); break;
+   				case 'seller': $("h1").text("판매자관리"); break;
+   				case 'coupon': $("h1").text("쿠폰전송"); break;
+   				case 'api': $("h1").text("api 관리"); break;
+   			}
    			
    			//일별 부류별 가격정보 api 조회 시 필요한 날짜 입력
    			$(".dailyPriceBtn").click(function(){

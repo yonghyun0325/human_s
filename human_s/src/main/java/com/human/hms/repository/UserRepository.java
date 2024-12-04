@@ -1,5 +1,7 @@
 package com.human.hms.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -39,6 +41,14 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	@Modifying
 	@Query("update UserEntity u set u.userPw = ?2 where u.userEmail = ?1")
 	int changePassword(String userEmail, String userPw);
+
+	//회원조회
+	@Query("select u from UserEntity u where u.grade = 1 order by u.userIdx desc")
+	List<UserEntity> getUserList();
+
+	//판매자조회
+	@Query("select u from UserEntity u where u.grade = 2 order by u.userIdx desc")
+	List<UserEntity> getSellerList();
 
 
 	

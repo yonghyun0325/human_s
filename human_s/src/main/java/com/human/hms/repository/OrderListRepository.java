@@ -28,7 +28,18 @@ public interface OrderListRepository extends JpaRepository<OrderListEntity, Long
 			+ "where FUNCTION('DATE_FORMAT', o.orPayDate, '%Y%m%d') = :formattedDate")
 	int countOrder(@Param("formattedDate")String formattedDate);
 
-	@Query("SELECT o FROM OrderListEntity o WHERE o.orPayDate BETWEEN :startDate AND :endDate")
-	List<OrderListEntity> findByOrPayDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	@Query("SELECT o FROM OrderListEntity o WHERE o.orPayDate BETWEEN :startDate AND :endDate and o.userEntity.userIdx = :userIdx ")
+	List<OrderListEntity> findByOrPayDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate, 
+			@Param("userIdx") int userIdx);
+
+	//판매내역 조회하기
+	@Query("SELECT o FROM OrderListEntity o WHERE o.productEntity.userEntity.userIdx = :userIdx")
+	List<OrderListEntity> getSellList(@Param("userIdx") int userIdx);
+
+	//판매내역 일자별 조회
+	@Query("SELECT o FROM OrderListEntity o WHERE o.orPayDate BETWEEN :startDate AND :endDate "
+			+ "and o.productEntity.userEntity.userIdx = :userIdx ")
+	List<OrderListEntity> findBySellDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate, 
+			@Param("userIdx") int userIdx);
 	
 }

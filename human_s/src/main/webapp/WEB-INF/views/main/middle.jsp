@@ -171,7 +171,7 @@
 	            <h4>팜스토리</h4>
 	            <div>
 	            	<hr>
-	<c:forEach var="i" begin="0" end="5">
+	<c:forEach var="i" begin="0" end="${ storyList.size() > 5 ? 5 : storyList.size()-1 }">
 					<div class="storyItem" data-id="${ storyList[i].id }">
 						<div>${ storyList[i].storyTitle }</div>
 						<div>
@@ -186,7 +186,7 @@
 	            <h4>공지사항</h4>
 	            <div>
 	            	<hr>
-	<c:forEach var="i" begin="0" end="5">
+	<c:forEach var="i" begin="0" end="${ noticeList.size() > 5 ? 5 : noticeList.size()-1 }">
 					<div class="noticeItem" data-id="${ noticeList[i].id }">
 						<div>${ noticeList[i].noticeTitle }</div>
 						<div>

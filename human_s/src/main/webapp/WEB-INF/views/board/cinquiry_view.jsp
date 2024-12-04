@@ -57,7 +57,7 @@
        
         <div id="detail-btn-group">
             <!-- 조건: 로그인 상태 + 자신이 작성한 게시물일 경우 -->
-            <c:if test="${(not empty user) and (user.userIdx eq notice.userEntity.userIdx)}"> 
+            <c:if test="${(not empty user) and (user.userIdx eq cinquiry.userEntity.userIdx)}"> 
                 <button class="btn btn-edit" onclick="location.href='${pageContext.request.contextPath}/board/cinquiry/update.do?cinquiryIdx=${cinquiry.id}'">수정하기</button>
                 <button class="btn btn-delete" onclick="deletePost()">삭제하기</button>
              </c:if> 

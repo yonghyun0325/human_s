@@ -40,7 +40,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 </a>
 	</c:if>
 	<c:if test="${ user.grade == 2 }">
-                <a href="#">
+                <a href="/hms/mypage/sell.do">
                 	<i class="fa-solid fa-list"></i><br>
                 	<span>판매내역</span>
                 </a>

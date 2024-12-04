@@ -14,6 +14,8 @@ public interface OrderListService {
 
 	String authEmail(String email, String authNumber);
 
-	List<OrderListEntity> getOrdersByDateRange(Date startDate, Date endDate);
+	List<OrderListEntity> getOrdersByDateRange(Date startDate, Date endDate, int userIdx);
+
+	List<OrderListEntity> getSellsByDateRange(Date startDate, Date endDate, int userIdx);
 
 }

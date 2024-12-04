@@ -158,7 +158,7 @@ public class BoardController {
     // 고객문의 작성 페이지
     @GetMapping("/cinquiry/write.do")
     public ModelAndView cinquiryWrite(ModelAndView mav) {
-        mav.setViewName("board/cinquiry_write");
+        mav.setViewName("mypage/inquirywrite");
         return mav;
     }
 
