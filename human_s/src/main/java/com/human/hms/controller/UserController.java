@@ -348,5 +348,13 @@ public class UserController {
 		
 		return viewName;
 	}
-	
+	// 회원 탈퇴
+	@PostMapping("withdrawal.do")
+	@ResponseBody
+	public String withdrawUser(HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		userServiceImpl.deleteUser(user.getUserIdx());
+        session.invalidate();
+        return "탈퇴 완료";
+	}
 }

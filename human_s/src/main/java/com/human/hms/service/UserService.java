@@ -31,5 +31,7 @@ public interface UserService {
 
 	int changePassword(String userEmail, String userPw);//비밀번호 변경
 
+	void deleteUser(int userIdx); // 회원 탈퇴
+
 
 }

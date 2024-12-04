@@ -129,6 +129,12 @@ public class UserServiceImpl implements UserService {
 	public int changePassword(String userEmail, String userPw) {
 		return repository.changePassword(userEmail, userPw);
 	}
+	//회원탈퇴
+	@Override
+	public void deleteUser(int userIdx) {
+		// TODO Auto-generated method stub
+		repository.deleteById(userIdx);
+	}
 
 
 
