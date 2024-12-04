@@ -86,6 +86,9 @@ public class ProductEntity {
 	@Column(name="pdt_date", columnDefinition = "DATETIME DEFAULT NOW()")
 	private Date pdtDate;
 	
+	@Column(name="count", columnDefinition = "INT DEFAULT 0")
+	private int orderCount;  //주문 횟수
+	
 	@ManyToOne //조인 관계
 	@JoinColumn(name="user_idx", updatable = false) //회원번호(외래키)
 	private UserEntity userEntity; 
@@ -115,6 +118,7 @@ public class ProductEntity {
 		this.pdtKg = pdtKg;
 		this.pdtGPrice = pdtGPrice;
 		this.pdtDate = new Date();
+		this.orderCount = 0;
 		this.pdtFile = pdtFile;
 		this.uploadFiles = uploadFiles;
 	}

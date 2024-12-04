@@ -21,6 +21,32 @@
 
             <!-- 작성자 (로그인된 사용자 정보에서 가져옴) -->
             <input type="hidden" id="author" name="author" value="${user.userName}">
+            
+            <input type="hidden" name="pdtIdx" value="${ product != null ? product.pdtIdx : 0 }">
+            
+            <!-- 태그된 상품 -->    
+<c:if test="${ not empty product }">
+			<div class="tagged-products">
+		        <h3>태그된 상품</h3>
+				<a href="/hms/product/viewDetail.no?idx=${ product.pdtIdx }">
+		            <div class="tagged-items">
+    <c:choose>
+    	<c:when test="${ not empty product.img }">
+			        	<img src="${ product.img }" alt="태그된 상품 이미지">
+    	</c:when>
+    	<c:otherwise>
+		    			<img src="${pageContext.request.contextPath}/resources/uploads/${ product.pdtSave }" alt="${ product.pdtOrigin }">
+    	</c:otherwise>
+    </c:choose>
+		    
+				        <div class="tagged-item-info">
+				            <div class="tagged-item-title">${ product.pdtTitle }</div>
+				            <div class="tagged-item-price">${ product.pdtPrice }원</div>
+				        </div>
+		    		</div>
+		    	</a>
+		    <div>
+</c:if>
 
             <!-- 제목 -->
             <div class="form-group">

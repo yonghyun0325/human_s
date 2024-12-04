@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	void deleteLocalSpcprdAll();
 
 	//인기순 리스트 조회
-	@Query(value = "select * from product p limit 16 ", nativeQuery = true)
+	@Query(value = "select * from product p order by p.count desc limit 16 ", nativeQuery = true)
 	List<ProductEntity> getPopList();
 
 	//신상품 리스트 조회
@@ -85,5 +85,12 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	@Query("select p from ProductEntity p "
 			+ "where p.pdtLargeCode in :checkeds ")
 	List<ProductEntity> checkHiddenList(@Param("checkeds") List<String> checkeds);
+
+	//인기순을 위한 카운트 증가
+	@Modifying
+	@Query("update ProductEntity p "
+			+ "set p.orderCount = p.orderCount+1 "
+			+ "where p.pdtIdx = :idx")
+	void updateCount(@Param("idx") int idx);
 	
 }

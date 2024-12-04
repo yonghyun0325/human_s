@@ -129,6 +129,19 @@ public class PinquiryServiceImpl implements PinquiryService {
         // ReviewEntity를 저장
         return pinquiryRepository.save(vo); // JPA의 save 메서드를 사용하여 저장
     }
+
+    //고객문의 답변
+    @Transactional
+	@Override
+	public PinquiryEntity updateComment(String comment, Long id) {
+    	PinquiryEntity pinquriy = null; 
+    	
+    	if(pinquiryRepository.updateComment(comment, id) == 1) {
+    		pinquriy = pinquiryRepository.findById(id).get();
+    	}
+    	
+		return pinquriy;
+	}
     
 
 		

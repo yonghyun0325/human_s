@@ -44,6 +44,12 @@ public class PinquiryEntity {
     @Column(name = "views", columnDefinition = "INT DEFAULT 0")
     private int views;
     
+    @Column(name = "pinquiry_comment")
+    private String pinquiryComment;
+    
+    @Column(name = "update_comment")
+    private Date updateComment;
+    
     @ManyToOne
     @JoinColumn(name = "user_idx", updatable = false)
     private UserEntity userEntity;
@@ -65,7 +71,10 @@ public class PinquiryEntity {
 
 	public void updateUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
-		
+	}
+	
+	public void updateProductEntity(ProductEntity productEntity) {
+		this.productEntity = productEntity;
 	}
 	
 	public void updatePinquiryContent(String pinquiryContent) {

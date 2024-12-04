@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.UnUserEntity;
 import com.human.hms.repository.OrderListRepository;
+import com.human.hms.repository.ProductRepository;
 import com.human.hms.repository.UnUserRepository;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class OrderListServiceImpl implements OrderListService {
 	private OrderListRepository repository;
 	private UnUserRepository un_repository;
 	private JavaMailSenderImpl mailSender;
+	private ProductRepository productRepository;
 	
 	//비회원 결제처리
 	@Transactional
@@ -38,6 +40,7 @@ public class OrderListServiceImpl implements OrderListService {
 		UnUserEntity un_entity_save = un_repository.save(un_entity);
 		
 		if(entity_save != null && un_entity_save != null) {
+			productRepository.updateCount(entity_save.getProductEntity().getPdtIdx());
 			authEmail(un_entity_save.getUnEmail(), entity_save.getOrIdx());
 			return entity_save;
 		}
@@ -51,6 +54,7 @@ public class OrderListServiceImpl implements OrderListService {
 		
 		OrderListEntity entity_save = repository.save(entity);
 		if(entity_save != null) {
+			productRepository.updateCount(entity_save.getProductEntity().getPdtIdx());
 			authEmail(entity.getUserEntity().getUserEmail(), entity_save.getOrIdx());
 		}
 

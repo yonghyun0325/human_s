@@ -76,7 +76,7 @@ public class ReviewEntity {
 		
 	}
 	
-	public void updateProductntity(ProductEntity productEntity) {
+	public void updateProductEntity(ProductEntity productEntity) {
 		this.productEntity = productEntity;
 		
 	}
