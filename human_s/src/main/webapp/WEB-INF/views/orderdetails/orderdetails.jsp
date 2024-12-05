@@ -24,7 +24,14 @@
 			<div>
 				<div class="order_product">
 					<div class="product_img"> 
-						<img src="${pageContext.request.contextPath}/resources/uploads/${product.pdtSave}" alt="상품사진">
+	<c:choose>
+		<c:when test="${ not empty order.productEntity.img }">
+						<img src="${ order.productEntity.img }" alt="상품사진">		
+		</c:when>
+		<c:otherwise>
+						<img src="${pageContext.request.contextPath}/resources/uploads/${order.productEntity.pdtSave}" alt="상품사진">
+		</c:otherwise>
+	</c:choose>				
 					</div>
 					<div class="product_info">
 						<p>상품명 : ${order.orName}</p>

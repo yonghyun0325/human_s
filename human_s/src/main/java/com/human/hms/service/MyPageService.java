@@ -36,4 +36,6 @@ public interface MyPageService {
 
 	List<OrderListEntity> getSellList(int userIdx); //판매내역 조회하기
 
+	List<OrderListEntity> getUnUserOrderList(String orIdx); //비회원 주문조회
+
 }

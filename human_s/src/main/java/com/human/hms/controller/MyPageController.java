@@ -20,6 +20,7 @@ import com.human.hms.entity.BasketEntity;
 import com.human.hms.entity.FavoriteEntity;
 import com.human.hms.entity.OrderListEntity;
 import com.human.hms.entity.ReviewEntity;
+import com.human.hms.entity.UnUserEntity;
 import com.human.hms.entity.UserEntity;
 import com.human.hms.service.MyPageService;
 import com.human.hms.vo.AddressVO;
@@ -94,11 +95,13 @@ public class MyPageController {
     @GetMapping("/order.do")
     public String showOrderShippingStatus(HttpSession session, Model model){
     	UserEntity user = addSessionDataToModel(session);
+    	UnUserEntity unuser = (UnUserEntity) session.getAttribute("unuser");
     	if (user != null) {
 			List<OrderListEntity> orderList = myPageService.getOrderList(user.getUserIdx());
 			model.addAttribute("orderList",orderList);
-		} else {
-			model.addAttribute("error","로그인이 필요합니다.");
+		} else if(unuser != null) {
+			List<OrderListEntity> orderList = myPageService.getUnUserOrderList(unuser.getOrderListEntity().getOrIdx());
+			model.addAttribute("orderList",orderList);
 		}
         return "mypage/orderShippingStatus";
     }
