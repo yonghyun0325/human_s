@@ -41,5 +41,9 @@ public interface OrderListRepository extends JpaRepository<OrderListEntity, Long
 			+ "and o.productEntity.userEntity.userIdx = :userIdx ")
 	List<OrderListEntity> findBySellDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate, 
 			@Param("userIdx") int userIdx);
+
+	//비회원 주문조회
+	@Query("select o from OrderListEntity o where o.orIdx = :orIdx")
+	List<OrderListEntity> getUnUserOrderList(@Param("orIdx") String orIdx);
 	
 }

@@ -24,7 +24,7 @@
 		</div>
 
 
-        <div id="story-cards-container" class="story-cards-container">
+        <div id="story-cards-container" class="story-cards-container" data-user="${ user ? user.userIdx : 0 }">
             <!-- 초기 6개의 스토리만 로드 -->
             <c:forEach var="story" items="${stories}">
                 <div class="story-card">
@@ -109,6 +109,12 @@
 	  });
 	  
 	  $(".thumbsUpBtn").click(function(){
+		  let userIdx = $("#story-cards-container").data("user");
+		  if(userIdx == 0){
+			  alert("로그인 후 진행해주세요.");
+			  return;
+		  }
+		  
 		 $(this).children("i").toggle(); 
 		 
 		 let currentColor = $(this).css("color");

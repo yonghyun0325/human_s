@@ -7,7 +7,6 @@ $(function() {
 			    alert("이메일을 입력해주세요."); // 이메일이 비어 있으면 알림창 표시
 			    return; // 함수 종료 (아래 코드가 실행되지 않음)
 			}
-        console.log("코딱지");
         
         const $button = $('#sameIdBtn')
         $.ajax({

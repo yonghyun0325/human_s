@@ -147,4 +147,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OrderListEntity> getSellList(int userIdx) {
 		return orderListRepository.getSellList(userIdx);
 	}
+
+	//비회원 주문조회
+	@Override
+	public List<OrderListEntity> getUnUserOrderList(String orIdx) {
+		return orderListRepository.getUnUserOrderList(orIdx);
+	}
 }

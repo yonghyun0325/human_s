@@ -20,5 +20,25 @@
    		 $('#unUserBtn').css('background-color', 'white');
     });
     
+    $("#phoneNum").on("input", function(){
+    			
+		 let input = $(this).val().replace(/[^0-9]/g, ""); // 숫자만 남기기
+		    let formatted = "";
+
+		    if (input.length <= 3) {
+		        // 3자리 이하일 때 그대로 유지
+		        formatted = input;
+		    } else if (input.length <= 7) {
+		        // 4~7자리일 때 010-123 형식
+		        formatted = input.slice(0, 3) + "-" + input.slice(3);
+		    } else {
+		        // 8자리 이상일 때 010-1234-5678 형식
+		        formatted = input.slice(0, 3) + "-" + input.slice(3, 7) + "-" + input.slice(7, 11);
+		    }
+
+		    $(this).val(formatted); // 포맷팅된 값 설정
+		
+	});
+    
  });
  

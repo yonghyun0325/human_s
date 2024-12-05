@@ -25,7 +25,7 @@
             <div class="info-box">
                 <p><span class="highlight">${user.userName}${ unuser.unName }</span>님이 쇼핑몰에서 주문한 내역입니다.</p>
             </div>
-            
+	<c:if test="${ not empty user }">
             <div class="filter-container">
 			    <!-- 필터 버튼 -->
 			    <button class="filter-btn" data-period="today">오늘</button>
@@ -46,6 +46,7 @@
 			    <!-- 조회 버튼 -->
 			    <button class="search-btn selects">조회하기</button>
 			</div>
+	</c:if>
             
             <table class="order-table">
                 <thead>
