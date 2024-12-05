@@ -22,47 +22,45 @@
 		<div>
 			<h2>주문상품</h2>
 			<div>
-				<div>
-					<p>배송:<span>[#농장]</span>택배 ####(주문 시 결제)</p>
-				</div>
-				<div>
-					<div>
-						<img src="${pageContext.request.contextPath}/resources/img/kimchi.jpg" alt="상품사진">
+				<div class="order_product">
+					<div class="product_img"> 
+						<img src="${pageContext.request.contextPath}/resources/uploads/${product.pdtSave}" alt="상품사진">
 					</div>
-				
+					<div class="product_info">
+						<p>상품명 : ${order.orName}</p>
+						<p>결제구분 : ${order.orPayType}</p>
+						<p>결제금액 : ${order.orPayAmount}원</p>
+					</div>
 				</div>
 			</div>
-			<div>
-				<h4>주문자</h4>
-				<c:choose>
-				    <c:when test="${not empty sessionScope.user}">
-				        <p>${sessionScope.user.userName}</p>
-				        <p>${sessionScope.user.userPhone}</p>
-				        <p>${sessionScope.user.userEmail}</p>
-				    </c:when>
-				
-				    <c:otherwise>
-				        <p>${unuser.unName}</p>
-				        <p>${unuser.unPhone}</p>
-				        <p>${unuser.unEmail}</p>
-				    </c:otherwise>
-				</c:choose>
-
-				<p>주문자 정보로 주문 관련 정보가 문자와 이메일로 발송됩니다</p>
-				<p>비회원은 이메일과 주문번호로 주문조회가 가능합니다</p>
+			<div class="orderdetails_mid_btm">
+				<div>
+					<h4>주문자</h4>
+					<c:choose>
+					    <c:when test="${not empty sessionScope.user}">
+					        <p>${sessionScope.user.userName}</p>
+					        <p>${sessionScope.user.userPhone}</p>
+					        <p>${sessionScope.user.userEmail}</p>
+					    </c:when>
+					
+					    <c:otherwise>
+					        <p>${unuser.unName}</p>
+					        <p>${unuser.unPhone}</p>
+					        <p>${unuser.unEmail}</p>
+					    </c:otherwise>
+					</c:choose>
+	
+					<p>주문자 정보로 주문 관련 정보가 문자와 이메일로 발송됩니다</p>
+					<p>비회원은 이메일과 주문번호로 주문조회가 가능합니다</p>
+				</div>
+				<div>
+					<h4>배송지</h4>
+					<p>${order.orRecHuman}</p>
+					<p>[${order.orPost}]${order.orAdd1} ${order.orAdd2}</p>
+					<p>${order.orRecPhone}</p>
+					<p>배송메시지:${order.orMessage}</p>
+				</div>
 			</div>
-			<div>
-				<h4>배송지</h4>
-				<p>${order.orRecHuman}</p>
-				<p>[${order.orPost}]${order.orAdd1} ${order.orAdd2}</p>
-				<p>${order.orRecPhone}</p>
-				<p>배송메시지:${order.orMessage}</p>
-				
-			</div>
-		</div>
-		<!-- 오른쪽 -->
-		<div>
-			<p>코딱지</p>
 		</div>
 	</div>
 	<div class="orderdetails_btm">
