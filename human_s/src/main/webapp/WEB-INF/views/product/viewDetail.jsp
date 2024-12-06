@@ -155,7 +155,7 @@
 						            		${ item.pinquiryTitle }
 						            	</a>
 						            </td>
-						            <td class="cWriter">${ item.userEntity.userNick }</td>
+						            <td class="cWriter">${ item.author }</td>
 						            <td class="cDate"><fmt:formatDate value="${ item.createdDate }" type="date" pattern="yyyy-MM-dd"/></td>
 						            <td class="cNumber">${ item.views }</td>
 						        </tr>

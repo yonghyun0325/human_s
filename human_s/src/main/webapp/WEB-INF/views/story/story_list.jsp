@@ -24,7 +24,7 @@
 		</div>
 
 
-        <div id="story-cards-container" class="story-cards-container" data-user="${ user ? user.userIdx : 0 }">
+        <div id="story-cards-container" class="story-cards-container" data-user="${ not empty user ? user.userIdx : 0 }">
             <!-- 초기 6개의 스토리만 로드 -->
             <c:forEach var="story" items="${stories}">
                 <div class="story-card">

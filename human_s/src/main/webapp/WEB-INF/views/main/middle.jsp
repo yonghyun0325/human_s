@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="newProduct product">
-            <h4>따끈따끈한 신상</h4>
+            <h4>따끈따끈한 신상품</h4>
             <div class="newContainer container">
             	<div class="newList list">
 	<c:forEach var="i" begin="0" end="5">

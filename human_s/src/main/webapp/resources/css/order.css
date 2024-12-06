@@ -265,6 +265,15 @@ label {
 	color: white;
 }
 
+ .payment-method input {
+	width: 100%; /* 전체 너비로 설정하되, max-width로 제한 */
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top : 5px;
+}
+
 .terms  {
 	display: flex;
 	flex-direction:column;

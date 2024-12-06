@@ -15,7 +15,7 @@ $(function() {
             data: { userEmail: userEmail },
             success: function(email) {		            
                 if (email.trim() === "SUCCESS") {
-                    alert("정보가 성공적으로 저장되었습니다.");
+                    alert("사용 가능한 아이디입니다.");
                      // 버튼 텍스트와 ID 변경 및 기존 클릭 이벤트 제거 후 새 이벤트 추가
                     $button.text("인증번호 전송")
                            .attr("id", "email_auth_btn")
