@@ -10,7 +10,7 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 <div class="layout">
-<h3>FAQ</h3>
+<h3>자주 묻는 질문</h3>
     <%@ include file="../board/topmenu.jsp" %>
     <div class="faq-container">
         
