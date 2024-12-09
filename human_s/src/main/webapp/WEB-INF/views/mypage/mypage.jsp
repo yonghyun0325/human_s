@@ -62,9 +62,22 @@
                         <th>상품명</th>
                         <th>결제금액</th>
                     </tr>
+	<c:choose>
+		<c:when test="${ not empty orderList }">
+			<c:forEach var="item" items="${ orderList }">
+					<tr>
+						<td><fmt:formatDate value="${item.orPayDate}" pattern="yyyy-MM-dd" /></td>
+						<td>${ item.productEntity.pdtTitle }</td>
+						<td>${ item.orPayAmount }원</td>
+					</tr>		
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
                     <tr>
                         <td colspan="3">주문 내역이 없습니다.</td>
                     </tr>
+		</c:otherwise>
+	</c:choose>
                 </table>
             </div>
             <hr>
@@ -112,10 +125,15 @@
 	                <tbody>
 	                	<c:forEach var="item" items="${favorite_list}">
 	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
+				<c:if test="${ not empty item.productEntity.img }">
+							<td><img src="${ item.productEntity.img }" alt="${ item.productEntity.pdtTitle }"></td>				
+				</c:if>
+				<c:if test="${ empty item.productEntity.img }">
+							<td><img src="${pageContext.request.contextPath}/resources/uploads/${item.productEntity.pdtSave}" alt="${ item.productEntity.pdtOrigin }"></td>
+				</c:if>
+	                        <td>${ item.productEntity.pdtTitle }</td>
+	                        <td>${ item.productEntity.pdtKg }Kg</td>
+	                        <td>${ item.productEntity.pdtPrice }원</td>
 	                    </tr>
 	                    </c:forEach>
 	                </tbody>

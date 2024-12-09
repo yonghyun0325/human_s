@@ -44,6 +44,10 @@ public class MyPageController {
     	UserEntity user = addSessionDataToModel(session);
     	List<ReviewEntity> listReview = myPageService.getReviewList(user.getUserIdx());
     	model.addAttribute("review_list", listReview);
+    	List<OrderListEntity> orderList = myPageService.getOrderList(user.getUserIdx());
+    	model.addAttribute("orderList", orderList);
+    	List<FavoriteEntity> favorite_list = myPageService.getFavoriteByUser(user.getUserIdx());
+    	model.addAttribute("favorite_list", favorite_list);
         return "mypage/mypage";
     }
     //userUpdate.jsp로 이동
